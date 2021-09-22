@@ -17,6 +17,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TwelveWeekYear.Domain", "sr
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TwelveWeekYear.Application", "src\TwelveWeekYear.Application\TwelveWeekYear.Application.csproj", "{031E0597-0F8D-4CC4-985E-7F149A10B700}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TwelveWeekYear.Infrastructure", "src\TwelveWeekYear.Infrastructure\TwelveWeekYear.Infrastructure.csproj", "{95B7FCE1-3E66-4F89-AEA0-1584B1F98331}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -39,6 +41,10 @@ Global
 		{031E0597-0F8D-4CC4-985E-7F149A10B700}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{031E0597-0F8D-4CC4-985E-7F149A10B700}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{031E0597-0F8D-4CC4-985E-7F149A10B700}.Release|Any CPU.Build.0 = Release|Any CPU
+		{95B7FCE1-3E66-4F89-AEA0-1584B1F98331}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{95B7FCE1-3E66-4F89-AEA0-1584B1F98331}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{95B7FCE1-3E66-4F89-AEA0-1584B1F98331}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{95B7FCE1-3E66-4F89-AEA0-1584B1F98331}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
