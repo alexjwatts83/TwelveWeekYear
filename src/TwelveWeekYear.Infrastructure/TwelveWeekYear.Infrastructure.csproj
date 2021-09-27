@@ -17,4 +17,8 @@
     <Folder Include="Identity\Stores\" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\TwelveWeekYear.Application\TwelveWeekYear.Application.csproj" />
+  </ItemGroup>
+
 </Project>
