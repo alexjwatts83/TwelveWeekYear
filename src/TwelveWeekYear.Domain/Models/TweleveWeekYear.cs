@@ -10,5 +10,6 @@ namespace TwelveWeekYear.Domain.Models
 		public string Name { get; set; }
 		public string Description { get; set; }
 		public IEnumerable<Goal> Goals { get; set; }
+		public IEnumerable<TweleveWeekYearWeek> Weeks { get; set; }
 	}
 }
