@@ -29,8 +29,4 @@ namespace TwelveWeekYear.Application.Interfaces
 		IEnumerable<T> CachedQuery<T>(string keyPrefix, string sql, object parameters = null, int cacheDuration = 60) where T : class;
 		T CachedQuerySingleOrDefault<T>(string keyPrefix, string sql, object parameters = null, int cacheDuration = 60) where T : class;
 	}
-	public interface ICacheKeyCreator
-	{
-		string GetCacheKeyNameFromObject(string keyPrefix, object parameters = null);
-	}
 }
