@@ -7,7 +7,7 @@ using TwelveWeekYear.Infrastructure.Persistence.Repositories;
 
 namespace TwelveWeekYear.Infrastructure
 {
-	public static class DependencyInjection
+	public static class DependencyInjection  
 	{
 		public static IServiceCollection AddInfrastructure(this IServiceCollection services, IConfiguration config)
 		{
