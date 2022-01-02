@@ -14,7 +14,7 @@ namespace TwelveWeekYear.Infrastructure
 
 			services.AddScoped(typeof(IBaseRepository), typeof(BaseRepository));
 
-			//SqlMapper.AddTypeHandler(typeof(IEnumerable<TodoItem>), new JsonObjectTypeHandler());
+			// Add SqlMapper.AddTypeHandler here
 
 			return services;
 		}
