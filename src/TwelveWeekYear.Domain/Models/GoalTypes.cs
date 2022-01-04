@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-
-namespace TwelveWeekYear.Domain.Models
+﻿namespace TwelveWeekYear.Domain.Models
 {
 	public enum GoalTypes
 	{
