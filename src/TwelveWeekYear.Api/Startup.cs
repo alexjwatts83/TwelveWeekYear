@@ -28,6 +28,7 @@ namespace TwelveWeekYear.Api
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "TwelveWeekYear.Api", Version = "v1" });
             });
 			services.AddScoped<ICacheKeyCreator, CacheKeyCreator>();
+			services.AddGraphQLServer().AddQueryType<Query>();
 		}
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -48,8 +49,8 @@ namespace TwelveWeekYear.Api
 
             app.UseEndpoints(endpoints =>
             {
-                endpoints.MapControllers();
-            });
+				endpoints.MapGraphQL();
+			});
         }
     }
 }
