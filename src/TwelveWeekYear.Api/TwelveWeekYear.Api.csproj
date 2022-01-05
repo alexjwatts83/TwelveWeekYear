@@ -11,6 +11,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\TwelveWeekYear.Application\TwelveWeekYear.Application.csproj" />
+    <ProjectReference Include="..\TwelveWeekYear.Domain\TwelveWeekYear.Domain.csproj" />
   </ItemGroup>
 
   <ItemGroup>
