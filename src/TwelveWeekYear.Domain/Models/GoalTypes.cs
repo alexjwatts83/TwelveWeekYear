@@ -2,7 +2,7 @@
 {
 	public enum GoalTypes
 	{
-		ThreetoFiveYear,
+		ThreeToFiveYear,
 		ThisYear,
 		TweleveWeekYear
 	}
