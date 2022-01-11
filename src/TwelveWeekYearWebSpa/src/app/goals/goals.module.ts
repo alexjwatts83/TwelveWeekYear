@@ -12,6 +12,9 @@ import { GoalsGridComponent } from './goals-grid/goals-grid.component';
   imports: [
     CommonModule,
     GoalsRoutingModule
+  ],
+  exports: [
+    GoalsGridComponent
   ]
 })
 export class GoalsModule { }
