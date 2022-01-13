@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 
 import { GoalsRoutingModule } from './goals-routing.module';
 import { GoalsGridComponent } from './goals-grid/goals-grid.component';
-
+import { MaterialSharedModule } from '../material-shared/material-shared.module';
 
 @NgModule({
   declarations: [
@@ -11,7 +11,8 @@ import { GoalsGridComponent } from './goals-grid/goals-grid.component';
   ],
   imports: [
     CommonModule,
-    GoalsRoutingModule
+    GoalsRoutingModule,
+    MaterialSharedModule
   ],
   exports: [
     GoalsGridComponent
