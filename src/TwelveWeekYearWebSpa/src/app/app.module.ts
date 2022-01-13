@@ -4,6 +4,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { GoalsModule } from './goals/goals.module';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [
@@ -13,7 +14,8 @@ import { GoalsModule } from './goals/goals.module';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    GoalsModule
+    GoalsModule,
+    BrowserAnimationsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
