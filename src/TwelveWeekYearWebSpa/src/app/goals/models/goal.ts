@@ -1,2 +1,4 @@
-export class Goal {
+export interface Goal {
+  id: string;
+  description: string;
 }
