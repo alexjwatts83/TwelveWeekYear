@@ -8,7 +8,7 @@ import { Goal } from '../models/goal';
 })
 export class GoalsGridComponent implements OnInit {
   data: Goal[] = [];
-  
+
   constructor() { }
 
   ngOnInit(): void {
@@ -20,6 +20,10 @@ export class GoalsGridComponent implements OnInit {
       {
         description: 'Do more stuff',
         id: '2'
+      },
+      {
+        description: 'Other stuff',
+        id: '3'
       }
     ]
   }
