@@ -12,19 +12,5 @@ export class GoalsGridComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
-    this.data = [
-      {
-        description: 'Do Stuff',
-        id: '1'
-      },
-      {
-        description: 'Do more stuff',
-        id: '2'
-      },
-      {
-        description: 'Other stuff',
-        id: '3'
-      }
-    ]
   }
 }
