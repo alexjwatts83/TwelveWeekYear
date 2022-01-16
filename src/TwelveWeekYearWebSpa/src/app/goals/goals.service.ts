@@ -6,6 +6,20 @@ import { Goal } from './models/goal';
   providedIn: 'root'
 })
 export class GoalsService {
+  data: Goal[] = [
+    {
+      description: 'Do Stuff',
+      id: '1'
+    },
+    {
+      description: 'Do more stuff',
+      id: '2'
+    },
+    {
+      description: 'Other stuff',
+      id: '3'
+    }
+  ];
   private _goals$ = new BehaviorSubject<Goal[]>([]);
 
   constructor() { }
