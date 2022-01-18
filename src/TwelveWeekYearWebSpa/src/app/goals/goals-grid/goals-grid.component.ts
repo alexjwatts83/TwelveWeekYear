@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { MatTableDataSource } from '@angular/material/table';
 import { Observable } from 'rxjs';
 import { GoalsService } from '../goals.service';
 import { Goal } from '../models/goal';
@@ -10,11 +11,17 @@ import { Goal } from '../models/goal';
 })
 export class GoalsGridComponent implements OnInit {
   data$!: Observable<Goal[]>;
+  displayedColumns: string[] = ['id', 'description'];
+  dataSoure = new MatTableDataSource<Goal>();
 
   constructor(private service: GoalsService) { 
   }
 
   ngOnInit(): void {
     this.data$ = this.service.getGoals();
+
+    this.data$.subscribe(x => {
+      this.dataSoure.data = x;
+    });
   }
 }
