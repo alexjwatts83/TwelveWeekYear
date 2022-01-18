@@ -12,7 +12,7 @@ import { Goal } from '../models/goal';
 export class GoalsGridComponent implements OnInit {
   data$!: Observable<Goal[]>;
   displayedColumns: string[] = ['id', 'description'];
-  dataSoure = new MatTableDataSource<Goal>();
+  dataSource = new MatTableDataSource<Goal>();
 
   constructor(private service: GoalsService) { 
   }
@@ -21,7 +21,7 @@ export class GoalsGridComponent implements OnInit {
     this.data$ = this.service.getGoals();
 
     this.data$.subscribe(x => {
-      this.dataSoure.data = x;
+      this.dataSource.data = x;
     });
   }
 }
