@@ -20,7 +20,8 @@ export class GoalsService {
       id: '3'
     }
   ];
-  private _goals$ = new BehaviorSubject<Goal[]>([]);
+
+  private _goals$ = new BehaviorSubject<Goal[]>(this.data);
 
   constructor() { }
 
