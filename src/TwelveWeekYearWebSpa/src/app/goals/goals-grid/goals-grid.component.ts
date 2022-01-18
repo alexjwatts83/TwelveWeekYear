@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Observable } from 'rxjs';
+import { GoalsService } from '../goals.service';
 import { Goal } from '../models/goal';
 
 @Component({
@@ -7,10 +9,12 @@ import { Goal } from '../models/goal';
   styleUrls: ['./goals-grid.component.scss']
 })
 export class GoalsGridComponent implements OnInit {
-  data: Goal[] = [];
+  data$!: Observable<Goal[]>;
 
-  constructor() { }
+  constructor(private service: GoalsService) { 
+  }
 
   ngOnInit(): void {
+    this.data$ = this.service.getGoals();
   }
 }
