@@ -7,22 +7,20 @@ import { Goal } from '../models/goal';
 @Component({
   selector: 'app-goals-grid',
   templateUrl: './goals-grid.component.html',
-  styleUrls: ['./goals-grid.component.scss']
+  styleUrls: ['./goals-grid.component.scss'],
 })
 export class GoalsGridComponent implements OnInit {
   data$!: Observable<Goal[]>;
   displayedColumns: string[] = ['id', 'description'];
   dataSource = new MatTableDataSource<Goal>();
 
-  constructor(private service: GoalsService) { 
-  }
+  constructor(private service: GoalsService) { }
 
   ngOnInit(): void {
     this.data$ = this.service.getGoals();
 
-    this.data$.subscribe(x => {
+    this.data$.subscribe((x) => {
       this.dataSource.data = x;
-      console.log({x});
     });
   }
 }
