@@ -1,5 +1,10 @@
-<form class="goals-input-form" [formGroup]="goalInputForm" #f="ngForm">
-  <mat-form-field class="example-form-field" appearance="fill" (ngSubmit)="onSubmit(f)">
+<form
+  class="goals-input-form"
+  [formGroup]="goalInputForm"
+  #f="ngForm"
+  (ngSubmit)="onSubmit(f)"
+>
+  <mat-form-field class="example-form-field" appearance="fill">
     <mat-label>Goal Description</mat-label>
     <input
       matInput
@@ -9,5 +14,12 @@
       autocomplete="on"
     />
   </mat-form-field>
-  <button mat-raised-button color="primary" type="submit">Add Goal</button>
+  <button
+    mat-raised-button
+    color="primary"
+    type="submit"
+    [disabled]="f.invalid"
+  >
+    Add Goal
+  </button>
 </form>

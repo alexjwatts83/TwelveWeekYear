@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { GoalsService } from '../goals.service';
 
 @Component({
@@ -13,7 +13,7 @@ export class GoalsInputComponent implements OnInit {
 
   ngOnInit(): void {
     this.goalInputForm = new FormGroup({
-      description: new FormControl(''),
+      description: new FormControl('', [ Validators.required ]),
     });
   }
 
