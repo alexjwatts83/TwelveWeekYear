@@ -17,4 +17,7 @@ export class GoalsInputComponent implements OnInit {
     });
   }
 
+  onSubmit(f: any) {
+    console.log({f});
+  }
 }
