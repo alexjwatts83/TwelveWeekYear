@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { FormControl, FormGroup } from '@angular/forms';
+import { GoalsService } from '../goals.service';
 
 @Component({
   selector: 'app-goals-input',
@@ -6,10 +8,13 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./goals-input.component.scss']
 })
 export class GoalsInputComponent implements OnInit {
-
-  constructor() { }
+  goalInputForm!: FormGroup;
+  constructor(private service: GoalsService) { }
 
   ngOnInit(): void {
+    this.goalInputForm = new FormGroup({
+      description: new FormControl(''),
+    });
   }
 
 }

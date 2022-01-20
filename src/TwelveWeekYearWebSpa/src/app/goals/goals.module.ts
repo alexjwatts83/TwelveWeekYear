@@ -5,6 +5,7 @@ import { GoalsRoutingModule } from './goals-routing.module';
 import { GoalsGridComponent } from './goals-grid/goals-grid.component';
 import { MaterialSharedModule } from '../material-shared/material-shared.module';
 import { GoalsInputComponent } from './goals-input/goals-input.component';
+import { SharedModule } from '../shared/shared.module';
 
 @NgModule({
   declarations: [
@@ -14,7 +15,8 @@ import { GoalsInputComponent } from './goals-input/goals-input.component';
   imports: [
     CommonModule,
     GoalsRoutingModule,
-    MaterialSharedModule
+    MaterialSharedModule,
+    SharedModule
   ],
   exports: [
     GoalsGridComponent,

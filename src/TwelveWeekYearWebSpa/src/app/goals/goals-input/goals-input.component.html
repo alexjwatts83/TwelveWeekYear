@@ -1,1 +1,13 @@
-<p>goals-input works!</p>
+<form class="goals-input-form" [formGroup]="goalInputForm">
+  <mat-form-field class="example-form-field" appearance="fill">
+    <mat-label>Goal Description</mat-label>
+    <input
+      matInput
+      type="text"
+      placeholder="Enter Goal Description"
+      formControlName="description"
+      autocomplete="on"
+    />
+  </mat-form-field>
+  <button mat-raised-button color="primary">Add Goal</button>
+</form>
