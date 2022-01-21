@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { Goal } from './models/goal';
+import { v4 as uuidv4 } from 'uuid';
 
 @Injectable({
   providedIn: 'root'
@@ -9,21 +10,23 @@ export class GoalsService {
   data: Goal[] = [
     {
       description: 'Do Stuff',
-      id: '1'
+      id: 'f93286f2-0d8b-4316-b9c3-50a0b52eb834'
     },
     {
       description: 'Do more stuff',
-      id: '2'
+      id: '80a1d50a-eee2-4e33-9ea8-a370aa1fd571'
     },
     {
       description: 'Other stuff',
-      id: '3'
+      id: '96fb1d2f-badb-4cef-b3f6-023f8663b251'
     }
   ];
 
   private _goals$ = new BehaviorSubject<Goal[]>(this.data);
 
-  constructor() { }
+  constructor() {
+    // this.data.forEach(x => x.id = uuidv4());
+  }
 
   getGoals(): Observable<Goal[]> {
     return this._goals$.asObservable();
@@ -33,7 +36,11 @@ export class GoalsService {
       this._goals$.next(goal);
   }
 
-  addGoal(goal: Goal): void {
+  addGoal(description: string): void {
+    let goal: Goal = {
+      id: uuidv4(),
+      description
+    };
     this.data.push(goal);
     this.setGoals(this.data);
   }
