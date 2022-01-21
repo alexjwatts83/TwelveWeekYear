@@ -18,7 +18,8 @@ export class GoalsInputComponent implements OnInit {
   }
 
   onSubmit(f: FormGroupDirective) {
-    console.log({f, value: f.value});
     this.service.addGoal(f.value.description);
+    this.goalInputForm.reset();
+    f.resetForm();
   }
 }
