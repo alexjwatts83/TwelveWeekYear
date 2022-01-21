@@ -29,7 +29,12 @@ export class GoalsService {
     return this._goals$.asObservable();
   }
 
-  setGoals(profile: Goal[]) {
-      this._goals$.next(profile);
+  setGoals(goal: Goal[]) {
+      this._goals$.next(goal);
+  }
+
+  addGoal(goal: Goal): void {
+    this.data.push(goal);
+    this.setGoals(this.data);
   }
 }
