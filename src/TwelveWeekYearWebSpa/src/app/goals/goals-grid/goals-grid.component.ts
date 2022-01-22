@@ -11,7 +11,7 @@ import { Goal } from '../models/goal';
 })
 export class GoalsGridComponent implements OnInit {
   data$!: Observable<Goal[]>;
-  displayedColumns: string[] = ['id', 'description'];
+  displayedColumns: string[] = ['id', 'description', 'type'];
   dataSource = new MatTableDataSource<Goal>();
 
   constructor(private service: GoalsService) { }
