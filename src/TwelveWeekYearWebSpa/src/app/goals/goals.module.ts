@@ -6,11 +6,13 @@ import { GoalsGridComponent } from './goals-grid/goals-grid.component';
 import { MaterialSharedModule } from '../material-shared/material-shared.module';
 import { GoalsInputComponent } from './goals-input/goals-input.component';
 import { SharedModule } from '../shared/shared.module';
+import { GoalsGroupComponent } from './goals-group/goals-group.component';
 
 @NgModule({
   declarations: [
     GoalsGridComponent,
-    GoalsInputComponent
+    GoalsInputComponent,
+    GoalsGroupComponent
   ],
   imports: [
     CommonModule,
@@ -20,7 +22,8 @@ import { SharedModule } from '../shared/shared.module';
   ],
   exports: [
     GoalsGridComponent,
-    GoalsInputComponent
+    GoalsInputComponent,
+    GoalsGroupComponent
   ]
 })
 export class GoalsModule { }
