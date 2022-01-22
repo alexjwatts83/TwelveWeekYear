@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+import { GoalTypes } from '../models/goal';
 
 @Component({
   selector: 'app-goals-group',
@@ -6,6 +7,8 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./goals-group.component.scss']
 })
 export class GoalsGroupComponent implements OnInit {
+  @Input() title!: string;
+  @Input() goalType: GoalTypes = GoalTypes.None;
 
   constructor() { }
 

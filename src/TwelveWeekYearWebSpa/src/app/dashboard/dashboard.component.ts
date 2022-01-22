@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { GoalTypes } from '../goals/models/goal';
 
 @Component({
   selector: 'app-dashboard',
@@ -6,6 +7,11 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./dashboard.component.scss']
 })
 export class DashboardComponent implements OnInit {
+
+  threeToFiveYear = {
+    heading: '3 to 5 Years',
+    type: GoalTypes.ThreeToFiveYear
+  };
 
   constructor() { }
 
