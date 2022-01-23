@@ -10,8 +10,9 @@ import { GoalTypes } from '../models/goal';
 })
 export class GoalsInputComponent implements OnInit {
   @Input() goalType!: GoalTypes;
-  
+
   goalInputForm!: FormGroup;
+  
   constructor(private service: GoalsService) { }
 
   ngOnInit(): void {
