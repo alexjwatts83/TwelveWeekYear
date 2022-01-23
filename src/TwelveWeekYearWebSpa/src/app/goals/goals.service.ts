@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
-import { filter, map } from 'rxjs/operators';
+import { map } from 'rxjs/operators';
 import { Goal, GoalTypes } from './models/goal';
 import { v4 as uuidv4 } from 'uuid';
 
@@ -44,13 +44,12 @@ export class GoalsService {
   private _goals$ = new BehaviorSubject<Goal[]>(this.data);
 
   constructor() {
-    // this.data.forEach(x => x.id = uuidv4());
   }
 
   getGoals(goalType: GoalTypes): Observable<Goal[]> {
     console.log({goalType});
-    return this._goals$.asObservable();
-      // .pipe(map(data => data.filter(workorder => workorder.type === goalType) ));
+    return this._goals$.asObservable()
+      .pipe(map(data => data.filter(workorder => workorder.type === goalType) ));
   }
 
   setGoals(goal: Goal[]) {
