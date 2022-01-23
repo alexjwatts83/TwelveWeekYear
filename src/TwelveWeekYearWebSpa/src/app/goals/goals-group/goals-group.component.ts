@@ -18,7 +18,7 @@ export class GoalsGroupComponent implements OnInit {
   constructor(private service: GoalsService) { }
 
   ngOnInit(): void {
-    this.data$ = this.service.getGoals();
+    this.data$ = this.service.getGoals(this.goalType);
 
     this.data$.subscribe((x) => {
       this.goals = x;
