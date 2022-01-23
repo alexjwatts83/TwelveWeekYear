@@ -49,12 +49,12 @@ export class GoalsService {
 
   getGoals(goalType: GoalTypes): Observable<Goal[]> {
     console.log({goalType});
-    return this._goals$.asObservable()
-    .pipe(map(data => data.filter(workorder => workorder.type === goalType) ));
+    return this._goals$.asObservable();
+      // .pipe(map(data => data.filter(workorder => workorder.type === goalType) ));
   }
 
   setGoals(goal: Goal[]) {
-      this._goals$.next(goal);
+    this._goals$.next(goal);
   }
 
   addGoal(description: string, goalType: GoalTypes): void {
@@ -64,6 +64,7 @@ export class GoalsService {
       type: goalType
     };
     this.data.push(goal);
+    console.log({data: this.data});
     this.setGoals(this.data);
   }
 }

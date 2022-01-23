@@ -12,17 +12,18 @@ export class GoalsGroupComponent implements OnInit {
   @Input() title!: string;
   @Input() goalType: GoalTypes = GoalTypes.None;
   
-  goals!: Goal[];
-  data$!: Observable<Goal[]>;
+  // goals!: Goal[];
+  // data$!: Observable<Goal[]>;
   
   constructor(private service: GoalsService) { }
 
   ngOnInit(): void {
-    this.data$ = this.service.getGoals(this.goalType);
+    // this.data$ = this.service.getGoals(this.goalType);
 
-    this.data$.subscribe((x) => {
-      this.goals = x;
-    });
+    // this.data$.subscribe((x) => {
+    //   console.log({x, goalType: this.goalType, title: this.title});
+    //   this.goals = x;
+    // });
   }
 
 }
