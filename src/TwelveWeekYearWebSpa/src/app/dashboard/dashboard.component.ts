@@ -13,6 +13,11 @@ export class DashboardComponent implements OnInit {
     type: GoalTypes.ThreeToFiveYear
   };
 
+  thisYear = {
+    heading: 'This Year',
+    type: GoalTypes.ThisYear
+  };
+
   constructor() { }
 
   ngOnInit(): void {
