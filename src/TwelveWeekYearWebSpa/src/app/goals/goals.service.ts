@@ -62,8 +62,9 @@ export class GoalsService {
       description,
       type: goalType
     };
+
     this.data.push(goal);
-    console.log({data: this.data});
+
     this.setGoals(this.data);
   }
 }
