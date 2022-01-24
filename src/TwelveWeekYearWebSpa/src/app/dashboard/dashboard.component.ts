@@ -18,6 +18,11 @@ export class DashboardComponent implements OnInit {
     type: GoalTypes.ThisYear
   };
 
+  twelveWeekYear = {
+    heading: '12 Week Year Goals',
+    type: GoalTypes.TwelveWeekYear
+  };
+
   constructor() { }
 
   ngOnInit(): void {
