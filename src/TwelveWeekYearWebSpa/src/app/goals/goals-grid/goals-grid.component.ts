@@ -10,24 +10,21 @@ import { Goal, GoalTypes } from '../models/goal';
   styleUrls: ['./goals-grid.component.scss'],
 })
 export class GoalsGridComponent implements OnInit {
-  // @Input() goals!: Goal[];
   @Input() goalType: GoalTypes = GoalTypes.None;
 
   displayedColumns: string[] = ['id', 'description', 'type'];
   dataSource = new MatTableDataSource<Goal>();
-
   data$!: Observable<Goal[]>;
   
-  constructor(private service: GoalsService) { }
+  constructor(private service: GoalsService) { 
+    this.displayedColumns = ['description'];
+  }
 
   ngOnInit(): void {
     this.data$ = this.service.getGoals(this.goalType);
 
     this.data$.subscribe((x) => {
-      // console.log({x, goalType: this.goalType, title: this.title});
-      // this.goals = x;
       this.dataSource.data = x;
     });
-
   }
 }
