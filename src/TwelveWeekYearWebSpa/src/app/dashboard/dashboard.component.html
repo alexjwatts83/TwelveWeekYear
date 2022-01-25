@@ -18,6 +18,8 @@
   [goalType]="twelveWeekYear.type"
 ></app-goals-group>
 
-<div>
-  
+<div class="tweleve-week-container">
+  <div *ngFor="let week of weeks">
+    <h2>Week {{ week.number }}</h2>
+  </div>
 </div>
