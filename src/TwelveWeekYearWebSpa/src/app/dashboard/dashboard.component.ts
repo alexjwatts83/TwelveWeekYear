@@ -26,9 +26,12 @@ export class DashboardComponent implements OnInit {
   weeks: any[] = [];
 
   constructor() {
-    for (let i = 0; i < 12; i++){
+    let date = new Date();
+    for (let i = 0; i < 12; i++) {
+      date = this.addDays(date, 7);
       this.weeks.push({
-        number: i + 1
+        number: i + 1,
+        date: date
       });
     }
   }
@@ -36,4 +39,9 @@ export class DashboardComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  private addDays(date: Date, days: number) {
+    var result = new Date(date);
+    result.setDate(result.getDate() + days);
+    return result;
+  }
 }
