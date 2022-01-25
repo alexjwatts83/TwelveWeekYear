@@ -23,7 +23,15 @@ export class DashboardComponent implements OnInit {
     type: GoalTypes.TwelveWeekYear
   };
 
-  constructor() { }
+  weeks: any[] = [];
+
+  constructor() {
+    for (let i = 0; i < 12; i++){
+      this.weeks.push({
+        number: i + 1
+      });
+    }
+  }
 
   ngOnInit(): void {
   }
