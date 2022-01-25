@@ -7,8 +7,11 @@
       <mat-expansion-panel-header>
         <mat-panel-title>{{ title }}</mat-panel-title>
         <mat-panel-description>
-          <!-- Currently I am {{ panelOpenState ? "open" : "closed" }}  -->
-          <span *ngIf="data$ | async as data">{{data.length}} Goals</span>
+          <span *ngIf="data$ | async as data">
+            <span *ngIf="data.length === 0">No Goals</span>
+            <span *ngIf="data.length === 1">1 Goals</span>
+            <span *ngIf="data.length > 1">{{ data.length }} Goals</span>
+          </span>
         </mat-panel-description>
       </mat-expansion-panel-header>
       <app-goals-input [goalType]="goalType"></app-goals-input>
