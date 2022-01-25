@@ -20,6 +20,8 @@ import { MatSortModule} from '@angular/material/sort';
 import { MatPaginatorModule} from '@angular/material/paginator';
 import { MatSnackBarModule} from '@angular/material/snack-bar';
 import { MatSliderModule } from '@angular/material/slider';
+import { MatExpansionModule } from '@angular/material/expansion';
+
 const modules = [
   MatButtonModule,
   MatIconModule,
@@ -41,7 +43,8 @@ const modules = [
   MatSortModule,
   MatPaginatorModule,
   MatSnackBarModule,
-  MatSliderModule
+  MatSliderModule,
+  MatExpansionModule
 ];
 const imports = [...modules];
 const exports = [...modules];

@@ -1,7 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { Observable } from 'rxjs';
-import { GoalsService } from '../goals.service';
-import { Goal, GoalTypes } from '../models/goal';
+import { GoalTypes } from '../models/goal';
 
 @Component({
   selector: 'app-goals-group',
@@ -11,19 +9,12 @@ import { Goal, GoalTypes } from '../models/goal';
 export class GoalsGroupComponent implements OnInit {
   @Input() title!: string;
   @Input() goalType: GoalTypes = GoalTypes.None;
+
+  panelOpenState = false;
   
-  // goals!: Goal[];
-  // data$!: Observable<Goal[]>;
-  
-  constructor(private service: GoalsService) { }
+  constructor() { }
 
   ngOnInit(): void {
-    // this.data$ = this.service.getGoals(this.goalType);
-
-    // this.data$.subscribe((x) => {
-    //   console.log({x, goalType: this.goalType, title: this.title});
-    //   this.goals = x;
-    // });
   }
 
 }

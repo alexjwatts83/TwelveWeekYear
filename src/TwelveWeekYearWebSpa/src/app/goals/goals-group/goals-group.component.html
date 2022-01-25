@@ -1,3 +1,18 @@
-<h2>{{ title }}</h2>
-<app-goals-input [goalType]="goalType"></app-goals-input>
-<app-goals-grid [goalType]="goalType"></app-goals-grid>
+<div class="accordion-container">
+  <mat-accordion>
+    <mat-expansion-panel
+      (opened)="panelOpenState = true"
+      (closed)="panelOpenState = false"
+    >
+      <mat-expansion-panel-header>
+        <mat-panel-title>{{ title }}</mat-panel-title>
+        <mat-panel-description>
+          Currently I am {{ panelOpenState ? "open" : "closed" }}
+        </mat-panel-description>
+      </mat-expansion-panel-header>
+      <app-goals-input [goalType]="goalType"></app-goals-input>
+      <app-goals-grid [goalType]="goalType"></app-goals-grid>
+    </mat-expansion-panel>
+  </mat-accordion>
+  
+</div>
