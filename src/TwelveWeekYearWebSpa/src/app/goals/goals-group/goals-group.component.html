@@ -3,6 +3,7 @@
     <mat-expansion-panel
       (opened)="panelOpenState = true"
       (closed)="panelOpenState = false"
+      [expanded]="panelOpenState"
     >
       <mat-expansion-panel-header>
         <mat-panel-title>{{ title }}</mat-panel-title>
