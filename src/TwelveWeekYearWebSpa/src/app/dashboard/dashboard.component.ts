@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { MatTableDataSource } from '@angular/material/table';
 import { GoalTypes } from '../goals/models/goal';
 
 @Component({
@@ -24,7 +25,7 @@ export class DashboardComponent implements OnInit {
   };
 
   weeks: any[] = [];
-
+  displayedColumns: string[] = ['date', 'comments'];
   constructor() {
     let date = new Date();
     for (let i = 0; i < 12; i++) {
@@ -36,12 +37,15 @@ export class DashboardComponent implements OnInit {
       this.weeks[this.weeks.length - 1].days = [];
       for (let j = 0; j < 7; j++) {
         let dayDate = this.addDays(date, j);
+        // let dataSource = new MatTableDataSource<any>();
         this.weeks[this.weeks.length - 1].days.push({
           date: dayDate,
           comments: `Something on day ${dayDate}`
         });
       }
     }
+    
+    
     console.log({weeks: this.weeks});
   }
 
