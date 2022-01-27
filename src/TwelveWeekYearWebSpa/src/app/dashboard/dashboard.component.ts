@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
-import { GoalTypes } from '../goals/models/goal';
+import { Observable } from 'rxjs';
+import { GoalsService } from '../goals/goals.service';
+import { Goal, GoalTypes } from '../goals/models/goal';
 
 @Component({
   selector: 'app-dashboard',
@@ -8,7 +10,6 @@ import { GoalTypes } from '../goals/models/goal';
   styleUrls: ['./dashboard.component.scss']
 })
 export class DashboardComponent implements OnInit {
-
   threeToFiveYear = {
     heading: '3 to 5 Years',
     type: GoalTypes.ThreeToFiveYear
@@ -26,7 +27,10 @@ export class DashboardComponent implements OnInit {
 
   weeks: any[] = [];
   displayedColumns: string[] = ['date', 'comments'];
-  constructor() {
+  data$!: Observable<Goal[]>;
+  constructor(private service: GoalsService) {
+    this.data$ = this.service.getGoals(GoalTypes.TwelveWeekYear);
+
     let date = new Date();
     for (let i = 0; i < 12; i++) {
       date = this.addDays(date, 7);
@@ -43,6 +47,7 @@ export class DashboardComponent implements OnInit {
           comments: `Something on day ${dayDate}`
         });
       }
+      
     }
     
     
