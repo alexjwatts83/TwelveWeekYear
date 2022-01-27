@@ -33,7 +33,16 @@ export class DashboardComponent implements OnInit {
         number: i + 1,
         date: date
       });
+      this.weeks[this.weeks.length - 1].days = [];
+      for (let j = 0; j < 7; j++) {
+        let dayDate = this.addDays(date, j);
+        this.weeks[this.weeks.length - 1].days.push({
+          date: dayDate,
+          comments: `Something on day ${dayDate}`
+        });
+      }
     }
+    console.log({weeks: this.weeks});
   }
 
   ngOnInit(): void {
