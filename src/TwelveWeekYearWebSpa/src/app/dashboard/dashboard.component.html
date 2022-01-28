@@ -23,7 +23,6 @@
   <div *ngFor="let week of weeks" class="week-container">
     <h2>Week {{ week.number }} ({{ week.date | date }})</h2>
     <table
-      style="padding: 20px; border: 1px sold #1d1d1d"
       mat-table
       [dataSource]="week.days"
       class="mat-elevation-z8"
@@ -41,5 +40,9 @@
       <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
       <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
     </table>
+
+    <div class="sub-tasks-container">
+      <h3>Sub Tasks</h3>
+    </div>
   </div>
 </div>
