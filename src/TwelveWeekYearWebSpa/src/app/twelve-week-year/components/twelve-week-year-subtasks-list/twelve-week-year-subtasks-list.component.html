@@ -1,0 +1,33 @@
+<table class="tab">
+  <thead>
+    <tr>
+      <th *ngIf="task.subTasks.length > 0">&nbsp;</th>
+      <th *ngFor="let day of week.days">
+        {{ day.date | date: "EEEE (d/M)" }}
+      </th>
+    </tr>
+  </thead>
+  <!-- TODO figure out a better way to do this later on -->
+  <tbody *ngIf="task.subTasks.length > 0">
+    <tr *ngFor="let subTask of task.subTasks">
+      <td>
+        {{ subTask.description }}
+      </td>
+      <td *ngFor="let day of week.days">
+        <mat-icon aria-hidden="false" aria-label="Example home icon"
+          >check_circle</mat-icon
+        >
+      </td>
+    </tr>
+  </tbody>
+  <!-- Two tbody, lols -->
+  <tbody *ngIf="task.subTasks.length === 0">
+    <tr>
+      <td *ngFor="let day of week.days">
+        <mat-icon aria-hidden="false" aria-label="Example home icon"
+          >check_circle</mat-icon
+        >
+      </td>
+    </tr>
+  </tbody>
+</table>
