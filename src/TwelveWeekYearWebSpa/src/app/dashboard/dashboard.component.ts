@@ -1,7 +1,24 @@
 import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
 import { GoalsService } from '../goals/goals.service';
-import { Goal, GoalTypes } from '../goals/models/goal';
+import { Goal, GoalTypes, Task, SubTask } from '../goals/models/goal';
+
+export interface WeekDay {
+  date: Date;
+  comments: string;
+}
+
+export interface TaskComments {
+  task: Task,
+  comments: string[];
+}
+
+export interface Week {
+  number: Number;
+  date: Date;
+  days: WeekDay[];
+  taskComments: TaskComments[];
+}
 
 @Component({
   selector: 'app-dashboard',
@@ -24,7 +41,7 @@ export class DashboardComponent implements OnInit {
     type: GoalTypes.TwelveWeekYear,
   };
 
-  weeks: any[] = [];
+  weeks: Week[] = [];
   displayedColumns: string[] = ['date', 'comments'];
   data$!: Observable<Goal[]>;
   twelveWeekYearGoals: Goal[] = [];
@@ -46,8 +63,10 @@ export class DashboardComponent implements OnInit {
       this.weeks.push({
         number: i + 1,
         date: date,
+        days: [],
+        taskComments: []
       });
-      this.weeks[this.weeks.length - 1].days = [];
+      // this.weeks[this.weeks.length - 1].days = [];
       for (let j = 0; j < 7; j++) {
         let dayDate = this.addDays(date, j);
         this.weeks[this.weeks.length - 1].days.push({
@@ -55,6 +74,18 @@ export class DashboardComponent implements OnInit {
           comments: `Something on day ${dayDate}`
         });
       }
+      // this.weeks[this.weeks.length - 1].taskComments = [];
+      this.twelveWeekYearGoals.forEach(x => {
+        x.tasks.forEach(t => {
+          this.weeks[this.weeks.length - 1].taskComments.push({
+            task: t,
+            comments: [
+              `${t.description} - 1`,
+              `2 - ${t.description}`,
+            ]
+          });
+        });
+      });
     }
   }
 
@@ -62,5 +93,20 @@ export class DashboardComponent implements OnInit {
     var result = new Date(date);
     result.setDate(result.getDate() + days);
     return result;
+  }
+
+  getCommentsForTask(weekDate: Date, taskId: string) : string[] {
+    let week = this.weeks.find(x => x.date === weekDate);
+    if (week === undefined) {
+      return [];
+    }
+    let taskComments = week.taskComments.filter(x => x.task.id === taskId);//.map(({ comments }) => comments);
+    let comments: string[] = [];
+    taskComments.forEach(t => {
+      t.comments.forEach(c => {
+        comments.push(c);
+      });
+    });
+    return comments;
   }
 }
