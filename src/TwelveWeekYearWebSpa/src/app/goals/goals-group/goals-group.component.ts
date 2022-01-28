@@ -1,7 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
 import { GoalsService } from '../goals.service';
-import { Goal, GoalTypes } from '../models/goal';
+import { Goal, GoalTypes } from '../models';
 
 @Component({
   selector: 'app-goals-group',

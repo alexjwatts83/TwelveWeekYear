@@ -1,7 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { FormControl, FormGroup, FormGroupDirective, Validators } from '@angular/forms';
 import { GoalsService } from '../goals.service';
-import { GoalTypes } from '../models/goal';
+import { GoalTypes } from '../models';
 
 @Component({
   selector: 'app-goals-input',

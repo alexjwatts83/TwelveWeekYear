@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { Observable } from 'rxjs';
 import { GoalsService } from '../goals/goals.service';
-import { Goal, GoalTypes, Task, SubTask } from '../goals/models/goal';
+import { GoalTypes } from '../goals/models';
 
 @Component({
   selector: 'app-dashboard',

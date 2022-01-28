@@ -2,7 +2,7 @@ import { Component, Input, OnInit } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
 import { Observable } from 'rxjs';
 import { GoalsService } from '../goals.service';
-import { Goal, GoalTypes } from '../models/goal';
+import { Goal, GoalTypes } from '../models';
 
 @Component({
   selector: 'app-goals-grid',

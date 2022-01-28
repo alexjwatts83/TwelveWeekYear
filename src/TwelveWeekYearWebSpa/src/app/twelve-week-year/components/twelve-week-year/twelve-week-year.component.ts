@@ -1,24 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
-import { GoalsService } from '../../../goals/goals.service';
-import { Goal, GoalTypes, Task, SubTask } from '../../../goals/models/goal';
-export interface WeekDay {
-  date: Date;
-  comments: string;
-}
-
-export interface TaskComments {
-  task: Task,
-  comments: string[];
-}
-
-export interface Week {
-  number: Number;
-  date: Date;
-  days: WeekDay[];
-  taskComments: TaskComments[];
-}
-
+import { GoalsService } from 'src/app/goals/goals.service';
+import { Goal, GoalTypes } from 'src/app/goals/models';
+import { Week } from '../../models';
 @Component({
   selector: 'app-twelve-week-year',
   templateUrl: './twelve-week-year.component.html',

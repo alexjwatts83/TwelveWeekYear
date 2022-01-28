@@ -1,6 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { Task } from 'src/app/goals/models/goal';
-import { Week } from '../twelve-week-year/twelve-week-year.component';
+import { Week } from "../../models/";
+import { Task } from 'src/app/goals/models';
 
 @Component({
   selector: 'app-twelve-week-year-subtasks-list',
