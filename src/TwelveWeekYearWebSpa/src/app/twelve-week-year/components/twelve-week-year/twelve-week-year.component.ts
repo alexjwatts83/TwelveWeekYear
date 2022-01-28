@@ -27,7 +27,7 @@ export interface Week {
 export class TwelveWeekYearComponent implements OnInit {
 
   weeks: Week[] = [];
-  displayedColumns: string[] = ['date', 'comments'];
+  
   data$!: Observable<Goal[]>;
   twelveWeekYearGoals: Goal[] = [];
   constructor(private service: GoalsService) {
