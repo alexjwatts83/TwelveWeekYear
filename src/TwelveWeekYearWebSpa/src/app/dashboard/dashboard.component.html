@@ -41,8 +41,11 @@
       <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
     </table>
 
-    <div class="sub-tasks-container">
-      <h3>Sub Tasks</h3>
+    <div class="sub-tasks-container" *ngIf="data$ | async as goals">
+      <h3>Goals</h3>
+      <ol>
+        <li *ngFor="let goal of goals">{{  goal.description}}</li>
+      </ol>
     </div>
   </div>
 </div>
