@@ -4,12 +4,14 @@ import { TwelveWeekYearComponent } from './components/twelve-week-year/twelve-we
 import { MaterialSharedModule } from '../material-shared/material-shared.module';
 import { TwelveWeekYearWeekListComponent } from './components/twelve-week-year-week-list/twelve-week-year-week-list.component';
 import { TwelveWeekYearSubtasksListComponent } from './components/twelve-week-year-subtasks-list/twelve-week-year-subtasks-list.component';
+import { TwelveWeekYearTaskCommentsListComponent } from './components/twelve-week-year-task-comments-list/twelve-week-year-task-comments-list.component';
 
 @NgModule({
   declarations: [
     TwelveWeekYearComponent,
     TwelveWeekYearWeekListComponent,
-    TwelveWeekYearSubtasksListComponent
+    TwelveWeekYearSubtasksListComponent,
+    TwelveWeekYearTaskCommentsListComponent
   ],
   imports: [
     CommonModule,

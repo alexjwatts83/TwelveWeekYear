@@ -6,12 +6,11 @@ import { Week } from '../../models';
 @Component({
   selector: 'app-twelve-week-year',
   templateUrl: './twelve-week-year.component.html',
-  styleUrls: ['./twelve-week-year.component.scss']
+  styleUrls: ['./twelve-week-year.component.scss'],
 })
 export class TwelveWeekYearComponent implements OnInit {
-
   weeks: Week[] = [];
-  
+
   data$!: Observable<Goal[]>;
   twelveWeekYearGoals: Goal[] = [];
   constructor(private service: GoalsService) {
@@ -32,25 +31,22 @@ export class TwelveWeekYearComponent implements OnInit {
         number: i + 1,
         date: date,
         days: [],
-        taskComments: []
+        taskComments: [],
       });
       // this.weeks[this.weeks.length - 1].days = [];
       for (let j = 0; j < 7; j++) {
         let dayDate = this.addDays(date, j);
         this.weeks[this.weeks.length - 1].days.push({
           date: dayDate,
-          comments: `Something on day ${dayDate}`
+          comments: `Something on day ${dayDate}`,
         });
       }
       // this.weeks[this.weeks.length - 1].taskComments = [];
-      this.twelveWeekYearGoals.forEach(x => {
-        x.tasks.forEach(t => {
+      this.twelveWeekYearGoals.forEach((x) => {
+        x.tasks.forEach((t) => {
           this.weeks[this.weeks.length - 1].taskComments.push({
             task: t,
-            comments: [
-              `${t.description} - 1`,
-              `2 - ${t.description}`,
-            ]
+            comments: [`${t.description} - 1`, `2 - ${t.description}`],
           });
         });
       });
@@ -62,20 +58,4 @@ export class TwelveWeekYearComponent implements OnInit {
     result.setDate(result.getDate() + days);
     return result;
   }
-
-  getCommentsForTask(weekDate: Date, taskId: string) : string[] {
-    let week = this.weeks.find(x => x.date === weekDate);
-    if (week === undefined) {
-      return [];
-    }
-    let taskComments = week.taskComments.filter(x => x.task.id === taskId);//.map(({ comments }) => comments);
-    let comments: string[] = [];
-    taskComments.forEach(t => {
-      t.comments.forEach(c => {
-        comments.push(c);
-      });
-    });
-    return comments;
-  }
-
 }
