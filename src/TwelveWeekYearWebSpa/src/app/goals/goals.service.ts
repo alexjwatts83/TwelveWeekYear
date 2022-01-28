@@ -51,13 +51,29 @@ export class GoalsService {
       type: GoalTypes.TwelveWeekYear,
       tasks: [
         {
-          description: 'Iterative approaches to corporate strategy foster collaborative thinking to further the overall value proposition'
+          description: 'Iterative approaches to corporate strategy foster collaborative thinking to further the overall value proposition',
+          subTasks: []
         },
         {
-          description: 'Organically grow the holistic world view of disruptive innovation via workplace diversity and empowerment.'
+          description: 'Organically grow the holistic world view of disruptive innovation via workplace diversity and empowerment.',
+          subTasks: [
+            {
+              description: 'Cross-media Information',
+            },
+            {
+              description: 'Real-time Schemas'
+            },
+            {
+              description: 'Clicks-and-mortar'
+            },
+            {
+              description: 'Functional Solutions'
+            }
+          ]
         },
         {
-          description: 'Bring to the table win-win survival strategies to ensure proactive domination'
+          description: 'Bring to the table win-win survival strategies to ensure proactive domination',
+          subTasks: []
         }
       ]
     },
@@ -67,13 +83,26 @@ export class GoalsService {
       type: GoalTypes.TwelveWeekYear,
       tasks: [
         {
-          description: 'User generated content in real-time will have multiple touchpoints for offshoring.'
+          description: 'User generated content in real-time will have multiple touchpoints for offshoring.',
+          subTasks: []
         },
         {
-          description: 'Capitalize on low hanging fruit to identify a ballpark value added activity to beta test.'
+          description: 'Capitalize on low hanging fruit to identify a ballpark value added activity to beta test.',
+          subTasks: []
         },
         {
-          description: 'Override the digital divide with additional clickthroughs from DevOps. Nanotechnology immersion along the information highway will close the loop on focusing solely on the bottom line.'
+          description: 'Override the digital divide with additional clickthroughs from DevOps. Nanotechnology immersion along the information highway will close the loop on focusing solely on the bottom line.',
+          subTasks: [
+            {
+              description: 'Synergize Resources'
+            },
+            {
+              description: 'Dynamically Innovate'
+            },
+            {
+              description: 'Web Services'
+            }
+          ]
         }
       ]
     },
@@ -83,13 +112,23 @@ export class GoalsService {
       type: GoalTypes.TwelveWeekYear,
       tasks: [
         {
-          description: 'Taking seamless key performance indicators offline to maximise the long tail.'
+          description: 'Taking seamless key performance indicators offline to maximise the long tail.',
+          subTasks: [
+            {
+              description: 'Podcasting',
+            },
+            {
+              description: 'Cross-media'
+            }
+          ]
         },
         {
-          description: 'Keeping your eye on the ball while performing a deep dive on the start-up mentality to derive convergence on cross-platform integration.'
+          description: 'Keeping your eye on the ball while performing a deep dive on the start-up mentality to derive convergence on cross-platform integration.',
+          subTasks: []
         },
         {
-          description: 'Collaboratively administrate empowered markets via plug-and-play networks.'
+          description: 'Collaboratively administrate empowered markets via plug-and-play networks.',
+          subTasks: []
         }
       ]
     }
