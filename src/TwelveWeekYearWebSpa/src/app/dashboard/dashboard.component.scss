@@ -11,11 +11,11 @@
     }
     .sub-tasks-container {
       .goals-container {
-        // border: 3px dashed red;
+        border: 3px dashed red;
         margin-bottom: 20px;
         .task-container {
           margin-bottom: 10px;
-          // border: 3px dashed red;
+          border: 2px dashed pink;
           .task-description {
             font-style: italic;
             margin-bottom: 5px;
@@ -33,6 +33,16 @@
               margin: 2px;
               border: 1px solid blue;
               // padding: 5px;
+              text-align: center;
+            }
+          }
+          .tab {
+            border-collapse: collapse;
+            width: 100%;
+            td, th {
+              border: 1px solid #ddd;
+            }
+            td {
               text-align: center;
             }
           }

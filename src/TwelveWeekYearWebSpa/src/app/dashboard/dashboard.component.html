@@ -47,20 +47,35 @@
             {{ task.description }}
           </div>
           <div class="task-table" *ngIf="task.subTasks.length === 0">
-            <!-- <div class="day-header">
-              <span *ngIf="task.subTasks.length > 0">Sub tasks</span>
-              <span *ngIf="task.subTasks.length === 0">&nbsp;</span>
-            </div> -->
             <div *ngFor="let day of week.days" class="day-header">
               {{ day.date | date: 'EEEE' }}
             </div>
             <div *ngFor="let day of week.days" class="day-header">
-              <!-- <mat-icon svgIcon="thumbs-up" aria-hidden="false" aria-label="Example thumbs up SVG icon"></mat-icon> -->
               <mat-icon aria-hidden="false" aria-label="Example home icon">check_circle</mat-icon>
             </div>
-            <!-- <div *ngIf="task.subTasks.length === 0" class="day-header">Brah</div>
-            <div *ngFor="let subTask of task.subTasks" class="day-header">asasdasd</div> -->
           </div>
+          <table class="tab" *ngIf="task.subTasks.length > 0">
+            <thead>
+              <tr>
+                <th>
+                  Sub Tasks
+                </th>
+                <th *ngFor="let day of week.days">
+                  {{ day.date | date: 'EEEE' }}
+                </th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let subTask of task.subTasks">
+                <td>
+                  {{ subTask.description}}
+                </td>
+                <td *ngFor="let day of week.days">
+                  <mat-icon aria-hidden="false" aria-label="Example home icon">check_circle</mat-icon>
+                </td>
+              </tr>
+            </tbody>
+          </table>
         </div>
       </div>
     </div>
