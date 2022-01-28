@@ -5,10 +5,12 @@ export enum GoalTypes {
   TwelveWeekYear
 }
 export interface SubTask {
+  id: string;
   description: string;
 }
 
 export interface Task {
+  id: string;
   description: string;
   subTasks: SubTask[];
 }
