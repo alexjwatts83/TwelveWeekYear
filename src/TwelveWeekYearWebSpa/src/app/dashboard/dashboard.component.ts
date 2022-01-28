@@ -6,50 +6,56 @@ import { Goal, GoalTypes } from '../goals/models/goal';
 @Component({
   selector: 'app-dashboard',
   templateUrl: './dashboard.component.html',
-  styleUrls: ['./dashboard.component.scss']
+  styleUrls: ['./dashboard.component.scss'],
 })
 export class DashboardComponent implements OnInit {
   threeToFiveYear = {
     heading: '3 to 5 Years',
-    type: GoalTypes.ThreeToFiveYear
+    type: GoalTypes.ThreeToFiveYear,
   };
 
   thisYear = {
     heading: 'This Year',
-    type: GoalTypes.ThisYear
+    type: GoalTypes.ThisYear,
   };
 
   twelveWeekYear = {
     heading: '12 Week Year Goals',
-    type: GoalTypes.TwelveWeekYear
+    type: GoalTypes.TwelveWeekYear,
   };
 
   weeks: any[] = [];
   displayedColumns: string[] = ['date', 'comments'];
   data$!: Observable<Goal[]>;
+  twelveWeekYearGoals: Goal[] = [];
   constructor(private service: GoalsService) {
     this.data$ = this.service.getGoals(GoalTypes.TwelveWeekYear);
+  }
 
+  ngOnInit(): void {
+    this.data$.subscribe((x) => {
+      this.twelveWeekYearGoals = x;
+      this.init();
+    });
+  }
+
+  private init() {
     let date = new Date();
     for (let i = 0; i < 12; i++) {
       date = this.addDays(date, 7);
       this.weeks.push({
         number: i + 1,
-        date: date
+        date: date,
       });
       this.weeks[this.weeks.length - 1].days = [];
       for (let j = 0; j < 7; j++) {
         let dayDate = this.addDays(date, j);
-        // let dataSource = new MatTableDataSource<any>();
         this.weeks[this.weeks.length - 1].days.push({
           date: dayDate,
           comments: `Something on day ${dayDate}`
         });
       }
     }
-  }
-
-  ngOnInit(): void {
   }
 
   private addDays(date: Date, days: number) {

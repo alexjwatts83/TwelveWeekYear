@@ -51,10 +51,10 @@
             <thead>
               <tr>
                 <th *ngIf="task.subTasks.length > 0">
-                  Sub Tasks
+                  &nbsp;
                 </th>
                 <th *ngFor="let day of week.days">
-                  {{ day.date | date: 'EEEE' }}
+                  {{ day.date | date: 'EEEE (d/M)' }}
                 </th>
               </tr>
             </thead>
