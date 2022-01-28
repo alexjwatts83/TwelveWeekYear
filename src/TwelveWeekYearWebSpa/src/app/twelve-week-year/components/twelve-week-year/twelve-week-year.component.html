@@ -15,10 +15,12 @@
           </div>
 
           <app-twelve-week-year-subtasks-list [week]="week" [task]="task"></app-twelve-week-year-subtasks-list>
+          
+          <div class="comments-container">
+            <app-twelve-week-year-task-comments-list [weeks]="weeks" [week]="week" [task]="task"></app-twelve-week-year-task-comments-list>
 
-          <app-twelve-week-year-task-comments-list [weeks]="weeks" [week]="week" [task]="task"></app-twelve-week-year-task-comments-list>
-
-          <app-twelve-week-year-task-comments-input></app-twelve-week-year-task-comments-input>
+            <app-twelve-week-year-task-comments-input></app-twelve-week-year-task-comments-input>
+          </div>
         </div>
       </div>
     </div>

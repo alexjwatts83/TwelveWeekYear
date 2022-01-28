@@ -1,5 +1,5 @@
 <div>
-  <h5>Comments</h5>
+  <h5>Comments ({{comments.length}})</h5>
   <div class="task-comment-list-container">
     <div *ngFor="let taskComment of comments" class="task-comment-list">
       <div class="task-comment-date">
@@ -10,10 +10,4 @@
       </div>
     </div>
   </div>
-
-  <!-- <ul>
-    <li *ngFor="let taskComment of getCommentsForTask(week.date, task.id)">
-      {{ taskComment }}
-    </li>
-  </ul> -->
 </div>
