@@ -7,12 +7,12 @@
     <th mat-header-cell *matHeaderCellDef>Description</th>
     <td mat-cell *matCellDef="let element">
       {{ element.description }}
-      <div *ngIf="element.tasks.length > 0">
-        <div *ngFor="let task of element.tasks" class="sub-task-list">
-          <mat-icon>label</mat-icon>
-          <div>{{ task.description }}</div>
-        </div>
-      </div>
+      <mat-list *ngIf="element.tasks.length > 0">
+        <mat-list-item *ngFor="let task of element.tasks">
+          <mat-icon mat-list-icon>label</mat-icon>
+          <div mat-line>{{task.description}}</div>
+        </mat-list-item>
+      </mat-list>
     </td>
   </ng-container>
 

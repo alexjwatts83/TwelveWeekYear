@@ -1,15 +1,4 @@
 table.mat-table {
   width: 100%;
   padding: 20px;
-  .sub-task-list {
-    display: flex;
-    align-items: center;
-    // border: 1px solid green;
-    padding-top: 5px;
-    padding-bottom: 5px;
-    mat-icon {
-      margin-right: 10px;
-      margin-left: 10px;
-    }
-  }
 }
