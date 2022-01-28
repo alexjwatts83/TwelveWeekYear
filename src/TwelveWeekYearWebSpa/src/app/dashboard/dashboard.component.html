@@ -46,6 +46,7 @@
           <div class="task-description">
             {{ task.description }}
           </div>
+
           <div class="task-table" *ngIf="task.subTasks.length === 0">
             <div *ngFor="let day of week.days" class="day-header">
               {{ day.date | date: 'EEEE' }}
@@ -54,6 +55,7 @@
               <mat-icon aria-hidden="false" aria-label="Example home icon">check_circle</mat-icon>
             </div>
           </div>
+
           <table class="tab" *ngIf="task.subTasks.length > 0">
             <thead>
               <tr>
@@ -76,6 +78,14 @@
               </tr>
             </tbody>
           </table>
+
+          <form class="example-form">          
+            <mat-form-field class="example-full-width" appearance="fill">
+              <mat-label>Leave a comment</mat-label>
+              <textarea matInput placeholder="Ex. It makes me feel..."></textarea>
+            </mat-form-field>
+            <button mat-raised-button color="primary">Ok</button>
+          </form>
         </div>
       </div>
     </div>
