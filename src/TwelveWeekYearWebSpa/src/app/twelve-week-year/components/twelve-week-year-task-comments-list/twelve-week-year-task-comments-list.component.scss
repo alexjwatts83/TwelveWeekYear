@@ -1,0 +1,21 @@
+.task-comment-list-container{
+  padding: 10px;
+  background-color: lightgrey;
+  .task-comment-list{
+    display: flex;
+    .task-comment-date {
+      font-weight: 500;
+      margin-right: 10px;
+      background-color: white;
+      margin: 2px;
+      padding: 5px;
+    }
+    .task-comment-comment {
+      font-variant: small-caps;
+      margin: 2px;
+      padding: 5px;
+      border: 1px dashed #1d1d1d;
+      flex: 1;
+    }
+  }
+}

@@ -3,6 +3,7 @@ import { Observable } from 'rxjs';
 import { GoalsService } from 'src/app/goals/goals.service';
 import { Goal, GoalTypes } from 'src/app/goals/models';
 import { Week } from '../../models';
+
 @Component({
   selector: 'app-twelve-week-year',
   templateUrl: './twelve-week-year.component.html',
@@ -33,7 +34,7 @@ export class TwelveWeekYearComponent implements OnInit {
         days: [],
         taskComments: [],
       });
-      // this.weeks[this.weeks.length - 1].days = [];
+
       for (let j = 0; j < 7; j++) {
         let dayDate = this.addDays(date, j);
         this.weeks[this.weeks.length - 1].days.push({
@@ -41,12 +42,21 @@ export class TwelveWeekYearComponent implements OnInit {
           comments: `Something on day ${dayDate}`,
         });
       }
-      // this.weeks[this.weeks.length - 1].taskComments = [];
+
       this.twelveWeekYearGoals.forEach((x) => {
         x.tasks.forEach((t) => {
           this.weeks[this.weeks.length - 1].taskComments.push({
             task: t,
-            comments: [`${t.description} - 1`, `2 - ${t.description}`],
+            comments: [
+              {
+                date: date,
+                comment: `${t.description} - 1`
+              },
+              {
+                date: date,
+                comment: `2 - ${t.description}`
+              } 
+            ],
           });
         });
       });

@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { Week } from '../../models';
+import { LeComment, Week } from '../../models';
 import { Task } from 'src/app/goals/models';
 
 @Component({
@@ -12,18 +12,20 @@ export class TwelveWeekYearTaskCommentsListComponent implements OnInit {
   @Input() task!: Task;
   @Input() week!: Week;
 
+  comments: LeComment[] = [];
   constructor() { }
 
   ngOnInit(): void {
+    this.comments = this.getCommentsForTask(this.week.date, this.task.id);
   }
 
-  getCommentsForTask(weekDate: Date, taskId: string) : string[] {
+  private getCommentsForTask(weekDate: Date, taskId: string) : LeComment[] {
     let week = this.weeks.find(x => x.date === weekDate);
     if (week === undefined) {
       return [];
     }
-    let taskComments = week.taskComments.filter(x => x.task.id === taskId);//.map(({ comments }) => comments);
-    let comments: string[] = [];
+    let taskComments = week.taskComments.filter(x => x.task.id === taskId);
+    let comments: LeComment[] = [];
     taskComments.forEach(t => {
       t.comments.forEach(c => {
         comments.push(c);

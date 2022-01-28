@@ -1,8 +1,19 @@
 <div>
   <h5>Comments</h5>
-  <ul>
+  <div class="task-comment-list-container">
+    <div *ngFor="let taskComment of comments" class="task-comment-list">
+      <div class="task-comment-date">
+        {{ taskComment.date | date : 'yyyy-MM-dd HH:mm:ss'}}
+      </div>
+      <div class="task-comment-comment">
+        {{ taskComment.comment }}
+      </div>
+    </div>
+  </div>
+
+  <!-- <ul>
     <li *ngFor="let taskComment of getCommentsForTask(week.date, task.id)">
       {{ taskComment }}
     </li>
-  </ul>
+  </ul> -->
 </div>
