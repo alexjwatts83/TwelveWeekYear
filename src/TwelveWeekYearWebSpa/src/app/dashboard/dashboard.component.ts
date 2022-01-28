@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { MatTableDataSource } from '@angular/material/table';
 import { Observable } from 'rxjs';
 import { GoalsService } from '../goals/goals.service';
 import { Goal, GoalTypes } from '../goals/models/goal';
@@ -47,11 +46,7 @@ export class DashboardComponent implements OnInit {
           comments: `Something on day ${dayDate}`
         });
       }
-      
     }
-    
-    
-    console.log({weeks: this.weeks});
   }
 
   ngOnInit(): void {
