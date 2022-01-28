@@ -1,0 +1,42 @@
+.tweleve-week-container {
+  margin: 20px;
+  .week-container {
+    // border: 1px solid red;
+    padding-bottom: 20px;
+    margin-bottom: 10px;
+    table.mat-table {
+      width: 100%;
+      padding: 20px;
+      margin-bottom: 20px;
+    }
+    .sub-tasks-container {
+      .goals-container {
+        // border: 3px dashed red;
+        margin-bottom: 20px;
+        .task-container {
+          margin-bottom: 10px;
+          // border: 2px dashed pink;
+          .task-description {
+            font-style: italic;
+            margin-bottom: 5px;
+            color: green;
+            font-weight: 500;
+          }
+          .tab {
+            border-collapse: collapse;
+            width: 100%;
+            td, th {
+              border: 1px solid #ddd;
+            }
+            td {
+              text-align: center;
+            }
+          }
+          .example-full-width {
+            width: 100%;
+          }
+        }
+      }
+    }
+  }
+}

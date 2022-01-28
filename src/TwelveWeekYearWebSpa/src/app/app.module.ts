@@ -6,6 +6,7 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { GoalsModule } from './goals/goals.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MaterialSharedModule } from './material-shared/material-shared.module';
+import { TwelveWeekYearModule } from './twelve-week-year/twelve-week-year.module';
 
 @NgModule({
   declarations: [
@@ -17,7 +18,8 @@ import { MaterialSharedModule } from './material-shared/material-shared.module';
     AppRoutingModule,
     GoalsModule,
     BrowserAnimationsModule,
-    MaterialSharedModule
+    MaterialSharedModule,
+    TwelveWeekYearModule
   ],
   providers: [],
   bootstrap: [AppComponent]
