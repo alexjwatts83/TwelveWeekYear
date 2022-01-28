@@ -11,30 +11,16 @@
     }
     .sub-tasks-container {
       .goals-container {
-        border: 3px dashed red;
+        // border: 3px dashed red;
         margin-bottom: 20px;
         .task-container {
           margin-bottom: 10px;
-          border: 2px dashed pink;
+          // border: 2px dashed pink;
           .task-description {
             font-style: italic;
             margin-bottom: 5px;
             color: green;
             font-weight: 500;
-          }
-          .task-table {
-            display: flex;
-            border: 2px solid #1d1d1d;
-            flex-wrap: wrap;
-            .day-header {
-              // flex: 1;
-              flex-grow: 1;
-              width: 13%;
-              margin: 2px;
-              border: 1px solid blue;
-              // padding: 5px;
-              text-align: center;
-            }
           }
           .tab {
             border-collapse: collapse;

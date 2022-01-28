@@ -47,19 +47,10 @@
             {{ task.description }}
           </div>
 
-          <div class="task-table" *ngIf="task.subTasks.length === 0">
-            <div *ngFor="let day of week.days" class="day-header">
-              {{ day.date | date: 'EEEE' }}
-            </div>
-            <div *ngFor="let day of week.days" class="day-header">
-              <mat-icon aria-hidden="false" aria-label="Example home icon">check_circle</mat-icon>
-            </div>
-          </div>
-
-          <table class="tab" *ngIf="task.subTasks.length > 0">
+          <table class="tab">
             <thead>
               <tr>
-                <th>
+                <th *ngIf="task.subTasks.length > 0">
                   Sub Tasks
                 </th>
                 <th *ngFor="let day of week.days">
@@ -67,7 +58,8 @@
                 </th>
               </tr>
             </thead>
-            <tbody>
+            <!-- TODO figure out a better way to do this later on -->
+            <tbody *ngIf="task.subTasks.length > 0">
               <tr *ngFor="let subTask of task.subTasks">
                 <td>
                   {{ subTask.description}}
@@ -77,8 +69,19 @@
                 </td>
               </tr>
             </tbody>
+            <!-- Two tbody, lols -->
+            <tbody *ngIf="task.subTasks.length === 0">
+              <tr>
+                <td *ngFor="let day of week.days">
+                  <mat-icon aria-hidden="false" aria-label="Example home icon">check_circle</mat-icon>
+                </td>
+              </tr>
+            </tbody>
           </table>
 
+          <div>
+            <h5>Comments</h5>
+          </div>
           <form class="example-form">          
             <mat-form-field class="example-full-width" appearance="fill">
               <mat-label>Leave a comment</mat-label>
