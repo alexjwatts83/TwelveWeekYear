@@ -9,5 +9,30 @@
       padding: 20px;
       margin-bottom: 20px;
     }
+    .sub-tasks-container {
+      
+      .goals-container {
+        // border: 3px dashed red;
+        margin-bottom: 20px;
+        .task-container {
+          margin-bottom: 10px;
+          .task-description {
+            font-style: italic;
+            margin-bottom: 5px;
+          }
+          .task-table {
+            display: flex;
+            border: 2px solid #1d1d1d;
+            .day-header {
+              flex: 1;
+              margin: 5px;
+              border: 2px dashed #1d1d1d;
+              padding: 5px;
+              text-align: center;
+            }
+          }
+        }
+      }
+    }
   }
 }

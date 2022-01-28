@@ -39,13 +39,15 @@
 
     <div class="sub-tasks-container" *ngIf="data$ | async as goals">
       <h3>Goals</h3>
-      <div *ngFor="let goal of goals; index as i">
+      <div *ngFor="let goal of goals; index as i" class="goals-container">
         <h4>{{ i + 1 }}. {{ goal.description }} ({{ goal.tasks.length }})</h4>
 
-        <div *ngFor="let task of goal.tasks">
-          {{ task.description }}
-          <div style="display: flex;border: 1px solid #1d1d1d;">
-            <div *ngFor="let day of week.days" style="flex: 1;margin: 5px;border: 2px dashed #1d1d1d;padding: 5px;text-align: center;">
+        <div *ngFor="let task of goal.tasks" class="task-container">
+          <div class="task-description">
+            {{ task.description }}
+          </div>
+          <div class="task-table">
+            <div *ngFor="let day of week.days" class="day-header">
               {{ day.date | date: 'EEEE' }}
             </div>
           </div>
