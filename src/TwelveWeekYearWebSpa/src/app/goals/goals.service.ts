@@ -162,6 +162,41 @@ export class GoalsService {
         },
       ],
     },
+    {
+      id: 'a4386b17-bcd8-4890-8348-24d3e2348a8f',
+      description: 'Phosfluorescently engage worldwide methodologies with web-enabled technology',
+      type: GoalTypes.TwelveWeekYear,
+      tasks: [
+        {
+          id: '0a91151e-74b0-42c1-911f-3ba1b6f22d88',
+          description: 'Interactively coordinate proactive e-commerce via process-centric "outside the box" thinking',
+          subTasks: [
+            {
+              id: '0cc505d9-89f3-4491-b86e-70710f6de677',
+              description: 'Scalable customer service',
+            },
+            {
+              id: '8da12486-09e4-4e06-805f-742e234bae96',
+              description: 'Sustainable potentialities',
+            },
+            {
+              id: 'd0822799-be1f-410e-82c2-dc01c58dae67',
+              description: 'State of the Art Customer Service',
+            },
+            {
+              id: '89b7dbe8-1d29-40ff-bde6-f083da594c84',
+              description: 'Holistically pontificate',
+            }
+          ]
+        }
+      ]
+    },
+    {
+      id: '6c9f5b6b-3880-4aaf-94e4-086163dd4820',
+      description: 'Quick sync marketing, illustration what are the expectations radical candor through the lens of.',
+      type: GoalTypes.TwelveWeekYear,
+      tasks: []
+    }
   ];
 
   private _goals$ = new BehaviorSubject<Goal[]>(this.data);
