@@ -6,6 +6,7 @@ import { TwelveWeekYearWeekListComponent } from './components/twelve-week-year-w
 import { TwelveWeekYearSubtasksListComponent } from './components/twelve-week-year-subtasks-list/twelve-week-year-subtasks-list.component';
 import { TwelveWeekYearTaskCommentsListComponent } from './components/twelve-week-year-task-comments-list/twelve-week-year-task-comments-list.component';
 import { TwelveWeekYearTaskCommentsInputComponent } from './components/twelve-week-year-task-comments-input/twelve-week-year-task-comments-input.component';
+import { TwelveWeekYearGoalsTreelistComponent } from './components/twelve-week-year-goals-treelist/twelve-week-year-goals-treelist.component';
 
 @NgModule({
   declarations: [
@@ -13,7 +14,8 @@ import { TwelveWeekYearTaskCommentsInputComponent } from './components/twelve-we
     TwelveWeekYearWeekListComponent,
     TwelveWeekYearSubtasksListComponent,
     TwelveWeekYearTaskCommentsListComponent,
-    TwelveWeekYearTaskCommentsInputComponent
+    TwelveWeekYearTaskCommentsInputComponent,
+    TwelveWeekYearGoalsTreelistComponent
   ],
   imports: [
     CommonModule,
