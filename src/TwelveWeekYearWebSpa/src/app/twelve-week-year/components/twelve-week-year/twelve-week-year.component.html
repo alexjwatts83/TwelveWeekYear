@@ -8,6 +8,7 @@
       ></app-twelve-week-year-week-list>
 
       <div class="sub-tasks-container" *ngIf="data$ | async as goals">
+        Goals Length: {{ goals.length }}
         <app-twelve-week-year-goals-treelist [goals]="goals"></app-twelve-week-year-goals-treelist>
       </div>
 
