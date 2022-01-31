@@ -1,9 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { FlatTreeControl } from '@angular/cdk/tree';
 import {
   MatTreeFlatDataSource,
   MatTreeFlattener,
 } from '@angular/material/tree';
+import { Goal } from 'src/app/goals/models';
 
 /**
  * Food data with nested structure.
@@ -47,6 +48,8 @@ interface ExampleFlatNode {
   styleUrls: ['./twelve-week-year-goals-treelist.component.scss'],
 })
 export class TwelveWeekYearGoalsTreelistComponent implements OnInit {
+  @Input() goals: Goal[] = [];
+  
   private _transformer = (node: FoodNode, level: number) => {
     return {
       expandable: !!node.children && node.children.length > 0,

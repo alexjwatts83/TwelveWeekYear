@@ -8,7 +8,7 @@
       ></app-twelve-week-year-week-list>
 
       <div class="sub-tasks-container" *ngIf="data$ | async as goals">
-        <app-twelve-week-year-goals-treelist></app-twelve-week-year-goals-treelist>
+        <app-twelve-week-year-goals-treelist [goals]="goals"></app-twelve-week-year-goals-treelist>
       </div>
 
       <!-- <div class="sub-tasks-container" *ngIf="data$ | async as goals">
@@ -38,6 +38,7 @@
           </div>
         </div>
       </div> -->
+
     </div>
   </mat-tab>
   <mat-tab label="Final Thougts">
