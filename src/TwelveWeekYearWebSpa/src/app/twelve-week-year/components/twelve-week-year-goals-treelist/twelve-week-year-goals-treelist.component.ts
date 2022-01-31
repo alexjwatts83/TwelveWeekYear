@@ -74,14 +74,6 @@ export class TwelveWeekYearGoalsTreelistComponent implements OnInit {
   dataSource = new MatTreeFlatDataSource(this.treeControl, this.treeFlattener);
 
   constructor() {
-    // let data = this.goals.map(x => {
-    //   let goalNode: GoalNode = {
-    //     goal: x,
-    //     name: x.description
-    //   }
-    //   return goalNode;
-    // })
-    // this.dataSource.data = data;
   }
 
   ngOnInit(): void {
@@ -95,15 +87,26 @@ export class TwelveWeekYearGoalsTreelistComponent implements OnInit {
           data: t,
           name: t.description
         }
+
+        let grandChildren = t.subTasks.map(st => {
+          let grandChild: GoalNode = {
+            data: st,
+            name: st.description
+          }
+          return grandChild;
+        });
+
+        child.children = grandChildren;
+
         return child;
       });
 
       goalNode.children = children;
-      
+
       return goalNode;
     })
     this.dataSource.data = data;
-    console.log({goals: this.goals, data});
+    // console.log({goals: this.goals, data});
   }
 
   hasChild = (_: number, node: ExpandableFlatNode) => node.expandable;
