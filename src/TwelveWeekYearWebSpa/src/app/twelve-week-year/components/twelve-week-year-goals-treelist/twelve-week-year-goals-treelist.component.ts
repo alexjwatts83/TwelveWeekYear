@@ -5,6 +5,7 @@ import {
   MatTreeFlattener,
 } from '@angular/material/tree';
 import { Goal } from 'src/app/goals/models';
+import { Week } from '../../models';
 
 /**
  * Food data with nested structure.
@@ -15,26 +16,6 @@ interface GoalNode {
   name: string;
   children?: GoalNode[];
 }
-
-// const TREE_DATA: GoalNode[] = [
-//   {
-//     name: 'Fruit',
-//     children: [{ name: 'Apple' }, { name: 'Banana' }, { name: 'Fruit loops' }],
-//   },
-//   {
-//     name: 'Vegetables',
-//     children: [
-//       {
-//         name: 'Green',
-//         children: [{ name: 'Broccoli' }, { name: 'Brussels sprouts' }],
-//       },
-//       {
-//         name: 'Orange',
-//         children: [{ name: 'Pumpkins' }, { name: 'Carrots' }],
-//       },
-//     ],
-//   },
-// ];
 
 /** Flat node with expandable and level information */
 interface ExpandableFlatNode {
@@ -50,6 +31,7 @@ interface ExpandableFlatNode {
 })
 export class TwelveWeekYearGoalsTreelistComponent implements OnInit {
   @Input() goals: Goal[] = [];
+  @Input() week!: Week;
 
   private _transformer = (node: GoalNode, level: number) => {
     return {
