@@ -13,6 +13,7 @@ export interface Task {
   id: string;
   description: string;
   subTasks: SubTask[];
+  completed: boolean;
 }
 
 export interface Goal {

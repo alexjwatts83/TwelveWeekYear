@@ -7,6 +7,7 @@
       </th>
     </tr>
   </thead>
+  
   <!-- TODO figure out a better way to do this later on -->
   <tbody *ngIf="task.subTasks.length > 0">
     <tr *ngFor="let subTask of task.subTasks">
@@ -14,19 +15,17 @@
         {{ subTask.description }}
       </td>
       <td *ngFor="let day of week.days">
-        <mat-icon aria-hidden="false" aria-label="Example home icon"
-          >check_circle</mat-icon
-        >
+        <!-- <mat-icon style="color: green;" aria-hidden="false" aria-label="Completed">check_circle</mat-icon> -->
+        <mat-icon aria-hidden="false" aria-label="Incompleted">check_circle_outline</mat-icon>
       </td>
     </tr>
   </tbody>
+
   <!-- Two tbody, lols -->
   <tbody *ngIf="task.subTasks.length === 0">
     <tr>
       <td *ngFor="let day of week.days">
-        <mat-icon aria-hidden="false" aria-label="Example home icon"
-          >check_circle</mat-icon
-        >
+        <mat-icon aria-hidden="false" aria-label="Completed">check_circle</mat-icon>
       </td>
     </tr>
   </tbody>

@@ -56,6 +56,7 @@ export class GoalsService {
           description:
             'Iterative approaches to corporate strategy foster collaborative thinking to further the overall value proposition',
           subTasks: [],
+          completed: true,
         },
         {
           id: '4f3e29bb-02d8-4b4a-abaa-3f9593810b7d',
@@ -79,12 +80,14 @@ export class GoalsService {
               description: 'Functional Solutions',
             },
           ],
+          completed: false,
         },
         {
           id: '1f63e95d-5289-4ef7-a319-76030dac585a',
           description:
             'Bring to the table win-win survival strategies to ensure proactive domination',
           subTasks: [],
+          completed: true,
         },
       ],
     },
@@ -99,12 +102,14 @@ export class GoalsService {
           description:
             'User generated content in real-time will have multiple touchpoints for offshoring.',
           subTasks: [],
+          completed: false,
         },
         {
           id: 'f3039a38-1184-4b34-9873-c4c0b6c28425',
           description:
             'Capitalize on low hanging fruit to identify a ballpark value added activity to beta test.',
           subTasks: [],
+          completed: false,
         },
         {
           id: '0e7c52bc-5360-47b7-a957-218ef6f0d9ca',
@@ -124,6 +129,7 @@ export class GoalsService {
               description: 'Web Services',
             },
           ],
+          completed: true,
         },
       ],
     },
@@ -147,18 +153,21 @@ export class GoalsService {
               description: 'Cross-media',
             },
           ],
+          completed: false
         },
         {
           id: 'aaa58ef5-33fb-465c-9f1e-c40338c889e9',
           description:
             'Keeping your eye on the ball while performing a deep dive on the start-up mentality to derive convergence on cross-platform integration.',
           subTasks: [],
+          completed: true
         },
         {
           id: '91a3dc32-5196-4839-a89e-ccc0bbb61d19',
           description:
             'Collaboratively administrate empowered markets via plug-and-play networks.',
           subTasks: [],
+          completed: true
         },
       ],
     },
@@ -190,6 +199,7 @@ export class GoalsService {
               description: 'Holistically pontificate',
             },
           ],
+          completed: true,
         },
       ],
     },
@@ -217,6 +227,7 @@ export class GoalsService {
               description: 'Quick Sync Marketing',
             },
           ],
+          completed: true,
         },
         {
           id: '96067b1d-6f47-4ece-8dc7-d835bbdb6ac5',
@@ -239,6 +250,7 @@ export class GoalsService {
               description: 'Process Outsourcing',
             },
           ],
+          completed: true,
         },
       ],
     },
