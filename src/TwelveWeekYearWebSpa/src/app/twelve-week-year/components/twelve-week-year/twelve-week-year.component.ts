@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
 import { GoalsService } from 'src/app/goals/goals.service';
 import { Goal, GoalTypes } from 'src/app/goals/models';
-import { Week } from '../../models';
+import { Week, WeekDayResult } from '../../models';
 
 @Component({
   selector: 'app-twelve-week-year',
@@ -11,12 +11,14 @@ import { Week } from '../../models';
 })
 export class TwelveWeekYearComponent implements OnInit {
   weeks: Week[] = [];
-
+  taskResults: WeekDayResult[] = [];
   data$!: Observable<Goal[]>;
   twelveWeekYearGoals: Goal[] = [];
+
   constructor(private service: GoalsService) {
     this.data$ = this.service.getGoals(GoalTypes.TwelveWeekYear);
   }
+
   ngOnInit(): void {
     this.data$.subscribe((x) => {
       this.twelveWeekYearGoals = x;
@@ -45,6 +47,29 @@ export class TwelveWeekYearComponent implements OnInit {
 
       this.twelveWeekYearGoals.forEach((x) => {
         x.tasks.forEach((t) => {
+          this.weeks.forEach(w => {
+            w.days.forEach(d => {
+              if (t.subTasks.length === 0) {
+                let taskResult: WeekDayResult = {
+                  taskId: t.id,
+                  date: d.date,
+                  completed: this.isOdd(this.getRandomInt(1, 1000)),
+                  subTaskId: null
+                };
+                this.taskResults.push(taskResult);
+              } else {
+                t.subTasks.forEach(sb => {
+                  let taskResult: WeekDayResult = {
+                    taskId: null,
+                    date: d.date,
+                    completed: this.isOdd(this.getRandomInt(1, 1000)),
+                    subTaskId: sb.id
+                  };
+                  this.taskResults.push(taskResult);
+                });
+              }
+            });
+          });
           this.weeks[this.weeks.length - 1].taskComments.push({
             taskId: t.id,
             comments: [
@@ -72,4 +97,12 @@ export class TwelveWeekYearComponent implements OnInit {
     result.setDate(result.getDate() + days);
     return result;
   }
+
+  private getRandomInt(min: number, max: number) : number{
+    min = Math.ceil(min);
+    max = Math.floor(max);
+    return Math.floor(Math.random() * (max - min + 1)) + min; 
+  }
+
+  private isOdd(num: number) { return (num % 2) == 1;}
 }

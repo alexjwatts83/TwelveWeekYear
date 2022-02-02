@@ -5,7 +5,7 @@ export interface WeekDay {
 
 export interface WeekDayResult {
   date: Date;
-  taskId: string;
-  subTaskId: string;
+  taskId: string | null;
+  subTaskId: string | null;
   completed: boolean;
 }
