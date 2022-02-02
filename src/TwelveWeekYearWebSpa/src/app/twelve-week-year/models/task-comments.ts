@@ -6,6 +6,6 @@ export interface LeComment {
 }
 
 export interface TaskComments {
-  task: Task;
+  taskId: string;
   comments: LeComment[];
 }

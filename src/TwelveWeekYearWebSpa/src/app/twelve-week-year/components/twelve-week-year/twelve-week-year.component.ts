@@ -39,14 +39,14 @@ export class TwelveWeekYearComponent implements OnInit {
         let dayDate = this.addDays(date, j);
         this.weeks[this.weeks.length - 1].days.push({
           date: dayDate,
-          comments: `Something on day ${dayDate}`,
+          comments: ``,
         });
       }
 
       this.twelveWeekYearGoals.forEach((x) => {
         x.tasks.forEach((t) => {
           this.weeks[this.weeks.length - 1].taskComments.push({
-            task: t,
+            taskId: t.id,
             comments: [
               {
                 date: date,
@@ -55,6 +55,10 @@ export class TwelveWeekYearComponent implements OnInit {
               {
                 date: date,
                 comment: `2 - ${t.description}`
+              },
+              {
+                date: date,
+                comment: `Rando`
               } 
             ],
           });

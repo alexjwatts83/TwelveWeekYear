@@ -24,7 +24,7 @@ export class TwelveWeekYearTaskCommentsListComponent implements OnInit {
     if (week === undefined) {
       return [];
     }
-    let taskComments = week.taskComments.filter(x => x.task.id === taskId);
+    let taskComments = week.taskComments.filter(x => x.taskId === taskId);
     let comments: LeComment[] = [];
     taskComments.forEach(t => {
       t.comments.forEach(c => {
