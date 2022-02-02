@@ -9,31 +9,6 @@
       <div style="display: block;">
         <app-twelve-week-year-task-comments-input></app-twelve-week-year-task-comments-input>
       </div>
-      
-      <!-- <div *ngFor="let goal of goals; index as i" class="goals-container">
-        <h4>{{ i + 1 }}. {{ goal.description }} ({{ goal.tasks.length }})</h4>
-
-        <div *ngFor="let task of goal.tasks" class="task-container">
-          <div class="task-description">
-            {{ task.description }}
-          </div>
-
-          <app-twelve-week-year-subtasks-list
-            [week]="week"
-            [task]="task"
-          ></app-twelve-week-year-subtasks-list>
-
-          <div class="comments-container">
-            <app-twelve-week-year-task-comments-list
-              [weeks]="weeks"
-              [week]="week"
-              [task]="task"
-            ></app-twelve-week-year-task-comments-list>
-
-            <app-twelve-week-year-task-comments-input></app-twelve-week-year-task-comments-input>
-          </div>
-        </div>
-      </div> -->
     </mat-tree-node>
     <!-- This is the tree node template for expandable nodes -->
     <mat-tree-node *matTreeNodeDef="let node;when: hasChild" matTreeNodePadding>
