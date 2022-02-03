@@ -7,7 +7,7 @@
       </th>
     </tr>
   </thead>
-  
+
   <!-- TODO figure out a better way to do this later on -->
   <tbody *ngIf="task.subTasks.length > 0">
     <tr *ngFor="let subTask of task.subTasks">
@@ -15,12 +15,20 @@
         {{ subTask.description }}
       </td>
       <td *ngFor="let day of week.days">
-        <mat-icon *ngIf="isSubTaskCompleted(subTask.id, day.date)" 
-            style="color: #00a300;"
-            aria-hidden="false" aria-label="Completed">check_circle</mat-icon>
-        <mat-icon *ngIf="!isSubTaskCompleted(subTask.id, day.date)"
-            style="color: #ffc40d;"
-            aria-hidden="false" aria-label="Incompleted">check_circle_outline</mat-icon>
+        <mat-icon
+          *ngIf="isSubTaskCompleted(subTask.id, day.date)"
+          class="is-completed"
+          aria-hidden="false"
+          aria-label="Completed"
+          >check_circle</mat-icon
+        >
+        <mat-icon
+          *ngIf="!isSubTaskCompleted(subTask.id, day.date)"
+          class="is-incomplete"
+          aria-hidden="false"
+          aria-label="Incompleted"
+          >check_circle_outline</mat-icon
+        >
       </td>
     </tr>
   </tbody>
@@ -29,12 +37,20 @@
   <tbody *ngIf="task.subTasks.length === 0">
     <tr>
       <td *ngFor="let day of week.days">
-        <mat-icon *ngIf="isTaskCompleted(task.id, day.date)" 
-            style="color: #00a300;"
-            aria-hidden="false" aria-label="Completed">check_circle</mat-icon>
-        <mat-icon *ngIf="!isTaskCompleted(task.id, day.date)" 
-            style="color: #ffc40d;"
-            aria-hidden="false" aria-label="Completed">check_circle_outline</mat-icon>
+        <mat-icon
+          *ngIf="isTaskCompleted(task.id, day.date)"
+          class="is-completed"
+          aria-hidden="false"
+          aria-label="Completed"
+          >check_circle</mat-icon
+        >
+        <mat-icon
+          *ngIf="!isTaskCompleted(task.id, day.date)"
+          class="is-incomplete"
+          aria-hidden="false"
+          aria-label="Completed"
+          >check_circle_outline</mat-icon
+        >
       </td>
     </tr>
   </tbody>
