@@ -15,8 +15,12 @@
         {{ subTask.description }}
       </td>
       <td *ngFor="let day of week.days">
-        <!-- <mat-icon style="color: green;" aria-hidden="false" aria-label="Completed">check_circle</mat-icon> -->
-        <mat-icon aria-hidden="false" aria-label="Incompleted">check_circle_outline</mat-icon>
+        <mat-icon *ngIf="isSubTaskCompleted(subTask.id, day.date)" 
+            style="color: #00a300;"
+            aria-hidden="false" aria-label="Completed">check_circle</mat-icon>
+        <mat-icon *ngIf="!isSubTaskCompleted(subTask.id, day.date)"
+            style="color: #ffc40d;"
+            aria-hidden="false" aria-label="Incompleted">check_circle_outline</mat-icon>
       </td>
     </tr>
   </tbody>
@@ -25,7 +29,12 @@
   <tbody *ngIf="task.subTasks.length === 0">
     <tr>
       <td *ngFor="let day of week.days">
-        <mat-icon aria-hidden="false" aria-label="Completed">check_circle</mat-icon>
+        <mat-icon *ngIf="isTaskCompleted(task.id, day.date)" 
+            style="color: #00a300;"
+            aria-hidden="false" aria-label="Completed">check_circle</mat-icon>
+        <mat-icon *ngIf="!isTaskCompleted(task.id, day.date)" 
+            style="color: #ffc40d;"
+            aria-hidden="false" aria-label="Completed">check_circle_outline</mat-icon>
       </td>
     </tr>
   </tbody>

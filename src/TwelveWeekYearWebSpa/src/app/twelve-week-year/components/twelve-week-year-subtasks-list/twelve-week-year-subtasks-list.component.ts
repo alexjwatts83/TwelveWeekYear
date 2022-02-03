@@ -32,7 +32,7 @@ export class TwelveWeekYearSubtasksListComponent implements OnInit {
   isTaskCompleted(taskId: string, date: Date): boolean {
     let taskResult = this._taskResults.find(x => x.date === date && x.taskId === taskId);
     if (taskResult == null) {
-      console.log('taskResult is null');
+      // console.log('taskResult is null');
       return false;
     }
     return taskResult.completed;
@@ -41,7 +41,7 @@ export class TwelveWeekYearSubtasksListComponent implements OnInit {
   isSubTaskCompleted(subTaskId: string, date: Date): boolean {
     let subTaskResult = this._subTaskResults.find(x => x.date === date && x.subTaskId === subTaskId);
     if (subTaskResult == null) {
-      console.log('subTaskResult is null');
+      // console.log('subTaskResult is null');
       return false;
     }
     return subTaskResult.completed;
