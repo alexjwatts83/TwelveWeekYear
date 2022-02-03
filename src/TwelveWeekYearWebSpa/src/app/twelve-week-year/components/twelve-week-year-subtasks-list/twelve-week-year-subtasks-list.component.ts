@@ -12,17 +12,38 @@ export class TwelveWeekYearSubtasksListComponent implements OnInit {
   @Input() week!: Week;
   @Input() taskResults: WeekDayResult[] = [];
 
-  isCompleted: boolean = false;
+  private _taskResults: WeekDayResult[];
+  private _subTaskResults: WeekDayResult[];
 
-  constructor() { }
+  constructor() { 
+    this._taskResults = [];
+    this._subTaskResults = [];
+  }
 
   ngOnInit(): void {
-    let tasksCompleted = this.taskResults.filter(x => x.taskId == this.task.id);
-    let subTaskCompleted: any[] = [];
+    this._taskResults = this.taskResults.filter(x => x.taskId == this.task.id);
     this.task.subTasks.forEach(st => {
       let results = this.taskResults.filter(tr => tr.subTaskId === st.id);
-      subTaskCompleted.push(...results);
+      this._subTaskResults.push(...results);
     });
-    console.log({ taskId: this.task.id, tasksCompleted, subTaskCompleted });
+    console.log({ taskId: this.task.id, tasksResults: this._taskResults, subTaskResuls:  this._subTaskResults });
+  }
+
+  isTaskCompleted(taskId: string, date: Date): boolean {
+    let taskResult = this._taskResults.find(x => x.date === date && x.taskId === taskId);
+    if (taskResult == null) {
+      console.log('taskResult is null');
+      return false;
+    }
+    return taskResult.completed;
+  }
+
+  isSubTaskCompleted(subTaskId: string, date: Date): boolean {
+    let subTaskResult = this._subTaskResults.find(x => x.date === date && x.subTaskId === subTaskId);
+    if (subTaskResult == null) {
+      console.log('subTaskResult is null');
+      return false;
+    }
+    return subTaskResult.completed;
   }
 }
