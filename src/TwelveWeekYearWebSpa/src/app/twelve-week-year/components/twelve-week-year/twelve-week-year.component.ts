@@ -89,6 +89,8 @@ export class TwelveWeekYearComponent implements OnInit {
           });
         });
       });
+
+      console.log({taskResults: this.taskResults});
     }
   }
 
