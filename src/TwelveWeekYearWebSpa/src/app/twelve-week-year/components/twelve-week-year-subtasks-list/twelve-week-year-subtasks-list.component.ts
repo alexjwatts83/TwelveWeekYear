@@ -26,13 +26,11 @@ export class TwelveWeekYearSubtasksListComponent implements OnInit {
       let results = this.taskResults.filter(tr => tr.subTaskId === st.id);
       this._subTaskResults.push(...results);
     });
-    console.log({ taskId: this.task.id, tasksResults: this._taskResults, subTaskResuls:  this._subTaskResults });
   }
 
   isTaskCompleted(taskId: string, date: Date): boolean {
     let taskResult = this._taskResults.find(x => x.date === date && x.taskId === taskId);
     if (taskResult == null) {
-      // console.log('taskResult is null');
       return false;
     }
     return taskResult.completed;
@@ -41,9 +39,26 @@ export class TwelveWeekYearSubtasksListComponent implements OnInit {
   isSubTaskCompleted(subTaskId: string, date: Date): boolean {
     let subTaskResult = this._subTaskResults.find(x => x.date === date && x.subTaskId === subTaskId);
     if (subTaskResult == null) {
-      // console.log('subTaskResult is null');
       return false;
     }
     return subTaskResult.completed;
+  }
+
+  toggleSubTaskCompleted(subTaskId: string, date: Date) {
+    let subTaskResult = this._subTaskResults.find(x => x.date === date && x.subTaskId === subTaskId);
+    if (subTaskResult == null) {
+      return;
+    }
+
+    subTaskResult.completed = !subTaskResult.completed;
+  }
+
+  toggleTaskCompleted(taskId: string, date: Date) {
+    let taskResult = this._taskResults.find(x => x.date === date && x.taskId === taskId);
+    if (taskResult == null) {
+      return;
+    }
+    
+    taskResult.completed = !taskResult.completed;
   }
 }

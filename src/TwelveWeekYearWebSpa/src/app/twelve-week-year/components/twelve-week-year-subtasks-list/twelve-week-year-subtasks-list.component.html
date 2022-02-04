@@ -20,15 +20,17 @@
           class="is-completed"
           aria-hidden="false"
           aria-label="Completed"
-          >check_circle</mat-icon
-        >
+          (click)="toggleSubTaskCompleted(subTask.id, day.date)">
+          check_circle
+        </mat-icon>
         <mat-icon
           *ngIf="!isSubTaskCompleted(subTask.id, day.date)"
           class="is-incomplete"
           aria-hidden="false"
           aria-label="Incompleted"
-          >check_circle_outline</mat-icon
-        >
+          (click)="toggleSubTaskCompleted(subTask.id, day.date)">
+          check_circle_outline
+        </mat-icon>
       </td>
     </tr>
   </tbody>
@@ -42,15 +44,17 @@
           class="is-completed"
           aria-hidden="false"
           aria-label="Completed"
-          >check_circle</mat-icon
-        >
+          (click)="toggleTaskCompleted(task.id, day.date)">
+          check_circle
+        </mat-icon>
         <mat-icon
           *ngIf="!isTaskCompleted(task.id, day.date)"
           class="is-incomplete"
           aria-hidden="false"
           aria-label="Completed"
-          >check_circle_outline</mat-icon
-        >
+          (click)="toggleTaskCompleted(task.id, day.date)">
+          check_circle_outline
+        </mat-icon>
       </td>
     </tr>
   </tbody>
