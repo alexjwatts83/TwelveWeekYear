@@ -1,4 +1,4 @@
-<div>
+<div *ngIf="comments.length > 0">
   <h5>Comments ({{comments.length}})</h5>
   <div class="task-comment-list-container">
     <div *ngFor="let taskComment of comments" class="task-comment-list">
@@ -9,5 +9,11 @@
         {{ taskComment.comment }}
       </div>
     </div>
+  </div>
+</div>
+<div *ngIf="comments.length === 0">
+  <h5>Comments ({{comments.length}})</h5>
+  <div>
+    No comments, lol
   </div>
 </div>

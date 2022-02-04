@@ -1,4 +1,4 @@
-import { Task } from '../../goals/models/goal';
+import { Task } from '../../../../goals/models/goal';
 
 export interface LeComment {
   date: Date;

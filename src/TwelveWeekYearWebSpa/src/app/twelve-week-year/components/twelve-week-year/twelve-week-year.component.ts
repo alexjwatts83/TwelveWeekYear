@@ -34,7 +34,6 @@ export class TwelveWeekYearComponent implements OnInit {
         number: i + 1,
         date: date,
         days: [],
-        taskComments: [],
       });
 
       for (let j = 0; j < 7; j++) {
@@ -69,23 +68,6 @@ export class TwelveWeekYearComponent implements OnInit {
                 });
               }
             });
-          });
-          this.weeks[this.weeks.length - 1].taskComments.push({
-            taskId: t.id,
-            comments: [
-              {
-                date: date,
-                comment: `${t.description} - 1`
-              },
-              {
-                date: date,
-                comment: `2 - ${t.description}`
-              },
-              {
-                date: date,
-                comment: `Rando`
-              } 
-            ],
           });
         });
       });

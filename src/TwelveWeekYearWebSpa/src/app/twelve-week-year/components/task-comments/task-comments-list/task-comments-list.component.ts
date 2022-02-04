@@ -16,21 +16,21 @@ export class CommentsListComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
-    this.comments = this.getCommentsForTask(this.week.date, this.task.id);
+    // this.comments = this.getCommentsForTask(this.week.date, this.task.id);
   }
 
-  private getCommentsForTask(weekDate: Date, taskId: string) : LeComment[] {
-    let week = this.weeks.find(x => x.date === weekDate);
-    if (week === undefined) {
-      return [];
-    }
-    let taskComments = week.taskComments.filter(x => x.taskId === taskId);
-    let comments: LeComment[] = [];
-    taskComments.forEach(t => {
-      t.comments.forEach(c => {
-        comments.push(c);
-      });
-    });
-    return comments;
-  }
+  // private getCommentsForTask(weekDate: Date, taskId: string) : LeComment[] {
+  //   let week = this.weeks.find(x => x.date === weekDate);
+  //   if (week === undefined) {
+  //     return [];
+  //   }
+  //   let taskComments = week.taskComments.filter(x => x.taskId === taskId);
+  //   let comments: LeComment[] = [];
+  //   taskComments.forEach(t => {
+  //     t.comments.forEach(c => {
+  //       comments.push(c);
+  //     });
+  //   });
+  //   return comments;
+  // }
 }
