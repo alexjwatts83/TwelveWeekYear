@@ -7,10 +7,6 @@
         [days]="week.days"
       ></app-twelve-week-year-week-list>
 
-      <!-- <div class="sub-tasks-container" *ngIf="data$ | async as goals">
-        <app-twelve-week-year-goals-treelist [goals]="goals" [week]="week"></app-twelve-week-year-goals-treelist>
-      </div> -->
-
       <div class="sub-tasks-container" *ngIf="data$ | async as goals">
         <h3>Goals</h3>
         <div *ngFor="let goal of goals; index as i" class="goals-container">
