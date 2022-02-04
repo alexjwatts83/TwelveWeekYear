@@ -1,9 +1,26 @@
 <div class="form-container">
-  <form class="example-form">
+  <form
+    class="example-form"
+    [formGroup]="commentsForm"
+    #f="ngForm"
+    (ngSubmit)="onSubmit(f)"
+  >
     <mat-form-field class="example-full-width" appearance="fill">
       <mat-label>Leave a comment</mat-label>
-      <textarea matInput placeholder="Ex. It makes me feel..."></textarea>
+      <textarea
+        matInput
+        placeholder="Ex. It makes me feel..."
+        formControlName="comment"
+        autocomplete="on"
+      ></textarea>
     </mat-form-field>
-    <button mat-raised-button color="primary" [disabled]="true">Add Comment</button>
+    <button
+      mat-raised-button
+      color="primary"
+      type="submit"
+      [disabled]="f.invalid"
+    >
+      Add Comment
+    </button>
   </form>
 </div>

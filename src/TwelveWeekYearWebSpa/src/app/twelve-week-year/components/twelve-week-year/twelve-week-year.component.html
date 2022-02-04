@@ -3,9 +3,7 @@
     <div class="week-container">
       <h2>Week {{ week.number }} ({{ week.date | date }})</h2>
 
-      <app-week-list
-        [days]="week.days"
-      ></app-week-list>
+      <app-week-list [days]="week.days"></app-week-list>
 
       <div class="sub-tasks-container" *ngIf="data$ | async as goals">
         <h3>Goals</h3>
@@ -14,7 +12,7 @@
 
           <div *ngFor="let task of goal.tasks" class="task-container">
             <div class="task-description">
-              {{ task.description }} ({{task.id}})
+              {{ task.description }} ({{ task.id }})
             </div>
 
             <app-subtasks-list
@@ -24,7 +22,7 @@
             ></app-subtasks-list>
 
             <div class="comments-container">
-<!-- <pre>
+              <!-- <pre>
 {{ task | json}}
 </pre> -->
               <app-task-comments-list
@@ -32,12 +30,14 @@
                 [week]="week"
               ></app-task-comments-list>
 
-              <app-task-comments-input></app-task-comments-input>
+              <app-task-comments-input
+                [task]="task"
+                [week]="week"
+              ></app-task-comments-input>
             </div>
           </div>
         </div>
       </div>
-
     </div>
   </mat-tab>
   <mat-tab label="Final Thougts">

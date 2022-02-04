@@ -26,7 +26,7 @@ export class GoalsGroupComponent implements OnInit {
     if (this.openAccordion) {
       this.panelOpenState = true;
     }
-    console.log({panelOpenState: this.panelOpenState});
+    // console.log({panelOpenState: this.panelOpenState});
     // this.data$.subscribe((x) => {
     //   // console.log({x, goalType: this.goalType, title: this.title});
     //   // this.goals = x;

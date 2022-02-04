@@ -25,7 +25,7 @@ export class GoalsGridComponent implements OnInit {
 
     this.data$.subscribe((x) => {
       this.dataSource.data = x;
-      console.log({x});
+      // console.log({x});
     });
   }
 }
