@@ -24,9 +24,12 @@
             ></app-subtasks-list>
 
             <div class="comments-container">
+<!-- <pre>
+{{ task | json}}
+</pre> -->
               <app-task-comments-list
-                [week]="week"
                 [task]="task"
+                [week]="week"
               ></app-task-comments-list>
 
               <app-task-comments-input></app-task-comments-input>

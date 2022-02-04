@@ -4,7 +4,7 @@ import { map } from 'rxjs/operators';
 import { TaskComments } from './models';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class TaskCommentsService {
   private data: TaskComments[] = [];
@@ -17,7 +17,11 @@ export class TaskCommentsService {
     return this._taskComments$
       .asObservable()
       .pipe(
-        map((data) => data.filter((tc) => tc.taskId === taskId && tc.weekNumber == weekNumber))
+        map((data) =>
+          data.filter(
+            (tc) => tc.taskId === taskId && tc.weekNumber == weekNumber
+          )
+        )
       );
   }
 
