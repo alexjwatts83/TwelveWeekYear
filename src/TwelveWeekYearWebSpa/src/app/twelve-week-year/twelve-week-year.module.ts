@@ -7,6 +7,7 @@ import { TwelveWeekYearSubtasksListComponent } from './components/twelve-week-ye
 import { TwelveWeekYearTaskCommentsListComponent } from './components/twelve-week-year-task-comments-list/twelve-week-year-task-comments-list.component';
 import { TwelveWeekYearTaskCommentsInputComponent } from './components/twelve-week-year-task-comments-input/twelve-week-year-task-comments-input.component';
 import { TwelveWeekYearGoalsTreelistComponent } from './components/twelve-week-year-goals-treelist/twelve-week-year-goals-treelist.component';
+import { SharedModule } from '../shared/shared.module';
 
 @NgModule({
   declarations: [
@@ -19,7 +20,8 @@ import { TwelveWeekYearGoalsTreelistComponent } from './components/twelve-week-y
   ],
   imports: [
     CommonModule,
-    MaterialSharedModule
+    MaterialSharedModule,
+    SharedModule
   ],
   exports: [
     TwelveWeekYearComponent
