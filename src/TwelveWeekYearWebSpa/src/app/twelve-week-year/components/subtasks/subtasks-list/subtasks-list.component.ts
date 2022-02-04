@@ -1,13 +1,13 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { Week, WeekDayResult } from "../../models/";
+import { Week, WeekDayResult } from "../../../models";
 import { Task } from 'src/app/goals/models';
 
 @Component({
-  selector: 'app-twelve-week-year-subtasks-list',
-  templateUrl: './twelve-week-year-subtasks-list.component.html',
-  styleUrls: ['./twelve-week-year-subtasks-list.component.scss']
+  selector: 'app-subtasks-list',
+  templateUrl: './subtasks-list.component.html',
+  styleUrls: ['./subtasks-list.component.scss']
 })
-export class TwelveWeekYearSubtasksListComponent implements OnInit {
+export class SubtasksListComponent implements OnInit {
   @Input() task!: Task;
   @Input() week!: Week;
   @Input() taskResults: WeekDayResult[] = [];

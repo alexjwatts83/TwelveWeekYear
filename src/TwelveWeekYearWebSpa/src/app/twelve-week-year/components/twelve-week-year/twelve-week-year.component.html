@@ -3,9 +3,9 @@
     <div class="week-container">
       <h2>Week {{ week.number }} ({{ week.date | date }})</h2>
 
-      <app-twelve-week-year-week-list
+      <app-week-list
         [days]="week.days"
-      ></app-twelve-week-year-week-list>
+      ></app-week-list>
 
       <div class="sub-tasks-container" *ngIf="data$ | async as goals">
         <h3>Goals</h3>
@@ -17,11 +17,11 @@
               {{ task.description }} ({{task}})
             </div>
 
-            <app-twelve-week-year-subtasks-list
+            <app-subtasks-list
               [week]="week"
               [task]="task"
               [taskResults]="taskResults"
-            ></app-twelve-week-year-subtasks-list>
+            ></app-subtasks-list>
 
             <div class="comments-container">
               <app-task-comments-list

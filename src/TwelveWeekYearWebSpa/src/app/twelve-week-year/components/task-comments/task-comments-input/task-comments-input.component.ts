@@ -5,7 +5,7 @@ import { Component, OnInit } from '@angular/core';
   templateUrl: './task-comments-input.component.html',
   styleUrls: ['./task-comments-input.component.scss']
 })
-export class TwelveWeekYearTaskCommentsInputComponent implements OnInit {
+export class CommentsInputComponent implements OnInit {
 
   constructor() { }
 

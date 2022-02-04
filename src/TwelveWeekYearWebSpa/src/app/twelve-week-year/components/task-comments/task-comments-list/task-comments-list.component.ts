@@ -7,7 +7,7 @@ import { Task } from 'src/app/goals/models';
   templateUrl: './task-comments-list.component.html',
   styleUrls: ['./task-comments-list.component.scss']
 })
-export class TwelveWeekYearTaskCommentsListComponent implements OnInit {
+export class CommentsListComponent implements OnInit {
   @Input() weeks: Week[] = [];
   @Input() task!: Task;
   @Input() week!: Week;

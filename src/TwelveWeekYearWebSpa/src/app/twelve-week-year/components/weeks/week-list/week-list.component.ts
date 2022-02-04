@@ -1,13 +1,13 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { GoalsService } from 'src/app/goals/goals.service';
-import { WeekDay } from "../../models";
+import { WeekDay } from "../../../models";
 
 @Component({
-  selector: 'app-twelve-week-year-week-list',
-  templateUrl: './twelve-week-year-week-list.component.html',
-  styleUrls: ['./twelve-week-year-week-list.component.scss']
+  selector: 'app-week-list',
+  templateUrl: './week-list.component.html',
+  styleUrls: ['./week-list.component.scss']
 })
-export class TwelveWeekYearWeekListComponent implements OnInit {
+export class WeekListComponent implements OnInit {
   @Input() days: WeekDay[] = [];
 
   displayedColumns: string[] = ['date', 'comments'];
