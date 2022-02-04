@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { LeComment, Week } from '../../models';
+import { LeComment, Week } from '../../../models';
 import { Task } from 'src/app/goals/models';
 
 @Component({
