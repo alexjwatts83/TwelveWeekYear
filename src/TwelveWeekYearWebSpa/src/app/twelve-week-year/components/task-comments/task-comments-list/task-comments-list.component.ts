@@ -3,9 +3,9 @@ import { LeComment, Week } from '../../../models';
 import { Task } from 'src/app/goals/models';
 
 @Component({
-  selector: 'app-twelve-week-year-task-comments-list',
-  templateUrl: './twelve-week-year-task-comments-list.component.html',
-  styleUrls: ['./twelve-week-year-task-comments-list.component.scss']
+  selector: 'app-task-comments-list',
+  templateUrl: './task-comments-list.component.html',
+  styleUrls: ['./task-comments-list.component.scss']
 })
 export class TwelveWeekYearTaskCommentsListComponent implements OnInit {
   @Input() weeks: Week[] = [];
