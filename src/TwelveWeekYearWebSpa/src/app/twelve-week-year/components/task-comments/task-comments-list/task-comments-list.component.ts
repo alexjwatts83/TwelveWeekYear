@@ -1,6 +1,8 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { LeComment, Week } from '../../../models';
 import { Task } from 'src/app/goals/models';
+import { Week } from 'src/app/twelve-week-year/models';
+import { LeComment } from '../models';
+import { TaskCommentsService } from '../task-comments.service';
 
 @Component({
   selector: 'app-task-comments-list',
@@ -8,12 +10,11 @@ import { Task } from 'src/app/goals/models';
   styleUrls: ['./task-comments-list.component.scss']
 })
 export class CommentsListComponent implements OnInit {
-  @Input() weeks: Week[] = [];
   @Input() task!: Task;
   @Input() week!: Week;
 
   comments: LeComment[] = [];
-  constructor() { }
+  constructor(private service: TaskCommentsService) { }
 
   ngOnInit(): void {
     // this.comments = this.getCommentsForTask(this.week.date, this.task.id);

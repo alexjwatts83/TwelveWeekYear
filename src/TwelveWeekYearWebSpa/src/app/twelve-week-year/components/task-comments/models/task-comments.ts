@@ -7,5 +7,6 @@ export interface LeComment {
 
 export interface TaskComments {
   taskId: string;
+  weekNumber: number;
   comments: LeComment[];
 }

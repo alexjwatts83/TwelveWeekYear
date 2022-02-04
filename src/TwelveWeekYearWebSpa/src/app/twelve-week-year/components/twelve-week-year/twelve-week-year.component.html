@@ -14,7 +14,7 @@
 
           <div *ngFor="let task of goal.tasks" class="task-container">
             <div class="task-description">
-              {{ task.description }} ({{task}})
+              {{ task.description }} ({{task.id}})
             </div>
 
             <app-subtasks-list
@@ -25,7 +25,6 @@
 
             <div class="comments-container">
               <app-task-comments-list
-                [weeks]="weeks"
                 [week]="week"
                 [task]="task"
               ></app-task-comments-list>
