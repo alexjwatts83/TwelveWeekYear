@@ -8,6 +8,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MaterialSharedModule } from './material-shared/material-shared.module';
 import { TwelveWeekYearModule } from './twelve-week-year/twelve-week-year.module';
 
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -19,7 +20,7 @@ import { TwelveWeekYearModule } from './twelve-week-year/twelve-week-year.module
     GoalsModule,
     BrowserAnimationsModule,
     MaterialSharedModule,
-    TwelveWeekYearModule
+    TwelveWeekYearModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

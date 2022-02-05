@@ -7,6 +7,7 @@ import { SubtasksListComponent } from './components/subtasks/subtasks-list/subta
 import { CommentsInputComponent } from './components/task-comments/task-comments-input/task-comments-input.component';
 import { SharedModule } from '../shared/shared.module';
 import { CommentsListComponent } from './components/task-comments/task-comments-list/task-comments-list.component';
+import { QuillModule } from 'ngx-quill';
 
 @NgModule({
   declarations: [
@@ -19,7 +20,8 @@ import { CommentsListComponent } from './components/task-comments/task-comments-
   imports: [
     CommonModule,
     MaterialSharedModule,
-    SharedModule
+    SharedModule,
+    QuillModule.forRoot()
   ],
   exports: [
     TwelveWeekYearComponent

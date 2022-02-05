@@ -11,18 +11,17 @@ export class WeekListComponent implements OnInit {
   @Input() days: WeekDay[] = [];
 
   displayedColumns: string[] = ['date', 'comments'];
-  // dataSource = new MatTableDataSource<Goal>();
-  // data$!: Observable<Goal[]>;
-  
+
+  blured = false;
+  focused = false;
+
   constructor(private service: GoalsService) { }
 
   ngOnInit(): void {
-    // this.data$ = this.service.getGoals(GoalTypes.TwelveWeekYear);
-
-    // this.data$.subscribe((x) => {
-    //   this.dataSource.data = x;
-    //   console.log({x});
-    // });
   }
 
+  blur($event: any) {
+    this.focused = false
+    this.blured = true
+  }
 }
