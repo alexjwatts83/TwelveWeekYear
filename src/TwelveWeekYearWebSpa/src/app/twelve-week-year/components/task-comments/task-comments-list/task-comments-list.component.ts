@@ -26,7 +26,7 @@ export class CommentsListComponent implements OnInit {
       // console.log({taskComments});
       taskComments.forEach((tc) => {
         // console.log({tc});
-        this.comments.push(...tc.comments);
+        this.comments = tc.comments;
       });
     });
   }

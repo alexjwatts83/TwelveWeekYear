@@ -39,13 +39,30 @@ export class TaskCommentsService {
       comment,
       date,
     };
+    let tc = this.data
+    .filter((tc) => tc.taskId === taskId && tc.weekNumber == weekNumber);
 
-    this.data
+    // console.log({before: true, tc: JSON.parse(JSON.stringify(tc))});
+
+    if (tc.length === 0) {
+      let taskComment: TaskComments = {
+        taskId,
+        weekNumber,
+        comments: [leComment]
+      }
+      this.data.push(taskComment);
+    } else {
+      this.data
       .filter((tc) => tc.taskId === taskId && tc.weekNumber == weekNumber)
       .forEach((tc) => {
-        console.log('pushing comment');
+        // console.log('pushing comment');
         tc.comments.push(leComment);
+        // console.log({during: true, tc: JSON.parse(JSON.stringify(tc))});
       });
+    }
+
+    // console.log({after: true, tc: JSON.parse(JSON.stringify(this.data))});
+
 
     this.setComments(this.data);
   }
