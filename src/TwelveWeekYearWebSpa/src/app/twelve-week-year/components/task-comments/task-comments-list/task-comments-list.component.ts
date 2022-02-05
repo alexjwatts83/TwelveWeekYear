@@ -16,8 +16,7 @@ export class CommentsListComponent implements OnInit {
 
   private data$!: Observable<TaskComments[]>;
   comments: LeComment[] = [];
-  constructor(private service: TaskCommentsService) {
-  }
+  constructor(private service: TaskCommentsService) {}
 
   ngOnInit(): void {
     // console.log({taskId: this.task, weekNumber: this.week});
@@ -30,19 +29,4 @@ export class CommentsListComponent implements OnInit {
       });
     });
   }
-
-  // private getCommentsForTask(weekDate: Date, taskId: string) : LeComment[] {
-  //   let week = this.weeks.find(x => x.date === weekDate);
-  //   if (week === undefined) {
-  //     return [];
-  //   }
-  //   let taskComments = week.taskComments.filter(x => x.taskId === taskId);
-  //   let comments: LeComment[] = [];
-  //   taskComments.forEach(t => {
-  //     t.comments.forEach(c => {
-  //       comments.push(c);
-  //     });
-  //   });
-  //   return comments;
-  // }
 }
