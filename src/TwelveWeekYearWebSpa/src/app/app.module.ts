@@ -7,6 +7,7 @@ import { GoalsModule } from './goals/goals.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MaterialSharedModule } from './material-shared/material-shared.module';
 import { TwelveWeekYearModule } from './twelve-week-year/twelve-week-year.module';
+import { QuillModule } from 'ngx-quill';
 
 @NgModule({
   declarations: [
@@ -19,7 +20,8 @@ import { TwelveWeekYearModule } from './twelve-week-year/twelve-week-year.module
     GoalsModule,
     BrowserAnimationsModule,
     MaterialSharedModule,
-    TwelveWeekYearModule
+    TwelveWeekYearModule,
+    QuillModule.forRoot()
   ],
   providers: [],
   bootstrap: [AppComponent]
