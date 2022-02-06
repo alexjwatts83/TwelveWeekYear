@@ -20,7 +20,8 @@ export class WeekListComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  blur($event: any) {
+  blur($event: any, element: any) {
+    console.log({event: $event, element});
     this.focused = false
     this.blured = true
   }

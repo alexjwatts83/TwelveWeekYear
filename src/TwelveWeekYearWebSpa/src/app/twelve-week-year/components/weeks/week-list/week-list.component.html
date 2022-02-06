@@ -18,7 +18,7 @@
         <quill-editor
           [styles]="{ height: '150px' }"
           [(ngModel)]="element.comments"
-          (onBlur)="blur($event)"
+          (onBlur)="blur($event, element)"
         ></quill-editor>
       </td>
     </ng-container>
