@@ -1,6 +1,10 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { WeekDay } from "../../../models";
 
+interface WeekDayListItem extends WeekDay {
+  showEditor: boolean
+}
+
 @Component({
   selector: 'app-week-list',
   templateUrl: './week-list.component.html',
@@ -14,9 +18,16 @@ export class WeekListComponent implements OnInit {
   blured = false;
   focused = false;
 
+  data: WeekDayListItem[] = [];
   constructor() { }
 
   ngOnInit(): void {
+    this.data = this.days.map((d => {
+      return {
+        ...d,
+        showEditor:false
+      };
+    }))
   }
 
   blur($event: any, element: any) {
