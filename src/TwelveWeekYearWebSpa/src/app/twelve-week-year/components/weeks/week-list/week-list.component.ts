@@ -1,6 +1,9 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { GoalsService } from 'src/app/goals/goals.service';
 import { WeekDay } from "../../../models";
+
+interface WeekDayListItem extends WeekDay {
+  showEditor: boolean
+}
 
 @Component({
   selector: 'app-week-list',
@@ -15,12 +18,20 @@ export class WeekListComponent implements OnInit {
   blured = false;
   focused = false;
 
-  constructor(private service: GoalsService) { }
+  data: WeekDayListItem[] = [];
+  constructor() { }
 
   ngOnInit(): void {
+    this.data = this.days.map((d => {
+      return {
+        ...d,
+        showEditor:false
+      };
+    }))
   }
 
-  blur($event: any) {
+  blur($event: any, element: any) {
+    console.log({event: $event, element});
     this.focused = false
     this.blured = true
   }
