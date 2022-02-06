@@ -15,7 +15,7 @@ export class WeekListComponent implements OnInit {
   blured = false;
   focused = false;
 
-  constructor(private service: GoalsService) { }
+  constructor() { }
 
   ngOnInit(): void {
   }
