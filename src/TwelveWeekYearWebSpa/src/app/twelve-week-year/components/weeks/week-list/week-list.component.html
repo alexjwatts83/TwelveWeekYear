@@ -16,10 +16,18 @@
           }}</textarea>
         </mat-form-field> -->
         <div *ngIf="!element.showEditor" class="comment-container">
-          <div *ngIf="element.comments != null && element.comments.length > 0" 
-              class="comments"
-              [innerHTML]="element.comments"></div>
-          <button (click)="element.showEditor = !element.showEditor">Add/Edit Comments</button>
+          <div
+            *ngIf="element.comments != null && element.comments.length > 0"
+            class="comments"
+            [innerHTML]="element.comments"
+          ></div>
+          <button
+            mat-raised-button
+            color="accent"
+            (click)="element.showEditor = !element.showEditor"
+          >
+            Add/Edit Comments
+          </button>
         </div>
         <div *ngIf="element.showEditor" class="editor-container">
           <quill-editor
@@ -27,7 +35,13 @@
             [(ngModel)]="element.comments"
             (onBlur)="blur($event, element)"
           ></quill-editor>
-          <button (click)="element.showEditor = !element.showEditor">Save Comments</button>
+          <button
+            mat-raised-button
+            color="primary"
+            (click)="element.showEditor = !element.showEditor"
+          >
+            Save Comments
+          </button>
         </div>
       </td>
     </ng-container>
