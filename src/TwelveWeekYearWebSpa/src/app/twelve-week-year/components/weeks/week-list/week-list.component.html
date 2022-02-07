@@ -17,7 +17,7 @@
         </mat-form-field> -->
         <div *ngIf="!element.showEditor" style="text-align: left;">
           <div *ngIf="element.comments != null && element.comments.length > 0" 
-              style="border: 3px dashed red;" [innerHTML]="element.comments"></div>
+              style="border: 3px dashed #1d1d1d;padding: 5px;" [innerHTML]="element.comments"></div>
           <button (click)="element.showEditor = !element.showEditor">Add/Edit Comments</button>
         </div>
         <div *ngIf="element.showEditor">
