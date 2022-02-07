@@ -15,7 +15,7 @@
             element.comments
           }}</textarea>
         </mat-form-field> -->
-        <div *ngIf="!element.showEditor">
+        <div *ngIf="!element.showEditor" class="comment-container">
           <div *ngIf="element.comments != null && element.comments.length > 0" 
               class="comments"
               [innerHTML]="element.comments"></div>
