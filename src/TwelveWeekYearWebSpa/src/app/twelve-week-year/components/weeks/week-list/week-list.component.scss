@@ -7,5 +7,16 @@ table.mat-table {
     .example-full-width{
       width: 100%;
     }
+    .comments {
+      border: 0px dashed #1d1d1d;
+      padding-top: 5px;
+      padding-bottom: 5px;
+    }
+    .editor-container {
+      button {
+        margin-top: 5px;
+        margin-bottom: 5px;
+      }
+    }
   }
 }

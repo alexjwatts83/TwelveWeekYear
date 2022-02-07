@@ -21,7 +21,7 @@
               [innerHTML]="element.comments"></div>
           <button (click)="element.showEditor = !element.showEditor">Add/Edit Comments</button>
         </div>
-        <div *ngIf="element.showEditor">
+        <div *ngIf="element.showEditor" class="editor-container">
           <quill-editor
             [styles]="{ height: '150px' }"
             [(ngModel)]="element.comments"
