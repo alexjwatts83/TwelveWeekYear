@@ -4,6 +4,7 @@ export interface WeekDay {
 }
 
 export interface WeekDayResult {
+  weekNumber: number,
   date: Date;
   goalId: string;
   taskId: string | null;

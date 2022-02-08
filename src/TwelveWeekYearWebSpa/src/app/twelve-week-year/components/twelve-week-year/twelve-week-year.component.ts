@@ -50,6 +50,7 @@ export class TwelveWeekYearComponent implements OnInit {
             w.days.forEach(d => {
               if (t.subTasks.length === 0) {
                 let taskResult: WeekDayResult = {
+                  weekNumber: w.number,
                   goalId: x.id,
                   taskId: t.id,
                   date: d.date,
@@ -60,6 +61,7 @@ export class TwelveWeekYearComponent implements OnInit {
               } else {
                 t.subTasks.forEach(sb => {
                   let taskResult: WeekDayResult = {
+                    weekNumber: w.number,
                     goalId: x.id,
                     taskId: null,
                     date: d.date,
@@ -92,13 +94,11 @@ export class TwelveWeekYearComponent implements OnInit {
 
   private isOdd(num: number) { return (num % 2) == 1;}
 
-  // getGoalProgress(weekNumber: number, goalId: string): boolean {
+  // getGoalDailyProgressCount(weekNumber: number, goalId: string): number {
   //   let week = this.weeks.find(w => w.number == weekNumber);
 
-  //   let thisTaskResults = this.taskResults.filter(x => x.taskId == this.task.id);
-  //   this.task.subTasks.forEach(st => {
-  //     let results = this.taskResults.filter(tr => tr.subTaskId === st.id);
-  //     this._subTaskResults.push(...results);
-  //   });
+  //   let thisTaskResults = this.taskResults.filter(x => x.goalId == goalId && x.date);
+
+  //   return thisTaskResults.filter(c => c.completed).length;
   // }
 }
