@@ -50,6 +50,7 @@ export class TwelveWeekYearComponent implements OnInit {
             w.days.forEach(d => {
               if (t.subTasks.length === 0) {
                 let taskResult: WeekDayResult = {
+                  goalId: x.id,
                   taskId: t.id,
                   date: d.date,
                   completed: this.isOdd(this.getRandomInt(1, 1000)),
@@ -59,6 +60,7 @@ export class TwelveWeekYearComponent implements OnInit {
               } else {
                 t.subTasks.forEach(sb => {
                   let taskResult: WeekDayResult = {
+                    goalId: x.id,
                     taskId: null,
                     date: d.date,
                     completed: this.isOdd(this.getRandomInt(1, 1000)),
