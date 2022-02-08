@@ -14,6 +14,9 @@
             <div class="task-description">
               {{ task.description }} ({{ task.id }})
             </div>
+            <div>
+              Current Progress: of {{ week.days.length }}
+            </div>
 
             <app-subtasks-list
               [week]="week"

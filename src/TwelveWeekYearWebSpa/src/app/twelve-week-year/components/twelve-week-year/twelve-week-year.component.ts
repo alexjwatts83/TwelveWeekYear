@@ -89,4 +89,14 @@ export class TwelveWeekYearComponent implements OnInit {
   }
 
   private isOdd(num: number) { return (num % 2) == 1;}
+
+  // getGoalProgress(weekNumber: number, goalId: string): boolean {
+  //   let week = this.weeks.find(w => w.number == weekNumber);
+
+  //   let thisTaskResults = this.taskResults.filter(x => x.taskId == this.task.id);
+  //   this.task.subTasks.forEach(st => {
+  //     let results = this.taskResults.filter(tr => tr.subTaskId === st.id);
+  //     this._subTaskResults.push(...results);
+  //   });
+  // }
 }
