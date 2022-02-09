@@ -99,14 +99,51 @@ export class TwelveWeekYearComponent implements OnInit {
     return num % 2 == 1;
   }
 
-  getGoalDailyProgressCount(weekNumber: number, goalId: string): number {
+  getGoalDailyProgressCount(
+    weekNumber: number,
+    goalId: string,
+    taskId: string
+  ): number {
     let thisTaskResults = this.taskResults.filter(
-      (x) => x.goalId == goalId && x.weekNumber == weekNumber
+      (x) =>
+        x.goalId == goalId &&
+        x.weekNumber == weekNumber &&
+        taskId === x.taskId &&
+        x.completed
     );
     if (weekNumber === 1 && this.weekOneFirstGoalId === goalId) {
       console.log({ weekNumber, goalId, thisTaskResults });
     }
 
-    return thisTaskResults.filter((c) => c.completed).length;
+    // Accepts the array and key
+    const groupBy = (array: any[], key: string) => {
+      // Return the end result
+      return array.reduce((result, currentValue) => {
+        // If an array already present for key, push it to the array. Else create an array and push the object
+        (result[currentValue[key]] = result[currentValue[key]] || []).push(
+          currentValue
+        );
+        // Return the current iteration `result` value, this will be taken as next iteration `result` value and accumulate
+        return result;
+      }, {}); // empty object is the initial value for result object
+    };
+
+    const personGroupedByColor = groupBy(thisTaskResults, 'date');
+
+    return thisTaskResults.length;
+  }
+
+  private groupBy<T>(list: T[], keyGetter: any) {
+    const map = new Map();
+    list.forEach((item) => {
+      const key = keyGetter(item);
+      const collection = map.get(key);
+      if (!collection) {
+        map.set(key, [item]);
+      } else {
+        collection.push(item);
+      }
+    });
+    return map;
   }
 }
