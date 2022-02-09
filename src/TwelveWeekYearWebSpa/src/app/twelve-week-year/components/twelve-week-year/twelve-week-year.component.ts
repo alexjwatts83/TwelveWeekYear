@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Observable, of } from 'rxjs';
 import { GoalsService } from 'src/app/goals/goals.service';
 import { Goal, GoalTypes } from 'src/app/goals/models';
 import { Week, WeekDayResult } from '../../models';
@@ -11,7 +11,8 @@ import { Week, WeekDayResult } from '../../models';
 })
 export class TwelveWeekYearComponent implements OnInit {
   weeks: Week[] = [];
-  taskResults: WeekDayResult[] = [];
+  private taskResults: WeekDayResult[] = [];
+  taskResults$!: Observable<WeekDayResult[]>;
   data$!: Observable<Goal[]>;
   twelveWeekYearGoals: Goal[] = [];
 
@@ -24,11 +25,11 @@ export class TwelveWeekYearComponent implements OnInit {
   ngOnInit(): void {
     this.data$.subscribe((x) => {
       this.twelveWeekYearGoals = x;
-      this.init();
+      this.taskResults$ = this.init();
     });
   }
 
-  private init() {
+  private init(): Observable<WeekDayResult[]> {
     let date = new Date();
     for (let i = 0; i < 12; i++) {
       date = this.addDays(date, 7);
@@ -81,6 +82,8 @@ export class TwelveWeekYearComponent implements OnInit {
       // console.log({taskResults: this.taskResults});
     }
     this.weekOneFirstGoalId = this.twelveWeekYearGoals[0].id;
+
+    return of(this.taskResults);
   }
 
   private addDays(date: Date, days: number) {

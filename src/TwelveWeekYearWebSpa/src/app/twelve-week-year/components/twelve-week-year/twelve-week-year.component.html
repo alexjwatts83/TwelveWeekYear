@@ -1,4 +1,4 @@
-<mat-tab-group mat-align-tabs="start">
+<mat-tab-group mat-align-tabs="start" *ngIf="taskResults$ | async as taskResults">
   <mat-tab *ngFor="let week of weeks" label="Week {{ week.number }}">
     <div class="week-container">
       <h2>Week {{ week.number }} ({{ week.date | date }})</h2>
