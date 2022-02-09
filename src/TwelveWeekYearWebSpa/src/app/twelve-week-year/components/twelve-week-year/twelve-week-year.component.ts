@@ -115,7 +115,7 @@ export class TwelveWeekYearComponent implements OnInit {
         x.completed
     );
     if (weekNumber === 1 && this.weekOneFirstGoalId === goalId) {
-          // Accepts the array and key
+      // Accepts the array and key
       const groupBy = (array: any[], key: string) => {
         // Return the end result
         return array.reduce((result, currentValue) => {
@@ -133,8 +133,6 @@ export class TwelveWeekYearComponent implements OnInit {
       // console.log({});
       console.log({ weekNumber, goalId, taskedGrouped, thisTaskResults });
     }
-
-
 
     return thisTaskResults.length;
   }
