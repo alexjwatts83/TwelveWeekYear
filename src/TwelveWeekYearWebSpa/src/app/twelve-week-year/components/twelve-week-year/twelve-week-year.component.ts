@@ -15,6 +15,8 @@ export class TwelveWeekYearComponent implements OnInit {
   data$!: Observable<Goal[]>;
   twelveWeekYearGoals: Goal[] = [];
 
+  private weekOneFirstGoalId = '';
+
   constructor(private service: GoalsService) {
     this.data$ = this.service.getGoals(GoalTypes.TwelveWeekYear);
   }
@@ -46,8 +48,8 @@ export class TwelveWeekYearComponent implements OnInit {
 
       this.twelveWeekYearGoals.forEach((x) => {
         x.tasks.forEach((t) => {
-          this.weeks.forEach(w => {
-            w.days.forEach(d => {
+          this.weeks.forEach((w) => {
+            w.days.forEach((d) => {
               if (t.subTasks.length === 0) {
                 let taskResult: WeekDayResult = {
                   weekNumber: w.number,
@@ -55,18 +57,18 @@ export class TwelveWeekYearComponent implements OnInit {
                   taskId: t.id,
                   date: d.date,
                   completed: this.isOdd(this.getRandomInt(1, 1000)),
-                  subTaskId: null
+                  subTaskId: null,
                 };
                 this.taskResults.push(taskResult);
               } else {
-                t.subTasks.forEach(sb => {
+                t.subTasks.forEach((sb) => {
                   let taskResult: WeekDayResult = {
                     weekNumber: w.number,
                     goalId: x.id,
                     taskId: null,
                     date: d.date,
                     completed: this.isOdd(this.getRandomInt(1, 1000)),
-                    subTaskId: sb.id
+                    subTaskId: sb.id,
                   };
                   this.taskResults.push(taskResult);
                 });
@@ -78,6 +80,7 @@ export class TwelveWeekYearComponent implements OnInit {
 
       // console.log({taskResults: this.taskResults});
     }
+    this.weekOneFirstGoalId = this.twelveWeekYearGoals[0].id;
   }
 
   private addDays(date: Date, days: number) {
@@ -86,19 +89,24 @@ export class TwelveWeekYearComponent implements OnInit {
     return result;
   }
 
-  private getRandomInt(min: number, max: number) : number{
+  private getRandomInt(min: number, max: number): number {
     min = Math.ceil(min);
     max = Math.floor(max);
-    return Math.floor(Math.random() * (max - min + 1)) + min; 
+    return Math.floor(Math.random() * (max - min + 1)) + min;
   }
 
-  private isOdd(num: number) { return (num % 2) == 1;}
+  private isOdd(num: number) {
+    return num % 2 == 1;
+  }
 
   getGoalDailyProgressCount(weekNumber: number, goalId: string): number {
-    let thisTaskResults = this.taskResults.filter(x => x.goalId == goalId && x.weekNumber == weekNumber);
+    let thisTaskResults = this.taskResults.filter(
+      (x) => x.goalId == goalId && x.weekNumber == weekNumber
+    );
+    if (weekNumber === 1 && this.weekOneFirstGoalId === goalId) {
+      console.log({ weekNumber, goalId, thisTaskResults });
+    }
 
-    console.log({weekNumber, goalId, thisTaskResults});
-
-    return thisTaskResults.filter(c => c.completed).length;
+    return thisTaskResults.filter((c) => c.completed).length;
   }
 }

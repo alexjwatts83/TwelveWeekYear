@@ -15,7 +15,7 @@
               {{ task.description }} ({{ task.id }})
             </div>
             <div>
-              Current Progress: of {{ week.days.length }}
+              Current Progress: {{ getGoalDailyProgressCount(week.number, goal.id) }} of {{ week.days.length }}
             </div>
 
             <app-subtasks-list
