@@ -29,7 +29,7 @@ export class SubtasksListComponent implements OnInit {
   }
 
   isTaskCompleted(taskId: string, date: Date): boolean {
-    let taskResult = this._taskResults.find(x => x.date === date && x.taskId === taskId);
+    let taskResult = this._taskResults.find(x => x.date === date && x.taskId === taskId && x.subTaskId == null);
     if (taskResult == null) {
       return false;
     }
@@ -54,7 +54,7 @@ export class SubtasksListComponent implements OnInit {
   }
 
   toggleTaskCompleted(taskId: string, date: Date) {
-    let taskResult = this._taskResults.find(x => x.date === date && x.taskId === taskId);
+    let taskResult = this._taskResults.find(x => x.date === date && x.taskId === taskId && x.subTaskId == null);
     if (taskResult == null) {
       return;
     }
