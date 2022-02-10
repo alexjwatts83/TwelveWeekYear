@@ -132,7 +132,12 @@ export class TwelveWeekYearComponent implements OnInit {
       const taskedGrouped = groupBy(thisTaskResults, 'date');
 
       // console.log({});
-      console.log({ weekNumber, goalId, taskedGrouped, thisTaskResults });
+      if (thisTaskResults.length ===0) {
+        console.log({ weekNumber, goalId, taskedGrouped, thisTaskResults, all: this.taskResults });
+      } else {
+        console.log({ weekNumber, goalId, taskedGrouped, thisTaskResults, all: this.taskResults });
+      }
+      
     }
 
     return thisTaskResults.length;
