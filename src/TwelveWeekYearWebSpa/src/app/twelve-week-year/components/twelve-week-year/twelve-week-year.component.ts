@@ -31,7 +31,7 @@ export class TwelveWeekYearComponent implements OnInit {
 
   private init(): Observable<WeekDayResult[]> {
     let date = new Date();
-    const weeksCount =  1;
+    const weeksCount = 1;
     const daysCount = 2;
     for (let i = 0; i < weeksCount; i++) {
       date = this.addDays(date, 7);
@@ -68,7 +68,7 @@ export class TwelveWeekYearComponent implements OnInit {
                   let taskResult: WeekDayResult = {
                     weekNumber: w.number,
                     goalId: x.id,
-                    taskId: null,
+                    taskId: t.id,
                     date: d.date,
                     completed: this.isOdd(this.getRandomInt(1, 100)),
                     subTaskId: sb.id,
@@ -111,9 +111,7 @@ export class TwelveWeekYearComponent implements OnInit {
   ): number {
     let thisTaskResults = this.taskResults.filter(
       (x) =>
-        x.goalId == goalId &&
-        x.weekNumber == weekNumber &&
-        taskId === x.taskId
+        x.goalId == goalId && x.weekNumber == weekNumber && taskId === x.taskId
     );
     if (weekNumber === 1 && this.weekOneFirstGoalId === goalId) {
       // Accepts the array and key
@@ -132,12 +130,23 @@ export class TwelveWeekYearComponent implements OnInit {
       const taskedGrouped = groupBy(thisTaskResults, 'date');
 
       // console.log({});
-      if (thisTaskResults.length ===0) {
-        console.log({ weekNumber, goalId, taskedGrouped, thisTaskResults, all: this.taskResults });
+      if (thisTaskResults.length === 0) {
+        console.log({
+          weekNumber,
+          goalId,
+          taskedGrouped,
+          thisTaskResults,
+          all: this.taskResults,
+        });
       } else {
-        console.log({ weekNumber, goalId, taskedGrouped, thisTaskResults, all: this.taskResults });
+        console.log({
+          weekNumber,
+          goalId,
+          taskedGrouped,
+          thisTaskResults,
+          all: this.taskResults,
+        });
       }
-      
     }
 
     return thisTaskResults.length;
