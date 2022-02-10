@@ -152,10 +152,23 @@ export class TwelveWeekYearComponent implements OnInit {
     }
 
     if (thisTaskResults.some(t => t.subTaskId != null)) {
+      // TODO: refactor this
+      const taskedGrouped = groupBy(thisTaskResults, 'date');
       console.log({goal: 'has subtasks', weekNumber,
-      goalId,thisTaskResults});
-      return 0;
+      goalId,thisTaskResults, taskedGrouped});
+
+      let count = 0;
+      let k: keyof typeof taskedGrouped;  // Type is "one" | "two" | "three"
+      for (k in taskedGrouped) {
+        const v = taskedGrouped[k];  // OK
+        console.log({k, v});
+        if (v.every((c: WeekDayResult) => c.completed)) {
+          count++;
+        }
+      }
+      return count;
     }
+
     return thisTaskResults.filter(x => x.completed).length;
   }
 
