@@ -32,7 +32,7 @@ export class TwelveWeekYearComponent implements OnInit {
   private init(): Observable<WeekDayResult[]> {
     let date = new Date();
     const weeksCount = 1;
-    const daysCount = 2;
+    const daysCount = 3;
     for (let i = 0; i < weeksCount; i++) {
       date = this.addDays(date, 7);
       this.weeks.push({
@@ -109,23 +109,25 @@ export class TwelveWeekYearComponent implements OnInit {
     goalId: string,
     taskId: string
   ): number {
+
+    const groupBy = (array: any[], key: string) => {
+      // Return the end result
+      return array.reduce((result, currentValue) => {
+        // If an array already present for key, push it to the array. Else create an array and push the object
+        (result[currentValue[key]] = result[currentValue[key]] || []).push(
+          currentValue
+        );
+        // Return the current iteration `result` value, this will be taken as next iteration `result` value and accumulate
+        return result;
+      }, {}); // empty object is the initial value for result object
+    };
+
     let thisTaskResults = this.taskResults.filter(
       (x) =>
         x.goalId == goalId && x.weekNumber == weekNumber && taskId === x.taskId
     );
     if (weekNumber === 1 && this.weekOneFirstGoalId === goalId) {
       // Accepts the array and key
-      const groupBy = (array: any[], key: string) => {
-        // Return the end result
-        return array.reduce((result, currentValue) => {
-          // If an array already present for key, push it to the array. Else create an array and push the object
-          (result[currentValue[key]] = result[currentValue[key]] || []).push(
-            currentValue
-          );
-          // Return the current iteration `result` value, this will be taken as next iteration `result` value and accumulate
-          return result;
-        }, {}); // empty object is the initial value for result object
-      };
 
       const taskedGrouped = groupBy(thisTaskResults, 'date');
 
@@ -149,7 +151,12 @@ export class TwelveWeekYearComponent implements OnInit {
       }
     }
 
-    return thisTaskResults.length;
+    if (thisTaskResults.some(t => t.subTaskId != null)) {
+      console.log({goal: 'has subtasks', weekNumber,
+      goalId,thisTaskResults});
+      return 0;
+    }
+    return thisTaskResults.filter(x => x.completed).length;
   }
 
   // private groupBy<T>(list: T[], keyGetter: any) {
