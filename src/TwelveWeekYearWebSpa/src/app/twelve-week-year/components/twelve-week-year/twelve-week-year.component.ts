@@ -31,7 +31,9 @@ export class TwelveWeekYearComponent implements OnInit {
 
   private init(): Observable<WeekDayResult[]> {
     let date = new Date();
-    for (let i = 0; i < 12; i++) {
+    const weeksCount =  1;
+    const daysCount = 2;
+    for (let i = 0; i < weeksCount; i++) {
       date = this.addDays(date, 7);
       this.weeks.push({
         number: i + 1,
@@ -39,7 +41,7 @@ export class TwelveWeekYearComponent implements OnInit {
         days: [],
       });
 
-      for (let j = 0; j < 7; j++) {
+      for (let j = 0; j < daysCount; j++) {
         let dayDate = this.addDays(date, j);
         this.weeks[this.weeks.length - 1].days.push({
           date: dayDate,
@@ -57,7 +59,7 @@ export class TwelveWeekYearComponent implements OnInit {
                   goalId: x.id,
                   taskId: t.id,
                   date: d.date,
-                  completed: this.isOdd(this.getRandomInt(1, 1000)),
+                  completed: this.isOdd(this.getRandomInt(1, 100)),
                   subTaskId: null,
                 };
                 this.taskResults.push(taskResult);
@@ -68,7 +70,7 @@ export class TwelveWeekYearComponent implements OnInit {
                     goalId: x.id,
                     taskId: null,
                     date: d.date,
-                    completed: this.isOdd(this.getRandomInt(1, 1000)),
+                    completed: this.isOdd(this.getRandomInt(1, 100)),
                     subTaskId: sb.id,
                   };
                   this.taskResults.push(taskResult);
@@ -111,8 +113,7 @@ export class TwelveWeekYearComponent implements OnInit {
       (x) =>
         x.goalId == goalId &&
         x.weekNumber == weekNumber &&
-        taskId === x.taskId &&
-        x.completed
+        taskId === x.taskId
     );
     if (weekNumber === 1 && this.weekOneFirstGoalId === goalId) {
       // Accepts the array and key
@@ -137,17 +138,17 @@ export class TwelveWeekYearComponent implements OnInit {
     return thisTaskResults.length;
   }
 
-  private groupBy<T>(list: T[], keyGetter: any) {
-    const map = new Map();
-    list.forEach((item) => {
-      const key = keyGetter(item);
-      const collection = map.get(key);
-      if (!collection) {
-        map.set(key, [item]);
-      } else {
-        collection.push(item);
-      }
-    });
-    return map;
-  }
+  // private groupBy<T>(list: T[], keyGetter: any) {
+  //   const map = new Map();
+  //   list.forEach((item) => {
+  //     const key = keyGetter(item);
+  //     const collection = map.get(key);
+  //     if (!collection) {
+  //       map.set(key, [item]);
+  //     } else {
+  //       collection.push(item);
+  //     }
+  //   });
+  //   return map;
+  // }
 }
