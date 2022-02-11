@@ -1,8 +1,15 @@
 import { Injectable } from '@angular/core';
 import { Observable, BehaviorSubject, of } from 'rxjs';
+import { map } from 'rxjs/operators';
 import { GoalsService } from '../goals/goals.service';
 import { Goal, GoalTypes } from '../goals/models';
 import { Week, WeekDayResult } from './models';
+
+export interface TwelveWeekYearData {
+  goals: Goal[],
+  weeks: Week[],
+  taskResults: WeekDayResult[]
+}
 
 @Injectable({
   providedIn: 'root',
@@ -11,10 +18,10 @@ export class TwelveWeekYearService {
   private weeks: Week[] = [];
   private taskResults: WeekDayResult[] = [];
   private taskResults$!: Observable<WeekDayResult[]>;
-  private data$!: Observable<Goal[]>;
-  private twelveWeekYearGoals: Goal[] = [];
-  private data: Goal[] = [];
-  private _goals$ = new BehaviorSubject<Goal[]>(this.data);
+  private data$: Observable<Goal[]>;
+  private twelveWeekYearGoals!: Goal[];
+  // private data!: Goal[];
+  private _goals$ = new BehaviorSubject<Goal[]>(this.twelveWeekYearGoals);
   private weekOneFirstGoalId = '';
 
   constructor(private service: GoalsService) {
@@ -24,6 +31,15 @@ export class TwelveWeekYearService {
       this.twelveWeekYearGoals = x;
       this.taskResults$ = this.init();
     });
+  }
+
+  getTwelveWeekData(): Observable<Goal[]> {
+    // console.log({ goalType });
+    return this._goals$
+      .asObservable()
+      .pipe(
+        map((data) => data.filter((workorder) => workorder.type === GoalTypes.TwelveWeekYear))
+      );
   }
 
   private init(): Observable<WeekDayResult[]> {
