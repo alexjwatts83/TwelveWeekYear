@@ -15,41 +15,64 @@ export interface TwelveWeekYearData {
   providedIn: 'root',
 })
 export class TwelveWeekYearService {
-  private weeks: Week[] = [];
-  private taskResults: WeekDayResult[] = [];
-  private taskResults$!: Observable<WeekDayResult[]>;
+  // private weeks: Week[] = [];
+  // private taskResults: WeekDayResult[] = [];
+  // private taskResults$!: Observable<WeekDayResult[]>;
   private data$: Observable<Goal[]>;
-  private twelveWeekYearGoals!: Goal[];
-  // private data!: Goal[];
-  private _goals$ = new BehaviorSubject<Goal[]>(this.twelveWeekYearGoals);
+  // private twelveWeekYearGoals!: Goal[];
+  private twelveWeekYearData: TwelveWeekYearData = {
+    goals: [],
+    taskResults: [],
+    weeks: []
+  }
+  private _goals$ = new BehaviorSubject<TwelveWeekYearData>(this.twelveWeekYearData);
   private weekOneFirstGoalId = '';
 
   constructor(private service: GoalsService) {
     console.log({constructor: 'TwelveWeekYearService'});
     this.data$ = this.service.getGoals(GoalTypes.TwelveWeekYear);
     this.data$.subscribe((x) => {
-      this.twelveWeekYearGoals = x;
-      this.taskResults$ = this.init();
+      this.setGoals(x);
+      // console.log({twelveWeekYearGoals: this.twelveWeekYearGoals});
+      this.init(x);
     });
   }
 
-  getTwelveWeekData(): Observable<Goal[]> {
-    // console.log({ goalType });
-    return this._goals$
-      .asObservable()
-      .pipe(
-        map((data) => data.filter((workorder) => workorder.type === GoalTypes.TwelveWeekYear))
-      );
+  private setGoals(goals: Goal[]) {
+    this.twelveWeekYearData.goals = goals;
+    this._goals$.next(this.twelveWeekYearData);
   }
 
-  private init(): Observable<WeekDayResult[]> {
+  private setWeeks(weeks: Week[]) {
+    this.twelveWeekYearData.weeks = weeks;
+    this._goals$.next(this.twelveWeekYearData);
+  }
+
+  private setTaskResults(taskResults: WeekDayResult[]) {
+    this.twelveWeekYearData.taskResults = taskResults;
+    this._goals$.next(this.twelveWeekYearData);
+  }
+
+  getTwelveWeekData(): Observable<TwelveWeekYearData> {
+    // console.log({ goalType });
+    return this._goals$
+      .asObservable();
+      // .pipe(
+      //   map((data) => data.filter((workorder) => workorder.type === GoalTypes.TwelveWeekYear))
+      // );
+  }
+
+  private init(goals: Goal[]) {
     console.log({init: 'TwelveWeekYearService'});
     let date = new Date();
     const weeksCount = 1;
     const daysCount = 3;
+    let weeks: Week[] = [];
+    let taskResults: WeekDayResult[] = [];
+
     for (let i = 0; i < weeksCount; i++) {
       date = this.addDays(date, 7);
-      this.weeks.push({
+      weeks.push({
         number: i + 1,
         date: date,
         days: [],
@@ -57,15 +80,15 @@ export class TwelveWeekYearService {
 
       for (let j = 0; j < daysCount; j++) {
         let dayDate = this.addDays(date, j);
-        this.weeks[this.weeks.length - 1].days.push({
+        weeks[weeks.length - 1].days.push({
           date: dayDate,
           comments: ``,
         });
       }
 
-      this.twelveWeekYearGoals.forEach((x) => {
+      goals.forEach((x) => {
         x.tasks.forEach((t) => {
-          this.weeks.forEach((w) => {
+          weeks.forEach((w) => {
             w.days.forEach((d) => {
               if (t.subTasks.length === 0) {
                 let taskResult: WeekDayResult = {
@@ -76,7 +99,7 @@ export class TwelveWeekYearService {
                   completed: this.isOdd(this.getRandomInt(1, 100)),
                   subTaskId: null,
                 };
-                this.taskResults.push(taskResult);
+                taskResults.push(taskResult);
               } else {
                 t.subTasks.forEach((sb) => {
                   let taskResult: WeekDayResult = {
@@ -87,7 +110,7 @@ export class TwelveWeekYearService {
                     completed: this.isOdd(this.getRandomInt(1, 100)),
                     subTaskId: sb.id,
                   };
-                  this.taskResults.push(taskResult);
+                  taskResults.push(taskResult);
                 });
               }
             });
@@ -97,9 +120,11 @@ export class TwelveWeekYearService {
 
       // console.log({taskResults: this.taskResults});
     }
-    this.weekOneFirstGoalId = this.twelveWeekYearGoals[0].id;
+    this.weekOneFirstGoalId = this.twelveWeekYearData.goals[0].id;
 
-    return of(this.taskResults);
+    this.setWeeks(weeks);
+    this.setTaskResults(taskResults);
+    // return of(this.taskResults);
   }
 
   private addDays(date: Date, days: number) {

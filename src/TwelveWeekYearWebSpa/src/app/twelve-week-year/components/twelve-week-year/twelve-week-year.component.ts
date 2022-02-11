@@ -3,7 +3,7 @@ import { Observable, of } from 'rxjs';
 import { GoalsService } from 'src/app/goals/goals.service';
 import { Goal, GoalTypes } from 'src/app/goals/models';
 import { Week, WeekDayResult } from '../../models';
-import { TwelveWeekYearService } from '../../twelve-week-year.service';
+import { TwelveWeekYearData, TwelveWeekYearService } from '../../twelve-week-year.service';
 
 @Component({
   selector: 'app-twelve-week-year',
@@ -14,7 +14,7 @@ export class TwelveWeekYearComponent implements OnInit {
   weeks: Week[] = [];
   private taskResults: WeekDayResult[] = [];
   taskResults$!: Observable<WeekDayResult[]>;
-  data$!: Observable<Goal[]>;
+  goals$!: Observable<Goal[]>;
   twelveWeekYearGoals: Goal[] = [];
 
   private weekOneFirstGoalId = '';
@@ -22,15 +22,17 @@ export class TwelveWeekYearComponent implements OnInit {
   constructor(
     // private service: GoalsService,
     private service: TwelveWeekYearService) {
-    this.data$ = this.service.getTwelveWeekData();
+    // this.data$ = this.service.getTwelveWeekData();
   }
 
   ngOnInit(): void {
-    this.data$.subscribe((x) => {
-      console.log({x});
-      this.twelveWeekYearGoals = x;
-      // this.taskResults$ = this.init();
-    });
+    if (this.goals$) {
+      this.goals$.subscribe((x) => {
+        console.log({x});
+        // this.twelveWeekYearGoals = x;
+        // this.taskResults$ = this.init();
+      });
+    }
   }
 
   // private init(): Observable<WeekDayResult[]> {
