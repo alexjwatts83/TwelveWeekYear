@@ -3,6 +3,7 @@ import { Observable, of } from 'rxjs';
 import { GoalsService } from 'src/app/goals/goals.service';
 import { Goal, GoalTypes } from 'src/app/goals/models';
 import { Week, WeekDayResult } from '../../models';
+import { TwelveWeekYearService } from '../../twelve-week-year.service';
 
 @Component({
   selector: 'app-twelve-week-year',
@@ -18,7 +19,7 @@ export class TwelveWeekYearComponent implements OnInit {
 
   private weekOneFirstGoalId = '';
 
-  constructor(private service: GoalsService) {
+  constructor(private service: GoalsService, private twelveWeekYearService: TwelveWeekYearService) {
     this.data$ = this.service.getGoals(GoalTypes.TwelveWeekYear);
   }
 
