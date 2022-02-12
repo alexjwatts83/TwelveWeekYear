@@ -11,104 +11,31 @@ import { TwelveWeekYearData, TwelveWeekYearService } from '../../twelve-week-yea
   styleUrls: ['./twelve-week-year.component.scss'],
 })
 export class TwelveWeekYearComponent implements OnInit {
-  weeks: Week[] = [];
-  private taskResults: WeekDayResult[] = [];
-  taskResults$!: Observable<WeekDayResult[]>;
-  goals$!: Observable<Goal[]>;
-  twelveWeekYearGoals: Goal[] = [];
+  // weeks: Week[] = [];
+  // private taskResults: WeekDayResult[] = [];
+  // taskResults$!: Observable<WeekDayResult[]>;
+  data$!: Observable<TwelveWeekYearData>;
+  private _data: TwelveWeekYearData | undefined;
+  // twelveWeekYearGoals: Goal[] = [];
 
-  private weekOneFirstGoalId = '';
+  // private weekOneFirstGoalId = '';
 
   constructor(
     // private service: GoalsService,
     private service: TwelveWeekYearService) {
-    // this.data$ = this.service.getTwelveWeekData();
+    this.data$ = this.service.getTwelveWeekData();
   }
 
   ngOnInit(): void {
-    if (this.goals$) {
-      this.goals$.subscribe((x) => {
+    if (this.data$) {
+      this.data$.subscribe((x) => {
         console.log({x});
+        this._data = x;
         // this.twelveWeekYearGoals = x;
         // this.taskResults$ = this.init();
       });
     }
   }
-
-  // private init(): Observable<WeekDayResult[]> {
-  //   let date = new Date();
-  //   const weeksCount = 1;
-  //   const daysCount = 3;
-  //   for (let i = 0; i < weeksCount; i++) {
-  //     date = this.addDays(date, 7);
-  //     this.weeks.push({
-  //       number: i + 1,
-  //       date: date,
-  //       days: [],
-  //     });
-
-  //     for (let j = 0; j < daysCount; j++) {
-  //       let dayDate = this.addDays(date, j);
-  //       this.weeks[this.weeks.length - 1].days.push({
-  //         date: dayDate,
-  //         comments: ``,
-  //       });
-  //     }
-
-  //     this.twelveWeekYearGoals.forEach((x) => {
-  //       x.tasks.forEach((t) => {
-  //         this.weeks.forEach((w) => {
-  //           w.days.forEach((d) => {
-  //             if (t.subTasks.length === 0) {
-  //               let taskResult: WeekDayResult = {
-  //                 weekNumber: w.number,
-  //                 goalId: x.id,
-  //                 taskId: t.id,
-  //                 date: d.date,
-  //                 completed: this.isOdd(this.getRandomInt(1, 100)),
-  //                 subTaskId: null,
-  //               };
-  //               this.taskResults.push(taskResult);
-  //             } else {
-  //               t.subTasks.forEach((sb) => {
-  //                 let taskResult: WeekDayResult = {
-  //                   weekNumber: w.number,
-  //                   goalId: x.id,
-  //                   taskId: t.id,
-  //                   date: d.date,
-  //                   completed: this.isOdd(this.getRandomInt(1, 100)),
-  //                   subTaskId: sb.id,
-  //                 };
-  //                 this.taskResults.push(taskResult);
-  //               });
-  //             }
-  //           });
-  //         });
-  //       });
-  //     });
-
-  //     // console.log({taskResults: this.taskResults});
-  //   }
-  //   this.weekOneFirstGoalId = this.twelveWeekYearGoals[0].id;
-
-  //   return of(this.taskResults);
-  // }
-
-  // private addDays(date: Date, days: number) {
-  //   var result = new Date(date);
-  //   result.setDate(result.getDate() + days);
-  //   return result;
-  // }
-
-  // private getRandomInt(min: number, max: number): number {
-  //   min = Math.ceil(min);
-  //   max = Math.floor(max);
-  //   return Math.floor(Math.random() * (max - min + 1)) + min;
-  // }
-
-  // private isOdd(num: number) {
-  //   return num % 2 == 1;
-  // }
 
   getGoalDailyProgressCount(
     weekNumber: number,
@@ -128,33 +55,37 @@ export class TwelveWeekYearComponent implements OnInit {
       }, {}); // empty object is the initial value for result object
     };
 
-    let thisTaskResults = this.taskResults.filter(
+    let thisTaskResults = this._data?.taskResults.filter(
       (x) =>
         x.goalId == goalId && x.weekNumber == weekNumber && taskId === x.taskId
     );
-    if (weekNumber === 1 && this.weekOneFirstGoalId === goalId) {
-      // Accepts the array and key
+    // if (weekNumber === 1 && this.weekOneFirstGoalId === goalId) {
+    //   // Accepts the array and key
 
-      const taskedGrouped = groupBy(thisTaskResults, 'date');
+    //   const taskedGrouped = groupBy(thisTaskResults, 'date');
 
-      // console.log({});
-      if (thisTaskResults.length === 0) {
-        console.log({
-          weekNumber,
-          goalId,
-          taskedGrouped,
-          thisTaskResults,
-          all: this.taskResults,
-        });
-      } else {
-        console.log({
-          weekNumber,
-          goalId,
-          taskedGrouped,
-          thisTaskResults,
-          all: this.taskResults,
-        });
-      }
+    //   // console.log({});
+    //   if (thisTaskResults.length === 0) {
+    //     console.log({
+    //       weekNumber,
+    //       goalId,
+    //       taskedGrouped,
+    //       thisTaskResults,
+    //       all: this.taskResults,
+    //     });
+    //   } else {
+    //     console.log({
+    //       weekNumber,
+    //       goalId,
+    //       taskedGrouped,
+    //       thisTaskResults,
+    //       all: this.taskResults,
+    //     });
+    //   }
+    // }
+
+    if (thisTaskResults == null) {
+      return 0;
     }
 
     if (thisTaskResults.some(t => t.subTaskId != null)) {

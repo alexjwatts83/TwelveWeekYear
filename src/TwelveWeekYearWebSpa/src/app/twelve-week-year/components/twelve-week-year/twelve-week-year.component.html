@@ -1,13 +1,13 @@
-<mat-tab-group mat-align-tabs="start" *ngIf="taskResults$ | async as taskResults">
-  <mat-tab *ngFor="let week of weeks" label="Week {{ week.number }}">
+<mat-tab-group mat-align-tabs="start" *ngIf="data$ | async as data">
+  <mat-tab *ngFor="let week of data.weeks" label="Week {{ week.number }}">
     <div class="week-container">
       <h2>Week {{ week.number }} ({{ week.date | date }})</h2>
 
       <app-week-list [days]="week.days"></app-week-list>
 
-      <div class="sub-tasks-container" *ngIf="goals$ | async as goals">
+      <div class="sub-tasks-container">
         <h3>Goals</h3>
-        <div *ngFor="let goal of goals; index as i" class="goals-container">
+        <div *ngFor="let goal of data.goals; index as i" class="goals-container">
           <h4>{{ i + 1 }}. {{ goal.description }} ({{ goal.tasks.length }})</h4>
 
           <div *ngFor="let task of goal.tasks" class="task-container">
@@ -21,7 +21,7 @@
             <app-subtasks-list
               [week]="week"
               [task]="task"
-              [taskResults]="taskResults"
+              [taskResults]="data.taskResults"
             ></app-subtasks-list>
 
             <div class="comments-container">
