@@ -11,7 +11,13 @@ export interface TwelveWeekYearData {
 }
 
 enum Days {
-  sunday = 0, monday = 1, tuesday = 2, wednesday = 3, thursday = 4, friday = 5, saturday = 6
+  sunday = 0,
+  monday = 1,
+  tuesday = 2,
+  wednesday = 3,
+  thursday = 4,
+  friday = 5,
+  saturday = 6,
 }
 
 @Injectable({
@@ -27,10 +33,6 @@ export class TwelveWeekYearService {
   private _goals$ = new BehaviorSubject<TwelveWeekYearData>(
     this.twelveWeekYearData
   );
-  // days = {
-  //   sunday: 0, monday: 1, tuesday: 2,
-  //   wednesday: 3, thursday: 4, friday: 5, saturday: 6
-  // };
 
   constructor(private service: GoalsService) {
     this.data$ = this.service.getGoals(GoalTypes.TwelveWeekYear);
@@ -59,34 +61,21 @@ export class TwelveWeekYearService {
     return this._goals$.asObservable();
   }
 
-  
-
-  private nextDay(x: Date, dow: number) {
-    var now = new Date();
-    now.setDate(now.getDate() + ((dow + (7 - now.getDay())) % 7));
-    return now;
-  }
-
-  private getNextDay(day: Days, resetTime: boolean): Date{
-    var days: any = {
-      sunday: 0, monday: 1, tuesday: 2,
-      wednesday: 3, thursday: 4, friday: 5, saturday: 6
-    };
-
+  private getNextDay(day: Days, resetTime: boolean): Date {
     var dayIndex = day.valueOf();
-    
+
     if (dayIndex === undefined) {
       throw new Error('"' + day + '" is not a valid input.');
     }
-  
+
     var returnDate = new Date();
     var returnDay = returnDate.getDay();
-    console.log({day, days, dayIndex, returnDay});
     if (dayIndex !== returnDay) {
-      console.log('setting date to nearest day')
-      returnDate.setDate(returnDate.getDate() + (dayIndex + (7 - returnDay)) % 7);
+      returnDate.setDate(
+        returnDate.getDate() + ((dayIndex + (7 - returnDay)) % 7)
+      );
     }
-  
+
     if (resetTime) {
       returnDate.setHours(0);
       returnDate.setMinutes(0);
@@ -98,11 +87,11 @@ export class TwelveWeekYearService {
 
   private init(goals: Goal[]) {
     let date = this.getNextDay(Days.sunday, true);
-    console.log({date});
     const weeksCount = 1;
     const daysCount = 3;
     let weeks: Week[] = [];
     let taskResults: WeekDayResult[] = [];
+
     date = this.addDays(date, -7);
     for (let i = 0; i < weeksCount; i++) {
       date = this.addDays(date, 7);
@@ -151,14 +140,10 @@ export class TwelveWeekYearService {
           });
         });
       });
-
-      // console.log({taskResults: this.taskResults});
     }
-    // this.weekOneFirstGoalId = this.twelveWeekYearData.goals[0].id;
 
     this.setWeeks(weeks);
     this.setTaskResults(taskResults);
-    // return of(this.taskResults);
   }
 
   private addDays(date: Date, days: number) {
