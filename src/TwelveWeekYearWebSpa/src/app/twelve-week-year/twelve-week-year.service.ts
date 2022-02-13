@@ -87,8 +87,9 @@ export class TwelveWeekYearService {
 
   private init(goals: Goal[]) {
     let date = this.getNextDay(Days.sunday, true);
-    const weeksCount = 1;
-    const daysCount = 3;
+    // TODO: AW figure out why the count progress doesn't work with multiple weeks
+    const weeksCount = 2;
+    const daysCount = 7;
     let weeks: Week[] = [];
     let taskResults: WeekDayResult[] = [];
 
