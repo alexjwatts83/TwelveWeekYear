@@ -12,10 +12,8 @@ import {
   styleUrls: ['./twelve-week-year.component.scss'],
 })
 export class TwelveWeekYearComponent implements OnInit {
-  data$!: Observable<TwelveWeekYearData>;
   private _data: TwelveWeekYearData | undefined;
-
-  private firstTaskId = '';
+  data$!: Observable<TwelveWeekYearData>;
 
   constructor(private service: TwelveWeekYearService) {
     this.data$ = this.service.getTwelveWeekData();
@@ -26,20 +24,6 @@ export class TwelveWeekYearComponent implements OnInit {
       this.data$.subscribe((x: TwelveWeekYearData) => {
         console.log({ x });
         this._data = x;
-        const groupBy = (array: any[], key: string) => {
-          // Return the end result
-          return array.reduce((result, currentValue) => {
-            // If an array already present for key, push it to the array. Else create an array and push the object
-            (result[currentValue[key]] = result[currentValue[key]] || []).push(
-              currentValue
-            );
-            // Return the current iteration `result` value, this will be taken as next iteration `result` value and accumulate
-            return result;
-          }, {}); // empty object is the initial value for result object
-        };
-        let groupByWeekNumber = groupBy(x.taskResults, 'taskId');
-        console.log({groupByWeekNumber, taskResults: this._data.taskResults});
-        this.firstTaskId = this._data.taskResults[0].taskId;
       });
     }
   }
@@ -68,11 +52,6 @@ export class TwelveWeekYearComponent implements OnInit {
 
     if (thisTaskResults == null) {
       return 0;
-    }
-
-    if (taskId === this.firstTaskId && weekNumber === 1) {
-      const taskedGrouped = groupBy(thisTaskResults, 'date');
-      console.log({taskId, goalId, weekNumber, thisTaskResults, taskedGrouped});
     }
 
     if (thisTaskResults.some((t) => t.subTaskId != null)) {
