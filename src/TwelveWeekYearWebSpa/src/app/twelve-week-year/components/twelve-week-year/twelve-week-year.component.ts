@@ -21,9 +21,22 @@ export class TwelveWeekYearComponent implements OnInit {
 
   ngOnInit(): void {
     if (this.data$) {
-      this.data$.subscribe((x) => {
+      this.data$.subscribe((x: TwelveWeekYearData) => {
         console.log({ x });
         this._data = x;
+        const groupBy = (array: any[], key: string) => {
+          // Return the end result
+          return array.reduce((result, currentValue) => {
+            // If an array already present for key, push it to the array. Else create an array and push the object
+            (result[currentValue[key]] = result[currentValue[key]] || []).push(
+              currentValue
+            );
+            // Return the current iteration `result` value, this will be taken as next iteration `result` value and accumulate
+            return result;
+          }, {}); // empty object is the initial value for result object
+        };
+        let groupByWeekNumber = groupBy(x.taskResults, 'date');
+        console.log({groupByWeekNumber, taskResults: this._data.taskResults});
       });
     }
   }
