@@ -112,32 +112,31 @@ export class TwelveWeekYearService {
 
       goals.forEach((x) => {
         x.tasks.forEach((t) => {
-          weeks.forEach((w) => {
-            w.days.forEach((d) => {
-              if (t.subTasks.length === 0) {
+          const w = weeks[weeks.length - 1];
+          w.days.forEach((d) => {
+            if (t.subTasks.length === 0) {
+              let taskResult: WeekDayResult = {
+                weekNumber: w.number,
+                goalId: x.id,
+                taskId: t.id,
+                date: d.date,
+                completed: this.isOdd(this.getRandomInt(1, 100)),
+                subTaskId: null,
+              };
+              taskResults.push(taskResult);
+            } else {
+              t.subTasks.forEach((sb) => {
                 let taskResult: WeekDayResult = {
                   weekNumber: w.number,
                   goalId: x.id,
                   taskId: t.id,
                   date: d.date,
                   completed: this.isOdd(this.getRandomInt(1, 100)),
-                  subTaskId: null,
+                  subTaskId: sb.id,
                 };
                 taskResults.push(taskResult);
-              } else {
-                t.subTasks.forEach((sb) => {
-                  let taskResult: WeekDayResult = {
-                    weekNumber: w.number,
-                    goalId: x.id,
-                    taskId: t.id,
-                    date: d.date,
-                    completed: this.isOdd(this.getRandomInt(1, 100)),
-                    subTaskId: sb.id,
-                  };
-                  taskResults.push(taskResult);
-                });
-              }
-            });
+              });
+            }
           });
         });
       });

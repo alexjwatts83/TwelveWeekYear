@@ -15,6 +15,8 @@ export class TwelveWeekYearComponent implements OnInit {
   data$!: Observable<TwelveWeekYearData>;
   private _data: TwelveWeekYearData | undefined;
 
+  private firstTaskId = '';
+
   constructor(private service: TwelveWeekYearService) {
     this.data$ = this.service.getTwelveWeekData();
   }
@@ -35,8 +37,9 @@ export class TwelveWeekYearComponent implements OnInit {
             return result;
           }, {}); // empty object is the initial value for result object
         };
-        let groupByWeekNumber = groupBy(x.taskResults, 'date');
+        let groupByWeekNumber = groupBy(x.taskResults, 'taskId');
         console.log({groupByWeekNumber, taskResults: this._data.taskResults});
+        this.firstTaskId = this._data.taskResults[0].taskId;
       });
     }
   }
@@ -65,6 +68,11 @@ export class TwelveWeekYearComponent implements OnInit {
 
     if (thisTaskResults == null) {
       return 0;
+    }
+
+    if (taskId === this.firstTaskId && weekNumber === 1) {
+      const taskedGrouped = groupBy(thisTaskResults, 'date');
+      console.log({taskId, goalId, weekNumber, thisTaskResults, taskedGrouped});
     }
 
     if (thisTaskResults.some((t) => t.subTaskId != null)) {
