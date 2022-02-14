@@ -6,6 +6,9 @@ table.mat-table {
   }
 
   td {
+    .date-col {
+      font-weight: bold;
+    }
     .comment-container {
       .comments {
         border: 0px dashed #1d1d1d;
