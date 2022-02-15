@@ -1,8 +1,15 @@
 .goals-input-form{
   width: 100%;
   display: flex;
-
-  mat-form-field {
+  flex-flow: row wrap;
+  margin-bottom: 20px;
+  border: 0px solid red;
+  div {
     width: 100%;
+
+    mat-form-field {
+      width: 100%;
+    }
   }
+
 }

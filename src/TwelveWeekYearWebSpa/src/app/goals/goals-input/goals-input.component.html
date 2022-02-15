@@ -17,6 +17,10 @@
     </mat-form-field>
   </div>
 
+  <div *ngIf="canAddTasks">
+    Tasks input
+  </div>
+
   <div>
     <button
       mat-raised-button
