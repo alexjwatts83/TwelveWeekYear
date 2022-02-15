@@ -6,7 +6,7 @@ import { Goal, GoalTypes } from '../models';
 @Component({
   selector: 'app-goals-group',
   templateUrl: './goals-group.component.html',
-  styleUrls: ['./goals-group.component.scss']
+  styleUrls: ['./goals-group.component.scss'],
 })
 export class GoalsGroupComponent implements OnInit {
   @Input() title!: string;
@@ -15,7 +15,7 @@ export class GoalsGroupComponent implements OnInit {
 
   panelOpenState = false;
   data$!: Observable<Goal[]>;
-  constructor(private service: GoalsService) { 
+  constructor(private service: GoalsService) {
     if (this.openAccordion) {
       this.panelOpenState = true;
     }
@@ -26,11 +26,5 @@ export class GoalsGroupComponent implements OnInit {
     if (this.openAccordion) {
       this.panelOpenState = true;
     }
-    // console.log({panelOpenState: this.panelOpenState});
-    // this.data$.subscribe((x) => {
-    //   // console.log({x, goalType: this.goalType, title: this.title});
-    //   // this.goals = x;
-    //   this.dataSource.data = x;
-    // });
   }
 }

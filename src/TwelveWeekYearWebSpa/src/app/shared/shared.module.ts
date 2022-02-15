@@ -9,7 +9,8 @@ const modules = [
 ]
 
 @NgModule({
-  declarations: [],
+  declarations: [
+  ],
   imports: modules,
   exports: modules
 })
