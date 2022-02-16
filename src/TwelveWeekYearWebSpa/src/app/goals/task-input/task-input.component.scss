@@ -1,0 +1,16 @@
+.task-input-form{
+  padding: 50px;
+  width: 100%;
+  display: flex;
+  flex-flow: row wrap;
+  margin-bottom: 20px;
+  border: 1px solid red;
+  div {
+    width: 100%;
+
+    mat-form-field {
+      width: 100%;
+    }
+  }
+
+}
