@@ -31,7 +31,7 @@ export class TaskInputComponent implements OnInit {
   }
 
   get subTasks() {
-    return this.taskInputForm.controls['lessons'] as FormArray;
+    return this.taskInputForm.controls['subTasks'] as FormArray;
   }
 
   onSubmit(f: FormGroupDirective) {
@@ -50,4 +50,8 @@ export class TaskInputComponent implements OnInit {
   
     this.subTasks.push(lessonForm);
   }
+
+  deleteTask(index: number) {
+    this.subTasks.removeAt(index);
+}
 }
