@@ -7,12 +7,14 @@ import { MaterialSharedModule } from '../material-shared/material-shared.module'
 import { GoalsInputComponent } from './goals-input/goals-input.component';
 import { SharedModule } from '../shared/shared.module';
 import { GoalsGroupComponent } from './goals-group/goals-group.component';
+import { TaskInputComponent } from './task-input/task-input.component';
 
 @NgModule({
   declarations: [
     GoalsGridComponent,
     GoalsInputComponent,
-    GoalsGroupComponent
+    GoalsGroupComponent,
+    TaskInputComponent
   ],
   imports: [
     CommonModule,

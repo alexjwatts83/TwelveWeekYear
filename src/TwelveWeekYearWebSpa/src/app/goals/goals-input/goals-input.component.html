@@ -17,8 +17,9 @@
     </mat-form-field>
   </div>
 
-  <div *ngIf="canAddTasks">
-    Tasks input
+  <div>
+    <app-task-input *ngIf="canAddTasks">
+    </app-task-input>
   </div>
 
   <div>
