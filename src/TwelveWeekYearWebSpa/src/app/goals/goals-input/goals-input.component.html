@@ -18,7 +18,39 @@
   </div>
 
   <div>
-    <app-task-input *ngIf="canAddTasks">
+    <div>
+      <div>
+        Tasks ({{tasks.length}})
+      </div>
+      <table>
+        <thead>
+          <th>
+            Description
+          </th>
+          <th>Commands</th>
+        </thead>
+        <tbody>
+          <tr *ngFor="let task of tasks">
+            <td>
+              {{ task.description }}
+              <div *ngFor="let subtask of task.subTasks">
+                <div>
+                  {{ subtask.description }}
+                </div>
+                <div>
+                  edit/delete
+                </div>
+              </div>
+
+            </td>
+            <td>
+              edit/delete
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <app-task-input *ngIf="canAddTasks" (taskAdded)="onTaskedAdded($event)">
     </app-task-input>
   </div>
 
