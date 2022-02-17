@@ -43,22 +43,36 @@ export class TaskInputComponent implements OnInit {
   onSubmit(f: FormGroupDirective) {
     console.log({onSubmit: f});
     let task = f.value as Task;
+    console.log({task});
     this.taskInputForm.reset();
+    this.taskInputForm
     f.resetForm();
-
+    // for(let i = this.subTasks.length; i >= 0; i--) {
+    //   this.deleteTask(i);
+    // }
+    this.taskInputForm = this.fb.group({
+      id: new FormControl(uuidv4(), [Validators.required]),
+      description: new FormControl('', [Validators.required]),
+      subTasks: this.fb.array([]),
+    });
     this.taskAdded.emit(task);
   }
 
   addSubTask() {
-    let f = {... this.subTaskForm};
-    this.subTasks.push(this.subTaskForm);
+    // let f = {... this.subTaskForm};
 
-    // const lessonForm = this.fb.group({
-    //   id: [uuidv4(), Validators.required],
-    //   description: ['Keep it real', Validators.required],
-    // });
+    // this.subTaskForm.reset();
+    // this.subTaskForm.resetForm();
 
-    // this.subTasks.push(lessonForm);
+    // let t = {...this.subTaskForm};
+    // this.subTasks.push(t);
+
+    const lessonForm = this.fb.group({
+      id: [uuidv4(), Validators.required],
+      description: ['Keep it real', Validators.required],
+    });
+
+    this.subTasks.push(lessonForm);
 
     console.log({ frm: this.subTasks });
   }
