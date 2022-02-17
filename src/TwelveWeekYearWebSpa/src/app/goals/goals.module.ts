@@ -8,13 +8,15 @@ import { GoalsInputComponent } from './goals-input/goals-input.component';
 import { SharedModule } from '../shared/shared.module';
 import { GoalsGroupComponent } from './goals-group/goals-group.component';
 import { TaskInputComponent } from './task-input/task-input.component';
+import { GoalsInputTaskListComponent } from './goals-input-task-list/goals-input-task-list.component';
 
 @NgModule({
   declarations: [
     GoalsGridComponent,
     GoalsInputComponent,
     GoalsGroupComponent,
-    TaskInputComponent
+    TaskInputComponent,
+    GoalsInputTaskListComponent
   ],
   imports: [
     CommonModule,
