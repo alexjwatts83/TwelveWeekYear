@@ -16,13 +16,17 @@ import { v4 as uuidv4 } from 'uuid';
   styleUrls: ['./task-input.component.scss'],
 })
 export class TaskInputComponent implements OnInit {
-  taskInputForm!: FormGroup;
+  taskInputForm: FormGroup;
+  subTaskForm: FormGroup;
 
   @Output() taskAdded = new EventEmitter<Task>();
 
-  constructor(private fb: FormBuilder) {}
+  constructor(private fb: FormBuilder) {
+    this.subTaskForm = this.fb.group({
+      id: [uuidv4(), Validators.required],
+      description: ['Keep it real', Validators.required],
+    });
 
-  ngOnInit(): void {
     this.taskInputForm = this.fb.group({
       id: new FormControl(uuidv4(), [Validators.required]),
       description: new FormControl('', [Validators.required]),
@@ -30,11 +34,14 @@ export class TaskInputComponent implements OnInit {
     });
   }
 
+  ngOnInit(): void {}
+
   get subTasks() {
     return this.taskInputForm.controls['subTasks'] as FormArray;
   }
 
   onSubmit(f: FormGroupDirective) {
+    console.log({onSubmit: f});
     let task = f.value as Task;
     this.taskInputForm.reset();
     f.resetForm();
@@ -43,15 +50,20 @@ export class TaskInputComponent implements OnInit {
   }
 
   addSubTask() {
-    const lessonForm = this.fb.group({
-      id: [uuidv4(), Validators.required],
-      description: ['Keep it real', Validators.required]
-    });
-  
-    this.subTasks.push(lessonForm);
+    let f = {... this.subTaskForm};
+    this.subTasks.push(this.subTaskForm);
+
+    // const lessonForm = this.fb.group({
+    //   id: [uuidv4(), Validators.required],
+    //   description: ['Keep it real', Validators.required],
+    // });
+
+    // this.subTasks.push(lessonForm);
+
+    console.log({ frm: this.subTasks });
   }
 
   deleteTask(index: number) {
     this.subTasks.removeAt(index);
-}
+  }
 }

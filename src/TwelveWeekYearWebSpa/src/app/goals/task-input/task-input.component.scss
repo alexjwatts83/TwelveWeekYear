@@ -1,16 +1,19 @@
 .task-input-form{
-  padding: 50px;
+  padding: 0px;
   width: 100%;
   display: flex;
   flex-flow: row wrap;
   margin-bottom: 20px;
-  border: 1px solid red;
+  border: 0px solid red;
   div {
     width: 100%;
 
     mat-form-field {
       width: 100%;
     }
-  }
 
+    .subtask-form-row {
+      border: 1px solid red;
+    }
+  }
 }
