@@ -18,38 +18,9 @@
   </div>
 
   <div>
-    <div>
-      <div>
-        Tasks ({{tasks.length}})
-      </div>
-      <table>
-        <thead>
-          <th>
-            Description
-          </th>
-          <th>Commands</th>
-        </thead>
-        <tbody>
-          <tr *ngFor="let task of tasks">
-            <td>
-              {{ task.description }}
-              <div *ngFor="let subtask of task.subTasks">
-                <div>
-                  {{ subtask.description }}
-                </div>
-                <div>
-                  edit/delete
-                </div>
-              </div>
-
-            </td>
-            <td>
-              edit/delete
-            </td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
+    <ng-container *ngIf="tasks">
+      <app-goals-input-task-list [tasks]="tasks"></app-goals-input-task-list>
+    </ng-container>
     <app-task-input *ngIf="canAddTasks" (taskAdded)="onTaskedAdded($event)">
     </app-task-input>
   </div>

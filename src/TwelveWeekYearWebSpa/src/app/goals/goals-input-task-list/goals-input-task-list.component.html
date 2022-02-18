@@ -1,1 +1,41 @@
-<p>goals-input-task-list works!</p>
+<div class="task-container">
+  <div class="header">
+    Tasks ({{tasks.length}})
+  </div>
+  <table>
+    <thead>
+      <th style="width: 100px;">#</th>
+      <th>
+        Description
+      </th>
+      <th style="width: 100px;">Commands</th>
+    </thead>
+    <tbody>
+      <tr *ngFor="let task of tasks; let i = index">
+        <td>
+          {{ i + 1 }}
+        </td>
+        <td>
+          <div class="task-display">
+            <div class="task-display-description">
+              {{ task.description }}
+            </div>
+            <div class="sub-task-container" *ngFor="let subtask of task.subTasks">
+              <div>
+                {{ subtask.description }}
+              </div>
+              <div>
+                edit/delete
+              </div>
+            </div>
+          </div>
+
+
+        </td>
+        <td>
+          edit/delete
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>

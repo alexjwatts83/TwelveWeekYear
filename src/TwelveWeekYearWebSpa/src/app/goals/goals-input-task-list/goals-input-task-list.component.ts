@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+import { Task } from '../models';
 
 @Component({
   selector: 'app-goals-input-task-list',
@@ -6,7 +7,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./goals-input-task-list.component.scss']
 })
 export class GoalsInputTaskListComponent implements OnInit {
-
+  @Input() tasks: Task[] = [];
   constructor() { }
 
   ngOnInit(): void {

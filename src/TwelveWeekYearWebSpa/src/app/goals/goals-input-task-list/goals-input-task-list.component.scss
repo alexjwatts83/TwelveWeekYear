@@ -1,0 +1,27 @@
+.task-container {
+  border: 1px solid red;
+  .header {
+    font-size: 1.2em;
+    font-weight: 500;
+  }
+
+  table {
+    width: 100%;
+    thead {
+      th {
+        text-align: left;
+      }
+    }
+    tbody {
+      .task-display {
+        .task-display-description {
+          font-size: 1.2em;
+        }
+        .sub-task-container {
+          display: flex;
+          border: 1px solid rebeccapurple;
+        }
+      }
+    }
+  }
+}
