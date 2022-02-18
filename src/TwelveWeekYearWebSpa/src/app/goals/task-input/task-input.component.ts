@@ -10,6 +10,7 @@ import {
 import { Task } from '../models';
 import { v4 as uuidv4 } from 'uuid';
 import { HttpClient } from '@angular/common/http';
+import { delay } from 'rxjs/operators';
 
 @Component({
   selector: 'app-task-input',
@@ -22,11 +23,12 @@ export class TaskInputComponent implements OnInit {
 
   @Output() taskAdded = new EventEmitter<Task>();
 
+  isLoading: boolean = false;
+  private url = 'https://baconipsum.com/api/?type=meat-and-filler&paras=1';
+
   constructor(private fb: FormBuilder, private http: HttpClient) {
-    const url = 'https://baconipsum.com/api/?type=meat-and-filler&paras=1';
-    let stuff = this.http.get<string[]>(url);
-    stuff.subscribe((x) => {
-      console.log({ constructor: x });
+    this.isLoading = true;
+    this.http.get<string[]>(this.url).subscribe((x) => {
       this.subTaskForm = this.fb.group({
         id: [uuidv4(), Validators.required],
         description: ['', Validators.required],
@@ -37,6 +39,7 @@ export class TaskInputComponent implements OnInit {
         description: new FormControl(x[0], [Validators.required]),
         subTasks: this.fb.array([]),
       });
+      this.isLoading = false;
     });
   }
 
@@ -62,9 +65,8 @@ export class TaskInputComponent implements OnInit {
   }
 
   addSubTask() {
-    const url = 'https://baconipsum.com/api/?type=meat-and-filler&paras=1';
-    let stuff = this.http.get<string[]>(url);
-    stuff.subscribe((x) => {
+    this.isLoading = true;
+    this.http.get<string[]>(this.url).subscribe((x) => {
       console.log({ x });
       const subTaskForm = this.fb.group({
         id: [uuidv4(), Validators.required],
@@ -72,6 +74,7 @@ export class TaskInputComponent implements OnInit {
       });
       this.subTasks.push(subTaskForm);
       console.log({ frm: this.subTasks });
+      this.isLoading = false;
     });
   }
 
