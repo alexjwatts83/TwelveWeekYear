@@ -1,5 +1,5 @@
 .task-container {
-  border: 1px solid red;
+  border: 0px solid red;
   .header {
     font-size: 1.2em;
     font-weight: 500;
@@ -19,7 +19,7 @@
         }
         .sub-task-container {
           display: flex;
-          border: 1px solid rebeccapurple;
+          border: 0px solid rebeccapurple;
         }
       }
     }

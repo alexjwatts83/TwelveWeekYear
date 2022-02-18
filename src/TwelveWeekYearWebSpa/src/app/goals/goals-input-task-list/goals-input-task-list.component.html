@@ -12,28 +12,41 @@
     </thead>
     <tbody>
       <tr *ngFor="let task of tasks; let i = index">
-        <td>
+        <td style="vertical-align: top;">
           {{ i + 1 }}
         </td>
+
         <td>
           <div class="task-display">
-            <div class="task-display-description">
+            <div class="task-display-description" style="padding: 10px 0px;background-color: aliceblue;">
               {{ task.description }}
             </div>
-            <div class="sub-task-container" *ngFor="let subtask of task.subTasks">
-              <div>
+            <div class="sub-task-container" style="display: flex;align-items: center;" *ngFor="let subtask of task.subTasks">
+              <mat-icon>label_important</mat-icon>
+              <div style="flex: 1;margin-left: 10px;">
                 {{ subtask.description }}
               </div>
-              <div>
-                edit/delete
+              <div style="display: flex;">
+                <button type="button" mat-icon-button color="accent">
+                  <mat-icon>edit</mat-icon>
+                </button>
+                <button type="button" mat-icon-button color="accent">
+                  <mat-icon>delete</mat-icon>
+                </button>
               </div>
             </div>
           </div>
-
-
         </td>
-        <td>
-          edit/delete
+
+        <td style="vertical-align: top;">
+          <div style="display: flex;">
+            <button type="button" mat-icon-button color="primary">
+              <mat-icon>edit</mat-icon>
+            </button>
+            <button type="button" mat-icon-button color="primary">
+              <mat-icon>delete</mat-icon>
+            </button>
+          </div>
         </td>
       </tr>
     </tbody>

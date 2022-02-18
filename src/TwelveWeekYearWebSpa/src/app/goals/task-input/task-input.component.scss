@@ -3,9 +3,10 @@
   width: 100%;
   display: flex;
   flex-flow: row wrap;
-  margin-bottom: 20px;
+  margin-bottom: 00px;
   border: 0px solid red;
   div {
+    border: 0px solid pink;
     width: 100%;
 
     mat-form-field {
@@ -13,7 +14,7 @@
     }
 
     .subtask-form-row {
-      border: 1px solid red;
+      border: 0px solid red;
     }
   }
 }

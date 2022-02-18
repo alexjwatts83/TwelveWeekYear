@@ -1,8 +1,10 @@
-.goals-input-form{
+// @import "~@angular/material/theming";
+
+.goals-input-form {
   width: 100%;
   display: flex;
   flex-flow: row wrap;
-  margin-bottom: 20px;
+  margin-bottom: 0px;
   border: 0px solid red;
   div {
     width: 100%;
@@ -11,5 +13,10 @@
       width: 100%;
     }
   }
-
+  div.tasks-container {
+    border: 0px solid green;
+    // margin-left: 10px;
+    display: grid;
+    grid-template-columns: auto 1fr;
+  }
 }

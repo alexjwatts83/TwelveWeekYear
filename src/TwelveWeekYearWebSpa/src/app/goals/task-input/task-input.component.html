@@ -1,59 +1,66 @@
 <div>
   <form
-  class="task-input-form"
-  [formGroup]="taskInputForm"
-  #f="ngForm"
-  (ngSubmit)="onSubmit(f)"
->
-  <div style="flex: 1">
-    <mat-form-field class="example-form-field" appearance="fill">
-      <mat-label>Task Description</mat-label>
-      <input
-        matInput
-        type="text"
-        placeholder="Enter Task Description"
-        formControlName="description"
-        autocomplete="on"
-      />
-    </mat-form-field>
-  </div>
+    class="task-input-form"
+    [formGroup]="taskInputForm"
+    #f="ngForm"
+    (ngSubmit)="onSubmit(f)"
+  >
+    <div>
+      <mat-form-field class="example-form-field" appearance="fill">
+        <mat-label>Task Description</mat-label>
+        <input
+          matInput
+          type="text"
+          placeholder="Enter Task Description"
+          formControlName="description"
+          autocomplete="on"
+        />
+      </mat-form-field>
+    </div>
 
-  <div>
-    <div>Sub Tasks</div>
-    <ng-container formArrayName="subTasks" *ngIf="true">
-      <ng-container *ngFor="let subTaskForm of subTasks.controls; let i = index">
-        <div class="subtask-form-row" [formGroupName]="i">
-          <mat-form-field class="example-form-field" appearance="fill">
-            <mat-label>Subtask Description</mat-label>
-            <input
-              matInput
-              type="text"
-              placeholder="Enter Subtask Description"
-              formControlName="description"
-              autocomplete="on"
-            />
-          </mat-form-field>
-          <mat-icon class="delete-btn" (click)="deleteTask(i)">
-            delete_forever</mat-icon>
-        </div>
+    <div>
+      <div style="font-size: 1.1em;font-weight: 500;">Sub Tasks</div>
+      <ng-container formArrayName="subTasks" *ngIf="true">
+        <ng-container
+          *ngFor="let subTaskForm of subTasks.controls; let i = index"
+        >
+          <div class="subtask-form-row" [formGroupName]="i" style="display: flex;align-items: center;">
+            <button type="button" mat-icon-button color="accent" (click)="deleteTask(i)">
+              <mat-icon>delete_forever</mat-icon>
+            </button>
+
+            <mat-form-field class="example-form-field" appearance="fill">
+              <mat-label>Subtask Description</mat-label>
+              <input
+                matInput
+                type="text"
+                placeholder="Enter Subtask Description"
+                formControlName="description"
+                autocomplete="on"
+              />
+            </mat-form-field>
+
+            <!-- <mat-icon class="delete-btn" (click)="deleteTask(i)"
+              >delete_forever</mat-icon
+            > -->
+          </div>
+        </ng-container>
       </ng-container>
-    </ng-container>
-    <button type="button" mat-mini-fab (click)="addSubTask()">
-      <mat-icon class="add-course-btn">add</mat-icon>
-    </button>
-  </div>
 
-  <div>
-    <button
-      mat-raised-button
-      color="primary"
-      type="submit"
-      [disabled]="f.invalid"
-    >
-      Add Task
-    </button>
+      <button type="button" mat-mini-fab (click)="addSubTask()" style="margin-bottom: 10px;">
+        <mat-icon class="add-course-btn">add</mat-icon>
+      </button>
+    </div>
 
-  </div>
-</form>
-
+    <div>
+      <button
+        mat-raised-button
+        color="primary"
+        type="submit"
+        [disabled]="f.invalid"
+      >
+        Add Task
+      </button>
+    </div>
+  </form>
 </div>

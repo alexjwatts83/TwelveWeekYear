@@ -17,15 +17,20 @@
     </mat-form-field>
   </div>
 
-  <div>
-    <ng-container *ngIf="tasks">
-      <app-goals-input-task-list [tasks]="tasks"></app-goals-input-task-list>
-    </ng-container>
-    <app-task-input *ngIf="canAddTasks" (taskAdded)="onTaskedAdded($event)">
-    </app-task-input>
-  </div>
+  <ng-container *ngIf="canAddTasks">
+    <div class="tasks-container">
+      <div style="background-color: #3f51b5;width: 20px;margin-right: 5px;">&nbsp;</div>
+      <div>
+        <ng-container *ngIf="tasks">
+          <app-goals-input-task-list [tasks]="tasks"></app-goals-input-task-list>
+        </ng-container>
+        <app-task-input (taskAdded)="onTaskedAdded($event)">
+        </app-task-input>
+      </div>
+    </div>
+  </ng-container>
 
-  <div>
+  <div [style.margin-top]="canAddTasks ? '20px' : '0px'">
     <button
       mat-raised-button
       color="primary"
