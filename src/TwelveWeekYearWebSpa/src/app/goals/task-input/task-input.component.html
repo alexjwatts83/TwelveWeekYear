@@ -1,4 +1,4 @@
-<div>
+<div *ngIf="taskInputForm">
   <form
     class="task-input-form"
     [formGroup]="taskInputForm"
@@ -6,15 +6,15 @@
     (ngSubmit)="onSubmit(f)"
   >
     <div>
-      <mat-form-field class="example-form-field" appearance="fill">
+      <mat-form-field class="example-full-width" appearance="fill">
         <mat-label>Task Description</mat-label>
-        <input
+        <textarea
           matInput
-          type="text"
           placeholder="Enter Task Description"
           formControlName="description"
           autocomplete="on"
-        />
+          style="height: auto;"
+        ></textarea>
       </mat-form-field>
     </div>
 

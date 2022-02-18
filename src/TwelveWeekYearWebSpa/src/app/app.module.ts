@@ -7,7 +7,7 @@ import { GoalsModule } from './goals/goals.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MaterialSharedModule } from './material-shared/material-shared.module';
 import { TwelveWeekYearModule } from './twelve-week-year/twelve-week-year.module';
-
+import { HttpClientModule } from '@angular/common/http'
 
 @NgModule({
   declarations: [
@@ -21,6 +21,7 @@ import { TwelveWeekYearModule } from './twelve-week-year/twelve-week-year.module
     BrowserAnimationsModule,
     MaterialSharedModule,
     TwelveWeekYearModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]
