@@ -10,7 +10,6 @@ import {
 import { Task } from '../models';
 import { v4 as uuidv4 } from 'uuid';
 import { HttpClient } from '@angular/common/http';
-import { delay } from 'rxjs/operators';
 
 @Component({
   selector: 'app-task-input',
