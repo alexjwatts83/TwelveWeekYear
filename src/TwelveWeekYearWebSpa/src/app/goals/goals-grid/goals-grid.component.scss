@@ -1,4 +1,28 @@
 table.mat-table {
   width: 100%;
   padding: 20px;
+  .task-row {
+    border: 0px solid red;
+    padding: 5px 0px;
+    .task-col {
+      flex: auto;
+      display: flex;
+      border: 0px solid blue;
+      align-items: center;
+      padding: 0px;
+
+      mat-icon {
+        align-self: flex-start;
+      }
+
+      .task-description {
+        flex: 1;
+        margin-left: 10px;
+      }
+      
+      .task-description.add-padding {
+        padding-bottom: 10px;
+      }
+    }
+  }
 }

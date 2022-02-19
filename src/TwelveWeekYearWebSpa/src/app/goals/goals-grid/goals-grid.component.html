@@ -1,18 +1,34 @@
-<table
-  mat-table
-  [dataSource]="dataSource"
-  class="mat-elevation-z8"
->
+<table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
   <ng-container matColumnDef="description">
     <th mat-header-cell *matHeaderCellDef>Description</th>
     <td mat-cell *matCellDef="let element">
-      {{ element.description }}
-      <mat-list *ngIf="element.tasks.length > 0">
-        <mat-list-item *ngFor="let task of element.tasks">
-          <mat-icon mat-list-icon>label</mat-icon>
-          <div mat-line>{{task.description}}</div>
-        </mat-list-item>
-      </mat-list>
+      <div [style.margin-top]="element.tasks ? '10px' : '0px'">
+        {{ element.description }}
+      </div>
+      <ng-container *ngIf="element.tasks">
+        <div *ngFor="let task of element.tasks" class="task-row">
+          <div class="task-col">
+            <mat-icon>golf_course</mat-icon>
+            <div class="task-description add-padding">
+              <div>
+                {{ task.description }}
+              </div>
+              <ng-container *ngIf="task.subTasks">
+                <div *ngFor="let subTask of task.subTasks" class="task-row">
+                  <div class="task-col">
+                    <mat-icon>label_important</mat-icon>
+                    <div class="task-description">
+                      <div>
+                        {{ subTask.description }}
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </ng-container>
+            </div>
+          </div>
+        </div>
+      </ng-container>
     </td>
   </ng-container>
 

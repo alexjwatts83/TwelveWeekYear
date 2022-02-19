@@ -16,26 +16,31 @@
             class="comments"
             [innerHTML]="element.comments"
           ></div>
+          <mat-divider
+            *ngIf="element.comments != null && element.comments.length > 0"
+          ></mat-divider>
           <button
-            mat-raised-button
+            type="button"
+            mat-icon-button
             color="accent"
             (click)="element.showEditor = !element.showEditor"
           >
-            Add/Edit Comments
+            <mat-icon>edit</mat-icon>
           </button>
         </div>
         <div *ngIf="element.showEditor" class="editor-container">
           <quill-editor
-            [styles]="{ height: '150px' }"
+            [styles]="{ height: 'auto' }"
             [(ngModel)]="element.comments"
             (onBlur)="blur($event, element)"
-          ></quill-editor>
+          >
+          </quill-editor>
           <button
-            mat-raised-button
+            mat-icon-button
             color="primary"
             (click)="element.showEditor = !element.showEditor"
           >
-            Save Comments
+            <mat-icon>save</mat-icon>
           </button>
         </div>
       </td>

@@ -19,9 +19,11 @@
 
     <div class="sub-tasks-input">
       <div class="header">Sub Tasks</div>
+
       <div *ngIf="isLoading">
         <mat-spinner [diameter]="50"></mat-spinner>
       </div>
+      
       <ng-container formArrayName="subTasks" *ngIf="!isLoading">
         <ng-container
           *ngFor="let subTaskForm of subTasks.controls; let i = index"

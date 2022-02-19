@@ -8,6 +8,7 @@ import { Task } from './models';
 export class GoalsInputServiceService {
   private data: Task[] = [];
   private _tasks$ = new BehaviorSubject<Task[]>(this.data);
+  private _resetTrigger$ = new BehaviorSubject<boolean>(false);
 
   constructor() { }
 
@@ -17,15 +18,27 @@ export class GoalsInputServiceService {
       .asObservable();
   }
 
-  private setTasks(task: Task[]) {
-    this._tasks$.next(task);
+  resetTriggered(): Observable<boolean> {
+    return this._resetTrigger$.asObservable();
+  }
+
+  resetTasks() {
+    console.log({getTasks: true});
+    this.data = [];
+    this.setTasks();
+    this._resetTrigger$.next(true);
+  }
+
+  private setTasks() {
+    console.log({setTasks: true});
+    this._tasks$.next(this.data);
   }
 
   addTask(task: Task): void {
     console.log({addTask: task});
     this.data.push({...task});
 
-    this.setTasks(this.data);
+    this.setTasks();
     console.log({data: this.data});
   }
 }
