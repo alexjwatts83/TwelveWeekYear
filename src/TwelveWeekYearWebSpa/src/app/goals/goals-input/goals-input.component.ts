@@ -21,6 +21,7 @@ export class GoalsInputComponent implements OnInit, OnDestroy {
 
   goalInputForm!: FormGroup;
   tasks$: Observable<Task[]>;
+
   private taskSub: Subscription;
   private tasks: Task[] = [];
 
@@ -42,10 +43,8 @@ export class GoalsInputComponent implements OnInit, OnDestroy {
     this.tasks$ = this.inputService.getTasks();
     this.taskSub = this.tasks$.subscribe((x) => {
       this.tasks = x;
-      console.log('GoalsInputComponent getTasks');
     });
-    this.description$ = this.textServcice.getDescription();
-
+    this.description$ = this.textServcice.getLongDescription();
   }
   ngOnDestroy(): void {
     if (this.taskSub) {
@@ -58,12 +57,19 @@ export class GoalsInputComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
-    console.log({ngOnInit: true});
-    this.descriptionSub = this.description$.subscribe((x) => {
-      console.log({goalDescription: x});
-      this.goalInputForm = new FormGroup({
-        description: new FormControl(x, [Validators.required]),
+    // console.log({ngOnInit: true});
+    if (this.canAddTasks) {
+      this.descriptionSub = this.description$.subscribe((x) => {
+        this.resetForm(x);
       });
+    } else {
+      this.resetForm('');
+    }
+  }
+
+  private resetForm(x: string) {
+    this.goalInputForm = new FormGroup({
+      description: new FormControl(x, [Validators.required]),
     });
   }
 

@@ -1,45 +1,46 @@
-<form
-  class="goals-input-form"
-  [formGroup]="goalInputForm"
-  #f="ngForm"
-  (ngSubmit)="onSubmit(f)"
->
-  <div class="goal-input">
-    <mat-form-field class="example-form-field" appearance="fill">
-      <mat-label>Goal Description</mat-label>
-      <input
-        matInput
-        type="text"
-        placeholder="Enter Goal Description"
-        formControlName="description"
-        autocomplete="on"
-      />
-    </mat-form-field>
-  </div>
-
-  <ng-container *ngIf="canAddTasks">
-    <div class="tasks-container">
-      <div class="empty">&nbsp;</div>
-      <div>
-        <ng-container *ngIf="(tasks$ | async)?.length !== 0">
-          <app-task-list></app-task-list>
-          <!-- TODO: terrible attempt as a spacer -->
-          <div>&nbsp;</div>
-        </ng-container>
-        <app-task-input (taskAdded)="onTaskedAdded($event)">
-        </app-task-input>
-      </div>
+<ng-container *ngIf="goalInputForm && (tasks$ | async)">
+  <form
+    class="goals-input-form"
+    [formGroup]="goalInputForm"
+    #f="ngForm"
+    (ngSubmit)="onSubmit(f)"
+  >
+    <div class="goal-input">
+      <mat-form-field class="example-form-field" appearance="fill">
+        <mat-label>Goal Description</mat-label>
+        <input
+          matInput
+          type="text"
+          placeholder="Enter Goal Description"
+          formControlName="description"
+          autocomplete="on"
+        />
+      </mat-form-field>
     </div>
-  </ng-container>
 
-  <div [style.margin-top]="canAddTasks ? '20px' : '0px'">
-    <button
-      mat-raised-button
-      color="primary"
-      type="submit"
-      [disabled]="f.invalid"
-    >
-      Add Goal
-    </button>
-  </div>
-</form>
+    <ng-container *ngIf="canAddTasks">
+      <div class="tasks-container">
+        <div class="empty">&nbsp;</div>
+        <div>
+          <ng-container *ngIf="(tasks$ | async)?.length !== 0">
+            <app-task-list></app-task-list>
+            <!-- TODO: terrible attempt as a spacer -->
+            <div>&nbsp;</div>
+          </ng-container>
+          <app-task-input (taskAdded)="onTaskedAdded($event)"> </app-task-input>
+        </div>
+      </div>
+    </ng-container>
+
+    <div [style.margin-top]="canAddTasks ? '20px' : '0px'">
+      <button
+        mat-raised-button
+        color="primary"
+        type="submit"
+        [disabled]="f.invalid"
+      >
+        Add Goal
+      </button>
+    </div>
+  </form>
+</ng-container>

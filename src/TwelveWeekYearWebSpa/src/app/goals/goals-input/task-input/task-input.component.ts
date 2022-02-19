@@ -51,7 +51,7 @@ export class TaskInputComponent implements OnInit, OnDestroy {
         this.isLoading = false;
       }
     });
-    this.getTextSub = this.textService.getText().subscribe((x) => {
+    this.getTextSub = this.textService.getLongDescription().subscribe((x) => {
       this.resetSubTaskForm();
       this.resetTaskInputForm(x);
       this.isLoading = false;
@@ -101,7 +101,7 @@ export class TaskInputComponent implements OnInit, OnDestroy {
 
   addSubTask() {
     this.isLoading = true;
-    this.getTextSub = this.textService.getText().subscribe((x) => {
+    this.getTextSub = this.textService.getShortDescription().subscribe((x) => {
       console.log({x});
       const subTaskForm = this.fb.group({
         id: [uuidv4(), Validators.required],
