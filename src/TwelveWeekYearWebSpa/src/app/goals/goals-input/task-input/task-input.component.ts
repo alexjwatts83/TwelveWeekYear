@@ -7,7 +7,7 @@ import {
   FormGroupDirective,
   Validators,
 } from '@angular/forms';
-import { Task } from '../models';
+import { Task } from '../../models';
 import { v4 as uuidv4 } from 'uuid';
 import { HttpClient } from '@angular/common/http';
 

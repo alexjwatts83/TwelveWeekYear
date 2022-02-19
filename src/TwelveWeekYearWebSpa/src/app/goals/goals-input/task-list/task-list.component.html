@@ -20,9 +20,12 @@
   
           <td>
             <div class="task-display">
-              <div class="task-display-description" style="padding: 10px 0px;background-color: aliceblue;">
-                {{ task.description }}
+              <div *ngIf="!task.isEditing; else isEditingTemplate" class="task-display-description" style="padding: 10px 0px;background-color: aliceblue;">
+                {{ task.description }} => {{task.isEditing}}
               </div>
+              <ng-template #isEditingTemplate>
+                {{ task.description }} => {{task.isEditing}}
+              </ng-template>
               <div class="sub-task-container" style="display: flex;align-items: center;" *ngFor="let subtask of task.subTasks">
                 <mat-icon>label_important</mat-icon>
                 <div style="flex: 1;margin-left: 10px;">
@@ -41,14 +44,23 @@
           </td>
   
           <td style="vertical-align: top;">
-            <div style="display: flex;">
-              <button type="button" mat-icon-button color="primary">
-                <mat-icon>edit</mat-icon>
-              </button>
-              <button type="button" mat-icon-button color="primary">
-                <mat-icon>delete</mat-icon>
-              </button>
-            </div>
+            <ng-container *ngIf="!task.isEditing; else isEditingCommand">
+              <div style="display: flex;">
+                <button type="button" mat-icon-button color="primary" (click)="editTaskDescription(i)">
+                  <mat-icon>save</mat-icon>
+                </button>
+              </div>
+            </ng-container>
+            <ng-template #isEditingCommand>
+              <div style="display: flex;">
+                <button type="button" mat-icon-button color="primary" (click)="editTaskDescription(i)">
+                  <mat-icon>edit</mat-icon>
+                </button>
+                <button type="button" mat-icon-button color="primary">
+                  <mat-icon>delete</mat-icon>
+                </button>
+              </div>
+            </ng-template>
           </td>
         </tr>
       </tbody>

@@ -7,8 +7,8 @@ import { MaterialSharedModule } from '../material-shared/material-shared.module'
 import { GoalsInputComponent } from './goals-input/goals-input.component';
 import { SharedModule } from '../shared/shared.module';
 import { GoalsGroupComponent } from './goals-group/goals-group.component';
-import { TaskInputComponent } from './task-input/task-input.component';
-import { GoalsInputTaskListComponent } from './goals-input-task-list/goals-input-task-list.component';
+import { TaskInputComponent } from './goals-input/task-input/task-input.component';
+import { TaskListComponent } from './goals-input/task-list/task-list.component';
 
 @NgModule({
   declarations: [
@@ -16,7 +16,7 @@ import { GoalsInputTaskListComponent } from './goals-input-task-list/goals-input
     GoalsInputComponent,
     GoalsGroupComponent,
     TaskInputComponent,
-    GoalsInputTaskListComponent
+    TaskListComponent
   ],
   imports: [
     CommonModule,
