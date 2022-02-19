@@ -1,4 +1,10 @@
-import { Component, EventEmitter, OnDestroy, OnInit, Output } from '@angular/core';
+import {
+  Component,
+  EventEmitter,
+  OnDestroy,
+  OnInit,
+  Output,
+} from '@angular/core';
 import {
   FormArray,
   FormBuilder,
@@ -9,9 +15,9 @@ import {
 } from '@angular/forms';
 import { Task } from '../../models';
 import { v4 as uuidv4 } from 'uuid';
-import { HttpClient } from '@angular/common/http';
 import { GoalsInputServiceService } from '../../goals-input-service.service';
 import { Observable, Subscription } from 'rxjs';
+import { RandomTextServiceService } from 'src/app/shared/random-text-service.service';
 
 @Component({
   selector: 'app-task-input',
@@ -25,16 +31,19 @@ export class TaskInputComponent implements OnInit, OnDestroy {
   @Output() taskAdded = new EventEmitter<Task>();
 
   isLoading: boolean = false;
-  private url = 'https://baconipsum.com/api/?type=meat-and-filler&paras=1';
-
   resetFormTriiger$: Observable<boolean>;
   private resetFormTriigerSub: Subscription;
+  private getTextSub: Subscription;
 
-  constructor(private fb: FormBuilder, private http: HttpClient, private inputService: GoalsInputServiceService) {
+  constructor(
+    private fb: FormBuilder,
+    private inputService: GoalsInputServiceService,
+    private textService: RandomTextServiceService
+  ) {
     this.isLoading = true;
     this.resetFormTriiger$ = inputService.resetTriggered();
-    this.resetFormTriigerSub = this.resetFormTriiger$.subscribe(x => {
-      console.log({resetFormTriiger: x});
+    this.resetFormTriigerSub = this.resetFormTriiger$.subscribe((x) => {
+      console.log({ resetFormTriiger: x });
       if (x) {
         this.isLoading = true;
         this.resetSubTaskForm();
@@ -42,15 +51,19 @@ export class TaskInputComponent implements OnInit, OnDestroy {
         this.isLoading = false;
       }
     });
-    this.http.get<string[]>(this.url).subscribe((x) => {
+    this.getTextSub = this.textService.getText().subscribe((x) => {
       this.resetSubTaskForm();
-      this.resetTaskInputForm(x[0]);
+      this.resetTaskInputForm(x);
       this.isLoading = false;
     });
   }
+
   ngOnDestroy(): void {
     if (this.resetFormTriigerSub) {
       this.resetFormTriigerSub.unsubscribe();
+    }
+    if (this.getTextSub) {
+      this.getTextSub.unsubscribe();
     }
   }
 
@@ -88,16 +101,17 @@ export class TaskInputComponent implements OnInit, OnDestroy {
 
   addSubTask() {
     this.isLoading = true;
-    this.http.get<string[]>(this.url).subscribe((x) => {
-      console.log({ x });
+    this.getTextSub = this.textService.getText().subscribe((x) => {
+      console.log({x});
       const subTaskForm = this.fb.group({
         id: [uuidv4(), Validators.required],
-        description: [x[0], Validators.required],
+        description: [x, Validators.required],
       });
       this.subTasks.push(subTaskForm);
       console.log({ frm: this.subTasks });
       this.isLoading = false;
     });
+
   }
 
   deleteTask(index: number) {
