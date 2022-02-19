@@ -31,8 +31,8 @@ export class TaskInputComponent implements OnInit, OnDestroy {
   @Output() taskAdded = new EventEmitter<Task>();
 
   isLoading: boolean = false;
-  resetFormTriiger$: Observable<boolean>;
-  private resetFormTriigerSub: Subscription;
+  resetFormTrigger$: Observable<boolean>;
+  private resetFormTriggerSub: Subscription;
   private getTextSub: Subscription;
 
   constructor(
@@ -41,8 +41,8 @@ export class TaskInputComponent implements OnInit, OnDestroy {
     private textService: RandomTextServiceService
   ) {
     this.isLoading = true;
-    this.resetFormTriiger$ = inputService.resetTriggered();
-    this.resetFormTriigerSub = this.resetFormTriiger$.subscribe((x) => {
+    this.resetFormTrigger$ = inputService.resetTriggered();
+    this.resetFormTriggerSub = this.resetFormTrigger$.subscribe((x) => {
       console.log({ resetFormTriiger: x });
       if (x) {
         this.isLoading = true;
@@ -59,8 +59,8 @@ export class TaskInputComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy(): void {
-    if (this.resetFormTriigerSub) {
-      this.resetFormTriigerSub.unsubscribe();
+    if (this.resetFormTriggerSub) {
+      this.resetFormTriggerSub.unsubscribe();
     }
     if (this.getTextSub) {
       this.getTextSub.unsubscribe();
@@ -111,7 +111,6 @@ export class TaskInputComponent implements OnInit, OnDestroy {
       console.log({ frm: this.subTasks });
       this.isLoading = false;
     });
-
   }
 
   deleteTask(index: number) {
