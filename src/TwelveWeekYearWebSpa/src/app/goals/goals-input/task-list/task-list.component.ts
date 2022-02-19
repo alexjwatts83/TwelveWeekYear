@@ -1,5 +1,5 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { Observable, of, Subscription } from 'rxjs';
+import { Observable,  Subscription } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { GoalsInputServiceService } from '../../goals-input-service.service';
 import { Task } from '../../models';
@@ -15,8 +15,8 @@ export interface TaskForEdit extends Task {
 })
 export class TaskListComponent implements OnInit, OnDestroy {
   tasksForEdit$: Observable<TaskForEdit[]>;
-  // getSub!: Subscription;
   editSub!: Subscription;
+
   constructor(private inputService: GoalsInputServiceService) {
     this.tasksForEdit$ = this.inputService.getTasks().pipe(
       map((tasks) => {
@@ -31,6 +31,7 @@ export class TaskListComponent implements OnInit, OnDestroy {
       })
     );
   }
+
   ngOnDestroy(): void {
     if (this.editSub) {
       this.editSub.unsubscribe();
@@ -40,21 +41,21 @@ export class TaskListComponent implements OnInit, OnDestroy {
   ngOnInit(): void {}
 
   editTaskDescription(index: number) {
-    console.log({index});
+    console.log({editTaskDescription: index});
     this.tasksForEdit$ = this.tasksForEdit$.pipe(
       map((tasks) => {
         tasks[index].isEditing = true
-        return tasks;
+        return [...tasks];
       })
     );
   }
 
   saveTaskDescription(index: number) {
-    console.log({index});
+    console.log({saveTaskDescription: index});
     this.tasksForEdit$ = this.tasksForEdit$.pipe(
       map((tasks) => {
         tasks[index].isEditing = false
-        return tasks;
+        return [...tasks];
       })
     );
   }

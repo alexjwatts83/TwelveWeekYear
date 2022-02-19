@@ -3,23 +3,42 @@
   .header {
     font-size: 1.2em;
     font-weight: 500;
+    margin-bottom: 10px;
   }
-
-  table {
-    width: 100%;
-    thead {
-      th {
-        text-align: left;
-      }
+  .task-list {
+    border: 3px dashed #3f51b5;
+    display: grid;
+    grid-template-columns: auto 1fr auto;
+    padding-bottom: 10px;
+    .col {
+      padding: 5px;
     }
-    tbody {
-      .task-display {
-        .task-display-description {
-          font-size: 1.2em;
+    .col.header {
+      font-size: 1.5em;
+      font-weight: 500;
+    }
+    .task-display {
+      .task-display-description {
+        padding: 10px 0px;
+        background-color: #eff4ff;
+      }
+      .example-form-field {
+        border: 1px solid green;
+      }
+      .sub-task-container {
+        display: flex;
+        align-items: center;
+        .sub-task-description {
+          flex: 1;
+          margin-left: 10px;
         }
-        .sub-task-container {
+        .sub-task-buttons {
           display: flex;
-          border: 0px solid rebeccapurple;
+        }
+      }
+      .task-buttons {
+        .buttons {
+          display: flex;
         }
       }
     }
