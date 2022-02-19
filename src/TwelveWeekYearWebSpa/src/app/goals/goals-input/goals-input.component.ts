@@ -5,6 +5,8 @@ import {
   FormGroupDirective,
   Validators,
 } from '@angular/forms';
+import { Observable } from 'rxjs';
+import { GoalsInputServiceService } from '../goals-input-service.service';
 import { GoalsService } from '../goals.service';
 import { GoalTypes, Task } from '../models';
 
@@ -18,12 +20,6 @@ export class GoalsInputComponent implements OnInit {
 
   goalInputForm!: FormGroup;
 
-  get tasks(): Task[] {
-    return this._tasks;
-  }
-
-  private _tasks: Task[] = [];
-
   get canAddTasks(): boolean {
     if (this.goalType) {
       return this.goalType === GoalTypes.TwelveWeekYear;
@@ -31,10 +27,14 @@ export class GoalsInputComponent implements OnInit {
     return false;
   }
 
-  constructor(private service: GoalsService) {}
+  constructor(
+    private service: GoalsService,
+    private inputService: GoalsInputServiceService
+  ) {
+    this.inputService.getTasks();
+  }
 
   ngOnInit(): void {
-    this._tasks = [];
     this.goalInputForm = new FormGroup({
       description: new FormControl('', [Validators.required]),
     });
@@ -47,6 +47,6 @@ export class GoalsInputComponent implements OnInit {
   }
 
   onTaskedAdded(task: Task) {
-    this._tasks.push(task);
+    this.inputService.addTask(task);
   }
 }
