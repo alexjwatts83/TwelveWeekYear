@@ -19,11 +19,17 @@
     }
 
     mat-spinner {
-      margin:0 auto;
+      margin: 0 auto;
     }
-
     .subtask-form-row {
       border: 0px solid red;
+      display: flex;
+      align-items: center;
     }
+  }
+
+  .sub-tasks-input {
+    margin-bottom: 10px;
+    border: 0px solid red;
   }
 }

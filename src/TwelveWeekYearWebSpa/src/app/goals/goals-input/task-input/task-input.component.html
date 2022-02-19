@@ -13,12 +13,11 @@
           placeholder="Enter Task Description"
           formControlName="description"
           autocomplete="on"
-          style="height: auto"
         ></textarea>
       </mat-form-field>
     </div>
 
-    <div>
+    <div class="sub-tasks-input">
       <div class="header">Sub Tasks</div>
       <div *ngIf="isLoading">
         <mat-spinner [diameter]="50"></mat-spinner>
@@ -27,11 +26,7 @@
         <ng-container
           *ngFor="let subTaskForm of subTasks.controls; let i = index"
         >
-          <div
-            class="subtask-form-row"
-            [formGroupName]="i"
-            style="display: flex; align-items: center"
-          >
+          <div class="subtask-form-row" [formGroupName]="i">
             <button
               type="button"
               mat-icon-button
@@ -48,7 +43,6 @@
                 placeholder="Enter subtask Description"
                 formControlName="description"
                 autocomplete="on"
-                style="height: auto"
               ></textarea>
             </mat-form-field>
           </div>
@@ -59,9 +53,9 @@
         type="button"
         mat-mini-fab
         (click)="addSubTask()"
-        style="margin-bottom: 10px"
+        class="add-course-btn"
       >
-        <mat-icon class="add-course-btn">add</mat-icon>
+        <mat-icon>add</mat-icon>
       </button>
     </div>
 
