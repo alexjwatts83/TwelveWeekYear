@@ -4,7 +4,7 @@
   #f="ngForm"
   (ngSubmit)="onSubmit(f)"
 >
-  <div style="flex: 1">
+  <div class="goal-input">
     <mat-form-field class="example-form-field" appearance="fill">
       <mat-label>Goal Description</mat-label>
       <input
@@ -19,9 +19,13 @@
 
   <ng-container *ngIf="canAddTasks">
     <div class="tasks-container">
-      <div style="background-color: #3f51b5;width: 20px;margin-right: 5px;">&nbsp;</div>
+      <div class="empty">&nbsp;</div>
       <div>
-        <app-task-list></app-task-list>
+        <ng-container *ngIf="(tasks$ | async)?.length !== 0">
+          <app-task-list></app-task-list>
+          <!-- TODO: terrible attempt as a spacer -->
+          <div>&nbsp;</div>
+        </ng-container>
         <app-task-input (taskAdded)="onTaskedAdded($event)">
         </app-task-input>
       </div>

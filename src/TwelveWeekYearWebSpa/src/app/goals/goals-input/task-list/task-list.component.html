@@ -7,8 +7,9 @@
       <div class="col header">Description</div>
       <div class="col header">&nbsp;</div>
       <ng-container *ngFor="let task of tasksForEdit; let i = index">
-        <div class="col" style="width: 50px;">
-          {{ i + 1 }}
+        <div class="col">
+          <!-- {{ i + 1 }} -->
+          <mat-icon>golf_course</mat-icon>
         </div>
         <div class="col task-display">
           <div *ngIf="!task.isEditing; else isEditingTemplate" class="task-display-description">

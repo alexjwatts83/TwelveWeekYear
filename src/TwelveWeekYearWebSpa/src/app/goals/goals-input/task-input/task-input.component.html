@@ -1,4 +1,4 @@
-<div *ngIf="taskInputForm">
+<ng-container *ngIf="taskInputForm">
   <form
     class="task-input-form"
     [formGroup]="taskInputForm"
@@ -19,9 +19,9 @@
     </div>
 
     <div>
-      <div style="font-size: 1.1em; font-weight: 500">Sub Tasks</div>
-      <div style="border: 0px solid red;" *ngIf="isLoading">
-        <mat-spinner style="margin:0 auto;" [diameter]="50"></mat-spinner>
+      <div class="header">Sub Tasks</div>
+      <div *ngIf="isLoading">
+        <mat-spinner [diameter]="50"></mat-spinner>
       </div>
       <ng-container formArrayName="subTasks" *ngIf="!isLoading">
         <ng-container
@@ -76,4 +76,4 @@
       </button>
     </div>
   </form>
-</div>
+</ng-container>

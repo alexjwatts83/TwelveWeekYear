@@ -13,10 +13,38 @@
       width: 100%;
     }
   }
+  div.goal-input {
+    flex: 1;
+    border: 0px solid red;
+  }
   div.tasks-container {
     border: 0px solid green;
     // margin-left: 10px;
     display: grid;
     grid-template-columns: auto 1fr;
+    .empty {
+      background-color: #3f51b5;
+      width: 20px;
+      margin-right: 5px;
+    }
+    // div {
+    //   app-task-list {
+    //     // border: 2px solid red;
+    //     margin-bottom: 20px;
+    //     ::ng-deep {
+    //       .tasks-container {
+    //         margin-bottom: 20px;
+    //       }
+    //     }
+    //   }
+    // }
+    // app-task-list {
+    //   border: 2px solid red;
+    //   ::ng-deep {
+    //     div.tasks-container {
+    //       margin-bottom: 20px;
+    //     }
+    //   }
+    // }
   }
 }

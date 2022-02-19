@@ -19,6 +19,7 @@ export class GoalsInputComponent implements OnInit {
   @Input() goalType!: GoalTypes;
 
   goalInputForm!: FormGroup;
+  tasks$: Observable<Task[]>;
 
   get canAddTasks(): boolean {
     if (this.goalType) {
@@ -31,7 +32,7 @@ export class GoalsInputComponent implements OnInit {
     private service: GoalsService,
     private inputService: GoalsInputServiceService
   ) {
-    this.inputService.getTasks();
+    this.tasks$ = this.inputService.getTasks();
   }
 
   ngOnInit(): void {
