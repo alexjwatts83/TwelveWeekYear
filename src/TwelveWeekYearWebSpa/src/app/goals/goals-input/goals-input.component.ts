@@ -6,6 +6,7 @@ import {
   Validators,
 } from '@angular/forms';
 import { Observable, Subscription } from 'rxjs';
+import { BusyService } from 'src/app/shared/busy-service.service';
 import { RandomTextServiceService } from 'src/app/shared/random-text-service.service';
 import { GoalsInputServiceService } from '../goals-input-service.service';
 import { GoalsService } from '../goals.service';
@@ -38,7 +39,8 @@ export class GoalsInputComponent implements OnInit, OnDestroy {
   constructor(
     private service: GoalsService,
     private inputService: GoalsInputServiceService,
-    private textServcice: RandomTextServiceService
+    private textServcice: RandomTextServiceService,
+    private busyService: BusyService
   ) {
     this.tasks$ = this.inputService.getTasks();
     this.taskSub = this.tasks$.subscribe((x) => {
@@ -57,6 +59,7 @@ export class GoalsInputComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
+    this.busyService.busy();
     // console.log({ngOnInit: true});
     if (this.canAddTasks) {
       this.descriptionSub = this.description$.subscribe((x) => {
@@ -71,13 +74,16 @@ export class GoalsInputComponent implements OnInit, OnDestroy {
     this.goalInputForm = new FormGroup({
       description: new FormControl(x, [Validators.required]),
     });
+    this.busyService.idle();
   }
 
   onSubmit(f: FormGroupDirective) {
+    this.busyService.busy();
     this.service.addGoal(f.value.description, this.goalType, this.tasks);
     this.goalInputForm.reset();
     f.resetForm();
     this.inputService.resetTasks();
+    this.busyService.idle();
   }
 
   onTaskedAdded(task: Task) {

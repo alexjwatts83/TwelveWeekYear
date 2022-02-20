@@ -11,18 +11,35 @@ export class BusyService {
 
   busy(){
     this.busyRequestCount++;
-    this.spinnerService.show(undefined, {
-      type: 'line-scale-party',
-      bdColor: 'rgba(255,255,255,0.5)',
-      color: '#333333'
-    });
+    console.log({busy: this.busyRequestCount});
+    // this.spinnerService.show(undefined, {
+    //   type: 'line-scale-party',
+    //   bdColor: 'rgba(255,255,255,0.5)',
+    //   color: '#333333',
+    //   fullScreen: true
+    // });
+    this.spinnerService.show();
+    console.log('showi spinner')
+    // this.spinnerService.spinnerObservable.subscribe(c=>{
+    //   c.show.
+    // });
+    // setTimeout(() => {
+    //   console.log('finished');
+    // }, 3000);
   }
 
   idle(){
-    this.busyRequestCount--;
-    if(this.busyRequestCount <=0) {
-      this.busyRequestCount = 0;
-      this.spinnerService.hide();
-    }
+    console.log('idle');
+    setTimeout(() => {
+      console.log('idle setTimeout');
+      this.busyRequestCount--;
+      console.log({idle: this.busyRequestCount});
+      if(this.busyRequestCount <=0) {
+        this.busyRequestCount = 0;
+        this.spinnerService.hide();
+        console.log({idle: 'hide'});
+      }
+    }, 10);
+
   }
 }

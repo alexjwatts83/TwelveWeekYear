@@ -6,13 +6,22 @@ import {
   HttpInterceptor
 } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { BusyService } from '../shared/busy-service.service';
+import { finalize } from 'rxjs/operators';
 
 @Injectable()
 export class LoadingInterceptor implements HttpInterceptor {
 
-  constructor() {}
+  constructor(private busyService: BusyService) {}
 
   intercept(request: HttpRequest<unknown>, next: HttpHandler): Observable<HttpEvent<unknown>> {
-    return next.handle(request);
+    // return next.handle(request);
+    this.busyService.busy();
+    return next
+      .handle(request)
+      .pipe(
+        finalize(() => {
+          this.busyService.idle();
+        }));
   }
 }
