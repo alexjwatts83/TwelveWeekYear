@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { NgxSpinnerService } from 'ngx-spinner';
 import { BusyService } from './shared/busy-service.service';
 
 @Component({
@@ -11,7 +10,6 @@ export class AppComponent implements OnInit {
   title = 'TwelveWeekYearWebSpa';
 
   constructor(
-    // private spinner: NgxSpinnerService,
     private busyService: BusyService
   ) {}
 
@@ -24,6 +22,6 @@ export class AppComponent implements OnInit {
       /** spinner ends after 5 seconds */
       this.busyService.idle();
       console.log({hide: true});
-    }, 5000);
+    }, 1000);
   }
 }
