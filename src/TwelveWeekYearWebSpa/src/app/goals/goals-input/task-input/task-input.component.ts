@@ -25,13 +25,13 @@ import { RandomTextServiceService } from 'src/app/shared/random-text-service.ser
   styleUrls: ['./task-input.component.scss'],
 })
 export class TaskInputComponent implements OnInit, OnDestroy {
+  @Output() taskAdded = new EventEmitter<Task>();
+  
   taskInputForm!: FormGroup;
   subTaskForm!: FormGroup;
-
-  @Output() taskAdded = new EventEmitter<Task>();
-
   isLoading: boolean = false;
   resetFormTrigger$: Observable<boolean>;
+
   private resetFormTriggerSub: Subscription;
   private getTextSub: Subscription;
 
@@ -46,9 +46,11 @@ export class TaskInputComponent implements OnInit, OnDestroy {
       console.log({ resetFormTriiger: x });
       if (x) {
         this.isLoading = true;
-        this.resetSubTaskForm();
-        this.resetTaskInputForm('');
-        this.isLoading = false;
+        this.getTextSub = this.textService.getLongDescription().subscribe((x) => {
+          this.resetSubTaskForm();
+          this.resetTaskInputForm(x);
+          this.isLoading = false;
+        });
       }
     });
     this.getTextSub = this.textService.getLongDescription().subscribe((x) => {
@@ -80,8 +82,14 @@ export class TaskInputComponent implements OnInit, OnDestroy {
     this.taskInputForm.reset();
     this.taskInputForm;
     f.resetForm();
-    this.resetTaskInputForm('');
+    // this.resetTaskInputForm('');
     this.taskAdded.emit(task);
+    this.isLoading = true;
+    this.getTextSub = this.textService.getLongDescription().subscribe((x) => {
+      this.resetSubTaskForm();
+      this.resetTaskInputForm(x);
+      this.isLoading = false;
+    });
   }
 
   private resetTaskInputForm(description: string) {
