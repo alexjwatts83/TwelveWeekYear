@@ -7,7 +7,9 @@ import { GoalsModule } from './goals/goals.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MaterialSharedModule } from './material-shared/material-shared.module';
 import { TwelveWeekYearModule } from './twelve-week-year/twelve-week-year.module';
-import { HttpClientModule } from '@angular/common/http'
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http'
+import { NgxSpinnerModule } from "ngx-spinner";
+import { LoadingInterceptor } from './_interceptor/loading.interceptor';
 
 @NgModule({
   declarations: [
@@ -21,9 +23,12 @@ import { HttpClientModule } from '@angular/common/http'
     BrowserAnimationsModule,
     MaterialSharedModule,
     TwelveWeekYearModule,
-    HttpClientModule
+    HttpClientModule,
+    NgxSpinnerModule
   ],
-  providers: [],
+  providers: [{
+    provide: HTTP_INTERCEPTORS, useClass: LoadingInterceptor, multi: true,
+  }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
