@@ -1,5 +1,6 @@
 import { Component, Input, OnDestroy, OnInit } from '@angular/core';
 import {
+  FormBuilder,
   FormControl,
   FormGroup,
   FormGroupDirective,
@@ -21,6 +22,10 @@ export class GoalsInputComponent implements OnInit, OnDestroy {
   @Input() goalType!: GoalTypes;
 
   goalInputForm!: FormGroup;
+
+  taskInputForm!: FormGroup;
+  subTaskForm!: FormGroup;
+
   tasks$: Observable<Task[]>;
 
   private taskSub: Subscription;
@@ -40,7 +45,8 @@ export class GoalsInputComponent implements OnInit, OnDestroy {
     private service: GoalsService,
     private inputService: GoalsInputServiceService,
     private textServcice: RandomTextServiceService,
-    private busyService: BusyService
+    private busyService: BusyService,
+    private fb: FormBuilder,
   ) {
     this.tasks$ = this.inputService.getTasks();
     this.taskSub = this.tasks$.subscribe((x) => {
@@ -71,8 +77,9 @@ export class GoalsInputComponent implements OnInit, OnDestroy {
   }
 
   private resetForm(x: string) {
-    this.goalInputForm = new FormGroup({
+    this.goalInputForm = this.fb.group({
       description: new FormControl(x, [Validators.required]),
+      tasks: this.fb.array([]),
     });
     this.busyService.idle();
   }
