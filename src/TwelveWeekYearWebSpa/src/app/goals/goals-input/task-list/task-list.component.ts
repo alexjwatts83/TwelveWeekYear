@@ -55,6 +55,7 @@ export class TaskListComponent implements OnInit, OnDestroy {
     this.tasksForEdit$ = this.tasksForEdit$.pipe(
       map((tasks) => {
         tasks[index].isEditing = false
+        console.log({save: tasks[index]});
         return [...tasks];
       })
     );

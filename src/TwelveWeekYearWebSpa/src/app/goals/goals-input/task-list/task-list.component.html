@@ -18,7 +18,7 @@
           <ng-template #isEditingTemplate>
             <mat-form-field class="example-form-field" appearance="fill">
               <mat-label>Subtask Description</mat-label>
-              <textarea matInput placeholder="Enter subtask Description" [value]="task.description" autocomplete="on"></textarea>
+              <textarea matInput placeholder="Enter subtask Description" [(ngModel)]="task.description" autocomplete="on"></textarea>
             </mat-form-field>
           </ng-template>
           <div class="sub-task-container" *ngFor="let subtask of task.subTasks">
