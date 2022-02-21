@@ -10,15 +10,15 @@
 
     <ng-container *ngIf="canAddTasks">
       <div class="tasks-container">
-        <div class="empty">&nbsp;</div>
-        <div>
-          <div>=> Tasks</div>
-          <button type="button" mat-mini-fab class="add-course-btn" (click)="addTask()">
-            <mat-icon>add</mat-icon>
-          </button>
+        <div class="empty" (click)="addTask()"><mat-icon>add</mat-icon></div>
+        <div class="tasks-container-input">
+          <div class="heading">=> Tasks</div>
           <div *ngIf="isLoading">
             <mat-spinner [diameter]="50"></mat-spinner>
           </div>
+          <ng-container *ngIf="!isLoading && taskForms.controls.length === 0">
+            No tasks, lols
+          </ng-container>
           <ng-container formArrayName="tasks" *ngIf="!isLoading">
             <ng-container *ngFor="let taskForm of taskForms.controls; let i = index">
               <div class="subtask-form-row" [formGroupName]="i">

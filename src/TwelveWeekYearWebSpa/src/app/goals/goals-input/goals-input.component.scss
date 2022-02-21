@@ -24,8 +24,19 @@
     grid-template-columns: auto 1fr;
     .empty {
       background-color: #3f51b5;
-      width: 20px;
+      width: auto;
       margin-right: 5px;
+      cursor: pointer;
+      mat-icon {
+        color: #ffffff;
+      }
+    }
+    .tasks-container-input {
+      .heading {
+        font-size: 1.2em;
+        font-weight: 600;
+        line-height: 20px;
+      }
     }
   }
 }
