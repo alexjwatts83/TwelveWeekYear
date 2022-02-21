@@ -1,20 +1,10 @@
 <ng-container *ngIf="goalInputForm">
-  <form
-    class="goals-input-form"
-    [formGroup]="goalInputForm"
-    #f="ngForm"
-    (ngSubmit)="onSubmit(f)"
-  >
+  <form class="goals-input-form" [formGroup]="goalInputForm" #f="ngForm" (ngSubmit)="onSubmit(f)">
     <div class="goal-input">
       <mat-form-field class="example-form-field" appearance="fill">
         <mat-label>Goal Description</mat-label>
-        <input
-          matInput
-          type="text"
-          placeholder="Enter Goal Description"
-          formControlName="description"
-          autocomplete="on"
-        />
+        <input matInput type="text" placeholder="Enter Goal Description" formControlName="description"
+          autocomplete="on" />
       </mat-form-field>
     </div>
 
@@ -30,9 +20,7 @@
             <mat-spinner [diameter]="50"></mat-spinner>
           </div>
           <ng-container formArrayName="tasks" *ngIf="!isLoading">
-            <ng-container
-              *ngFor="let taskForm of taskForms.controls; let i = index"
-            >
+            <ng-container *ngFor="let taskForm of taskForms.controls; let i = index">
               <div class="subtask-form-row" [formGroupName]="i">
                 <button type="button" mat-icon-button color="accent" (click)="deleteTask(i)">
                   <mat-icon>delete_forever</mat-icon>
@@ -40,48 +28,34 @@
 
                 <mat-form-field class="example-form-field" appearance="fill">
                   <mat-label>Subtask Description</mat-label>
-                  <textarea
-                    matInput
-                    placeholder="Enter Task Description"
-                    formControlName="description"
-                    autocomplete="on"
-                  ></textarea>
+                  <textarea matInput placeholder="Enter Task Description" formControlName="description"
+                    autocomplete="on"></textarea>
                 </mat-form-field>
                 <div class="tasks-container">
                   <div class="empty">&nbsp;</div>
                   <div>
                     <div>=> Sub Tasks</div>
-                    <button type="button" mat-mini-fab class="add-course-btn" (click)="addSubTask(i)">
-                      <mat-icon>add</mat-icon>
+                    <button type="button" mat-icon-button color="accent" title="Add Sub Task" class="add-course-btn"
+                      (click)="addSubTask(i)">
+                      <mat-icon>add_box</mat-icon>
                     </button>
 
                     <ng-container formArrayName="subTasks" *ngIf="!isLoading">
-                      <ng-container
-                        *ngFor="let subTaskForm of subtaskForms(i).controls; let j = index"
-                      >
+                      <ng-container *ngFor="let subTaskForm of subtaskForms(i).controls; let j = index">
                         <div class="subtask-form-row" [formGroupName]="j">
-                          <button
-                            type="button"
-                            mat-icon-button
-                            color="accent"
-                            (click)="deleteTask(i)"
-                          >
+                          <button type="button" mat-icon-button color="accent" (click)="deleteTask(i)">
                             <mat-icon>delete_forever</mat-icon>
                           </button>
-                    
+
                           <mat-form-field class="example-form-field" appearance="fill">
                             <mat-label>Subtask Description</mat-label>
-                            <textarea
-                              matInput
-                              placeholder="Enter subtask Description"
-                              formControlName="description"
-                              autocomplete="on"
-                            ></textarea>
+                            <textarea matInput placeholder="Enter subtask Description" formControlName="description"
+                              autocomplete="on"></textarea>
                           </mat-form-field>
                         </div>
                       </ng-container>
                     </ng-container>
-                    
+
                   </div>
                 </div>
               </div>
@@ -98,16 +72,9 @@
     </ng-container>
 
     <div [style.margin-top]="canAddTasks ? '20px' : '0px'">
-      <button
-        mat-raised-button
-        color="primary"
-        type="submit"
-        [disabled]="f.invalid"
-      >
+      <button mat-raised-button color="primary" type="submit" [disabled]="f.invalid">
         Add Goal
       </button>
     </div>
   </form>
 </ng-container>
-
-
