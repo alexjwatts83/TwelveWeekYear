@@ -24,14 +24,8 @@ export class GoalsInputComponent implements OnInit, OnDestroy {
   @Input() goalType!: GoalTypes;
 
   goalInputForm!: FormGroup;
-
   taskInputForm!: FormGroup;
   subTaskForm!: FormGroup;
-
-  // tasks$: Observable<Task[]>;
-
-  // private taskSub: Subscription;
-  // private tasks: Task[] = [];
 
   private longDescription$: Observable<string>;
   private longDescriptionSub!: Subscription;
@@ -62,19 +56,10 @@ export class GoalsInputComponent implements OnInit, OnDestroy {
     private busyService: BusyService,
     private fb: FormBuilder,
   ) {
-
-    // this.tasks$ = this.inputService.getTasks();
-    // this.taskSub = this.tasks$.subscribe((x) => {
-    //   this.tasks = x;
-    // });
     this.longDescription$ = this.textServcice.getLongDescription();
   }
 
   ngOnDestroy(): void {
-    // if (this.taskSub) {
-    //   this.taskSub.unsubscribe();
-    // }
-
     if (this.longDescriptionSub) {
       this.longDescriptionSub.unsubscribe();
     }
