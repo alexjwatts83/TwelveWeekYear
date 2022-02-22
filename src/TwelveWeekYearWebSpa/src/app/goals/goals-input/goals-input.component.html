@@ -10,9 +10,9 @@
 
     <ng-container *ngIf="canAddTasks">
       <div class="tasks-container">
-        <div class="empty" (click)="addTask()"><mat-icon>add</mat-icon></div>
+        <div class="empty" (click)="addTask()" title="add task"><mat-icon>add</mat-icon></div>
         <div class="tasks-container-input">
-          <div class="heading">=> Tasks</div>
+          <div class="heading">=> Tasks ({{ taskForms.controls.length }})</div>
           <div *ngIf="isLoading">
             <mat-spinner [diameter]="50"></mat-spinner>
           </div>
@@ -21,29 +21,30 @@
           </ng-container>
           <ng-container formArrayName="tasks" *ngIf="!isLoading">
             <ng-container *ngFor="let taskForm of taskForms.controls; let i = index">
-              <div class="subtask-form-row" [formGroupName]="i">
-                <button type="button" mat-icon-button color="accent" (click)="deleteTask(i)">
-                  <mat-icon>delete_forever</mat-icon>
-                </button>
+              <div class="form-array-row" [formGroupName]="i">
+                <div class="form-array-row-input">
+                  <button type="button" mat-icon-button color="accent" (click)="deleteTask(i)">
+                    <mat-icon>delete_forever</mat-icon>
+                  </button>
+  
+                  <mat-form-field class="example-form-field" appearance="fill">
+                    <mat-label>Description</mat-label>
+                    <textarea matInput placeholder="Enter Task Description" formControlName="description"
+                      autocomplete="on"></textarea>
+                  </mat-form-field>
+                </div>
 
-                <mat-form-field class="example-form-field" appearance="fill">
-                  <mat-label>Subtask Description</mat-label>
-                  <textarea matInput placeholder="Enter Task Description" formControlName="description"
-                    autocomplete="on"></textarea>
-                </mat-form-field>
                 <div class="tasks-container">
-                  <div class="empty">&nbsp;</div>
-                  <div>
-                    <div>=> Sub Tasks</div>
-                    <button type="button" mat-icon-button color="accent" title="Add Sub Task" class="add-course-btn"
-                      (click)="addSubTask(i)">
-                      <mat-icon>add_box</mat-icon>
-                    </button>
-
+                  <div class="empty" (click)="addSubTask(i)" title="add subtask"><mat-icon>add_circle_outline</mat-icon></div>
+                  <div class="tasks-container-input">
+                    <div class="heading">Sub Tasks ({{ subtaskForms(i).controls.length }})</div>
+                    <ng-container *ngIf="!isLoading && subtaskForms(i).controls.length === 0">
+                      No subtasks, lols
+                    </ng-container>
                     <ng-container formArrayName="subTasks" *ngIf="!isLoading">
                       <ng-container *ngFor="let subTaskForm of subtaskForms(i).controls; let j = index">
                         <div class="subtask-form-row" [formGroupName]="j">
-                          <button type="button" mat-icon-button color="accent" (click)="deleteTask(i)">
+                          <button type="button" mat-icon-button color="accent" (click)="deleteSubTask(i, j)">
                             <mat-icon>delete_forever</mat-icon>
                           </button>
 

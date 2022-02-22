@@ -91,7 +91,6 @@ export class GoalsInputComponent implements OnInit, OnDestroy {
 
   onSubmit(f: FormGroupDirective) {
     this.busyService.busy();
-    // this.service.addGoal(f.value.description, this.goalType, this.tasks);
     let tasks = f.value.tasks as Task[];
     console.log({tasks});
     this.service.addGoal(f.value.description, this.goalType, tasks);
@@ -136,5 +135,10 @@ export class GoalsInputComponent implements OnInit, OnDestroy {
       console.log({ frm: this.subtaskForms });
       this.isLoading = false;
     });
+  }
+
+  deleteSubTask(taskIndex: number, index: number) {
+    let c = this.taskForms.at(taskIndex) as FormGroup;
+    (c.controls['subTasks'] as FormArray).removeAt(index);
   }
 }
