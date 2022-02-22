@@ -7,7 +7,7 @@ import {
   FormGroupDirective,
   Validators,
 } from '@angular/forms';
-import { Observable, Subscription } from 'rxjs';
+import { Observable, of, Subscription } from 'rxjs';
 import { BusyService } from 'src/app/shared/busy-service.service';
 import { RandomTextServiceService } from 'src/app/shared/random-text-service.service';
 import { GoalsInputServiceService } from '../goals-input-service.service';
@@ -54,7 +54,7 @@ export class GoalsInputComponent implements OnInit, OnDestroy {
     private inputService: GoalsInputServiceService,
     private textServcice: RandomTextServiceService,
     private busyService: BusyService,
-    private fb: FormBuilder,
+    private fb: FormBuilder
   ) {
     this.longDescription$ = this.textServcice.getLongDescription();
   }
@@ -71,39 +71,37 @@ export class GoalsInputComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.busyService.busy();
-    // console.log({ngOnInit: true});
     this.init();
   }
 
   private init() {
-    if (this.canAddTasks) {
-      this.longDescriptionSub = this.longDescription$.subscribe((x) => {
-        this.resetForm(x);
-      });
-    } else {
-      this.resetForm('');
-    }
+    let obs$ = this.canAddTasks ? this.longDescription$ : of('');
+    this.longDescriptionSub = obs$.subscribe((x) => {
+      this.resetForm(x);
+    });
   }
 
   private resetForm(x: string) {
     this.isLoading = true;
-    this.longDescriptionSub = this.textServcice.getLongDescription().subscribe((x) => {
-      console.log({x});
-      this.goalInputForm = this.fb.group({
-        description: new FormControl(x, [Validators.required]),
-        tasks: this.fb.array([]),
+    this.longDescriptionSub = this.textServcice
+      .getLongDescription()
+      .subscribe((x) => {
+        console.log({ x });
+        this.goalInputForm = this.fb.group({
+          description: new FormControl(x, [Validators.required]),
+          tasks: this.fb.array([]),
+        });
+        this.isLoading = false;
+        this.inputService.resetTasks();
+        this.busyService.idle();
       });
-      this.isLoading = false;
-      this.inputService.resetTasks();
-      this.busyService.idle();
-    });
   }
 
   onSubmit(f: FormGroupDirective) {
     this.isLoading = true;
     this.busyService.busy();
     let tasks = f.value.tasks as Task[];
-    console.log({tasks});
+    console.log({ tasks });
     this.service.addGoal(f.value.description, this.goalType, tasks);
     f.resetForm();
     this.init();
@@ -115,17 +113,19 @@ export class GoalsInputComponent implements OnInit, OnDestroy {
 
   addTask() {
     this.isLoading = true;
-    this.longDescriptionSub = this.textServcice.getLongDescription().subscribe((x) => {
-      console.log({x});
-      const taskForm = this.fb.group({
-        id: [uuidv4(), Validators.required],
-        description: [x, Validators.required],
-        subTasks: this.fb.array([]),
+    this.longDescriptionSub = this.textServcice
+      .getLongDescription()
+      .subscribe((x) => {
+        console.log({ x });
+        const taskForm = this.fb.group({
+          id: [uuidv4(), Validators.required],
+          description: [x, Validators.required],
+          subTasks: this.fb.array([]),
+        });
+        this.taskForms.push(taskForm);
+        console.log({ frm: this.taskForms });
+        this.isLoading = false;
       });
-      this.taskForms.push(taskForm);
-      console.log({ frm: this.taskForms });
-      this.isLoading = false;
-    });
   }
 
   deleteTask(index: number) {
@@ -134,16 +134,18 @@ export class GoalsInputComponent implements OnInit, OnDestroy {
 
   addSubTask(taskIndex: number) {
     this.isLoading = true;
-    this.shortDescriptionSub = this.textServcice.getShortDescription().subscribe((x) => {
-      console.log({x});
-      const subTaskForm = this.fb.group({
-        id: [uuidv4(), Validators.required],
-        description: [x, Validators.required],
+    this.shortDescriptionSub = this.textServcice
+      .getShortDescription()
+      .subscribe((x) => {
+        console.log({ x });
+        const subTaskForm = this.fb.group({
+          id: [uuidv4(), Validators.required],
+          description: [x, Validators.required],
+        });
+        this.subtaskForms(taskIndex).push(subTaskForm);
+        console.log({ frm: this.subtaskForms });
+        this.isLoading = false;
       });
-      this.subtaskForms(taskIndex).push(subTaskForm);
-      console.log({ frm: this.subtaskForms });
-      this.isLoading = false;
-    });
   }
 
   deleteSubTask(taskIndex: number, index: number) {
