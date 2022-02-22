@@ -72,6 +72,10 @@ export class GoalsInputComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     this.busyService.busy();
     // console.log({ngOnInit: true});
+    this.init();
+  }
+
+  private init() {
     if (this.canAddTasks) {
       this.longDescriptionSub = this.longDescription$.subscribe((x) => {
         this.resetForm(x);
@@ -82,22 +86,27 @@ export class GoalsInputComponent implements OnInit, OnDestroy {
   }
 
   private resetForm(x: string) {
-    this.goalInputForm = this.fb.group({
-      description: new FormControl(x, [Validators.required]),
-      tasks: this.fb.array([]),
+    this.isLoading = true;
+    this.longDescriptionSub = this.textServcice.getLongDescription().subscribe((x) => {
+      console.log({x});
+      this.goalInputForm = this.fb.group({
+        description: new FormControl(x, [Validators.required]),
+        tasks: this.fb.array([]),
+      });
+      this.isLoading = false;
+      this.inputService.resetTasks();
+      this.busyService.idle();
     });
-    this.busyService.idle();
   }
 
   onSubmit(f: FormGroupDirective) {
+    this.isLoading = true;
     this.busyService.busy();
     let tasks = f.value.tasks as Task[];
     console.log({tasks});
     this.service.addGoal(f.value.description, this.goalType, tasks);
-    this.goalInputForm.reset();
     f.resetForm();
-    this.inputService.resetTasks();
-    this.busyService.idle();
+    this.init();
   }
 
   onTaskedAdded(task: Task) {
