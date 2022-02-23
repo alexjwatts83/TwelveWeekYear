@@ -99,12 +99,14 @@ export class GoalsInputComponent implements OnInit, OnDestroy {
 
   onSubmit(f: FormGroupDirective) {
     this.isLoading = true;
-    this.busyService.busy();
-    let tasks = f.value.tasks as Task[];
-    console.log({ tasks });
-    this.service.addGoal(f.value.description, this.goalType, tasks);
-    f.resetForm();
-    this.init();
+    setTimeout(() => {
+      this.busyService.busy();
+      let tasks = f.value.tasks as Task[];
+      console.log({ tasks });
+      this.service.addGoal(f.value.description, this.goalType, tasks);
+      f.resetForm();
+      this.init();
+    }, 1000);
   }
 
   onTaskedAdded(task: Task) {
