@@ -1,8 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
-import { WeekDayResult } from '../../models';
+import { TwelveWeekYear, WeekDayResult } from '../../models';
 import {
-  TwelveWeekYearData,
   TwelveWeekYearService,
 } from '../../twelve-week-year.service';
 
@@ -12,8 +11,8 @@ import {
   styleUrls: ['./twelve-week-year.component.scss'],
 })
 export class TwelveWeekYearComponent implements OnInit {
-  private _data: TwelveWeekYearData | undefined;
-  data$!: Observable<TwelveWeekYearData>;
+  private _data: TwelveWeekYear | undefined;
+  data$!: Observable<TwelveWeekYear>;
 
   constructor(private service: TwelveWeekYearService) {
     this.data$ = this.service.getTwelveWeekData();
@@ -21,7 +20,7 @@ export class TwelveWeekYearComponent implements OnInit {
 
   ngOnInit(): void {
     if (this.data$) {
-      this.data$.subscribe((x: TwelveWeekYearData) => {
+      this.data$.subscribe((x: TwelveWeekYear) => {
         console.log({ x });
         this._data = x;
       });

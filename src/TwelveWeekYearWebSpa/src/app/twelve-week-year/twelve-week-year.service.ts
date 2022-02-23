@@ -2,13 +2,13 @@ import { Injectable } from '@angular/core';
 import { Observable, BehaviorSubject, of } from 'rxjs';
 import { GoalsService } from '../goals/goals.service';
 import { Goal, GoalTypes } from '../goals/models';
-import { Week, WeekDayResult } from './models';
+import { TwelveWeekYear, Week, WeekDayResult } from './models';
 
-export interface TwelveWeekYearData {
-  goals: Goal[];
-  weeks: Week[];
-  taskResults: WeekDayResult[];
-}
+// export interface TwelveWeekYearData {
+//   goals: Goal[];
+//   weeks: Week[];
+//   taskResults: WeekDayResult[];
+// }
 
 enum Days {
   sunday = 0,
@@ -17,7 +17,7 @@ enum Days {
   wednesday = 3,
   thursday = 4,
   friday = 5,
-  saturday = 6,
+  saturday = 6, 
 }
 
 @Injectable({
@@ -25,12 +25,15 @@ enum Days {
 })
 export class TwelveWeekYearService {
   private data$: Observable<Goal[]>;
-  private twelveWeekYearData: TwelveWeekYearData = {
+  private twelveWeekYearData: TwelveWeekYear = {
     goals: [],
     taskResults: [],
     weeks: [],
+    end: new Date(),
+    start: new Date(),
+    finalThoughts: 'lols'
   };
-  private _goals$ = new BehaviorSubject<TwelveWeekYearData>(
+  private _goals$ = new BehaviorSubject<TwelveWeekYear>(
     this.twelveWeekYearData
   );
 
@@ -48,6 +51,8 @@ export class TwelveWeekYearService {
   }
 
   private setWeeks(weeks: Week[]) {
+    this.twelveWeekYearData.start =  weeks[0].date;
+    this.twelveWeekYearData.end =  weeks[weeks.length - 1].date;
     this.twelveWeekYearData.weeks = weeks;
     this._goals$.next(this.twelveWeekYearData);
   }
@@ -57,7 +62,7 @@ export class TwelveWeekYearService {
     this._goals$.next(this.twelveWeekYearData);
   }
 
-  getTwelveWeekData(): Observable<TwelveWeekYearData> {
+  getTwelveWeekData(): Observable<TwelveWeekYear> {
     return this._goals$.asObservable();
   }
 
