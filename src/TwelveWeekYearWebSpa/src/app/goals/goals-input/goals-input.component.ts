@@ -88,7 +88,7 @@ export class GoalsInputComponent implements OnInit, OnDestroy {
       .subscribe((x) => {
         console.log({ x });
         let start = new Date();
-        let end = start.setDate(start.getDate() + 7);
+        let end = this.addDays(7 * 12);
         console.log({start, end});
         this.goalInputForm = this.fb.group({
           description: new FormControl(x, [Validators.required]),
@@ -100,6 +100,12 @@ export class GoalsInputComponent implements OnInit, OnDestroy {
         this.inputService.resetTasks();
         this.busyService.idle();
       });
+  }
+
+  private addDays(days : number): Date{
+    var futureDate = new Date();
+    futureDate.setDate(futureDate.getDate() + days);
+    return futureDate;
   }
 
   onSubmit(f: FormGroupDirective) {
