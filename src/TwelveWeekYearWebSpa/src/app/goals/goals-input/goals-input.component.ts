@@ -87,11 +87,14 @@ export class GoalsInputComponent implements OnInit, OnDestroy {
       .getLongDescription()
       .subscribe((x) => {
         console.log({ x });
+        let start = new Date();
+        let end = start.setDate(start.getDate() + 7);
+        console.log({start, end});
         this.goalInputForm = this.fb.group({
           description: new FormControl(x, [Validators.required]),
           tasks: this.fb.array([]),
-          startDate: new FormControl(),
-          endDate: new FormControl()
+          startDate: new FormControl(start, Validators.required),
+          endDate: new FormControl(end, Validators.required)
         });
         this.isLoading = false;
         this.inputService.resetTasks();
