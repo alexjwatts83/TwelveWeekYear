@@ -6,6 +6,12 @@
         <input matInput type="text" placeholder="Enter Goal Description" formControlName="description"
           autocomplete="on" />
       </mat-form-field>
+      <mat-form-field appearance="fill">
+        <mat-label>Start</mat-label>
+        <input matInput [matDatepicker]="picker" formControlName="startDate">
+        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+      </mat-form-field>
     </div>
 
     <ng-container *ngIf="canAddTasks">
