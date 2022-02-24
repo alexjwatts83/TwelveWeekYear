@@ -90,6 +90,7 @@ export class GoalsInputComponent implements OnInit, OnDestroy {
         this.goalInputForm = this.fb.group({
           description: new FormControl(x, [Validators.required]),
           tasks: this.fb.array([]),
+          startDate: new FormControl()
         });
         this.isLoading = false;
         this.inputService.resetTasks();
