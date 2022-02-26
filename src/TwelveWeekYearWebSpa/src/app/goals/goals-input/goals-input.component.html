@@ -9,8 +9,8 @@
       <mat-form-field appearance="fill">
         <mat-label>Enter a date range</mat-label>
         <mat-date-range-input [rangePicker]="picker">
-          <input matStartDate placeholder="Start date" formControlName="startDate">
-          <input matEndDate placeholder="End date" formControlName="endDate">
+          <input matStartDate placeholder="Start date" formControlName="startDate" />
+          <input matEndDate placeholder="End date" formControlName="endDate" />
         </mat-date-range-input>
         <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
         <mat-date-range-picker #picker></mat-date-range-picker>
@@ -50,12 +50,19 @@
                     <mat-icon>chevron_right</mat-icon>
                   </div>
                   <div class="tasks-container-input">
-                    <div class="heading">Sub Tasks ({{ subtaskForms(i).controls.length }})</div>
-                    <ng-container *ngIf="!isLoading && subtaskForms(i).controls.length === 0">
+                    <div class="heading">
+                      Sub Tasks ({{ subtaskForms(i).controls.length }})
+                    </div>
+                    <ng-container *ngIf="
+                        !isLoading && subtaskForms(i).controls.length === 0
+                      ">
                       No subtasks, lols
                     </ng-container>
                     <ng-container formArrayName="subTasks" *ngIf="!isLoading">
-                      <ng-container *ngFor="let subTaskForm of subtaskForms(i).controls; let j = index">
+                      <ng-container *ngFor="
+                          let subTaskForm of subtaskForms(i).controls;
+                          let j = index
+                        ">
                         <div class="form-array-row" [formGroupName]="j">
                           <div class="form-array-row-input">
                             <button type="button" mat-icon-button color="accent" (click)="deleteSubTask(i, j)">
@@ -68,11 +75,9 @@
                                 autocomplete="on"></textarea>
                             </mat-form-field>
                           </div>
-
                         </div>
                       </ng-container>
                     </ng-container>
-
                   </div>
                 </div>
               </div>
