@@ -42,38 +42,6 @@
             </mat-card-actions>
           </mat-card>
         </ng-container>
-
-        <!-- <h3>Goals</h3>
-        <div *ngFor="let goal of data.goals; index as i" class="goals-container">
-          <h4>{{ i + 1 }}. {{ goal.description }} ({{ goal.tasks.length }})</h4>
-
-          <div *ngFor="let task of goal.tasks" class="task-container">
-            <div class="task-description">
-              {{ task.description }} ({{ task.id }})
-            </div>
-            <div>
-              Current Progress: {{ getGoalDailyProgressCount(week.number, goal.id, task.id) }} of {{ week.days.length }}
-            </div>
-
-            <app-subtasks-list
-              [week]="week"
-              [task]="task"
-              [taskResults]="data.taskResults"
-            ></app-subtasks-list>
-
-            <div class="comments-container">
-              <app-task-comments-list
-                [task]="task"
-                [week]="week"
-              ></app-task-comments-list>
-
-              <app-task-comments-input
-                [task]="task"
-                [week]="week"
-              ></app-task-comments-input>
-            </div>
-          </div>
-        </div> -->
       </div>
     </div>
   </mat-tab>
