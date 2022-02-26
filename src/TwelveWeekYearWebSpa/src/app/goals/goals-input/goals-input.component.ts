@@ -15,10 +15,29 @@ import { GoalsService } from '../goals.service';
 import { GoalTypes, Task } from '../models';
 import { v4 as uuidv4 } from 'uuid';
 
+import { DateAdapter, MAT_DATE_FORMATS, MAT_DATE_LOCALE } from '@angular/material/core';
+import { MomentDateAdapter } from '@angular/material-moment-adapter';
+
+const MY_DATE_FORMAT = {
+  parse: {
+    dateInput: 'YYYY-MM-DD', // this is how your date will be parsed from Input
+  },
+  display: {
+    dateInput: 'YYYY-MM-DD', // this is how your date will get displayed on the Input
+    monthYearLabel: 'MMMM YYYY',
+    dateA11yLabel: 'LL',
+    monthYearA11yLabel: 'MMMM YYYY'
+  }
+};
+
 @Component({
   selector: 'app-goals-input',
   templateUrl: './goals-input.component.html',
   styleUrls: ['./goals-input.component.scss'],
+  providers: [
+    { provide: DateAdapter, useClass: MomentDateAdapter, deps: [MAT_DATE_LOCALE] },
+    { provide: MAT_DATE_FORMATS, useValue: MY_DATE_FORMAT }
+  ]
 })
 export class GoalsInputComponent implements OnInit, OnDestroy {
   @Input() goalType!: GoalTypes;
