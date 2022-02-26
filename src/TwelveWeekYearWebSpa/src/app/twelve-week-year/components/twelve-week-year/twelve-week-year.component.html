@@ -12,20 +12,34 @@
             <mat-card-title>{{ i + 1 }}. {{ goal.description }} ({{ goal.tasks.length }})</mat-card-title>
             <mat-card-subtitle>{{ goal.tasks.length }} Tasks</mat-card-subtitle>
             <mat-card-content>
-              <!-- <ng-container *ngFor="let task of goal.tasks">
-                <mat-card-title> {{ task.description }} ({{ task.id }})</mat-card-title>
-                <mat-card-subtitle>Current Progress: {{ getGoalDailyProgressCount(week.number, goal.id, task.id) }} of {{ week.days.length }}</mat-card-subtitle>
-                <mat-card-content>
-                  asdad
-                </mat-card-content>
-              </ng-container> -->
               <div *ngFor="let task of goal.tasks" class="task-container">
+                <!-- <p>&nbsp;</p> -->
                 <div class="task-description">
                   {{ task.description }} ({{ task.id }})
                 </div>
                 <div>
                   Current Progress: {{ getGoalDailyProgressCount(week.number, goal.id, task.id) }} of {{ week.days.length }}
                 </div>
+                <app-subtasks-list
+                  [week]="week"
+                  [task]="task"
+                  [taskResults]="data.taskResults"
+                ></app-subtasks-list>
+                <!-- <p>&nbsp;</p>
+                <mat-divider inset></mat-divider> -->
+                <div class="comments-container">
+                  <app-task-comments-list
+                    [task]="task"
+                    [week]="week"
+                  ></app-task-comments-list>
+    
+                  <app-task-comments-input
+                    [task]="task"
+                    [week]="week"
+                  ></app-task-comments-input>
+                </div>
+                <!-- <p>&nbsp;</p>
+                <mat-divider inset></mat-divider> -->
               </div>
             </mat-card-content>
             <mat-card-actions>
