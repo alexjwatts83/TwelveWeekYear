@@ -6,7 +6,35 @@
       <app-week-list [days]="week.days"></app-week-list>
 
       <div class="sub-tasks-container">
-        <h3>Goals</h3>
+        Goals count: {{ data.goals.length }};
+        <ng-container *ngFor="let goal of data.goals; index as i">
+          <mat-card>
+            <mat-card-title>{{ i + 1 }}. {{ goal.description }} ({{ goal.tasks.length }})</mat-card-title>
+            <mat-card-subtitle>{{ goal.tasks.length }} Tasks</mat-card-subtitle>
+            <mat-card-content>
+              <!-- <ng-container *ngFor="let task of goal.tasks">
+                <mat-card-title> {{ task.description }} ({{ task.id }})</mat-card-title>
+                <mat-card-subtitle>Current Progress: {{ getGoalDailyProgressCount(week.number, goal.id, task.id) }} of {{ week.days.length }}</mat-card-subtitle>
+                <mat-card-content>
+                  asdad
+                </mat-card-content>
+              </ng-container> -->
+              <div *ngFor="let task of goal.tasks" class="task-container">
+                <div class="task-description">
+                  {{ task.description }} ({{ task.id }})
+                </div>
+                <div>
+                  Current Progress: {{ getGoalDailyProgressCount(week.number, goal.id, task.id) }} of {{ week.days.length }}
+                </div>
+              </div>
+            </mat-card-content>
+            <mat-card-actions>
+              <button mat-button>SHARE</button>
+            </mat-card-actions>
+          </mat-card>
+        </ng-container>
+
+        <!-- <h3>Goals</h3>
         <div *ngFor="let goal of data.goals; index as i" class="goals-container">
           <h4>{{ i + 1 }}. {{ goal.description }} ({{ goal.tasks.length }})</h4>
 
@@ -36,7 +64,7 @@
               ></app-task-comments-input>
             </div>
           </div>
-        </div>
+        </div> -->
       </div>
     </div>
   </mat-tab>

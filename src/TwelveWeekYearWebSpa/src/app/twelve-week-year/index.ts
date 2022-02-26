@@ -1,0 +1,1 @@
+export * from './components/twelve-week-year/twelve-week-year.component';

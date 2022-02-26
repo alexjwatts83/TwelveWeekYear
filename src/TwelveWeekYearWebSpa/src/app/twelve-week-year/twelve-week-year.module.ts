@@ -8,6 +8,7 @@ import { CommentsInputComponent } from './components/task-comments/task-comments
 import { SharedModule } from '../shared/shared.module';
 import { CommentsListComponent } from './components/task-comments/task-comments-list/task-comments-list.component';
 import { QuillModule } from 'ngx-quill';
+import { TwelveWeekYearRoutingModule } from './twelve-week-year-routing.module';
 
 @NgModule({
   declarations: [
@@ -21,10 +22,11 @@ import { QuillModule } from 'ngx-quill';
     CommonModule,
     MaterialSharedModule,
     SharedModule,
-    QuillModule.forRoot()
+    TwelveWeekYearRoutingModule,
+    QuillModule.forRoot(),
   ],
   exports: [
-    TwelveWeekYearComponent
+    TwelveWeekYearComponent,
   ]
 })
 export class TwelveWeekYearModule { }
