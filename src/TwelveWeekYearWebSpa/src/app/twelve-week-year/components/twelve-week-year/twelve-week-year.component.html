@@ -6,14 +6,13 @@
       <app-week-list [days]="week.days"></app-week-list>
 
       <div class="sub-tasks-container">
-        Goals count: {{ data.goals.length }};
+        <!-- <h3>Goals count: {{ data.goals.length }};</h3> -->
         <ng-container *ngFor="let goal of data.goals; index as i">
           <mat-card>
             <mat-card-title>{{ i + 1 }}. {{ goal.description }} ({{ goal.tasks.length }})</mat-card-title>
             <mat-card-subtitle>{{ goal.tasks.length }} Tasks</mat-card-subtitle>
             <mat-card-content>
               <div *ngFor="let task of goal.tasks" class="task-container">
-                <!-- <p>&nbsp;</p> -->
                 <div class="task-description">
                   {{ task.description }} ({{ task.id }})
                 </div>
@@ -25,8 +24,6 @@
                   [task]="task"
                   [taskResults]="data.taskResults"
                 ></app-subtasks-list>
-                <!-- <p>&nbsp;</p>
-                <mat-divider inset></mat-divider> -->
                 <div class="comments-container">
                   <app-task-comments-list
                     [task]="task"
@@ -38,8 +35,6 @@
                     [week]="week"
                   ></app-task-comments-input>
                 </div>
-                <!-- <p>&nbsp;</p>
-                <mat-divider inset></mat-divider> -->
               </div>
             </mat-card-content>
             <mat-card-actions>
