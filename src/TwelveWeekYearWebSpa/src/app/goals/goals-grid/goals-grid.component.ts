@@ -21,6 +21,9 @@ export class GoalsGridComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    if (this.goalType == null)  {
+      this.goalType = GoalTypes.TwelveWeekYear
+    }
     this.data$ = this.service.getGoals(this.goalType);
 
     this.data$.subscribe((x) => {

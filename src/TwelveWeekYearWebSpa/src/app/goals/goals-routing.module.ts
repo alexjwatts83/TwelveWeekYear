@@ -4,12 +4,13 @@ import { GoalsGridComponent } from './goals-grid/goals-grid.component';
 
 const routes: Routes = [
   {
-    path: 'goals-grid', component: GoalsGridComponent
-  }
+    path: '',
+    component: GoalsGridComponent,
+  },
 ];
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
-export class GoalsRoutingModule { }
+export class GoalsRoutingModule {}

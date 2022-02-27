@@ -10,6 +10,10 @@ const routes: Routes = [
   {
     path: 'twelve-week-year',
     loadChildren: () => import('./twelve-week-year/twelve-week-year.module').then(m => m.TwelveWeekYearModule),
+  },
+  {
+    path: 'goals',
+    loadChildren: () => import('./twelve-week-year/twelve-week-year.module').then(m => m.TwelveWeekYearModule),
   }
 ];
 
