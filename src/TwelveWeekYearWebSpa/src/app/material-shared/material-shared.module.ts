@@ -22,6 +22,7 @@ import { MatSnackBarModule} from '@angular/material/snack-bar';
 import { MatSliderModule } from '@angular/material/slider';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { MatTreeModule } from '@angular/material/tree';
+import {MatMenuModule} from '@angular/material/menu';
 const modules = [
   MatButtonModule,
   MatIconModule,
@@ -46,6 +47,7 @@ const modules = [
   MatSliderModule,
   MatExpansionModule,
   MatTreeModule,
+  MatMenuModule,
 ];
 const imports = [...modules];
 const exports = [...modules];
