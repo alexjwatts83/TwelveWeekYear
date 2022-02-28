@@ -10,25 +10,28 @@ import { Goal, GoalTypes } from '../models';
   styleUrls: ['./goals-grid.component.scss'],
 })
 export class GoalsGridComponent implements OnInit {
-  @Input() goalType: GoalTypes = GoalTypes.None;
+  @Input() goalType!: GoalTypes;;
 
   displayedColumns: string[] = ['id', 'description', 'type'];
   dataSource = new MatTableDataSource<Goal>();
   data$!: Observable<Goal[]>;
+  heading!: string;
   
   constructor(private service: GoalsService) { 
     this.displayedColumns = ['description'];
   }
 
   ngOnInit(): void {
+    console.log({goalType: this.goalType, isNull: this.goalType == null});
     if (this.goalType == null)  {
       this.goalType = GoalTypes.TwelveWeekYear
+      this.heading = 'Twelve Week Year Goals';
     }
+    console.log({goalType: this.goalType});
     this.data$ = this.service.getGoals(this.goalType);
 
     this.data$.subscribe((x) => {
       this.dataSource.data = x;
-      // console.log({x});
     });
   }
 }
