@@ -10,10 +10,17 @@
   <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
     <mat-icon>menu</mat-icon>
   </button>
-  <span>Twelve Week Year</span>
+  <a routerLink="/">
+    <span>Twelve Week Year</span>
+  </a>
+  
 </mat-toolbar>
 <mat-menu #menu="matMenu">
-  <button mat-menu-item>
+  <button mat-menu-item *ngFor="let link of links">
+    <mat-icon>{{ link.icon }}</mat-icon>
+    <span>{{ link.text}}</span>
+  </button>
+  <!-- <button mat-menu-item>
     <mat-icon>calendar_today</mat-icon>
     <span>Current</span>
   </button>
@@ -24,7 +31,7 @@
   <button mat-menu-item>
     <mat-icon>star</mat-icon>
     <span>Twelve Week Year</span>
-  </button>
+  </button> -->
 </mat-menu>
 <div>
   <router-outlet></router-outlet>
