@@ -15,7 +15,26 @@ export interface SiteLink {
 })
 export class AppComponent implements OnInit {
   title = 'TwelveWeekYearWebSpa';
-
+  links: SiteLink[] = [
+    { 
+      route: '/goals',
+      text: 'Goals',
+      icon: 'person_add',
+      hideIfAuth: true
+    },
+    // { 
+    //   route: '/login',
+    //   text: 'Login',
+    //   icon: 'input',
+    //   hideIfAuth: true
+    // },
+    // { 
+    //   route: '/training',
+    //   text: 'Training',
+    //   icon: 'directions_run',
+    //   hideIfAuth: false
+    // }
+  ]
   constructor(
     private busyService: BusyService
   ) {}
