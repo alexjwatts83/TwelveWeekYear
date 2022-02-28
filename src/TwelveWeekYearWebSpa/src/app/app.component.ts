@@ -1,6 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { BusyService } from './shared/busy-service.service';
 
+export interface SiteLink {
+  route: string;
+  text: string;
+  icon: string;
+  hideIfAuth: boolean
+}
+
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
