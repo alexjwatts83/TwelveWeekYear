@@ -18,22 +18,22 @@ export class AppComponent implements OnInit {
   links: SiteLink[] = [
     { 
       route: '/goals',
-      text: 'Goals',
-      icon: 'person_add',
+      text: 'Current',
+      icon: 'calendar_today',
       hideIfAuth: true
     },
-    // { 
-    //   route: '/login',
-    //   text: 'Login',
-    //   icon: 'input',
-    //   hideIfAuth: true
-    // },
-    // { 
-    //   route: '/training',
-    //   text: 'Training',
-    //   icon: 'directions_run',
-    //   hideIfAuth: false
-    // }
+    { 
+      route: '/goals',
+      text: '3 to 5',
+      icon: 'whatshot',
+      hideIfAuth: true
+    },
+    { 
+      route: '/tweleve-week-year',
+      text: 'Twelve Week Year',
+      icon: 'star',
+      hideIfAuth: false
+    }
   ]
   constructor(
     private busyService: BusyService
