@@ -18,7 +18,10 @@
 <mat-menu #menu="matMenu">
   <button mat-menu-item *ngFor="let link of links">
     <mat-icon>{{ link.icon }}</mat-icon>
-    <span>{{ link.text}}</span>
+    <a [routerLink]="link.route">
+      <span>{{ link.text}}</span>
+    </a>
+    
   </button>
   <!-- <button mat-menu-item>
     <mat-icon>calendar_today</mat-icon>
