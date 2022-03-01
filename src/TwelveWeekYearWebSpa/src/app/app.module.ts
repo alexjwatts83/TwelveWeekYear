@@ -10,6 +10,7 @@ import { TwelveWeekYearModule } from './twelve-week-year/twelve-week-year.module
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http'
 import { NgxSpinnerModule } from "ngx-spinner";
 import { LoadingInterceptor } from './_interceptor/loading.interceptor';
+// import { RouterModule } from '@angular/router';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,8 @@ import { LoadingInterceptor } from './_interceptor/loading.interceptor';
     MaterialSharedModule,
     TwelveWeekYearModule,
     HttpClientModule,
-    NgxSpinnerModule
+    NgxSpinnerModule,
+    // RouterModule,
   ],
   providers: [{
     provide: HTTP_INTERCEPTORS, useClass: LoadingInterceptor, multi: true,
