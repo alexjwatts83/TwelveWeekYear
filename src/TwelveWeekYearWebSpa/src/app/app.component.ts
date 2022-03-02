@@ -29,7 +29,7 @@ export class AppComponent implements OnInit {
       hideIfAuth: true
     },
     { 
-      route: '/tweleve-week-year',
+      route: '/twelve-week-year',
       text: 'Twelve Week Year',
       icon: 'star',
       hideIfAuth: false

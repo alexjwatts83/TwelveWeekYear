@@ -6,8 +6,9 @@ a {
     color: #00aba9;
   }
 }
-.mat-menu-item {
-  a {
-    color: inherit;
-  }
+a.mat-menu-item {
+  // a {
+  //   color: inherit;
+  // }
+  color: inherit;
 }
