@@ -2,7 +2,7 @@ import { Component, Input, OnInit } from '@angular/core';
 import { SiteLink } from 'src/app/app.component';
 
 @Component({
-  selector: 'app-header',
+  selector: 'app-header-this',
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.scss']
 })
