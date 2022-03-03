@@ -6,7 +6,12 @@
 >
   <p style="font-size: 20px; color: white">Loading...</p>
 </ngx-spinner>
-<app-header-this [links]="links"></app-header-this>
-<div>
-  <router-outlet></router-outlet>
+
+<div style="height: 100%;border: 1px solid red;display: flex;flex-direction: column;">
+  <div style="flex: 1;border: 1px solid yellow;">
+    <app-header-this [links]="links"></app-header-this>
+  </div>
+  <div style="flex: 1;flex-grow: 1;border: 1px solid green;">
+    <router-outlet></router-outlet>
+  </div>
 </div>
