@@ -23,8 +23,6 @@ export class GoalsGridComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    // console.log({url: this.router.url});
-    // console.log({goalType: this.goalType, isNull: this.goalType == null});
     if (this.goalType == null)  {
 
       this.goalType = GoalTypes.TwelveWeekYear;
@@ -42,7 +40,7 @@ export class GoalsGridComponent implements OnInit {
         }
       }  
     }
-    console.log({goalType: this.goalType});
+    
     this.data$ = this.service.getGoals(this.goalType);
 
     this.data$.subscribe((x) => {
