@@ -7,6 +7,14 @@ const routes: Routes = [
     path: '',
     component: GoalsGridComponent,
   },
+  {
+    path: 'three-to-five-year',
+    component: GoalsGridComponent,
+  },
+  {
+    path: 'this-year',
+    component: GoalsGridComponent,
+  },
 ];
 
 @NgModule({

@@ -17,13 +17,13 @@ export class AppComponent implements OnInit {
   title = 'TwelveWeekYearWebSpa';
   links: SiteLink[] = [
     { 
-      route: '/goals',
+      route: '/goals/this-year',
       text: 'Current',
       icon: 'calendar_today',
       hideIfAuth: true
     },
     { 
-      route: '/goals',
+      route: '/goals/three-to-five-year',
       text: '3 to 5',
       icon: 'whatshot',
       hideIfAuth: true
