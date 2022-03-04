@@ -9,7 +9,7 @@ import { DbService } from 'src/app/shared/db.service';
 })
 export class HeaderComponent implements OnInit {
   @Input() links: SiteLink[] = []
-  initialData: string[] = [];
+  initialData: SiteLink[] = [];
 
   constructor(private database:DbService) { 
     this.initialData = this.database.rootLevelNodes.slice();

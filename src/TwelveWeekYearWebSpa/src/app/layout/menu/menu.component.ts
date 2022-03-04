@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { SiteLink } from 'src/app/app.component';
 import { DbService } from 'src/app/shared/db.service';
 
 @Component({
@@ -7,14 +8,14 @@ import { DbService } from 'src/app/shared/db.service';
   styleUrls: ['./menu.component.scss']
 })
 export class MenuComponent implements OnInit {
-  @Input() data: string[] = [];
+  @Input() data: SiteLink[] = [];
   @Input() trigger = "Trigger";
   @Input() isRootNode = false;
 
   isLoading = false;
   dataLoaded = false;
 
-  constructor(private database:DbService) { }
+  constructor(private database: DbService) { }
 
   ngOnInit(): void {
   }
