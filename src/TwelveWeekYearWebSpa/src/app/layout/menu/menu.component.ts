@@ -1,6 +1,4 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { of } from 'rxjs';
-import { map, tap } from 'rxjs/operators';
 import { SiteLink } from 'src/app/app.component';
 import { DbService } from 'src/app/shared/db.service';
 
@@ -18,8 +16,6 @@ export class MenuComponent implements OnInit {
   isLoading = false;
   dataLoaded = false;
 
-  // children: Map<string,number> = new Map<string, number>();
-
   constructor(private database: DbService) {}
 
   ngOnInit(): void {}
@@ -32,12 +28,7 @@ export class MenuComponent implements OnInit {
     if (!this.dataLoaded) {
       this.isLoading = true;
       this.database.getChildren(node).subscribe((d) => {
-        let childs = d?.slice() || [];
-        this.data = childs;
-        // if (!this.children.has(node)) {
-        //   this.children.set(node, childs.length);
-        // }
-        // console.log({node, children: this.children});
+        this.data = d?.slice() || [];
         this.isLoading = false;
         this.dataLoaded = true;
       });
@@ -45,29 +36,7 @@ export class MenuComponent implements OnInit {
   }
 
   getCount(node: string): number {
-    // if (!this.children.has(node)) {
-    //   this.getData(node);
-    // }
-    // let count = this.children.get(node) ?? -1;
-    // console.log({node, count});
-    // return count;
     let count = this.database.getCount(node);
-    console.log({node, count});
     return count;
   }
-
-//   getCount(node: string) {
-//     if (!this.dataLoaded) {
-//       this.isLoading = true;
-//       let stuff = this.database.getChildren(node).pipe(
-//         tap((nodes) => console.log({ node, nodes })),
-//         map((nodes) => {
-//           this.isLoading = false;
-//           this.dataLoaded = true;
-//           return nodes?.length;
-//         })
-//       );
-//       return stuff;
-//     }
-//   }
 }
