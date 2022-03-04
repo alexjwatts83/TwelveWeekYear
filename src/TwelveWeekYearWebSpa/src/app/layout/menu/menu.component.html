@@ -1,8 +1,11 @@
+<!-- <ng-container *ngIf="(getCount(trigger) | async) as cnt" >
+asdasds
+</ng-container> -->
 <button *ngIf="isRootNode" mat-button [matMenuTriggerFor]="menu">
   <mat-icon>menu</mat-icon>
 </button>
 <button *ngIf="!isRootNode" mat-menu-item [matMenuTriggerFor]="menu" (menuOpened)="getData(trigger)">
-  {{ trigger }}
+  {{ trigger }} {{ getCount(trigger) }}
 </button>
 <mat-menu #menu="matMenu">
   <button
@@ -27,3 +30,4 @@
     </ng-template>
   </ng-container>
 </mat-menu>
+
