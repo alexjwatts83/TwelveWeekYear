@@ -1,22 +1,10 @@
 <mat-toolbar color="primary">
-  <!-- <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
-    <mat-icon>menu</mat-icon>
-  </button> -->
   <app-menu
-    [trigger]="'Goals'"
+    [trigger]="'Menu'"
     [data]="initialData"
     [isRootNode]="true"
   ></app-menu>
   <a routerLink="/">
     <span>Twelve Week Year</span>
   </a>
-  
 </mat-toolbar>
-<!-- <mat-menu #menu="matMenu">
-  <ng-container *ngFor="let link of links">
-    <a mat-menu-item [routerLink]="[link.route]">
-      <mat-icon>{{ link.icon }}</mat-icon>
-      {{ link.text}}
-    </a>
-  </ng-container>
-</mat-menu> -->

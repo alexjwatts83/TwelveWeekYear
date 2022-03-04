@@ -9,7 +9,7 @@ export abstract class BaseDbService<TKey, TVal> {
 
   getChildren(node: TKey) {
     // adding delay to mock a REST API call
-    return of(this.dataMap.get(node)).pipe(delay(300));
+    return of(this.dataMap.get(node));//.pipe(delay(10));
   }
 
   isExpandable(node: TKey): boolean {
@@ -24,19 +24,6 @@ https://indepth.dev/tutorials/angular/angular-material-nested-menu-dynamic-data
   providedIn: 'root',
 })
 export class DbService extends BaseDbService<string, SiteLink> {
-  // dataMap = new Map<T, T[]>([
-  //   ['Fruits', ['Apple', 'Orange', 'Banana']],
-  //   ['Vegetables', ['Tomato', 'Potato', 'Onion']],
-  //   ['Apple', ['Fuji', 'Macintosh']],
-  //   ['Onion', ['Yellow', 'White', 'Purple']],
-  //   ['Macintosh', ['Yellow', 'White', 'Purple']],
-  // ]);
-
-  // rootLevelNodes: T[] = ['Fruits', 'Vegetables'];
-  /**
-   *
-   */
-
   constructor() {
     super();
     
@@ -70,10 +57,12 @@ export class DbService extends BaseDbService<string, SiteLink> {
       icon: 'star',
       hideIfAuth: false
     };
+
     this.dataMap = new Map<string, SiteLink[]>([
       ['Goals', [thisYear, threeToFiveYear]],
       ['Twelve Week Year', [twelveWeekYearCurrent]],
     ]);
+
     this.rootLevelNodes = [goals, twelveWeekYear];
   }
 

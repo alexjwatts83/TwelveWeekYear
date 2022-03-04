@@ -1,8 +1,8 @@
 <button *ngIf="isRootNode" mat-button [matMenuTriggerFor]="menu">
-  trigger: {{ trigger }}
+  <mat-icon>menu</mat-icon>
 </button>
 <button *ngIf="!isRootNode" mat-menu-item [matMenuTriggerFor]="menu" (menuOpened)="getData(trigger)">
-  triggerbtn:{{ trigger }}
+  {{ trigger }}
 </button>
 <mat-menu #menu="matMenu">
   <button
@@ -20,7 +20,6 @@
       ></app-menu>
     </button>
     <ng-template #menuItem>
-      <!-- <button mat-menu-item>{{ node.text }}</button> -->
       <a mat-menu-item [routerLink]="[node.route]">
         <mat-icon>{{ node.icon }}</mat-icon>
         {{ node.text}}
