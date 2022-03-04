@@ -13,11 +13,12 @@ export class MenuComponent implements OnInit {
   @Input() data: SiteLink[] = [];
   @Input() trigger = 'Trigger';
   @Input() isRootNode = false;
+  @Input() node!: SiteLink;
 
   isLoading = false;
   dataLoaded = false;
 
-  children: Map<string,number> = new Map<string, number>();
+  // children: Map<string,number> = new Map<string, number>();
 
   constructor(private database: DbService) {}
 
@@ -33,9 +34,9 @@ export class MenuComponent implements OnInit {
       this.database.getChildren(node).subscribe((d) => {
         let childs = d?.slice() || [];
         this.data = childs;
-        if (!this.children.has(node)) {
-          this.children.set(node, childs.length);
-        }
+        // if (!this.children.has(node)) {
+        //   this.children.set(node, childs.length);
+        // }
         // console.log({node, children: this.children});
         this.isLoading = false;
         this.dataLoaded = true;
@@ -44,10 +45,13 @@ export class MenuComponent implements OnInit {
   }
 
   getCount(node: string): number {
-    if (!this.children.has(node)) {
-      this.getData(node);
-    }
-    let count = this.children.get(node) ?? -1;
+    // if (!this.children.has(node)) {
+    //   this.getData(node);
+    // }
+    // let count = this.children.get(node) ?? -1;
+    // console.log({node, count});
+    // return count;
+    let count = this.database.getCount(node);
     console.log({node, count});
     return count;
   }

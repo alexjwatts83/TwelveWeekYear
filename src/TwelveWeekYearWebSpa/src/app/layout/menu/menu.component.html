@@ -4,9 +4,23 @@ asdasds
 <button *ngIf="isRootNode" mat-button [matMenuTriggerFor]="menu">
   <mat-icon>menu</mat-icon>
 </button>
-<button *ngIf="!isRootNode" mat-menu-item [matMenuTriggerFor]="menu" (menuOpened)="getData(trigger)">
+<button *ngIf="!isRootNode && getCount(trigger) > 1" mat-menu-item [matMenuTriggerFor]="menu" (menuOpened)="getData(trigger)">
+  <!-- <span *ngIf="getCount(trigger) == 1">nrag</span> -->
   {{ trigger }} {{ getCount(trigger) }}
 </button>
+
+<a *ngIf="!isRootNode && getCount(trigger) == 1" mat-menu-item [routerLink]="[node.route]">
+  <mat-icon>{{ node.icon }}</mat-icon>
+  {{ node.text}}
+</a>
+
+<!-- <button *ngIf="!isRootNode && getCount(trigger) == 1" mat-menu-item>
+  <ng-container *ngIf="node">
+    <a mat-menu-item [routerLink]="[node.route]">
+      {{ node.text}}
+    </a>
+  </ng-container>
+</button> -->
 <mat-menu #menu="matMenu">
   <button
     mat-menu-item
@@ -19,6 +33,7 @@ asdasds
     <button mat-menu-item>
       <app-menu
         [trigger]="node.text"
+        [node]="node"
         *ngIf="isExpandable(node.text); else menuItem"
       ></app-menu>
     </button>
