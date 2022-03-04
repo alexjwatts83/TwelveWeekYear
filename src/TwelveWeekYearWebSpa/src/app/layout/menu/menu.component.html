@@ -1,26 +1,19 @@
-<!-- <ng-container *ngIf="(getCount(trigger) | async) as cnt" >
-asdasds
-</ng-container> -->
 <button *ngIf="isRootNode" mat-button [matMenuTriggerFor]="menu">
   <mat-icon>menu</mat-icon>
 </button>
-<button *ngIf="!isRootNode && getCount(trigger) > 1" mat-menu-item [matMenuTriggerFor]="menu" (menuOpened)="getData(trigger)">
-  <!-- <span *ngIf="getCount(trigger) == 1">nrag</span> -->
-  {{ trigger }} {{ getCount(trigger) }}
-</button>
+ 
+<ng-container *ngIf="!isRootNode && getCount(trigger) > 1; else sinlgeItem">
+  <button mat-menu-item [matMenuTriggerFor]="menu" (menuOpened)="getData(trigger)">
+    {{ trigger }}
+  </button>
+</ng-container>
+<ng-template #sinlgeItem>
+  <a *ngIf="node != null" mat-menu-item [routerLink]="[node.route]">
+    <mat-icon>{{ node.icon }}</mat-icon>
+    {{ node.text}}
+  </a>
+</ng-template>
 
-<a *ngIf="!isRootNode && getCount(trigger) == 1" mat-menu-item [routerLink]="[node.route]">
-  <mat-icon>{{ node.icon }}</mat-icon>
-  {{ node.text}}
-</a>
-
-<!-- <button *ngIf="!isRootNode && getCount(trigger) == 1" mat-menu-item>
-  <ng-container *ngIf="node">
-    <a mat-menu-item [routerLink]="[node.route]">
-      {{ node.text}}
-    </a>
-  </ng-container>
-</button> -->
 <mat-menu #menu="matMenu">
   <button
     mat-menu-item

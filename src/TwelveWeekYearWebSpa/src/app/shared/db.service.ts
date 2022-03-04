@@ -11,10 +11,6 @@ export abstract class BaseDbService<TKey, TVal> {
   getChildren(node: TKey) {
     // adding delay to mock a REST API call
     let nodes = this.dataMap.get(node);
-    // let childrenCount = (nodes != null) ? nodes.length : 0;
-    // if (!this.counts.has(node)) {
-    //   this.counts.set(node, childrenCount);
-    // }
     return of(nodes);//.pipe(delay(10));
   }
 
@@ -89,13 +85,4 @@ export class DbService extends BaseDbService<string, SiteLink> {
 
     this.rootLevelNodes = [goals, twelveWeekYear];
   }
-
-  // getChildren(node: string) {
-  //   // adding delay to mock a REST API call
-  //   return of(this.dataMap.get(node));//.pipe(delay(10));
-  // }
-
-  // isExpandable(node: string): boolean {
-  //   return this.dataMap.has(node);
-  // }
 }
