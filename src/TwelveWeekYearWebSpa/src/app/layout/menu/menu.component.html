@@ -1,20 +1,28 @@
-<button *ngIf="isRootNode" mat-button [matMenuTriggerFor]="menu" #menuTrigger="matMenuTrigger" (mouseenter) ="mouseEnter() ">
+<button
+  *ngIf="isRootNode"
+  mat-button
+  [matMenuTriggerFor]="menu"
+  #menuTrigger="matMenuTrigger"
+  (mouseenter)="mouseEnter()"
+>
   <mat-icon>menu</mat-icon>
 </button>
- 
+
 <ng-container *ngIf="!isRootNode && getCount(trigger) > 1; else sinlgeItem">
-  <button mat-menu-item [matMenuTriggerFor]="menu" #menuTriggerChild="matMenuTrigger" (mouseenter) ="mouseEnterChild()" (menuOpened)="getData(trigger)">
-    <mat-icon>{{ node.icon }}</mat-icon>    {{ trigger }}
+  <button
+    mat-menu-item
+    [matMenuTriggerFor]="menu"
+    #menuTriggerChild="matMenuTrigger"
+    (mouseenter)="mouseEnterChild()"
+    (menuOpened)="getData(trigger)"
+  >
+    <mat-icon>{{ node.icon }}</mat-icon> {{ trigger }}
   </button>
-  <!-- <a *ngIf="node != null" mat-menu-item [routerLink]="[node.route]">
-    <mat-icon>{{ node.icon }}</mat-icon>
-    {{ node.text}}
-  </a> -->
 </ng-container>
 <ng-template #sinlgeItem>
   <a *ngIf="node != null" mat-menu-item [routerLink]="[node.route]">
     <mat-icon>{{ node.icon }}</mat-icon>
-    {{ node.text}}
+    {{ node.text }}
   </a>
 </ng-template>
 
@@ -37,9 +45,8 @@
     <ng-template #menuItem>
       <a mat-menu-item [routerLink]="[node.route]">
         <mat-icon>{{ node.icon }}</mat-icon>
-        {{ node.text}}
+        {{ node.text }}
       </a>
     </ng-template>
   </ng-container>
 </mat-menu>
-
