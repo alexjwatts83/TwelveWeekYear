@@ -1,4 +1,5 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, ViewChild, ViewContainerRef } from '@angular/core';
+import { MatMenuTrigger } from '@angular/material/menu';
 import { SiteLink } from 'src/app/app.component';
 import { DbService } from 'src/app/shared/db.service';
 
@@ -16,7 +17,9 @@ export class MenuComponent implements OnInit {
   isLoading = false;
   dataLoaded = false;
 
-  constructor(private database: DbService) {}
+  @ViewChild(MatMenuTrigger) menuTrigger!: MatMenuTrigger;
+
+  constructor(private database: DbService, private readonly viewRef: ViewContainerRef) {}
 
   ngOnInit(): void {}
 
@@ -38,5 +41,12 @@ export class MenuComponent implements OnInit {
   getCount(node: string): number {
     let count = this.database.getCount(node);
     return count;
+  }
+
+  mouseEnter() {
+    console.log('stuff');
+    if (this.menuTrigger) {
+      this.menuTrigger.openMenu();
+    }
   }
 }
