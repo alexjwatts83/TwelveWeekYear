@@ -18,6 +18,7 @@ export class MenuComponent implements OnInit {
   dataLoaded = false;
 
   @ViewChild(MatMenuTrigger) menuTrigger!: MatMenuTrigger;
+  @ViewChild(MatMenuTrigger) menuTriggerChild!: MatMenuTrigger;
 
   constructor(private database: DbService, private readonly viewRef: ViewContainerRef) {}
 
@@ -47,6 +48,13 @@ export class MenuComponent implements OnInit {
     console.log('stuff');
     if (this.menuTrigger) {
       this.menuTrigger.openMenu();
+    }
+  }
+  
+  mouseEnterChild() {
+    console.log('menuTriggerChild');
+    if (this.menuTriggerChild) {
+      this.menuTriggerChild.openMenu();
     }
   }
 }

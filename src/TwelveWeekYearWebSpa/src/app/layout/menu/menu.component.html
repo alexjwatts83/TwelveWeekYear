@@ -3,7 +3,7 @@
 </button>
  
 <ng-container *ngIf="!isRootNode && getCount(trigger) > 1; else sinlgeItem">
-  <button mat-menu-item [matMenuTriggerFor]="menu" (menuOpened)="getData(trigger)">
+  <button mat-menu-item [matMenuTriggerFor]="menu" #menuTriggerChild="matMenuTrigger" (menuOpened)="getData(trigger)">
     <mat-icon>{{ node.icon }}</mat-icon>    {{ trigger }}
   </button>
   <!-- <a *ngIf="node != null" mat-menu-item [routerLink]="[node.route]">
