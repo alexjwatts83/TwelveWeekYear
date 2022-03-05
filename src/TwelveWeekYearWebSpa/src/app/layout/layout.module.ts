@@ -5,17 +5,20 @@ import { SharedModule } from '../shared/shared.module';
 import { MaterialSharedModule } from '../material-shared/material-shared.module';
 import { RouterModule } from '@angular/router';
 import { MenuComponent } from './menu/menu.component';
-
+import { MainMenuComponent } from './main-menu/main-menu.component';
+import {OverlayModule} from '@angular/cdk/overlay';
 @NgModule({
   declarations: [
     HeaderComponent,
     MenuComponent,
+    MainMenuComponent,
   ],
   imports: [
     CommonModule,
     SharedModule,
     MaterialSharedModule,
     RouterModule,
+    OverlayModule
   ],
   exports : [
     HeaderComponent,

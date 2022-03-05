@@ -1,10 +1,13 @@
 <mat-toolbar color="primary">
-  <app-menu
+  <!-- <app-menu
     [trigger]="'Menu'"
     [data]="initialData"
     [isRootNode]="true"
   ></app-menu>
+  -->
+  <mat-icon>star</mat-icon>
   <a routerLink="/">
-    <span>Twelve Week Year</span>
-  </a>
+    <span>Home</span>
+  </a> 
+  <app-main-menu></app-main-menu>
 </mat-toolbar>

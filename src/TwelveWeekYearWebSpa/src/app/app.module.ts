@@ -11,7 +11,7 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http'
 import { NgxSpinnerModule } from "ngx-spinner";
 import { LoadingInterceptor } from './_interceptor/loading.interceptor';
 import { LayoutModule } from './layout/layout.module';
-
+import {OverlayModule} from '@angular/cdk/overlay';
 @NgModule({
   declarations: [
     AppComponent,
@@ -27,6 +27,7 @@ import { LayoutModule } from './layout/layout.module';
     HttpClientModule,
     NgxSpinnerModule,
     LayoutModule,
+    OverlayModule,
   ],
   providers: [{
     provide: HTTP_INTERCEPTORS, useClass: LoadingInterceptor, multi: true,
