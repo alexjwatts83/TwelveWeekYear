@@ -50,6 +50,7 @@
           [isLoading]="isLoading"
           [taskForms]="taskForms"
           [goalInputForm]="goalInputForm"
+          (onDeleteTask)="deleteTask($event)"
         ></app-goal-task-input>
       </div>
     </ng-container>
