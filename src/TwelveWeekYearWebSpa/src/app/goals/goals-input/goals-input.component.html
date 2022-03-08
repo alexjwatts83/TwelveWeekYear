@@ -6,18 +6,21 @@
         <input matInput type="text" placeholder="Enter Goal Description" formControlName="description"
           autocomplete="on" />
       </mat-form-field>
-      <mat-form-field appearance="fill">
-        <mat-label>Enter a date range</mat-label>
-        <mat-date-range-input [rangePicker]="picker">
-          <input matStartDate placeholder="Start date" formControlName="startDate" />
-          <input matEndDate placeholder="End date" formControlName="endDate" />
-        </mat-date-range-input>
-        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-        <mat-date-range-picker #picker></mat-date-range-picker>
-      </mat-form-field>
     </div>
 
     <ng-container *ngIf="canAddTasks">
+      <div class="task-container">
+        <mat-form-field appearance="fill">
+          <mat-label>Enter a date range</mat-label>
+          <mat-date-range-input [rangePicker]="picker">
+            <input matStartDate placeholder="Start date" formControlName="startDate" />
+            <input matEndDate placeholder="End date" formControlName="endDate" />
+          </mat-date-range-input>
+          <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+          <mat-date-range-picker #picker></mat-date-range-picker>
+        </mat-form-field>
+      </div>
+
       <div class="tasks-container">
         <div class="empty" (click)="addTask()" title="add task">
           <mat-icon>add</mat-icon>
