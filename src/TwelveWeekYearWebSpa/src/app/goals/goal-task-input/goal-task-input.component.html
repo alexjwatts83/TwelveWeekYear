@@ -21,7 +21,7 @@
           </mat-form-field>
         </div>
 
-        <!-- <div class="tasks-container">
+        <div class="tasks-container">
           <div class="empty" (click)="addSubTask(i)" title="add subtask">
             <mat-icon>chevron_right</mat-icon>
           </div>
@@ -34,7 +34,7 @@
               ">
               No subtasks, lols
             </ng-container>
-            <ng-container formArrayName="subTasks" *ngIf="!isLoading">
+            <!-- <ng-container formArrayName="subTasks" *ngIf="!isLoading">
               <ng-container *ngFor="
                   let subTaskForm of subtaskForms(i).controls;
                   let j = index
@@ -53,9 +53,9 @@
                   </div>
                 </div>
               </ng-container>
-            </ng-container>
+            </ng-container> -->
           </div>
-        </div> -->
+        </div>
       </div>
     </ng-container>
   </ng-container>

@@ -12,6 +12,7 @@ export class GoalTaskInputComponent implements OnInit {
   @Input() taskForms!: FormArray;
 
   @Output() onDeleteTask = new EventEmitter<number>();
+  @Output() onAddSubTask = new EventEmitter<number>();
   constructor() { }
 
   ngOnInit(): void {
@@ -20,5 +21,13 @@ export class GoalTaskInputComponent implements OnInit {
   deleteTask(index: number) {
     this.onDeleteTask.emit(index);
     // this.taskForms.removeAt(index);
+  }
+  addSubTask(index: number) {
+    this.onAddSubTask.emit(index);
+  }
+
+  subtaskForms(i: number) {
+    let c = this.taskForms.at(i) as FormGroup;
+    return c.controls['subTasks'] as FormArray;
   }
 }
