@@ -25,7 +25,7 @@
         <div class="empty" (click)="addTask()" title="add task">
           <mat-icon>add</mat-icon>
         </div>
-
+        <app-goal-task-input [isLoading]="isLoading" [taskForms]="taskForms" [goalInputForm]="goalInputForm"></app-goal-task-input>
       </div>
     </ng-container>
 

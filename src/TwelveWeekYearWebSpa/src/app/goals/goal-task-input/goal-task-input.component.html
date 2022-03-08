@@ -1,4 +1,4 @@
-<div class="tasks-container-input">
+<div class="tasks-container-input" [formGroup]="goalInputForm">
   <div class="heading">=> Tasks ({{ taskForms.controls.length }})</div>
   <div *ngIf="isLoading">
     <mat-spinner [diameter]="50"></mat-spinner>

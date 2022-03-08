@@ -8,6 +8,7 @@ import { FormArray, FormGroup } from '@angular/forms';
 })
 export class GoalTaskInputComponent implements OnInit {
   @Input() isLoading: boolean = true;
+  @Input() goalInputForm!: FormGroup;
   @Input() taskForms!: FormArray;
 
   @Output() onDeleteTask = new EventEmitter<number>();
