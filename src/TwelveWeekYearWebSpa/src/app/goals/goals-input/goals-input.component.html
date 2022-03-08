@@ -1,10 +1,20 @@
 <ng-container *ngIf="goalInputForm">
-  <form class="goals-input-form" [formGroup]="goalInputForm" #f="ngForm" (ngSubmit)="onSubmit(f)">
+  <form
+    class="goals-input-form"
+    [formGroup]="goalInputForm"
+    #f="ngForm"
+    (ngSubmit)="onSubmit(f)"
+  >
     <div class="goal-input">
       <mat-form-field class="example-form-field" appearance="fill">
         <mat-label>Goal Description</mat-label>
-        <input matInput type="text" placeholder="Enter Goal Description" formControlName="description"
-          autocomplete="on" />
+        <input
+          matInput
+          type="text"
+          placeholder="Enter Goal Description"
+          formControlName="description"
+          autocomplete="on"
+        />
       </mat-form-field>
     </div>
 
@@ -13,10 +23,21 @@
         <mat-form-field appearance="fill">
           <mat-label>Enter a date range</mat-label>
           <mat-date-range-input [rangePicker]="picker">
-            <input matStartDate placeholder="Start date" formControlName="startDate" />
-            <input matEndDate placeholder="End date" formControlName="endDate" />
+            <input
+              matStartDate
+              placeholder="Start date"
+              formControlName="startDate"
+            />
+            <input
+              matEndDate
+              placeholder="End date"
+              formControlName="endDate"
+            />
           </mat-date-range-input>
-          <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+          <mat-datepicker-toggle
+            matSuffix
+            [for]="picker"
+          ></mat-datepicker-toggle>
           <mat-date-range-picker #picker></mat-date-range-picker>
         </mat-form-field>
       </div>
@@ -25,12 +46,21 @@
         <div class="empty" (click)="addTask()" title="add task">
           <mat-icon>add</mat-icon>
         </div>
-        <app-goal-task-input [isLoading]="isLoading" [taskForms]="taskForms" [goalInputForm]="goalInputForm"></app-goal-task-input>
+        <app-goal-task-input
+          [isLoading]="isLoading"
+          [taskForms]="taskForms"
+          [goalInputForm]="goalInputForm"
+        ></app-goal-task-input>
       </div>
     </ng-container>
 
     <div [style.margin-top]="canAddTasks ? '20px' : '0px'">
-      <button mat-raised-button color="primary" type="submit" [disabled]="f.invalid">
+      <button
+        mat-raised-button
+        color="primary"
+        type="submit"
+        [disabled]="f.invalid"
+      >
         Add Goal
       </button>
     </div>
