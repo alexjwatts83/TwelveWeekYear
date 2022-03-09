@@ -7,7 +7,6 @@ import { MaterialSharedModule } from '../material-shared/material-shared.module'
 import { GoalsInputComponent } from './goals-input/goals-input.component';
 import { SharedModule } from '../shared/shared.module';
 import { GoalsGroupComponent } from './goals-group/goals-group.component';
-import { TaskInputComponent } from './goals-input/task-input/task-input.component';
 import { TaskListComponent } from './goals-input/task-list/task-list.component';
 import { GoalTaskInputComponent } from './goal-task-input/goal-task-input.component';
 
@@ -16,7 +15,6 @@ import { GoalTaskInputComponent } from './goal-task-input/goal-task-input.compon
     GoalsGridComponent,
     GoalsInputComponent,
     GoalsGroupComponent,
-    TaskInputComponent,
     TaskListComponent,
     GoalTaskInputComponent
   ],
