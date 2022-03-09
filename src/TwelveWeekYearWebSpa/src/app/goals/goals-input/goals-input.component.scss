@@ -28,21 +28,5 @@
         color: #ffffff;
       }
     }
-    .tasks-container-input {
-      .heading {
-        font-size: 1.2em;
-        font-weight: 500;
-        line-height: 20px;
-      }
-
-      .form-array-row {
-        .form-array-row-input {
-          display: flex;
-          mat-form-field {
-            flex: 1;
-          }
-        }
-      }
-    }
   }
 }
