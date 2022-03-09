@@ -4,7 +4,7 @@ import { FormArray, FormGroup } from '@angular/forms';
 @Component({
   selector: 'app-goal-task-input',
   templateUrl: './goal-task-input.component.html',
-  styleUrls: ['./goal-task-input.component.scss']
+  styleUrls: ['./goal-task-input.component.scss'],
 })
 export class GoalTaskInputComponent implements OnInit {
   @Input() isLoading: boolean = true;
@@ -13,14 +13,16 @@ export class GoalTaskInputComponent implements OnInit {
 
   @Output() onDeleteTask = new EventEmitter<number>();
   @Output() onAddSubTask = new EventEmitter<number>();
-  constructor() { }
+  @Output() onDeleteSubTask = new EventEmitter<{
+    taskIndex: number;
+    index: number;
+  }>();
+  constructor() {}
 
-  ngOnInit(): void {
-  }
+  ngOnInit(): void {}
 
   deleteTask(index: number) {
     this.onDeleteTask.emit(index);
-    // this.taskForms.removeAt(index);
   }
   addSubTask(index: number) {
     this.onAddSubTask.emit(index);
@@ -29,5 +31,11 @@ export class GoalTaskInputComponent implements OnInit {
   subtaskForms(i: number) {
     let c = this.taskForms.at(i) as FormGroup;
     return c.controls['subTasks'] as FormArray;
+  }
+
+  deleteSubTask(taskIndex: number, index: number) {
+    this.onDeleteSubTask.emit({
+      taskIndex, index
+    });
   }
 }
