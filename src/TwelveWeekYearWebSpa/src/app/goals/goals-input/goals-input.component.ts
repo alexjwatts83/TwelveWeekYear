@@ -180,8 +180,8 @@ export class GoalsInputComponent implements OnInit, OnDestroy {
       });
   }
 
-  deleteSubTask(taskIndex: number, index: number) {
-    let c = this.taskForms.at(taskIndex) as FormGroup;
-    (c.controls['subTasks'] as FormArray).removeAt(index);
+  deleteSubTask(event: {taskIndex: number, index: number}) {
+    let c = this.taskForms.at(event.taskIndex) as FormGroup;
+    (c.controls['subTasks'] as FormArray).removeAt(event.index);
   }
 }
