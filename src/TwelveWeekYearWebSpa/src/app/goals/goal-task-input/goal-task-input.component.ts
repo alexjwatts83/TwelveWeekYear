@@ -11,6 +11,7 @@ export class GoalTaskInputComponent implements OnInit {
   @Input() goalInputForm!: FormGroup;
   @Input() taskForms!: FormArray;
 
+  @Output() onAddTask = new EventEmitter<void>();
   @Output() onDeleteTask = new EventEmitter<number>();
   @Output() onAddSubTask = new EventEmitter<number>();
   @Output() onDeleteSubTask = new EventEmitter<{
@@ -37,5 +38,9 @@ export class GoalTaskInputComponent implements OnInit {
     this.onDeleteSubTask.emit({
       taskIndex, index
     });
+  }
+
+  addTask() {
+    this.onAddSubTask.emit();
   }
 }

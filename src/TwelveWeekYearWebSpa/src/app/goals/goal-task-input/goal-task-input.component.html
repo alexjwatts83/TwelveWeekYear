@@ -1,3 +1,9 @@
+
+<div class="tasks-container">
+  <div class="empty" (click)="addTask()" title="add task">
+    <mat-icon>add</mat-icon>
+  </div>
+</div>
 <div class="tasks-container-input" [formGroup]="goalInputForm">
   <div class="heading">=> Tasks ({{ taskForms.controls.length }})</div>
   <div *ngIf="isLoading">

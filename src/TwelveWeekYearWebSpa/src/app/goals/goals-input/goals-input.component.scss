@@ -15,18 +15,18 @@
     flex: 1;
     border: 0px solid red;
   }
-  div.tasks-container {
-    border: 0px solid green;
-    display: grid;
-    grid-template-columns: auto 1fr;
-    .empty {
-      background-color: #3f51b5;
-      width: auto;
-      margin-right: 5px;
-      cursor: pointer;
-      mat-icon {
-        color: #ffffff;
-      }
-    }
-  }
+  // div.tasks-container {
+  //   border: 0px solid green;
+  //   display: grid;
+  //   grid-template-columns: auto 1fr;
+  //   .empty {
+  //     background-color: #3f51b5;
+  //     width: auto;
+  //     margin-right: 5px;
+  //     cursor: pointer;
+  //     mat-icon {
+  //       color: #ffffff;
+  //     }
+  //   }
+  // }
 }

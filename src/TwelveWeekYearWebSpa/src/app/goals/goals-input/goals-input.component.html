@@ -41,8 +41,16 @@
           <mat-date-range-picker #picker></mat-date-range-picker>
         </mat-form-field>
       </div>
-
-      <div class="tasks-container">
+      <app-goal-task-input
+        [isLoading]="isLoading"
+        [taskForms]="taskForms"
+        [goalInputForm]="goalInputForm"
+        (onAddTask)="addTask()"
+        (onDeleteTask)="deleteTask($event)"
+        (onAddSubTask)="addSubTask($event)"
+        (onDeleteSubTask)="deleteSubTask($event)"
+      ></app-goal-task-input>
+      <!-- <div class="tasks-container">
         <div class="empty" (click)="addTask()" title="add task">
           <mat-icon>add</mat-icon>
         </div>
@@ -54,7 +62,7 @@
           (onAddSubTask)="addSubTask($event)"
           (onDeleteSubTask)="deleteSubTask($event)"
         ></app-goal-task-input>
-      </div>
+      </div> -->
     </ng-container>
 
     <div [style.margin-top]="canAddTasks ? '20px' : '0px'">
