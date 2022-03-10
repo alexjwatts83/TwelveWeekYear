@@ -1,6 +1,5 @@
 import { Component, Input, OnDestroy, OnInit } from '@angular/core';
 import {
-  FormArray,
   FormBuilder,
   FormControl,
   FormGroup,
@@ -13,7 +12,6 @@ import { RandomTextServiceService } from 'src/app/shared/random-text-service.ser
 import { GoalsInputServiceService } from '../goals-input-service.service';
 import { GoalsService } from '../goals.service';
 import { GoalTypes, Task } from '../models';
-import { v4 as uuidv4 } from 'uuid';
 
 import { DateAdapter, MAT_DATE_FORMATS, MAT_DATE_LOCALE } from '@angular/material/core';
 import { MomentDateAdapter } from '@angular/material-moment-adapter';
@@ -42,15 +40,9 @@ const MY_DATE_FORMAT = {
 export class GoalsInputComponent implements OnInit, OnDestroy {
   @Input() goalType!: GoalTypes;
 
-  goalInputForm!: FormGroup;
-  taskInputForm!: FormGroup;
-  subTaskForm!: FormGroup;
-
   private longDescription$: Observable<string>;
   private longDescriptionSub!: Subscription;
   private shortDescriptionSub!: Subscription;
-
-  isLoading: boolean = false;
 
   get canAddTasks(): boolean {
     if (this.goalType) {
@@ -59,7 +51,10 @@ export class GoalsInputComponent implements OnInit, OnDestroy {
     return false;
   }
 
-
+  goalInputForm!: FormGroup;
+  taskInputForm!: FormGroup;
+  subTaskForm!: FormGroup;
+  isLoading: boolean = false;
 
   constructor(
     private service: GoalsService,
