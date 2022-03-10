@@ -1,10 +1,7 @@
-import { Component, EventEmitter, Input, OnDestroy, OnInit, Output } from '@angular/core';
+import { Component, Input, OnDestroy, OnInit } from '@angular/core';
 import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Observable, Subscription } from 'rxjs';
-import { BusyService } from 'src/app/shared/busy-service.service';
 import { RandomTextServiceService } from 'src/app/shared/random-text-service.service';
-import { GoalsInputServiceService } from '../goals-input-service.service';
-import { GoalsService } from '../goals.service';
 import { v4 as uuidv4 } from 'uuid';
 
 @Component({
@@ -15,29 +12,19 @@ import { v4 as uuidv4 } from 'uuid';
 export class GoalTaskInputComponent implements OnInit, OnDestroy {
   @Input() isLoading: boolean = true;
   @Input() goalInputForm!: FormGroup;
-  // @Input() taskForms!: FormArray;
 
-  // @Output() onAddTask = new EventEmitter<void>();
-  // @Output() onDeleteTask = new EventEmitter<number>();
-  // @Output() onAddSubTask = new EventEmitter<number>();
-  // @Output() onDeleteSubTask = new EventEmitter<{
-  //   taskIndex: number;
-  //   index: number;
-  // }>();
-
-  private longDescription$: Observable<string>;
+  private longDescription$!: Observable<string>;
   private longDescriptionSub!: Subscription;
   private shortDescriptionSub!: Subscription;
-  
-  constructor(
-    private service: GoalsService,
-    private inputService: GoalsInputServiceService,
-    private textServcice: RandomTextServiceService,
-    private busyService: BusyService,
-    private fb: FormBuilder
-  ) {
-    this.longDescription$ = this.textServcice.getLongDescription();
+
+  get taskForms() {
+    return this.goalInputForm.controls['tasks'] as FormArray;
   }
+
+  constructor(
+    private textServcice: RandomTextServiceService,
+    private fb: FormBuilder
+  ) {}
 
   ngOnInit(): void {}
 
@@ -51,32 +38,10 @@ export class GoalTaskInputComponent implements OnInit, OnDestroy {
     }
   }
 
-  // deleteTask(index: number) {
-  //   this.onDeleteTask.emit(index);
-  // }
-
-  // addSubTask(index: number) {
-  //   this.onAddSubTask.emit(index);
-  // }
-
   subtaskForms(i: number) {
-    console.log({tf: this.taskForms});
+    console.log({ tf: this.taskForms });
     let c = this.taskForms.at(i) as FormGroup;
     return c.controls['subTasks'] as FormArray;
-  }
-
-  // deleteSubTask(taskIndex: number, index: number) {
-  //   this.onDeleteSubTask.emit({
-  //     taskIndex, index
-  //   });
-  // }
-
-  // addTask() {
-  //   this.onAddSubTask.emit();
-  // }
-
-  get taskForms() {
-    return this.goalInputForm.controls['tasks'] as FormArray;
   }
 
   addTask() {
@@ -120,9 +85,4 @@ export class GoalTaskInputComponent implements OnInit, OnDestroy {
     let c = this.taskForms.at(taskIndex) as FormGroup;
     (c.controls['subTasks'] as FormArray).removeAt(index);
   }
-
-  // subtaskForms(i: number) {
-  //   let c = this.taskForms.at(i) as FormGroup;
-  //   return c.controls['subTasks'] as FormArray;
-  // }
 }
