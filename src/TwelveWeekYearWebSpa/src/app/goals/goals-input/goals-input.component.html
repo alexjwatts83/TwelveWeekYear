@@ -43,12 +43,7 @@
       </div>
       <app-goal-task-input
         [isLoading]="isLoading"
-        [taskForms]="taskForms"
         [goalInputForm]="goalInputForm"
-        (onAddTask)="addTask()"
-        (onDeleteTask)="deleteTask($event)"
-        (onAddSubTask)="addSubTask($event)"
-        (onDeleteSubTask)="deleteSubTask($event)"
       ></app-goal-task-input>
       <!-- <div class="tasks-container">
         <div class="empty" (click)="addTask()" title="add task">

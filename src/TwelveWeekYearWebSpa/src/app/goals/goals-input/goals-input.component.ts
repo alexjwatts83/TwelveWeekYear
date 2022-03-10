@@ -59,14 +59,7 @@ export class GoalsInputComponent implements OnInit, OnDestroy {
     return false;
   }
 
-  get taskForms() {
-    return this.goalInputForm.controls['tasks'] as FormArray;
-  }
 
-  subtaskForms(i: number) {
-    let c = this.taskForms.at(i) as FormGroup;
-    return c.controls['subTasks'] as FormArray;
-  }
 
   constructor(
     private service: GoalsService,
@@ -141,47 +134,5 @@ export class GoalsInputComponent implements OnInit, OnDestroy {
 
   onTaskedAdded(task: Task) {
     this.inputService.addTask(task);
-  }
-
-  addTask() {
-    this.isLoading = true;
-    this.longDescriptionSub = this.textServcice
-      .getLongDescription()
-      .subscribe((x) => {
-        console.log({ x });
-        const taskForm = this.fb.group({
-          id: [uuidv4(), Validators.required],
-          description: [x, Validators.required],
-          subTasks: this.fb.array([]),
-        });
-        this.taskForms.push(taskForm);
-        console.log({ frm: this.taskForms });
-        this.isLoading = false;
-      });
-  }
-
-  deleteTask(index: number) {
-    this.taskForms.removeAt(index);
-  }
-
-  addSubTask(taskIndex: number) {
-    this.isLoading = true;
-    this.shortDescriptionSub = this.textServcice
-      .getShortDescription()
-      .subscribe((x) => {
-        console.log({ x });
-        const subTaskForm = this.fb.group({
-          id: [uuidv4(), Validators.required],
-          description: [x, Validators.required],
-        });
-        this.subtaskForms(taskIndex).push(subTaskForm);
-        console.log({ frm: this.subtaskForms });
-        this.isLoading = false;
-      });
-  }
-
-  deleteSubTask(event: {taskIndex: number, index: number}) {
-    let c = this.taskForms.at(event.taskIndex) as FormGroup;
-    (c.controls['subTasks'] as FormArray).removeAt(event.index);
   }
 }
