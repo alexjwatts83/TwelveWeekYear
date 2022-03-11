@@ -19,7 +19,7 @@ export class BusyService {
     //   fullScreen: true
     // });
     this.spinnerService.show();
-    console.log('showi spinner')
+  
     // this.spinnerService.spinnerObservable.subscribe(c=>{
     //   c.show.
     // });
@@ -29,15 +29,12 @@ export class BusyService {
   }
 
   idle(){
-    console.log('idle');
     setTimeout(() => {
-      console.log('idle setTimeout');
       this.busyRequestCount--;
       console.log({idle: this.busyRequestCount});
       if(this.busyRequestCount <=0) {
         this.busyRequestCount = 0;
         this.spinnerService.hide();
-        console.log({idle: 'hide'});
       }
     }, 10);
 
