@@ -32,24 +32,20 @@ export class RandomTextServiceService {
   }
 
   getShortDescription(): Observable<string> {
-    console.log({ getShortDescription: true, data: this.shortDescriptions });
     return this.fetchParagraphs().pipe(
       map((fetched: boolean) => {
         let description = this.shortDescriptions[0];
         this.shortDescriptions = this.shortDescriptions.slice(1);
-        console.log({fetched, description, shortDescriptions: this.shortDescriptions});
         return description;
       })
     );
   }
 
   getLongDescription(): Observable<string> {
-    console.log({ getLongDescription: true, data: this.longDescriptions });
     return this.fetchParagraphs().pipe(
       map((fetched: boolean) => {
         let description = this.longDescriptions[0];
         this.longDescriptions = this.longDescriptions.slice(1);
-        console.log({fetched, description, longDescriptions: this.longDescriptions});
         return description;
       })
     );
@@ -62,7 +58,6 @@ export class RandomTextServiceService {
     ) {
       return of(true);
     }
-    // console.log('calling fetchParagraphs');
     return this.http.get<LoremIpsum>(this.randomDataApi).pipe(
       map((ipsum: LoremIpsum) => {
         this.shortDescriptions.push(ipsum.words.join(' '));
@@ -77,17 +72,12 @@ export class RandomTextServiceService {
         ipsum.questions.forEach((w) => {
           this.shortDescriptions.push(w.replace('?', '.'));
         });
-
-        console.log({shortDescriptions: this.shortDescriptions});
-        // this.setData();
         this.longDescriptions.push(ipsum.very_long_sentence);
         this.longDescriptions.push(
           `${ipsum.short_sentence} ${ipsum.long_sentence}`
         );
         this.longDescriptions.push(ipsum.characters);
         this.longDescriptions.push(ipsum.paragraphs.join(' '));
-        // this.setLongDescription();
-        // this.hasFected = true;
         return true;
       })
     );
