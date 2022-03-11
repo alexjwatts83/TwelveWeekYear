@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { BehaviorSubject, Observable, of } from 'rxjs';
+import { Observable, of } from 'rxjs';
 import { map } from 'rxjs/operators';
 
 export interface LoremIpsum {
@@ -81,38 +81,5 @@ export class RandomTextServiceService {
         return true;
       })
     );
-    // .subscribe((ipsum: LoremIpsum) => {
-
-    // });
   }
-
-  // private setData() {
-  //   console.log({ setData: true, data: this.data });
-  //   if (this.data.length >= 1) {
-  //     this._data$.next(this.data[0]);
-  //     this.data = this.data.slice(0, 1);
-  //     return;
-  //   }
-  //   this.fetchParagraphs();
-  // }
-
-  // private setLongDescription() {
-  //   // console.log({ setLongDescription: true, descriptions: this.descriptions });
-  //   if (this.descriptions.length >= 1) {
-  //     this._description$.next(this.descriptions[0]);
-  //     this.descriptions = this.descriptions.slice(0, 1);
-  //     return;
-  //   }
-  //   this.fetchParagraphs();
-  // }
-
-  // getText(): Observable<string> {
-  //   // console.log({ getTasks: true });
-  //   return this._data$.asObservable();
-  // }
-
-  // getDescription(): Observable<string> {
-  //   // console.log({ getDescription: true });
-  //   return this._description$.asObservable();
-  // }
 }
