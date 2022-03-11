@@ -45,19 +45,6 @@
         [isLoading]="isLoading"
         [goalInputForm]="goalInputForm"
       ></app-goal-task-input>
-      <!-- <div class="tasks-container">
-        <div class="empty" (click)="addTask()" title="add task">
-          <mat-icon>add</mat-icon>
-        </div>
-        <app-goal-task-input
-          [isLoading]="isLoading"
-          [taskForms]="taskForms"
-          [goalInputForm]="goalInputForm"
-          (onDeleteTask)="deleteTask($event)"
-          (onAddSubTask)="addSubTask($event)"
-          (onDeleteSubTask)="deleteSubTask($event)"
-        ></app-goal-task-input>
-      </div> -->
     </ng-container>
 
     <div [style.margin-top]="canAddTasks ? '20px' : '0px'">
