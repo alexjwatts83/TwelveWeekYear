@@ -14,11 +14,10 @@ export class WeekListComponent implements OnInit {
   @Input() days: WeekDay[] = [];
 
   displayedColumns: string[] = ['date', 'comments'];
-
   blured = false;
   focused = false;
-
   data: WeekDayListItem[] = [];
+
   constructor() { }
 
   ngOnInit(): void {
@@ -31,7 +30,6 @@ export class WeekListComponent implements OnInit {
   }
 
   blur($event: any, element: any) {
-    console.log({event: $event, element});
     this.focused = false
     this.blured = true
   }
