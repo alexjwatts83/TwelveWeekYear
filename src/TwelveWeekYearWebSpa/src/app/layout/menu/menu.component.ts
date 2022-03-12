@@ -1,4 +1,10 @@
-import { Component, Input, OnInit, ViewChild, ViewContainerRef } from '@angular/core';
+import {
+  Component,
+  Input,
+  OnInit,
+  ViewChild,
+  ViewContainerRef,
+} from '@angular/core';
 import { MatMenuTrigger } from '@angular/material/menu';
 import { SiteLink } from 'src/app/app.component';
 import { DbService } from 'src/app/shared/db.service';
@@ -20,7 +26,10 @@ export class MenuComponent implements OnInit {
   @ViewChild(MatMenuTrigger) menuTrigger!: MatMenuTrigger;
   @ViewChild(MatMenuTrigger) menuTriggerChild!: MatMenuTrigger;
 
-  constructor(private database: DbService, private readonly viewRef: ViewContainerRef) {}
+  constructor(
+    private database: DbService,
+    private readonly viewRef: ViewContainerRef
+  ) {}
 
   ngOnInit(): void {}
 
@@ -45,14 +54,12 @@ export class MenuComponent implements OnInit {
   }
 
   mouseEnter() {
-    console.log('stuff');
     if (this.menuTrigger) {
       this.menuTrigger.openMenu();
     }
   }
-  
+
   mouseEnterChild() {
-    console.log('menuTriggerChild');
     if (this.menuTriggerChild) {
       this.menuTriggerChild.openMenu();
     }
