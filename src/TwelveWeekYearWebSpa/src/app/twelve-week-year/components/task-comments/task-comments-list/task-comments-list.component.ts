@@ -19,12 +19,9 @@ export class CommentsListComponent implements OnInit {
   constructor(private service: TaskCommentsService) {}
 
   ngOnInit(): void {
-    // console.log({taskId: this.task, weekNumber: this.week});
     this.data$ = this.service.getComments(this.task.id, this.week.number);
     this.data$.subscribe((taskComments) => {
-      // console.log({taskComments});
       taskComments.forEach((tc) => {
-        // console.log({tc});
         this.comments = tc.comments;
       });
     });
