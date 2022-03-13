@@ -1,5 +1,5 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { Observable,  Subscription } from 'rxjs';
+import { Observable, Subscription } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { GoalsInputServiceService } from '../../goals-input-service.service';
 import { Task } from '../../models';
@@ -20,7 +20,6 @@ export class TaskListComponent implements OnInit, OnDestroy {
   constructor(private inputService: GoalsInputServiceService) {
     this.tasksForEdit$ = this.inputService.getTasks().pipe(
       map((tasks) => {
-        console.log({ GoalsInputTaskListComponent: tasks });
         let stufff = tasks.map((task: Task) => {
           return {
             ...task,
@@ -41,21 +40,18 @@ export class TaskListComponent implements OnInit, OnDestroy {
   ngOnInit(): void {}
 
   editTaskDescription(index: number) {
-    console.log({editTaskDescription: index});
     this.tasksForEdit$ = this.tasksForEdit$.pipe(
       map((tasks) => {
-        tasks[index].isEditing = true
+        tasks[index].isEditing = true;
         return [...tasks];
       })
     );
   }
 
   saveTaskDescription(index: number) {
-    console.log({saveTaskDescription: index});
     this.tasksForEdit$ = this.tasksForEdit$.pipe(
       map((tasks) => {
-        tasks[index].isEditing = false
-        console.log({save: tasks[index]});
+        tasks[index].isEditing = false;
         return [...tasks];
       })
     );
