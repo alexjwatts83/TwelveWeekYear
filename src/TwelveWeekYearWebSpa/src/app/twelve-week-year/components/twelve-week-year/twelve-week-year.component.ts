@@ -19,7 +19,6 @@ export class TwelveWeekYearComponent implements OnInit {
   ngOnInit(): void {
     if (this.data$) {
       this.data$.subscribe((x: TwelveWeekYear) => {
-        console.log({ x });
         this._data = x;
       });
     }
