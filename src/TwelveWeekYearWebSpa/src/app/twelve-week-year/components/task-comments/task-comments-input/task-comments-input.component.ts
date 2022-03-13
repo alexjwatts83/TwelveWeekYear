@@ -1,6 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
 import {
-  FormBuilder,
   FormControl,
   FormGroup,
   FormGroupDirective,
@@ -20,7 +19,7 @@ export class CommentsInputComponent implements OnInit {
   @Input() week!: Week;
 
   commentsForm!: FormGroup;
-  constructor(private service: TaskCommentsService, private fb: FormBuilder) {}
+  constructor(private service: TaskCommentsService) {}
 
   ngOnInit(): void {
     this.commentsForm = new FormGroup({
@@ -29,7 +28,6 @@ export class CommentsInputComponent implements OnInit {
   }
 
   onSubmit(f: FormGroupDirective) {
-    console.log({ onSubmit: true, f });
     this.service.addComment(
       this.task.id,
       this.week.number,
