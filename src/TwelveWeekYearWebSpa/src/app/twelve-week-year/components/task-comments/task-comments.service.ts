@@ -13,7 +13,6 @@ export class TaskCommentsService {
   constructor() {}
 
   getComments(taskId: string, weekNumber: number): Observable<TaskComments[]> {
-    // console.log({ goalType });
     return this._taskComments$
       .asObservable()
       .pipe(
@@ -39,30 +38,24 @@ export class TaskCommentsService {
       comment,
       date,
     };
-    let tc = this.data
-    .filter((tc) => tc.taskId === taskId && tc.weekNumber == weekNumber);
-
-    // console.log({before: true, tc: JSON.parse(JSON.stringify(tc))});
+    let tc = this.data.filter(
+      (tc) => tc.taskId === taskId && tc.weekNumber == weekNumber
+    );
 
     if (tc.length === 0) {
       let taskComment: TaskComments = {
         taskId,
         weekNumber,
-        comments: [leComment]
-      }
+        comments: [leComment],
+      };
       this.data.push(taskComment);
     } else {
       this.data
-      .filter((tc) => tc.taskId === taskId && tc.weekNumber == weekNumber)
-      .forEach((tc) => {
-        // console.log('pushing comment');
-        tc.comments.push(leComment);
-        // console.log({during: true, tc: JSON.parse(JSON.stringify(tc))});
-      });
+        .filter((tc) => tc.taskId === taskId && tc.weekNumber == weekNumber)
+        .forEach((tc) => {
+          tc.comments.push(leComment);
+        });
     }
-
-    // console.log({after: true, tc: JSON.parse(JSON.stringify(this.data))});
-
 
     this.setComments(this.data);
   }
