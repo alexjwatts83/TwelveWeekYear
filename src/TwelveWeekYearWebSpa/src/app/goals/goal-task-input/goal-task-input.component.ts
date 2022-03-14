@@ -1,6 +1,6 @@
 import { Component, Input, OnDestroy, OnInit } from '@angular/core';
 import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Observable, Subscription } from 'rxjs';
+import { Subscription } from 'rxjs';
 import { RandomTextServiceService } from 'src/app/shared/random-text-service.service';
 import { v4 as uuidv4 } from 'uuid';
 
@@ -13,7 +13,6 @@ export class GoalTaskInputComponent implements OnInit, OnDestroy {
   @Input() isLoading: boolean = true;
   @Input() goalInputForm!: FormGroup;
 
-  private longDescription$!: Observable<string>;
   private longDescriptionSub!: Subscription;
   private shortDescriptionSub!: Subscription;
 
