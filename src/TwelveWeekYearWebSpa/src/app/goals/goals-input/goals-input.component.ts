@@ -13,7 +13,11 @@ import { GoalsInputServiceService } from '../goals-input-service.service';
 import { GoalsService } from '../goals.service';
 import { GoalTypes, Task } from '../models';
 
-import { DateAdapter, MAT_DATE_FORMATS, MAT_DATE_LOCALE } from '@angular/material/core';
+import {
+  DateAdapter,
+  MAT_DATE_FORMATS,
+  MAT_DATE_LOCALE,
+} from '@angular/material/core';
 import { MomentDateAdapter } from '@angular/material-moment-adapter';
 
 const MY_DATE_FORMAT = {
@@ -24,8 +28,8 @@ const MY_DATE_FORMAT = {
     dateInput: 'YYYY-MM-DD', // this is how your date will get displayed on the Input
     monthYearLabel: 'MMMM YYYY',
     dateA11yLabel: 'LL',
-    monthYearA11yLabel: 'MMMM YYYY'
-  }
+    monthYearA11yLabel: 'MMMM YYYY',
+  },
 };
 
 @Component({
@@ -33,9 +37,13 @@ const MY_DATE_FORMAT = {
   templateUrl: './goals-input.component.html',
   styleUrls: ['./goals-input.component.scss'],
   providers: [
-    { provide: DateAdapter, useClass: MomentDateAdapter, deps: [MAT_DATE_LOCALE] },
-    { provide: MAT_DATE_FORMATS, useValue: MY_DATE_FORMAT }
-  ]
+    {
+      provide: DateAdapter,
+      useClass: MomentDateAdapter,
+      deps: [MAT_DATE_LOCALE],
+    },
+    { provide: MAT_DATE_FORMATS, useValue: MY_DATE_FORMAT },
+  ],
 })
 export class GoalsInputComponent implements OnInit, OnDestroy {
   @Input() goalType!: GoalTypes;
@@ -93,15 +101,13 @@ export class GoalsInputComponent implements OnInit, OnDestroy {
     this.longDescriptionSub = this.textServcice
       .getLongDescription()
       .subscribe((x) => {
-        console.log({ x });
         let start = new Date();
         let end = this.addDays(7 * 12);
-        console.log({start, end});
         this.goalInputForm = this.fb.group({
           description: new FormControl(x, [Validators.required]),
           tasks: this.fb.array([]),
           startDate: new FormControl(start, Validators.required),
-          endDate: new FormControl(end, Validators.required)
+          endDate: new FormControl(end, Validators.required),
         });
         this.isLoading = false;
         this.inputService.resetTasks();
@@ -109,7 +115,7 @@ export class GoalsInputComponent implements OnInit, OnDestroy {
       });
   }
 
-  private addDays(days : number): Date{
+  private addDays(days: number): Date {
     var futureDate = new Date();
     futureDate.setDate(futureDate.getDate() + days);
     return futureDate;
@@ -120,7 +126,6 @@ export class GoalsInputComponent implements OnInit, OnDestroy {
     setTimeout(() => {
       this.busyService.busy();
       let tasks = f.value.tasks as Task[];
-      console.log({ tasks });
       this.service.addGoal(f.value.description, this.goalType, tasks);
       f.resetForm();
       this.init();
