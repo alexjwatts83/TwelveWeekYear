@@ -39,7 +39,6 @@ export class GoalTaskInputComponent implements OnInit, OnDestroy {
   }
 
   subtaskForms(i: number) {
-    console.log({ tf: this.taskForms });
     let c = this.taskForms.at(i) as FormGroup;
     return c.controls['subTasks'] as FormArray;
   }
@@ -49,14 +48,12 @@ export class GoalTaskInputComponent implements OnInit, OnDestroy {
     this.longDescriptionSub = this.textServcice
       .getLongDescription()
       .subscribe((x) => {
-        console.log({ x });
         const taskForm = this.fb.group({
           id: [uuidv4(), Validators.required],
           description: [x, Validators.required],
           subTasks: this.fb.array([]),
         });
         this.taskForms.push(taskForm);
-        console.log({ frm: this.taskForms });
         this.isLoading = false;
       });
   }
@@ -70,13 +67,11 @@ export class GoalTaskInputComponent implements OnInit, OnDestroy {
     this.shortDescriptionSub = this.textServcice
       .getShortDescription()
       .subscribe((x) => {
-        console.log({ x });
         const subTaskForm = this.fb.group({
           id: [uuidv4(), Validators.required],
           description: [x, Validators.required],
         });
         this.subtaskForms(taskIndex).push(subTaskForm);
-        console.log({ frm: this.subtaskForms });
         this.isLoading = false;
       });
   }
