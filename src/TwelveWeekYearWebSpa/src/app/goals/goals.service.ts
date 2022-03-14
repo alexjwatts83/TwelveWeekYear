@@ -249,7 +249,6 @@ export class GoalsService {
   constructor() {}
 
   getGoals(goalType: GoalTypes): Observable<Goal[]> {
-    // console.log({ goalType });
     return this._goals$
       .asObservable()
       .pipe(
