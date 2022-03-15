@@ -1,14 +1,12 @@
-
 <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
   <ng-container matColumnDef="description">
     <th mat-header-cell *matHeaderCellDef>
-      <ng-container *ngIf="!heading;else noGoalType">
-        <span >Description</span>
+      <ng-container *ngIf="!heading; else noGoalType">
+        <span>Description</span>
       </ng-container>
       <ng-template #noGoalType>
-        <span >{{ heading }}</span>
+        <span>{{ heading }}</span>
       </ng-template>
-      
     </th>
     <td mat-cell *matCellDef="let element">
       <div [style.margin-top]="element.tasks ? '10px' : '0px'">
