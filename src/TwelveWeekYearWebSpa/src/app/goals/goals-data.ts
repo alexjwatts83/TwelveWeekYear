@@ -1,6 +1,6 @@
 import { Goal, GoalTypes } from './models';
 
-export const data: Goal[] = [
+export const GOALS_DATA: Goal[] = [
   {
     description: 'Do Stuff',
     id: 'f93286f2-0d8b-4316-b9c3-50a0b52eb834',
