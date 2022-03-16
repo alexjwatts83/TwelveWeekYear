@@ -1,4 +1,15 @@
 mat-tab-group {
+  ::ng-deep {
+    .mat-tab-label-content {
+      border: 0px solid red !important;
+      display: grid;
+      grid-template-columns: 1fr;
+      .week-num {
+        font-size: 1.2em;
+      }
+    }
+  }
+
   margin: 20px;
   .week-container {
     padding-top: 20px;
