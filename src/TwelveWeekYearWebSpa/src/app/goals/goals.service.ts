@@ -4,15 +4,27 @@ import { map } from 'rxjs/operators';
 import { Goal, GoalTypes, Task } from './models/goal';
 import { v4 as uuidv4 } from 'uuid';
 import { GOALS_DATA } from './goals-data';
+import { HttpClient } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root',
 })
 export class GoalsService {
-  private data: Goal[] = GOALS_DATA;
+  private data: Goal[] = [];
   private _goals$ = new BehaviorSubject<Goal[]>(this.data);
+  url = 'http://localhost:3000/goals';
 
-  constructor() {}
+  constructor(private http: HttpClient) {
+    let data = this.http.get(this.url).pipe(map((response: any) => {
+      console.log({response});
+      return response;
+    }));
+    // console.log({data});
+    data.subscribe(x => {
+      console.log({x});
+      this.setGoals(x);
+    })
+  }
 
   getGoals(goalType: GoalTypes): Observable<Goal[]> {
     return this._goals$
