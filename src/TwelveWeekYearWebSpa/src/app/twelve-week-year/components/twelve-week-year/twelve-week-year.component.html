@@ -3,7 +3,7 @@
     <ng-template mat-tab-label>
       <div class="week-num">Week {{ week.number }}</div>
       <div>
-        {{ week.date | date : 'dd/MM' }}
+        {{ week.date | date: "dd/MM" }}
       </div>
     </ng-template>
     <div class="week-container">
@@ -12,10 +12,13 @@
       <app-week-list [days]="week.days"></app-week-list>
 
       <div class="sub-tasks-container">
-        <!-- <h3>Goals count: {{ data.goals.length }};</h3> -->
         <ng-container *ngFor="let goal of data.goals; index as i">
           <mat-card>
-            <mat-card-title>{{ i + 1 }}. {{ goal.description }} ({{ goal.tasks.length }})</mat-card-title>
+            <mat-card-title
+              >{{ i + 1 }}. {{ goal.description }} ({{
+                goal.tasks.length
+              }})</mat-card-title
+            >
             <mat-card-subtitle>{{ goal.tasks.length }} Tasks</mat-card-subtitle>
             <mat-card-content>
               <div *ngFor="let task of goal.tasks" class="task-container">
@@ -23,7 +26,11 @@
                   {{ task.description }} ({{ task.id }})
                 </div>
                 <div>
-                  Current Progress: {{ getGoalDailyProgressCount(week.number, goal.id, task.id) }} of {{ week.days.length }}
+                  Current Progress:
+                  {{
+                    getGoalDailyProgressCount(week.number, goal.id, task.id)
+                  }}
+                  of {{ week.days.length }}
                 </div>
                 <app-subtasks-list
                   [week]="week"
@@ -35,7 +42,7 @@
                     [task]="task"
                     [week]="week"
                   ></app-task-comments-list>
-    
+
                   <app-task-comments-input
                     [task]="task"
                     [week]="week"
