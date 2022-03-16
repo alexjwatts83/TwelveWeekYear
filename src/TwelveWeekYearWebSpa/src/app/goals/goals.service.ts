@@ -3,7 +3,6 @@ import { BehaviorSubject, Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { Goal, GoalTypes, Task } from './models/goal';
 import { v4 as uuidv4 } from 'uuid';
-import { GOALS_DATA } from './goals-data';
 import { HttpClient } from '@angular/common/http';
 
 @Injectable({
@@ -16,12 +15,9 @@ export class GoalsService {
 
   constructor(private http: HttpClient) {
     let data = this.http.get(this.url).pipe(map((response: any) => {
-      console.log({response});
       return response;
     }));
-    // console.log({data});
     data.subscribe(x => {
-      console.log({x});
       this.setGoals(x);
     })
   }
