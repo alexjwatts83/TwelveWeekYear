@@ -14,12 +14,16 @@ export class GoalsService {
   url = 'http://localhost:3000/goals';
 
   constructor(private http: HttpClient) {
-    let data = this.http.get(this.url).pipe(map((response: any) => {
-      return response;
-    }));
-    data.subscribe(x => {
-      this.setGoals(x);
-    })
+    this.http
+      .get(this.url)
+      .pipe(
+        map((response: any) => {
+          return response;
+        })
+      )
+      .subscribe((x) => {
+        this.setGoals(x);
+      });
   }
 
   getGoals(goalType: GoalTypes): Observable<Goal[]> {
