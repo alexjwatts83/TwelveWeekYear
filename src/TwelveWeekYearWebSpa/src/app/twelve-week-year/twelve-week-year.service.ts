@@ -42,6 +42,7 @@ export class TwelveWeekYearService {
     this.data$.subscribe((x) => {
       this.setGoals(x);
       this.init(x);
+      console.log({x});
     });
   }
 
