@@ -22,10 +22,12 @@ export class SubtasksListComponent implements OnInit {
 
   ngOnInit(): void {
     this._taskResults = this.taskResults.filter(x => x.taskId == this.task.id);
-    this.task.subTasks.forEach(st => {
-      let results = this.taskResults.filter(tr => tr.subTaskId === st.id);
-      this._subTaskResults.push(...results);
-    });
+    if (this.task && this.task.subTasks) {
+      this.task.subTasks.forEach(st => {
+        let results = this.taskResults.filter(tr => tr.subTaskId === st.id);
+        this._subTaskResults.push(...results);
+      });
+    }
   }
 
   isTaskCompleted(taskId: string, date: Date): boolean {

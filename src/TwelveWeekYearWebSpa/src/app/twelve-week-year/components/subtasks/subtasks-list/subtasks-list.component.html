@@ -1,61 +1,67 @@
-<table class="tab">
-  <thead>
-    <tr>
-      <th *ngIf="task.subTasks.length > 0">&nbsp;</th>
-      <th *ngFor="let day of week.days">
-        {{ day.date | date: "EEEE (d/M)" }}
-      </th>
-    </tr>
-  </thead>
+<ng-container *ngIf="task.subTasks">
+  <table class="tab">
+    <thead>
+      <tr>
+        <th *ngIf="task.subTasks.length > 0">&nbsp;</th>
+        <th *ngFor="let day of week.days">
+          {{ day.date | date: "EEEE (d/M)" }}
+        </th>
+      </tr>
+    </thead>
 
-  <!-- TODO figure out a better way to do this later on -->
-  <tbody *ngIf="task.subTasks.length > 0">
-    <tr *ngFor="let subTask of task.subTasks">
-      <td>
-        {{ subTask.description }}
-      </td>
-      <td *ngFor="let day of week.days">
-        <mat-icon
-          *ngIf="isSubTaskCompleted(subTask.id, day.date)"
-          class="is-completed"
-          aria-hidden="false"
-          aria-label="Completed"
-          (click)="toggleSubTaskCompleted(subTask.id, day.date)">
-          check_circle
-        </mat-icon>
-        <mat-icon
-          *ngIf="!isSubTaskCompleted(subTask.id, day.date)"
-          class="is-incomplete"
-          aria-hidden="false"
-          aria-label="Incompleted"
-          (click)="toggleSubTaskCompleted(subTask.id, day.date)">
-          check_circle_outline
-        </mat-icon>
-      </td>
-    </tr>
-  </tbody>
+    <!-- TODO figure out a better way to do this later on -->
+    <tbody *ngIf="task.subTasks.length > 0">
+      <tr *ngFor="let subTask of task.subTasks">
+        <td>
+          {{ subTask.description }}
+        </td>
+        <td *ngFor="let day of week.days">
+          <mat-icon
+            *ngIf="isSubTaskCompleted(subTask.id, day.date)"
+            class="is-completed"
+            aria-hidden="false"
+            aria-label="Completed"
+            (click)="toggleSubTaskCompleted(subTask.id, day.date)"
+          >
+            check_circle
+          </mat-icon>
+          <mat-icon
+            *ngIf="!isSubTaskCompleted(subTask.id, day.date)"
+            class="is-incomplete"
+            aria-hidden="false"
+            aria-label="Incompleted"
+            (click)="toggleSubTaskCompleted(subTask.id, day.date)"
+          >
+            check_circle_outline
+          </mat-icon>
+        </td>
+      </tr>
+    </tbody>
 
-  <!-- Two tbody, lols -->
-  <tbody *ngIf="task.subTasks.length === 0">
-    <tr>
-      <td *ngFor="let day of week.days">
-        <mat-icon
-          *ngIf="isTaskCompleted(task.id, day.date)"
-          class="is-completed"
-          aria-hidden="false"
-          aria-label="Completed"
-          (click)="toggleTaskCompleted(task.id, day.date)">
-          check_circle
-        </mat-icon>
-        <mat-icon
-          *ngIf="!isTaskCompleted(task.id, day.date)"
-          class="is-incomplete"
-          aria-hidden="false"
-          aria-label="Completed"
-          (click)="toggleTaskCompleted(task.id, day.date)">
-          check_circle_outline
-        </mat-icon>
-      </td>
-    </tr>
-  </tbody>
-</table>
+    <!-- Two tbody, lols -->
+    <tbody *ngIf="task.subTasks.length === 0">
+      <tr>
+        <td *ngFor="let day of week.days">
+          <mat-icon
+            *ngIf="isTaskCompleted(task.id, day.date)"
+            class="is-completed"
+            aria-hidden="false"
+            aria-label="Completed"
+            (click)="toggleTaskCompleted(task.id, day.date)"
+          >
+            check_circle
+          </mat-icon>
+          <mat-icon
+            *ngIf="!isTaskCompleted(task.id, day.date)"
+            class="is-incomplete"
+            aria-hidden="false"
+            aria-label="Completed"
+            (click)="toggleTaskCompleted(task.id, day.date)"
+          >
+            check_circle_outline
+          </mat-icon>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</ng-container>
