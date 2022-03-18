@@ -119,6 +119,9 @@ export class TwelveWeekYearService {
         x.tasks.forEach((t) => {
           const w = weeks[weeks.length - 1];
           w.days.forEach((d) => {
+            if (t.subTasks == null) {
+              t.subTasks = [];
+            }
             if (t.subTasks.length === 0) {
               let taskResult: WeekDayResult = {
                 weekNumber: w.number,
