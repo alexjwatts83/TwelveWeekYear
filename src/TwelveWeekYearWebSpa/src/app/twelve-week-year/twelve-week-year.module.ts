@@ -9,6 +9,7 @@ import { SharedModule } from '../shared/shared.module';
 import { CommentsListComponent } from './components/task-comments/task-comments-list/task-comments-list.component';
 import { QuillModule } from 'ngx-quill';
 import { TwelveWeekYearRoutingModule } from './twelve-week-year-routing.module';
+import { FinalThoughtsComponent } from './components/final-thoughts/final-thoughts.component';
 
 @NgModule({
   declarations: [
@@ -17,6 +18,7 @@ import { TwelveWeekYearRoutingModule } from './twelve-week-year-routing.module';
     SubtasksListComponent,
     CommentsListComponent,
     CommentsInputComponent,
+    FinalThoughtsComponent
   ],
   imports: [
     CommonModule,
