@@ -12,12 +12,11 @@ import { NgxSpinnerModule } from "ngx-spinner";
 import { LoadingInterceptor } from './_interceptor/loading.interceptor';
 import { LayoutModule } from './layout/layout.module';
 import {OverlayModule} from '@angular/cdk/overlay';
-import { FinalThoughtsComponent } from './tweleve-week-year/components/final-thoughts/final-thoughts.component';
+
 @NgModule({
   declarations: [
     AppComponent,
     DashboardComponent,
-    FinalThoughtsComponent
   ],
   imports: [
     BrowserModule,
