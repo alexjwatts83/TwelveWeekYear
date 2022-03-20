@@ -1,14 +1,8 @@
 import { Injectable } from '@angular/core';
-import { Observable, BehaviorSubject, of } from 'rxjs';
+import { Observable, BehaviorSubject } from 'rxjs';
 import { GoalsService } from '../goals/goals.service';
 import { Goal, GoalTypes } from '../goals/models';
 import { TwelveWeekYear, Week, WeekDayResult } from './models';
-
-// export interface TwelveWeekYearData {
-//   goals: Goal[];
-//   weeks: Week[];
-//   taskResults: WeekDayResult[];
-// }
 
 enum Days {
   sunday = 0,
