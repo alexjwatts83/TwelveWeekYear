@@ -25,8 +25,6 @@ import { TwelveWeekYearRoutingModule } from './twelve-week-year-routing.module';
     TwelveWeekYearRoutingModule,
     QuillModule.forRoot(),
   ],
-  exports: [
-    TwelveWeekYearComponent,
-  ]
+  exports: [TwelveWeekYearComponent],
 })
-export class TwelveWeekYearModule { }
+export class TwelveWeekYearModule {}
