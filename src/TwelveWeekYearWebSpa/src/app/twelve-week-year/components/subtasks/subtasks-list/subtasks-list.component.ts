@@ -1,11 +1,11 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { Week, WeekDayResult } from "../../../models";
+import { Week, WeekDayResult } from '../../../models';
 import { Task } from 'src/app/goals/models';
 
 @Component({
   selector: 'app-subtasks-list',
   templateUrl: './subtasks-list.component.html',
-  styleUrls: ['./subtasks-list.component.scss']
+  styleUrls: ['./subtasks-list.component.scss'],
 })
 export class SubtasksListComponent implements OnInit {
   @Input() task!: Task;
@@ -15,23 +15,27 @@ export class SubtasksListComponent implements OnInit {
   private _taskResults: WeekDayResult[];
   private _subTaskResults: WeekDayResult[];
 
-  constructor() { 
+  constructor() {
     this._taskResults = [];
     this._subTaskResults = [];
   }
 
   ngOnInit(): void {
-    this._taskResults = this.taskResults.filter(x => x.taskId == this.task.id);
+    this._taskResults = this.taskResults.filter(
+      (x) => x.taskId == this.task.id
+    );
     if (this.task && this.task.subTasks) {
-      this.task.subTasks.forEach(st => {
-        let results = this.taskResults.filter(tr => tr.subTaskId === st.id);
+      this.task.subTasks.forEach((st) => {
+        let results = this.taskResults.filter((tr) => tr.subTaskId === st.id);
         this._subTaskResults.push(...results);
       });
     }
   }
 
   isTaskCompleted(taskId: string, date: Date): boolean {
-    let taskResult = this._taskResults.find(x => x.date === date && x.taskId === taskId && x.subTaskId == null);
+    let taskResult = this._taskResults.find(
+      (x) => x.date === date && x.taskId === taskId && x.subTaskId == null
+    );
     if (taskResult == null) {
       return false;
     }
@@ -39,7 +43,9 @@ export class SubtasksListComponent implements OnInit {
   }
 
   isSubTaskCompleted(subTaskId: string, date: Date): boolean {
-    let subTaskResult = this._subTaskResults.find(x => x.date === date && x.subTaskId === subTaskId);
+    let subTaskResult = this._subTaskResults.find(
+      (x) => x.date === date && x.subTaskId === subTaskId
+    );
     if (subTaskResult == null) {
       return false;
     }
@@ -47,7 +53,9 @@ export class SubtasksListComponent implements OnInit {
   }
 
   toggleSubTaskCompleted(subTaskId: string, date: Date) {
-    let subTaskResult = this._subTaskResults.find(x => x.date === date && x.subTaskId === subTaskId);
+    let subTaskResult = this._subTaskResults.find(
+      (x) => x.date === date && x.subTaskId === subTaskId
+    );
     if (subTaskResult == null) {
       return;
     }
@@ -56,11 +64,13 @@ export class SubtasksListComponent implements OnInit {
   }
 
   toggleTaskCompleted(taskId: string, date: Date) {
-    let taskResult = this._taskResults.find(x => x.date === date && x.taskId === taskId && x.subTaskId == null);
+    let taskResult = this._taskResults.find(
+      (x) => x.date === date && x.taskId === taskId && x.subTaskId == null
+    );
     if (taskResult == null) {
       return;
     }
-    
+
     taskResult.completed = !taskResult.completed;
   }
 }
