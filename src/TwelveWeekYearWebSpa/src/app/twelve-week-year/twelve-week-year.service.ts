@@ -17,7 +17,7 @@ enum Days {
   wednesday = 3,
   thursday = 4,
   friday = 5,
-  saturday = 6, 
+  saturday = 6,
 }
 
 @Injectable({
@@ -31,7 +31,7 @@ export class TwelveWeekYearService {
     weeks: [],
     end: new Date(),
     start: new Date(),
-    finalThoughts: 'lols'
+    finalThoughts: 'lols',
   };
   private _goals$ = new BehaviorSubject<TwelveWeekYear>(
     this.twelveWeekYearData
@@ -42,7 +42,7 @@ export class TwelveWeekYearService {
     this.data$.subscribe((x) => {
       this.setGoals(x);
       this.init(x);
-      console.log({x});
+      console.log({ x });
     });
   }
 
@@ -52,8 +52,8 @@ export class TwelveWeekYearService {
   }
 
   private setWeeks(weeks: Week[]) {
-    this.twelveWeekYearData.start =  weeks[0].date;
-    this.twelveWeekYearData.end =  weeks[weeks.length - 1].date;
+    this.twelveWeekYearData.start = weeks[0].date;
+    this.twelveWeekYearData.end = weeks[weeks.length - 1].date;
     this.twelveWeekYearData.weeks = weeks;
     this._goals$.next(this.twelveWeekYearData);
   }
