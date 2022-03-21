@@ -10,6 +10,7 @@ import { CommentsListComponent } from './components/task-comments/task-comments-
 import { QuillModule } from 'ngx-quill';
 import { TwelveWeekYearRoutingModule } from './twelve-week-year-routing.module';
 import { FinalThoughtsComponent } from './components/final-thoughts/final-thoughts.component';
+import { TwelveWeekYearTabComponent } from './components/twelve-week-year-tab/twelve-week-year-tab.component';
 
 @NgModule({
   declarations: [
@@ -19,6 +20,7 @@ import { FinalThoughtsComponent } from './components/final-thoughts/final-though
     CommentsListComponent,
     CommentsInputComponent,
     FinalThoughtsComponent,
+    TwelveWeekYearTabComponent,
   ],
   imports: [
     CommonModule,
