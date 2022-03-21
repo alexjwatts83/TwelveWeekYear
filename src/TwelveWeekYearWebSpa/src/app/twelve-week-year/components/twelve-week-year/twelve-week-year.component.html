@@ -7,59 +7,7 @@
           {{ week.date | date: "dd/MM" }}
         </div>
       </ng-template>
-      <div class="week-container">
-        <h2>Week {{ week.number }} ({{ week.date | date }})</h2>
-
-        <app-week-list [days]="week.days"></app-week-list>
-
-        <div class="sub-tasks-container">
-          <ng-container *ngFor="let goal of data.goals; index as i">
-            <mat-card>
-              <mat-card-title
-                >{{ i + 1 }}. {{ goal.description }} ({{
-                  goal.tasks.length
-                }})</mat-card-title
-              >
-              <mat-card-subtitle
-                >{{ goal.tasks.length }} Tasks</mat-card-subtitle
-              >
-              <mat-card-content>
-                <div *ngFor="let task of goal.tasks" class="task-container">
-                  <div class="task-description">
-                    {{ task.description }} ({{ task.id }})
-                  </div>
-                  <div>
-                    Current Progress:
-                    {{
-                      getGoalDailyProgressCount(week.number, goal.id, task.id)
-                    }}
-                    of {{ week.days.length }}
-                  </div>
-                  <app-subtasks-list
-                    [week]="week"
-                    [task]="task"
-                    [taskResults]="data.taskResults"
-                  ></app-subtasks-list>
-                  <div class="comments-container">
-                    <app-task-comments-list
-                      [task]="task"
-                      [week]="week"
-                    ></app-task-comments-list>
-
-                    <app-task-comments-input
-                      [task]="task"
-                      [week]="week"
-                    ></app-task-comments-input>
-                  </div>
-                </div>
-              </mat-card-content>
-              <mat-card-actions>
-                <button mat-button>SHARE</button>
-              </mat-card-actions>
-            </mat-card>
-          </ng-container>
-        </div>
-      </div>
+      <app-twelve-week-year-tab [week]="week" [goals]="data.goals" [taskResults]="data.taskResults"></app-twelve-week-year-tab>
     </mat-tab>
     <mat-tab>
       <ng-template mat-tab-label>
