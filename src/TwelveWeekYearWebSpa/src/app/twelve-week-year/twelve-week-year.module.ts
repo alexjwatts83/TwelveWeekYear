@@ -18,7 +18,7 @@ import { FinalThoughtsComponent } from './components/final-thoughts/final-though
     SubtasksListComponent,
     CommentsListComponent,
     CommentsInputComponent,
-    FinalThoughtsComponent
+    FinalThoughtsComponent,
   ],
   imports: [
     CommonModule,
