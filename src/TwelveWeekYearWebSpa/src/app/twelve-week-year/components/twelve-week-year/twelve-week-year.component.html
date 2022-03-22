@@ -7,7 +7,11 @@
           {{ week.date | date: "dd/MM" }}
         </div>
       </ng-template>
-      <app-twelve-week-year-tab [week]="week" [goals]="data.goals" [taskResults]="data.taskResults"></app-twelve-week-year-tab>
+      <app-twelve-week-year-tab
+        [week]="week"
+        [goals]="data.goals"
+        [taskResults]="data.taskResults"
+      ></app-twelve-week-year-tab>
     </mat-tab>
     <mat-tab>
       <ng-template mat-tab-label>
