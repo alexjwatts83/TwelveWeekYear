@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
-import { TwelveWeekYear, WeekDayResult } from '../../models';
+import { TwelveWeekYear } from '../../models';
 import { TwelveWeekYearService } from '../../twelve-week-year.service';
 
 @Component({
