@@ -11,20 +11,19 @@ import { Goal, GoalTypes } from '../models';
   styleUrls: ['./goals-grid.component.scss'],
 })
 export class GoalsGridComponent implements OnInit {
-  @Input() goalType!: GoalTypes;;
+  @Input() goalType!: GoalTypes;
 
   displayedColumns: string[] = ['id', 'description', 'type'];
   dataSource = new MatTableDataSource<Goal>();
   data$!: Observable<Goal[]>;
   heading!: string;
-  
-  constructor(private service: GoalsService, private router: Router) { 
+
+  constructor(private service: GoalsService, private router: Router) {
     this.displayedColumns = ['description'];
   }
 
   ngOnInit(): void {
-    if (this.goalType == null)  {
-
+    if (this.goalType == null) {
       this.goalType = GoalTypes.TwelveWeekYear;
       this.heading = 'Twelve Week Year Goals';
       switch (this.router.url) {
@@ -38,9 +37,9 @@ export class GoalsGridComponent implements OnInit {
           this.heading = 'This Year Goals';
           break;
         }
-      }  
+      }
     }
-    
+
     this.data$ = this.service.getGoals(this.goalType);
 
     this.data$.subscribe((x) => {
