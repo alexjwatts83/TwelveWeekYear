@@ -8,16 +8,17 @@
       <mat-expansion-panel-header>
         <mat-panel-title>{{ title }}</mat-panel-title>
         <mat-panel-description>
-          <span *ngIf="data$ | async as data">
-            <span *ngIf="data.length === 0">No Goals</span>
-            <span *ngIf="data.length === 1">1 Goals</span>
-            <span *ngIf="data.length > 1">{{ data.length }} Goals</span>
-          </span>
+          <ng-container *ngIf="data$ | async as data">
+            <ng-container [ngSwitch]="data.length">
+              <span *ngSwitchCase="0">No Goals</span>
+              <span *ngSwitchCase="1">1 Goals</span>
+              <span *ngSwitchDefault>{{ data.length }} Goals</span>
+            </ng-container>
+          </ng-container>
         </mat-panel-description>
       </mat-expansion-panel-header>
       <app-goals-input [goalType]="goalType"></app-goals-input>
       <app-goals-grid [goalType]="goalType"></app-goals-grid>
     </mat-expansion-panel>
   </mat-accordion>
-  
 </div>
