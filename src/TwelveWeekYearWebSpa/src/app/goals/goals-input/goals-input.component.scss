@@ -3,7 +3,6 @@
   display: flex;
   flex-flow: row wrap;
   margin-bottom: 0px;
-  border: 0px solid red;
   div {
     width: 100%;
 
@@ -13,6 +12,5 @@
   }
   div.goal-input {
     flex: 1;
-    border: 0px solid red;
   }
 }
