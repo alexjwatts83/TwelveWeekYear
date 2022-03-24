@@ -18,7 +18,6 @@ export class GoalsService {
       .get(this.url)
       .pipe(
         map((response: any) => {
-          console.log({response});
           return response;
         })
       )
