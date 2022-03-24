@@ -1,5 +1,7 @@
 <div class="task-container" *ngIf="tasksForEdit$ | async as tasksForEdit">
-  <ng-container *ngIf="tasksForEdit.length === 0; else tasksTemplate"></ng-container>
+  <ng-container
+    *ngIf="tasksForEdit.length === 0; else tasksTemplate"
+  ></ng-container>
   <ng-template #tasksTemplate>
     <div class="header">Tasks ({{ tasksForEdit.length }})</div>
     <div class="task-list">
@@ -12,13 +14,21 @@
           <mat-icon>golf_course</mat-icon>
         </div>
         <div class="col task-display">
-          <div *ngIf="!task.isEditing; else isEditingTemplate" class="task-display-description">
+          <div
+            *ngIf="!task.isEditing; else isEditingTemplate"
+            class="task-display-description"
+          >
             {{ task.description }} => {{ task.isEditing }}
           </div>
           <ng-template #isEditingTemplate>
             <mat-form-field class="example-form-field" appearance="fill">
               <mat-label>Subtask Description</mat-label>
-              <textarea matInput placeholder="Enter subtask Description" [(ngModel)]="task.description" autocomplete="on"></textarea>
+              <textarea
+                matInput
+                placeholder="Enter subtask Description"
+                [(ngModel)]="task.description"
+                autocomplete="on"
+              ></textarea>
             </mat-form-field>
           </ng-template>
           <div class="sub-task-container" *ngFor="let subtask of task.subTasks">
@@ -39,7 +49,12 @@
         <div class="col task-commands">
           <ng-container *ngIf="!task.isEditing; else isEditingCommand">
             <div class="buttons">
-              <button type="button" mat-icon-button color="primary" (click)="editTaskDescription(i)">
+              <button
+                type="button"
+                mat-icon-button
+                color="primary"
+                (click)="editTaskDescription(i)"
+              >
                 <mat-icon>edit</mat-icon>
               </button>
               <button type="button" mat-icon-button color="primary">
@@ -49,7 +64,12 @@
           </ng-container>
           <ng-template #isEditingCommand>
             <div>
-              <button type="button" mat-icon-button color="primary" (click)="saveTaskDescription(i)">
+              <button
+                type="button"
+                mat-icon-button
+                color="primary"
+                (click)="saveTaskDescription(i)"
+              >
                 <mat-icon>save</mat-icon>
               </button>
             </div>
