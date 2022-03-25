@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { FormGroup, FormControl, Validators, FormGroupDirective } from '@angular/forms';
+import { TaskCommentsService } from '../task-comments/task-comments.service';
 
 @Component({
   selector: 'app-final-thoughts',
@@ -7,9 +9,25 @@ import { Component, OnInit } from '@angular/core';
 })
 export class FinalThoughtsComponent implements OnInit {
 
-  constructor() { }
-
-  ngOnInit(): void {
+  commentsForm!: FormGroup;
+  constructor(private service: TaskCommentsService) {
+    this.commentsForm = new FormGroup({
+      comment: new FormControl('', [Validators.required]),
+    });
   }
 
+  ngOnInit(): void {
+
+  }
+
+  onSubmit(f: FormGroupDirective) {
+    // this.service.addComment(
+    //   this.task.id,
+    //   this.week.number,
+    //   f.value.comment,
+    //   new Date()
+    // );
+    this.commentsForm.reset();
+    f.resetForm();
+  }
 }

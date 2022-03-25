@@ -2,5 +2,33 @@
   <h2>Final Thoughts</h2>
   <div>
     <h3>Comments</h3>
+
+    <div class="form-container">
+      <form
+        class="example-form"
+        [formGroup]="commentsForm"
+        #f="ngForm"
+        (ngSubmit)="onSubmit(f)"
+      >
+        <mat-form-field class="example-full-width" appearance="fill">
+          <mat-label>Leave a comment</mat-label>
+          <textarea
+            matInput
+            placeholder="Final Thoughts"
+            formControlName="comment"
+            autocomplete="on"
+          ></textarea>
+        </mat-form-field>
+        <button
+          mat-raised-button
+          color="primary"
+          type="submit"
+          [disabled]="f.invalid"
+        >
+          Add Comment
+        </button>
+      </form>
+    </div>
+    
   </div>
 </div>
