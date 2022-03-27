@@ -10,20 +10,8 @@
         #f="ngForm"
         (ngSubmit)="onSubmit(f)"
       >
-      <quill-editor
-      [styles]="{ height: 'auto' }"
-      formControlName="comment"
-    >
-    </quill-editor>
-        <!-- <mat-form-field class="example-full-width" appearance="fill">
-          <mat-label>Leave a comment</mat-label>
-          <textarea
-            matInput
-            placeholder="Final Thoughts"
-            formControlName="comment"
-            autocomplete="on"
-          ></textarea>
-        </mat-form-field> -->
+        <quill-editor [styles]="{ height: 'auto' }" formControlName="comment">
+        </quill-editor>
         <button
           mat-raised-button
           color="primary"
@@ -34,6 +22,5 @@
         </button>
       </form>
     </div>
-    
   </div>
 </div>
