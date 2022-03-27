@@ -21,12 +21,6 @@ export class FinalThoughtsComponent implements OnInit {
   }
 
   onSubmit(f: FormGroupDirective) {
-    // this.service.addComment(
-    //   this.task.id,
-    //   this.week.number,
-    //   f.value.comment,
-    //   new Date()
-    // );
     this.commentsForm.reset();
     f.resetForm();
   }
