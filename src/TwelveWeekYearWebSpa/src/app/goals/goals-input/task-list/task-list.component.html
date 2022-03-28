@@ -2,12 +2,14 @@
   <ng-container
     *ngIf="tasksForEdit.length === 0; else tasksTemplate"
   ></ng-container>
+
   <ng-template #tasksTemplate>
     <div class="header">Tasks ({{ tasksForEdit.length }})</div>
     <div class="task-list">
       <div class="col header">#</div>
       <div class="col header">Description</div>
       <div class="col header">&nbsp;</div>
+
       <ng-container *ngFor="let task of tasksForEdit; let i = index">
         <div class="col">
           <mat-icon>golf_course</mat-icon>
