@@ -1,26 +1,22 @@
 <div class="final-thoughts-container">
   <h2>Final Thoughts</h2>
-  <div>
-    <h4>Comments</h4>
-
-    <div class="form-container">
-      <form
-        class="example-form"
-        [formGroup]="commentsForm"
-        #f="ngForm"
-        (ngSubmit)="onSubmit(f)"
+  <div class="form-container">
+    <form
+      class="example-form"
+      [formGroup]="commentsForm"
+      #f="ngForm"
+      (ngSubmit)="onSubmit(f)"
+    >
+      <quill-editor [styles]="{ height: 'auto' }" formControlName="comment">
+      </quill-editor>
+      <button
+        mat-raised-button
+        color="primary"
+        type="submit"
+        [disabled]="f.invalid"
       >
-        <quill-editor [styles]="{ height: 'auto' }" formControlName="comment">
-        </quill-editor>
-        <button
-          mat-raised-button
-          color="primary"
-          type="submit"
-          [disabled]="f.invalid"
-        >
-          Add Comment
-        </button>
-      </form>
-    </div>
+        Add Comment
+      </button>
+    </form>
   </div>
 </div>
