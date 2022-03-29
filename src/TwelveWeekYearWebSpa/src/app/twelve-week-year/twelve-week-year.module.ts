@@ -11,6 +11,7 @@ import { QuillModule } from 'ngx-quill';
 import { TwelveWeekYearRoutingModule } from './twelve-week-year-routing.module';
 import { FinalThoughtsComponent } from './components/final-thoughts/final-thoughts.component';
 import { TwelveWeekYearTabComponent } from './components/twelve-week-year-tab/twelve-week-year-tab.component';
+import { SubtasksCardComponent } from './components/subtasks/subtasks-card/subtasks-card.component';
 
 @NgModule({
   declarations: [
@@ -21,6 +22,7 @@ import { TwelveWeekYearTabComponent } from './components/twelve-week-year-tab/tw
     CommentsInputComponent,
     FinalThoughtsComponent,
     TwelveWeekYearTabComponent,
+    SubtasksCardComponent,
   ],
   imports: [
     CommonModule,
