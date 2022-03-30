@@ -5,7 +5,7 @@ import { Week, WeekDayResult } from 'src/app/twelve-week-year/models';
 @Component({
   selector: 'app-subtasks-card',
   templateUrl: './subtasks-card.component.html',
-  styleUrls: ['./subtasks-card.component.scss']
+  styleUrls: ['./subtasks-card.component.scss'],
 })
 export class SubtasksCardComponent implements OnInit {
   @Input() i!: number;
@@ -13,10 +13,9 @@ export class SubtasksCardComponent implements OnInit {
   @Input() goal!: Goal;
   @Input() taskResults!: WeekDayResult[];
 
-  constructor() { }
+  constructor() {}
 
-  ngOnInit(): void {
-  }
+  ngOnInit(): void {}
   private groupBy<Val, Key>(
     list: Val[],
     predicate: (value: Val) => Key
