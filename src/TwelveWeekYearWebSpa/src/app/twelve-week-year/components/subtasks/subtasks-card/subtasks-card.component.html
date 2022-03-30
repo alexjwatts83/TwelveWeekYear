@@ -1,1 +1,35 @@
-<p>subtasks-card works!</p>
+<mat-card>
+  <mat-card-title
+    >{{ i + 1 }}. {{ goal.description }} ({{
+      goal.tasks.length
+    }})</mat-card-title
+  >
+  <mat-card-content>
+    <div *ngFor="let task of goal.tasks" class="task-container">
+      <div class="task-description">
+        {{ task.description }}
+      </div>
+      <div>
+        Current Progress:
+        {{ getGoalDailyProgressCount(week.number, goal.id, task.id) }}
+        of {{ week.days.length }}
+      </div>
+      <app-subtasks-list
+        [week]="week"
+        [task]="task"
+        [taskResults]="taskResults"
+      ></app-subtasks-list>
+      <div class="comments-container">
+        <app-task-comments-list
+          [task]="task"
+          [week]="week"
+        ></app-task-comments-list>
+
+        <app-task-comments-input
+          [task]="task"
+          [week]="week"
+        ></app-task-comments-input>
+      </div>
+    </div>
+  </mat-card-content>
+</mat-card>
