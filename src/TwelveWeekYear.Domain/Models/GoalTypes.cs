@@ -4,6 +4,7 @@
 	{
 		ThreeToFiveYear,
 		ThisYear,
-		TweleveWeekYear
+		TweleveWeekYear,
+		None
 	}
 }
