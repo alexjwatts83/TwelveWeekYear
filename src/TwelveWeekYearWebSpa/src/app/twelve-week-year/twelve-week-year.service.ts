@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 import { Observable, BehaviorSubject } from 'rxjs';
 import { GoalsService } from '../goals/goals.service';
-import { Goal, GoalTypes } from '../goals/models';
-import { TwelveWeekYear, Week, WeekDayResult } from './models';
+import { Goal, GoalTypes, Task } from '../goals/models';
+import { TwelveWeekYear, Week, WeekDay, WeekDayResult } from './models';
 
 enum Days {
   sunday = 0,
@@ -94,50 +94,13 @@ export class TwelveWeekYearService {
     date = this.addDays(date, -7);
     for (let i = 0; i < weeksCount; i++) {
       date = this.addDays(date, 7);
-      weeks.push({
-        number: i + 1,
-        date: date,
-        days: [],
-      });
-
-      for (let j = 0; j < daysCount; j++) {
-        let dayDate = this.addDays(date, j);
-        weeks[weeks.length - 1].days.push({
-          date: dayDate,
-          comments: ``,
-        });
-      }
+      this.initWeeksAndDays(weeks, i, date, daysCount);
 
       goals.forEach((x) => {
         x.tasks.forEach((t) => {
           const w = weeks[weeks.length - 1];
           w.days.forEach((d) => {
-            if (t.subTasks == null) {
-              t.subTasks = [];
-            }
-            if (t.subTasks.length === 0) {
-              let taskResult: WeekDayResult = {
-                weekNumber: w.number,
-                goalId: x.id,
-                taskId: t.id,
-                date: d.date,
-                completed: this.isOdd(this.getRandomInt(1, 100)),
-                subTaskId: null,
-              };
-              taskResults.push(taskResult);
-            } else {
-              t.subTasks.forEach((sb) => {
-                let taskResult: WeekDayResult = {
-                  weekNumber: w.number,
-                  goalId: x.id,
-                  taskId: t.id,
-                  date: d.date,
-                  completed: this.isOdd(this.getRandomInt(1, 100)),
-                  subTaskId: sb.id,
-                };
-                taskResults.push(taskResult);
-              });
-            }
+            this.setDaysSubtasks(t, w, x, d, taskResults);
           });
         });
       });
@@ -145,6 +108,52 @@ export class TwelveWeekYearService {
 
     this.setWeeks(weeks);
     this.setTaskResults(taskResults);
+  }
+
+  private setDaysSubtasks(t: Task, w: Week, x: Goal, d: WeekDay, taskResults: WeekDayResult[]) {
+    if (t.subTasks == null) {
+      t.subTasks = [];
+    }
+    if (t.subTasks.length === 0) {
+      let taskResult: WeekDayResult = {
+        weekNumber: w.number,
+        goalId: x.id,
+        taskId: t.id,
+        date: d.date,
+        completed: this.isOdd(this.getRandomInt(1, 100)),
+        subTaskId: null,
+      };
+      taskResults.push(taskResult);
+      return;
+    }
+    
+    t.subTasks.forEach((sb) => {
+      let taskResult: WeekDayResult = {
+        weekNumber: w.number,
+        goalId: x.id,
+        taskId: t.id,
+        date: d.date,
+        completed: this.isOdd(this.getRandomInt(1, 100)),
+        subTaskId: sb.id,
+      };
+      taskResults.push(taskResult);
+    });
+  }
+
+  private initWeeksAndDays(weeks: Week[], i: number, date: Date, daysCount: number) {
+    weeks.push({
+      number: i + 1,
+      date: date,
+      days: [],
+    });
+
+    for (let j = 0; j < daysCount; j++) {
+      let dayDate = this.addDays(date, j);
+      weeks[weeks.length - 1].days.push({
+        date: dayDate,
+        comments: ``,
+      });
+    }
   }
 
   private addDays(date: Date, days: number) {
