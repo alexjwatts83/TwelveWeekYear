@@ -110,7 +110,13 @@ export class TwelveWeekYearService {
     this.setTaskResults(taskResults);
   }
 
-  private setDaysSubtasks(t: Task, w: Week, x: Goal, d: WeekDay, taskResults: WeekDayResult[]) {
+  private setDaysSubtasks(
+    t: Task,
+    w: Week,
+    x: Goal,
+    d: WeekDay,
+    taskResults: WeekDayResult[]
+  ) {
     if (t.subTasks == null) {
       t.subTasks = [];
     }
@@ -118,25 +124,37 @@ export class TwelveWeekYearService {
       this.AddWeekDayResult(w, x, t, d, null, taskResults);
       return;
     }
-    
+
     t.subTasks.forEach((sb) => {
       this.AddWeekDayResult(w, x, t, d, sb, taskResults);
     });
   }
 
-  private AddWeekDayResult(w: Week, x: Goal, t: Task, d: WeekDay, sb: SubTask, taskResults: WeekDayResult[]) {
+  private AddWeekDayResult(
+    week: Week,
+    goal: Goal,
+    task: Task,
+    weekday: WeekDay,
+    subtask: SubTask | null,
+    taskResults: WeekDayResult[]
+  ) {
     let taskResult: WeekDayResult = {
-      weekNumber: w.number,
-      goalId: x.id,
-      taskId: t.id,
-      date: d.date,
+      weekNumber: week.number,
+      goalId: goal.id,
+      taskId: task.id,
+      date: weekday.date,
       completed: this.isOdd(this.getRandomInt(1, 100)),
-      subTaskId: sb?.id,
+      subTaskId: subtask != null ? subtask.id : null,
     };
     taskResults.push(taskResult);
   }
 
-  private initWeeksAndDays(weeks: Week[], i: number, date: Date, daysCount: number) {
+  private initWeeksAndDays(
+    weeks: Week[],
+    i: number,
+    date: Date,
+    daysCount: number
+  ) {
     weeks.push({
       number: i + 1,
       date: date,
