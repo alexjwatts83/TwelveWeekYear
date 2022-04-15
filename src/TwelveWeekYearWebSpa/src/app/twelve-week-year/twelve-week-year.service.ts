@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Observable, BehaviorSubject } from 'rxjs';
 import { GoalsService } from '../goals/goals.service';
-import { Goal, GoalTypes, Task } from '../goals/models';
+import { Goal, GoalTypes, SubTask, Task } from '../goals/models';
 import { TwelveWeekYear, Week, WeekDay, WeekDayResult } from './models';
 
 enum Days {
@@ -115,29 +115,25 @@ export class TwelveWeekYearService {
       t.subTasks = [];
     }
     if (t.subTasks.length === 0) {
-      let taskResult: WeekDayResult = {
-        weekNumber: w.number,
-        goalId: x.id,
-        taskId: t.id,
-        date: d.date,
-        completed: this.isOdd(this.getRandomInt(1, 100)),
-        subTaskId: null,
-      };
-      taskResults.push(taskResult);
+      this.AddWeekDayResult(w, x, t, d, null, taskResults);
       return;
     }
     
     t.subTasks.forEach((sb) => {
-      let taskResult: WeekDayResult = {
-        weekNumber: w.number,
-        goalId: x.id,
-        taskId: t.id,
-        date: d.date,
-        completed: this.isOdd(this.getRandomInt(1, 100)),
-        subTaskId: sb.id,
-      };
-      taskResults.push(taskResult);
+      this.AddWeekDayResult(w, x, t, d, sb, taskResults);
     });
+  }
+
+  private AddWeekDayResult(w: Week, x: Goal, t: Task, d: WeekDay, sb: SubTask, taskResults: WeekDayResult[]) {
+    let taskResult: WeekDayResult = {
+      weekNumber: w.number,
+      goalId: x.id,
+      taskId: t.id,
+      date: d.date,
+      completed: this.isOdd(this.getRandomInt(1, 100)),
+      subTaskId: sb?.id,
+    };
+    taskResults.push(taskResult);
   }
 
   private initWeeksAndDays(weeks: Week[], i: number, date: Date, daysCount: number) {
