@@ -25,7 +25,7 @@ export class TwelveWeekYearService {
     weeks: [],
     end: new Date(),
     start: new Date(),
-    finalThoughts: 'lols',
+    finalThoughts: 'Tis my finals thoughts on the situation.',
   };
   private _goals$ = new BehaviorSubject<TwelveWeekYear>(
     this.twelveWeekYearData
@@ -36,7 +36,6 @@ export class TwelveWeekYearService {
     this.data$.subscribe((x) => {
       this.setGoals(x);
       this.init(x);
-      console.log({ x });
     });
   }
 
