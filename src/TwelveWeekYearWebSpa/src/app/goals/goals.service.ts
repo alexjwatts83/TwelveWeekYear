@@ -4,6 +4,7 @@ import { map } from 'rxjs/operators';
 import { Goal, GoalTypes, Task } from './models/goal';
 import { v4 as uuidv4 } from 'uuid';
 import { HttpClient } from '@angular/common/http';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root',
@@ -11,9 +12,10 @@ import { HttpClient } from '@angular/common/http';
 export class GoalsService {
   private data: Goal[] = [];
   private _goals$ = new BehaviorSubject<Goal[]>(this.data);
-  url = 'http://localhost:3000/goals';
+  private url: string;
 
   constructor(private http: HttpClient) {
+    this.url = environment.apiUrl;
     this.http
       .get(this.url)
       .pipe(
