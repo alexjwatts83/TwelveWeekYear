@@ -96,11 +96,11 @@ export class TwelveWeekYearService {
       date = this.addDays(date, 7);
       this.initWeeksAndDays(weeks, i, date, daysCount);
 
-      goals.forEach((x) => {
-        x.tasks.forEach((t) => {
-          const w = weeks[weeks.length - 1];
-          w.days.forEach((d) => {
-            this.setDaysSubtasks(t, w, x, d, taskResults);
+      goals.forEach((goal: Goal) => {
+        goal.tasks.forEach((task: Task) => {
+          const week = weeks[weeks.length - 1];
+          week.days.forEach((day) => {
+            this.setDaysSubtasks(task, week, goal, day, taskResults);
           });
         });
       });
