@@ -91,9 +91,9 @@ export class TwelveWeekYearService {
     let weeks: Week[] = [];
     let taskResults: WeekDayResult[] = [];
 
-    date = this.addDays(date, -7);
+    date = this.addDays(date, -daysCount);
     for (let i = 0; i < weeksCount; i++) {
-      date = this.addDays(date, 7);
+      date = this.addDays(date, daysCount);
       this.initWeeksAndDays(weeks, i, date, daysCount);
 
       goals.forEach((goal: Goal) => {
