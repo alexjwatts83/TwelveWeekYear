@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { Observable, BehaviorSubject } from 'rxjs';
 import { GoalsService } from '../goals/goals.service';
 import { Goal, GoalTypes, SubTask, Task } from '../goals/models';
+import { addDays, getRandomInt, isOdd } from '../shared/utilities';
 import { TwelveWeekYear, Week, WeekDay, WeekDayResult } from './models';
 
 enum Days {
@@ -91,9 +92,9 @@ export class TwelveWeekYearService {
     let weeks: Week[] = [];
     let taskResults: WeekDayResult[] = [];
 
-    date = this.addDays(date, -daysCount);
+    date = addDays(date, -daysCount);
     for (let i = 0; i < weeksCount; i++) {
-      date = this.addDays(date, daysCount);
+      date = addDays(date, daysCount);
       this.initWeeksAndDays(weeks, i, date, daysCount);
 
       goals.forEach((goal: Goal) => {
@@ -143,7 +144,7 @@ export class TwelveWeekYearService {
       goalId: goal.id,
       taskId: task.id,
       date: weekday.date,
-      completed: this.isOdd(this.getRandomInt(1, 100)),
+      completed: isOdd(getRandomInt(1, 100)),
       subTaskId: subtask != null ? subtask.id : null,
     };
     taskResults.push(taskResult);
@@ -162,27 +163,11 @@ export class TwelveWeekYearService {
     });
 
     for (let j = 0; j < daysCount; j++) {
-      let dayDate = this.addDays(date, j);
+      let dayDate = addDays(date, j);
       weeks[weeks.length - 1].days.push({
         date: dayDate,
         comments: ``,
       });
     }
-  }
-
-  private addDays(date: Date, days: number) {
-    var result = new Date(date);
-    result.setDate(result.getDate() + days);
-    return result;
-  }
-
-  private getRandomInt(min: number, max: number): number {
-    min = Math.ceil(min);
-    max = Math.floor(max);
-    return Math.floor(Math.random() * (max - min + 1)) + min;
-  }
-
-  private isOdd(num: number) {
-    return num % 2 == 1;
   }
 }
