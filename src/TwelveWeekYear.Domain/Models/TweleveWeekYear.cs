@@ -14,7 +14,7 @@ namespace TwelveWeekYear.Domain.Models
 		public string Name { get; set; }
 		[Required]
 		public string Description { get; set; }
-		public ICollection<Goal> Goals { get; set; }
-		public ICollection<TweleveWeekYearWeek> Weeks { get; set; }
+		public ICollection<Goal> Goals { get; set; } = new List<Goal>();
+		public ICollection<TweleveWeekYearWeek> Weeks { get; set; } = new List<TweleveWeekYearWeek>();
 	}
 }

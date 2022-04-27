@@ -12,6 +12,6 @@ namespace TwelveWeekYear.Domain.Models
 		public int WeekNumber { get; set; }
 		[Required]
 		public DateTime Date { get; set; }
-		public ICollection<WeekDay> Days { get; set; }
+		public ICollection<WeekDay> Days { get; set; } = new List<WeekDay>();
 	}
 }
