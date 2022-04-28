@@ -11,5 +11,9 @@ namespace TwelveWeekYear.Domain.Models
 		public DateTime Date { get; set; }
 		[Required]
 		public string Description { get; set; }
+
+		[Required]
+		public int TweleveWeekYearWeekId { get; set; }
+		public TweleveWeekYearWeek TweleveWeekYearWeek { get; set; }
 	}
 }
