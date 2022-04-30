@@ -12,11 +12,15 @@ namespace TwelveWeekYear.Domain.Models
 		[Required]
 		public string Description { get; set; }
 
+		[Required]
+		public int GoalTypeId { get; set; }
+		public GoalType GoalType { get; set; }
+
 		public ICollection<Task> Tasks { get; set; } = new List<Task>();
 
-		//[Required]
-		//public int TweleveWeekYearId { get; set; }
+		[Required]
+		public int TweleveWeekYearId { get; set; }
 
-		//public TweleveWeekYear TweleveWeekYear { get; set; }
+		public TweleveWeekYear TweleveWeekYear { get; set; }
 	}
 }

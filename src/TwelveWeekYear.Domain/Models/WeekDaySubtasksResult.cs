@@ -1,9 +1,10 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace TwelveWeekYear.Domain.Models
 {
-	public class WeekDayResult
+	public class WeekDaySubtasksResult
 	{
 		[Key]
 		public int Id { get; set; }
@@ -13,10 +14,8 @@ namespace TwelveWeekYear.Domain.Models
 		public DateTime Date { get; set; }
 		[Required]
 		public string Name { get; set; }
-		public int GoalId { get; set; }
+		[NotMapped]
 		public Goal Goal { get; set; }
-		public int TaskId { get; set; }
-		public Task Task { get; set; }
 		public int SubtaskId { get; set; }
 		public Subtask Subtask { get; set; }
 		[Required]

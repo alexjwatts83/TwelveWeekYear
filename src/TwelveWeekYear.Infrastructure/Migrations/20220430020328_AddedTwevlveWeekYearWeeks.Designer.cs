@@ -3,21 +3,49 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using TwelveWeekYear.Infrastructure.Persistence;
 
 namespace TwelveWeekYear.Infrastructure.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20220430020328_AddedTwevlveWeekYearWeeks")]
+    partial class AddedTwevlveWeekYearWeeks
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("ProductVersion", "5.0.16")
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+            modelBuilder.Entity("TwelveWeekYear.Domain.Models.DaysResult", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<bool>("Completed")
+                        .HasColumnType("bit");
+
+                    b.Property<DateTime>("Date")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("GoalId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Notes")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("GoalId");
+
+                    b.ToTable("DaysResults");
+                });
 
             modelBuilder.Entity("TwelveWeekYear.Domain.Models.Goal", b =>
                 {
@@ -171,88 +199,15 @@ namespace TwelveWeekYear.Infrastructure.Migrations
                     b.ToTable("TweleveWeekYearWeeks");
                 });
 
-            modelBuilder.Entity("TwelveWeekYear.Domain.Models.WeekDay", b =>
+            modelBuilder.Entity("TwelveWeekYear.Domain.Models.DaysResult", b =>
                 {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                    b.HasOne("TwelveWeekYear.Domain.Models.Goal", "Goal")
+                        .WithMany()
+                        .HasForeignKey("GoalId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
-                    b.Property<DateTime>("Date")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("Description")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("TweleveWeekYearWeekId")
-                        .HasColumnType("int");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("TweleveWeekYearWeekId");
-
-                    b.ToTable("WeekDays");
-                });
-
-            modelBuilder.Entity("TwelveWeekYear.Domain.Models.WeekDaySubtasksResult", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<bool>("Completed")
-                        .HasColumnType("bit");
-
-                    b.Property<DateTime>("Date")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("SubtaskId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("WeekNumber")
-                        .HasColumnType("int");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("SubtaskId");
-
-                    b.ToTable("WeekDaySubtasksResults");
-                });
-
-            modelBuilder.Entity("TwelveWeekYear.Domain.Models.WeekDayTasksResult", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<bool>("Completed")
-                        .HasColumnType("bit");
-
-                    b.Property<DateTime>("Date")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("TaskId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("WeekNumber")
-                        .HasColumnType("int");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("TaskId");
-
-                    b.ToTable("WeekDayTasksResults");
+                    b.Navigation("Goal");
                 });
 
             modelBuilder.Entity("TwelveWeekYear.Domain.Models.Goal", b =>
@@ -307,39 +262,6 @@ namespace TwelveWeekYear.Infrastructure.Migrations
                     b.Navigation("TweleveWeekYear");
                 });
 
-            modelBuilder.Entity("TwelveWeekYear.Domain.Models.WeekDay", b =>
-                {
-                    b.HasOne("TwelveWeekYear.Domain.Models.TweleveWeekYearWeek", "TweleveWeekYearWeek")
-                        .WithMany("Days")
-                        .HasForeignKey("TweleveWeekYearWeekId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("TweleveWeekYearWeek");
-                });
-
-            modelBuilder.Entity("TwelveWeekYear.Domain.Models.WeekDaySubtasksResult", b =>
-                {
-                    b.HasOne("TwelveWeekYear.Domain.Models.Subtask", "Subtask")
-                        .WithMany()
-                        .HasForeignKey("SubtaskId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Subtask");
-                });
-
-            modelBuilder.Entity("TwelveWeekYear.Domain.Models.WeekDayTasksResult", b =>
-                {
-                    b.HasOne("TwelveWeekYear.Domain.Models.Task", "Task")
-                        .WithMany()
-                        .HasForeignKey("TaskId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Task");
-                });
-
             modelBuilder.Entity("TwelveWeekYear.Domain.Models.Goal", b =>
                 {
                     b.Navigation("Tasks");
@@ -355,11 +277,6 @@ namespace TwelveWeekYear.Infrastructure.Migrations
                     b.Navigation("Goals");
 
                     b.Navigation("Weeks");
-                });
-
-            modelBuilder.Entity("TwelveWeekYear.Domain.Models.TweleveWeekYearWeek", b =>
-                {
-                    b.Navigation("Days");
                 });
 #pragma warning restore 612, 618
         }
