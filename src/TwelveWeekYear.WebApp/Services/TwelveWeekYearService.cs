@@ -6,8 +6,11 @@ using TwelveWeekYear.Domain.Models;
 
 namespace TwelveWeekYear.WebApp.Services
 {
-	public class TwelveWeekYearService: ITwelveWeekYearService
+	public class TwelveWeekYearService : ITwelveWeekYearService
 	{
-
+		public Task<TweleveWeekYear> GetData()
+		{
+			throw new NotImplementedException();
+		}
 	}
 }
