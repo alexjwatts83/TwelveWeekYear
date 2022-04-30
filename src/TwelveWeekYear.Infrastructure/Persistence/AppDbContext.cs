@@ -23,7 +23,19 @@ namespace TwelveWeekYear.Infrastructure.Persistence
 
 		protected override void OnModelCreating(ModelBuilder modelBuilder)
 		{
+			// Task has many Subtasks
+			modelBuilder
+				.Entity<Task>()
+				.HasMany(x => x.Subtasks)
+				.WithOne(x => x.Task!)
+				.HasForeignKey(x => x.TaskId);
 
+			// Subtasks has one Task
+			modelBuilder
+				.Entity<Subtask>()
+				.HasOne(x => x.Task)
+				.WithMany(x => x.Subtasks)
+				.HasForeignKey(x => x.TaskId);
 		}
 	}
 }
