@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 
 namespace TwelveWeekYear.Domain.Models
 {
@@ -11,9 +12,11 @@ namespace TwelveWeekYear.Domain.Models
 		[Required]
 		public string Description { get; set; }
 
-		[Required]
-		public int TweleveWeekYearId { get; set; }
+		public ICollection<Task> Tasks { get; set; } = new List<Task>();
 
-		public TweleveWeekYear TweleveWeekYear { get; set; }
+		//[Required]
+		//public int TweleveWeekYearId { get; set; }
+
+		//public TweleveWeekYear TweleveWeekYear { get; set; }
 	}
 }

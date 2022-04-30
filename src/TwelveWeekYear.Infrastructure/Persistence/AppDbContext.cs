@@ -10,27 +10,40 @@ namespace TwelveWeekYear.Infrastructure.Persistence
 
 		}
 
-		public DbSet<DaysResult> DaysResults { get; set; }
+		//public DbSet<DaysResult> DaysResults { get; set; }
 		public DbSet<Goal> Goals { get; set; }
-		public DbSet<GoalAction> GoalActions { get; set; }
 		public DbSet<Interval> Intervals { get; set; }
 		public DbSet<Subtask> Subtasks { get; set; }
-		public DbSet<Domain.Models.Task> Tasks { get; set; }
-		public DbSet<TweleveWeekYear> TweleveWeekYears { get; set; }
-		public DbSet<TweleveWeekYearWeek> TweleveWeekYearWeeks { get; set; }
-		public DbSet<WeekDay> WeekDays { get; set; }
-		public DbSet<WeekDayResult> WeekDayResults { get; set; }
+		public DbSet<Task> Tasks { get; set; }
+		//public DbSet<TweleveWeekYear> TweleveWeekYears { get; set; }
+		//public DbSet<TweleveWeekYearWeek> TweleveWeekYearWeeks { get; set; }
+		//public DbSet<WeekDay> WeekDays { get; set; }
+		//public DbSet<WeekDayResult> WeekDayResults { get; set; }
 
 		protected override void OnModelCreating(ModelBuilder modelBuilder)
 		{
-			// Task has many Subtasks
+			// Goal has many Task
+			modelBuilder
+				.Entity<Goal>()
+				.HasMany(x => x.Tasks)
+				.WithOne(x => x.Goal!)
+				.HasForeignKey(x => x.GoalId);
+
+			// Task has one Goal
+			modelBuilder
+				.Entity<Task>()
+				.HasOne(x => x.Goal)
+				.WithMany(x => x.Tasks)
+				.HasForeignKey(x => x.GoalId);
+
+			// Task has many Subtask
 			modelBuilder
 				.Entity<Task>()
 				.HasMany(x => x.Subtasks)
 				.WithOne(x => x.Task!)
 				.HasForeignKey(x => x.TaskId);
 
-			// Subtasks has one Task
+			// Subtask has one task
 			modelBuilder
 				.Entity<Subtask>()
 				.HasOne(x => x.Task)

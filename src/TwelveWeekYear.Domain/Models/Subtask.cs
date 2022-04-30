@@ -11,7 +11,6 @@ namespace TwelveWeekYear.Domain.Models
 
 		[Required]
 		public int TaskId { get; set; }
-
 		public Task Task { get; set; }
 	}
 }
