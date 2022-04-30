@@ -1,10 +1,9 @@
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using TwelveWeekYear.Infrastructure.Persistence;
+using TwelveWeekYear.Infrastructure;
 
 namespace TwelveWeekYear.WebApp
 {
@@ -20,8 +19,7 @@ namespace TwelveWeekYear.WebApp
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-			services.AddPooledDbContextFactory<AppDbContext>(opt => opt.UseSqlServer(_configuration.GetConnectionString("DbConStr")));
-
+			services.AddInfrastructure(_configuration);
 			services.AddRazorPages();
         }
 
