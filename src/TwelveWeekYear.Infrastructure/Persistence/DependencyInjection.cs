@@ -19,7 +19,7 @@ namespace TwelveWeekYear.Infrastructure
 					config.GetConnectionString("DbConStr")));
 			//services.AddPooledDbContextFactory<AppDbContext>(opt => opt.UseSqlServer(config.GetConnectionString("DbConStr")));
 
-			services.AddScoped(typeof(IBaseRepository), typeof(BaseRepository));
+			//services.AddScoped(typeof(IBaseRepository), typeof(BaseRepository));
 
 			// Add SqlMapper.AddTypeHandler here
 
