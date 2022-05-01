@@ -10,3 +10,6 @@ A work in progress app simple app used to record and monitor progress for the a 
 
 ### Update
 `dotnet ef database update --project TwelveWeekYear.Infrastructure -s TwelveWeekYear.WebApp`
+
+### Remove
+`dotnet ef migrations remove --project TwelveWeekYear.Infrastructure -s TwelveWeekYear.WebApp`

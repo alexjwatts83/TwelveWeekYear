@@ -6,7 +6,7 @@ namespace TwelveWeekYear.Domain.Models
 	public class Interval
 	{
 		[Key]
-		public int Id { get; set; }
+		public int IntervalId { get; set; }
 		[Required]
 		public DateTime DateStart { get; set; }
 		[Required]

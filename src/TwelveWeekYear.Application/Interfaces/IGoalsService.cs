@@ -6,8 +6,8 @@ namespace TwelveWeekYear.Application.Interfaces
 {
 	public interface IGoalsService
 	{
-		public Task<IEnumerable<Goal>> GetGoals(GoalTypes type);
+		public Task<IEnumerable<Goal>> GetGoals(GoalType type);
 		public void SetGoals(IEnumerable<Goal> goals);
-		public void AddGoal(string description, GoalTypes goalType, IEnumerable<Domain.Models.Task> task);
+		public void AddGoal(string description, GoalType goalType, IEnumerable<Domain.Models.Task> task);
 	}
 }

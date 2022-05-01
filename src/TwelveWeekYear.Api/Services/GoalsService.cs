@@ -8,12 +8,12 @@ namespace TwelveWeekYear.Api.Services
 {
 	public class GoalsService : IGoalsService
 	{
-		public void AddGoal(string description, GoalTypes goalType, IEnumerable<Domain.Models.Task> task)
+		public void AddGoal(string description, GoalType goalType, IEnumerable<Domain.Models.Task> task)
 		{
 			throw new NotImplementedException();
 		}
 
-		public Task<IEnumerable<Goal>> GetGoals(GoalTypes type)
+		public Task<IEnumerable<Goal>> GetGoals(GoalType type)
 		{
 			throw new NotImplementedException();
 		}
