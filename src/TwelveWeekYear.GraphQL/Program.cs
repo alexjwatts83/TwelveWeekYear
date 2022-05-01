@@ -10,24 +10,24 @@ using TwelveWeekYear.Infrastructure;
 
 namespace TwelveWeekYear.GraphQL
 {
-	public class Program
-    {
-        public static void Main(string[] args)
-        {
-			var host = CreateWebHostBuilder(args).Build();
-
+	public static class WebHostExtensions
+	{
+		public static IWebHost SeedAllTheThings(this IWebHost host)
+		{
 			using (var scope = host.Services.CreateScope())
 			{
 				var services = scope.ServiceProvider;
 
 				try
 				{
-					var context = services
-						.GetRequiredService<AppDbContext>();
+					//var context = services
+					//	.GetRequiredService<AppDbContext>();
 
-					context.Database.Migrate();
+					//context.Database.Migrate();
 
-					AppDbContextSeeder.Seed(context);
+					//AppDbContextSeeder.Seed(context);
+
+					return host;
 				}
 				catch (Exception ex)
 				{
@@ -40,9 +40,49 @@ namespace TwelveWeekYear.GraphQL
 					throw;
 				}
 			}
-
-			host.Run();
 		}
+	}
+
+	public class Program
+    {
+        public static void Main(string[] args)
+		{
+			var host = CreateWebHostBuilder(args).Build();
+
+			host.SeedAllTheThings().Run();
+			//SeedAllTheThings(host)
+			//	.Run();
+		}
+
+		//private static IWebHost SeedAllTheThings(IWebHost host)
+		//{
+		//	using (var scope = host.Services.CreateScope())
+		//	{
+		//		var services = scope.ServiceProvider;
+
+		//		try
+		//		{
+		//			var context = services
+		//				.GetRequiredService<AppDbContext>();
+
+		//			context.Database.Migrate();
+
+		//			AppDbContextSeeder.Seed(context);
+
+		//			return host;
+		//		}
+		//		catch (Exception ex)
+		//		{
+		//			var logger = services
+		//				.GetRequiredService<ILogger<Program>>();
+
+		//			logger.LogError(ex, "An error occurred while " +
+		//				"migrating or initializing the database.");
+
+		//			throw;
+		//		}
+		//	}
+		//}
 
 		public static IWebHostBuilder CreateWebHostBuilder(string[] args) =>
 			WebHost.CreateDefaultBuilder(args)

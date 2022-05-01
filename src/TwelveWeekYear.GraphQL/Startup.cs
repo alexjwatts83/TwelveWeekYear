@@ -1,10 +1,12 @@
 using GraphQL.Server.Ui.Voyager;
+using HotChocolate.Data;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using TwelveWeekYear.Infrastructure;
+using TwelveWeekYear.Infrastructure.Persistence;
 
 namespace TwelveWeekYear.GraphQL
 {
@@ -25,6 +27,7 @@ namespace TwelveWeekYear.GraphQL
 
 			services
 				.AddGraphQLServer()
+				.RegisterDbContext<AppDbContext>(DbContextKind.Pooled)
 				.AddQueryType<Query>();
 				//.AddFiltering()
 				//.AddSorting()
@@ -41,10 +44,7 @@ namespace TwelveWeekYear.GraphQL
 
             app.UseRouting();
 
-			app.UseEndpoints(endpoints =>
-			{
-				endpoints.MapGraphQL();
-			});
+			app.UseEndpoints(endpoints => endpoints.MapGraphQL());
 
 			app.UseGraphQLVoyager(new VoyagerOptions()
 			{

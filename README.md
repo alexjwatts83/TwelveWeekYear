@@ -13,3 +13,6 @@ A work in progress app simple app used to record and monitor progress for the a 
 
 ### Remove
 `dotnet ef migrations remove --project TwelveWeekYear.Infrastructure -s TwelveWeekYear.WebApp`
+
+### Setup
+See: https://chillicream.com/docs/hotchocolate/integrations/entity-framework
