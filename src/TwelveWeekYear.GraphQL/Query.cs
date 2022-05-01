@@ -31,6 +31,8 @@ namespace TwelveWeekYear.GraphQL
 		//}
 
 		[GraphQLDescription("Gets the queryable platform.")]
+		[UseFiltering]
+		[UseSorting]
 		public IQueryable<GoalType> GetGoalTypes()
 		{
 			_logger.LogInformation("Calling GetGoalTypes");

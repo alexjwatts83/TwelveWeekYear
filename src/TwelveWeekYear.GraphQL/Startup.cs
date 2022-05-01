@@ -28,9 +28,9 @@ namespace TwelveWeekYear.GraphQL
 			services
 				.AddGraphQLServer()
 				.RegisterDbContext<AppDbContext>(DbContextKind.Pooled)
-				.AddQueryType<Query>();
-				//.AddFiltering()
-				//.AddSorting()
+				.AddQueryType<Query>()
+				.AddFiltering()
+				.AddSorting();
 				//.AddInMemorySubscriptions();
 		}
 
