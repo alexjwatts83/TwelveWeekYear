@@ -8,7 +8,22 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="GraphQL.Server.Ui.Voyager" Version="5.2.1" />
+    <PackageReference Include="HotChocolate.AspNetCore" Version="12.8.1" />
+    <PackageReference Include="HotChocolate.Data.EntityFramework" Version="12.8.1" />
     <PackageReference Include="Microsoft.VisualStudio.Azure.Containers.Tools.Targets" Version="1.11.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EditorConfigFiles Remove="C:\Projects\dotnet\TwelveWeekYear\src\TwelveWeekYear.GraphQL\.editorconfig" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="C:\Projects\dotnet\TwelveWeekYear\src\TwelveWeekYear.GraphQL\.editorconfig" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\TwelveWeekYear.Infrastructure\TwelveWeekYear.Infrastructure.csproj" />
   </ItemGroup>
 
 </Project>
