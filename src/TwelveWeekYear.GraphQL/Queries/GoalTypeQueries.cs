@@ -10,7 +10,8 @@ namespace TwelveWeekYear.GraphQL.Queries
 {
 	public class GoalTypeQueries: BaseQueries
 	{
-		public GoalTypeQueries(ILogger<BaseQueries> logger, IDbContextFactory<AppDbContext> dbContextFactory) : base(logger, dbContextFactory)
+		public GoalTypeQueries(ILogger<BaseQueries> logger, IDbContextFactory<AppDbContext> dbContextFactory)
+			: base(logger, dbContextFactory)
 		{
 		}
 
@@ -19,7 +20,7 @@ namespace TwelveWeekYear.GraphQL.Queries
 		[UseSorting]
 		public IQueryable<GoalType> GetGoalTypes()
 		{
-			logger.LogInformation("Calling GetGoalTypes");
+			//logger.LogInformation("Calling GetGoalTypes");
 			return dbContext.GoalTypes;
 		}
 	}
