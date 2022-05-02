@@ -20,6 +20,8 @@ namespace TwelveWeekYear.Infrastructure.Persistence
 		public DbSet<WeekDayTasksResult> WeekDayTasksResults { get; set; }
 		public DbSet<WeekDaySubtasksResult> WeekDaySubtasksResults { get; set; }
 
+		public DbSet<TweleveWeekYearSetting> TweleveWeekYearSettings { get; set; }
+
 		protected override void OnModelCreating(ModelBuilder modelBuilder)
 		{
 			SetGoalsHasManyTasks(modelBuilder);
