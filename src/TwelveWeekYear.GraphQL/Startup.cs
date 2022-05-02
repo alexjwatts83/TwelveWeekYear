@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using TwelveWeekYear.GraphQL.Queries;
 using TwelveWeekYear.Infrastructure;
 using TwelveWeekYear.Infrastructure.Persistence;
 
@@ -28,7 +29,10 @@ namespace TwelveWeekYear.GraphQL
 			services
 				.AddGraphQLServer()
 				.RegisterDbContext<AppDbContext>(DbContextKind.Pooled)
-				.AddQueryType<Query>()
+				//.AddQueryType()
+				.AddQueryType(q => q.Name("Query"))
+				.AddType<GoalTypeQueries>()
+				//.AddTypeExtension<GoalTypeQueries>()
 				.AddFiltering()
 				.AddSorting();
 				//.AddInMemorySubscriptions();
