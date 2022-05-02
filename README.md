@@ -2,6 +2,9 @@
 
 A work in progress app simple app used to record and monitor progress for the a Tweleve week year.
 
+## debug
+`dotnet watch run -project src\TwelveWeekYear.GraphQL`
+
 ## EF
 `C:\Projects\dotnet\TwelveWeekYear\src (feature/ef-migration -> origin)`
 
