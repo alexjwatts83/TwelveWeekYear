@@ -15,6 +15,7 @@ namespace TwelveWeekYear.GraphQL.Extensions
 			using (var scope = host.Services.CreateScope())
 			{
 				var services = scope.ServiceProvider;
+				var logger = services.GetRequiredService<ILogger<Program>>();
 				try
 				{
 					var dbContextFactory = services.GetRequiredService<IDbContextFactory<AppDbContext>>();
@@ -22,15 +23,12 @@ namespace TwelveWeekYear.GraphQL.Extensions
 
 					appDbContext.Database.Migrate();
 
-					AppDbContextSeeder.Seed(appDbContext);
+					AppDbContextSeeder.Seed(appDbContext, logger);
 
 					return host;
 				}
 				catch (Exception ex)
 				{
-					var logger = services
-						.GetRequiredService<ILogger<Program>>();
-
 					logger.LogError(ex, "An error occurred while " +
 						"migrating or initializing the database.");
 
