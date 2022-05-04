@@ -27,6 +27,9 @@ namespace TwelveWeekYear.GraphQL
         {
 			services.AddInfrastructure(_configuration);
 
+			services.AddScoped<GoalTypeQueries>();
+			services.AddScoped<TweleveWeekYearSettingQueries>();
+
 			services
 				.AddGraphQLServer()
 				.ModifyRequestOptions(opt => opt.IncludeExceptionDetails = true)
