@@ -1,7 +1,7 @@
 ﻿using HotChocolate.Types;
 using TwelveWeekYear.Domain.Models;
 
-namespace TwelveWeekYear.GraphQL.Queries
+namespace TwelveWeekYear.GraphQL.Queries.TweleveWeekYearSettings
 {
 	public class TweleveWeekYearSettingType : ObjectType<TweleveWeekYearSetting>
 	{

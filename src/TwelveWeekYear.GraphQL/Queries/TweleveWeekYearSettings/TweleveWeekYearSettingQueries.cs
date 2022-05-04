@@ -7,7 +7,7 @@ using System.Linq;
 using TwelveWeekYear.Domain.Models;
 using TwelveWeekYear.Infrastructure.Persistence;
 
-namespace TwelveWeekYear.GraphQL.Queries
+namespace TwelveWeekYear.GraphQL.Queries.TweleveWeekYearSettings
 {
 	public class TweleveWeekYearSettingQueries : BaseQueries
 	{

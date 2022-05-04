@@ -5,8 +5,8 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using TwelveWeekYear.GraphQL.Queries;
 using TwelveWeekYear.GraphQL.Queries.GoalTypes;
+using TwelveWeekYear.GraphQL.Queries.TweleveWeekYearSettings;
 using TwelveWeekYear.Infrastructure;
 using TwelveWeekYear.Infrastructure.Persistence;
 
