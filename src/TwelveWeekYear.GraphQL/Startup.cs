@@ -34,7 +34,8 @@ namespace TwelveWeekYear.GraphQL
 				.AddQueryType(q => q.Name("Query"))
 				.AddTypeExtension<GoalTypeQueries>()
 				.AddTypeExtension<TweleveWeekYearSettingQueries>()
-				.AddType<GoalTypeQueries>()
+				.AddType<GoalTypeType>()
+				.AddType<TweleveWeekYearSettingType>()
 				.AddFiltering()
 				.AddSorting();
 				//.AddInMemorySubscriptions();
