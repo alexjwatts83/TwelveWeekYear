@@ -6,6 +6,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using TwelveWeekYear.GraphQL.Queries;
+using TwelveWeekYear.GraphQL.Queries.GoalTypes;
 using TwelveWeekYear.Infrastructure;
 using TwelveWeekYear.Infrastructure.Persistence;
 
@@ -30,10 +31,10 @@ namespace TwelveWeekYear.GraphQL
 				.AddGraphQLServer()
 				.ModifyRequestOptions(opt => opt.IncludeExceptionDetails = true)
 				.RegisterDbContext<AppDbContext>(DbContextKind.Pooled)
-				//.AddQueryType()
-				//.AddQueryType(q => q.Name("Query"))
+				.AddQueryType(q => q.Name("Query"))
+				.AddTypeExtension<GoalTypeQueries>()
+				.AddTypeExtension<TweleveWeekYearSettingQueries>()
 				.AddType<GoalTypeQueries>()
-				//.AddTypeExtension<GoalTypeQueries>()
 				.AddFiltering()
 				.AddSorting();
 				//.AddInMemorySubscriptions();
