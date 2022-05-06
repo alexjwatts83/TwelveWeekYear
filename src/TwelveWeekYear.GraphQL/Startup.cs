@@ -49,6 +49,8 @@ namespace TwelveWeekYear.GraphQL
 
 				.AddMutationType(q => q.Name(OperationTypeNames.Mutation))
 				.AddTypeExtension<GoalMutations>()
+				.AddTypeExtension<TaskMutations>()
+
 				.AddFiltering()
 				.AddSorting();
 				//.AddInMemorySubscriptions();
