@@ -23,7 +23,15 @@ namespace TwelveWeekYear.GraphQL.Queries.Goals
 		public IQueryable<Goal> GetGoals()
 		{
 			logger.LogInformation("Calling Goals");
-			return dbContext.Goals;
+			//return (IQueryable<Goal>)Enumerable.Empty<Goal>();
+			var items = dbContext.Goals.Where(x => 1 == 1);
+
+			foreach(var item in items)
+			{
+				logger.LogInformation($"[{item.Id}]Name:{item.Name},Description:{item.Description}");
+			}
+
+			return items;
 		}
 	}
 }

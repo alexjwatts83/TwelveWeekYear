@@ -7,23 +7,23 @@ using System.Linq;
 using TwelveWeekYear.Domain.Models;
 using TwelveWeekYear.Infrastructure.Persistence;
 
-namespace TwelveWeekYear.GraphQL.Queries.Tasks
+namespace TwelveWeekYear.GraphQL.Queries.Subtasks
 {
 	[ExtendObjectType(OperationTypeNames.Query)]
-	public class TaskQueries : BaseQueries
+	public class SubtaskQueries : BaseQueries
 	{
-		public TaskQueries(ILogger<BaseQueries> logger, IDbContextFactory<AppDbContext> dbContextFactory)
+		public SubtaskQueries(ILogger<BaseQueries> logger, IDbContextFactory<AppDbContext> dbContextFactory)
 			: base(logger, dbContextFactory)
 		{
 		}
 
-		[GraphQLDescription("Gets the queryable Tasks.")]
+		[GraphQLDescription("Gets the queryable subtasks.")]
 		[UseFiltering]
 		[UseSorting]
-		public IQueryable<Task> GetTasks()
+		public IQueryable<Subtask> GetSubtasks()
 		{
-			logger.LogInformation("Calling Tasks");
-			return dbContext.Tasks;
+			logger.LogInformation("Calling Subtasks");
+			return dbContext.Subtasks;
 		}
 	}
 }

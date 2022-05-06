@@ -17,7 +17,7 @@ namespace TwelveWeekYear.GraphQL.Queries.GoalTypes
 		{
 		}
 
-		[GraphQLDescription("Gets the queryable goal types.")]
+		[GraphQLDescription("Gets the Goal Types")]
 		[UseFiltering]
 		[UseSorting]
 		public IQueryable<GoalType> GetGoalTypes()

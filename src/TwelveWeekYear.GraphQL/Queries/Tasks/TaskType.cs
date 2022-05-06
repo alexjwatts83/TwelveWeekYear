@@ -31,7 +31,11 @@ namespace TwelveWeekYear.GraphQL.Queries.Tasks
 				.UseDbContext<AppDbContext>()
 				.Description("The Goal Type.");
 
-			descriptor.Field(x => x.Subtasks).Ignore();
+			descriptor
+				.Field(x => x.Subtasks)
+				.ResolveWith<Resolvers>(x => x.GetSubtasksForTask(default!, default!))
+				.UseDbContext<AppDbContext>()
+				.Description("The Subtasks for the Task.");
 		}
 
 		private class Resolvers
@@ -39,6 +43,11 @@ namespace TwelveWeekYear.GraphQL.Queries.Tasks
 			public Goal GetGoalType([Parent] Task task, [ScopedService] AppDbContext context)
 			{
 				return context.Goals.FirstOrDefault(p => p.Id == task.GoalId);
+			}
+
+			public IQueryable<Subtask> GetSubtasksForTask([Parent] Task task, [ScopedService] AppDbContext context)
+			{
+				return context.Subtasks.Where(x => x.TaskId == task.Id);
 			}
 		}
 	}

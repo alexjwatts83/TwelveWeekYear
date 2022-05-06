@@ -34,7 +34,13 @@ namespace TwelveWeekYear.GraphQL.Queries.Goals
 				.UseDbContext<AppDbContext>()
 				.Description("The Goal Type.");
 
-			descriptor.Field(x => x.Tasks).Ignore();
+			//descriptor.Field(x => x.Tasks).Ignore();
+			descriptor
+				.Field(x => x.Tasks)
+				.ResolveWith<Resolvers>(x => x.GetGoalTasks(default!, default!))
+				.UseDbContext<AppDbContext>()
+				.Description("Tasks for a Goal.");
+
 			descriptor.Field(x => x.TweleveWeekYearId).Ignore();
 			descriptor.Field(x => x.TweleveWeekYear).Ignore();
 		}
@@ -44,6 +50,11 @@ namespace TwelveWeekYear.GraphQL.Queries.Goals
 			public Domain.Models.GoalType GetGoalType([Parent] Goal goal, [ScopedService] AppDbContext context)
 			{
 				return context.GoalTypes.FirstOrDefault(p => p.Id == goal.GoalTypeId);
+			}
+
+			public IQueryable<Task> GetGoalTasks([Parent] Goal goal, [ScopedService] AppDbContext context)
+			{
+				return context.Tasks.Where(x => x.GoalId == goal.Id);
 			}
 		}
 	}

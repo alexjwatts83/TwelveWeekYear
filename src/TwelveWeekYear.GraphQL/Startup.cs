@@ -8,6 +8,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using TwelveWeekYear.GraphQL.Queries.Goals;
 using TwelveWeekYear.GraphQL.Queries.GoalTypes;
+using TwelveWeekYear.GraphQL.Queries.Subtasks;
 using TwelveWeekYear.GraphQL.Queries.Tasks;
 using TwelveWeekYear.GraphQL.Queries.TweleveWeekYearSettings;
 using TwelveWeekYear.Infrastructure;
@@ -41,15 +42,18 @@ namespace TwelveWeekYear.GraphQL
 				.AddTypeExtension<TweleveWeekYearSettingQueries>()
 				.AddTypeExtension<GoalQueries>()
 				.AddTypeExtension<TaskQueries>()
+				.AddTypeExtension<SubtaskQueries>()
 
 				.AddType<GoalTypeType>()
 				.AddType<TweleveWeekYearSettingType>()
 				.AddType<GoalType>()
 				.AddType<TaskType>()
+				.AddType<SubtaskType>()
 
 				.AddMutationType(q => q.Name(OperationTypeNames.Mutation))
 				.AddTypeExtension<GoalMutations>()
 				.AddTypeExtension<TaskMutations>()
+				.AddTypeExtension<SubtaskMutations>()
 
 				.AddFiltering()
 				.AddSorting();
