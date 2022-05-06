@@ -8,6 +8,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using TwelveWeekYear.GraphQL.Queries.Goals;
 using TwelveWeekYear.GraphQL.Queries.GoalTypes;
+using TwelveWeekYear.GraphQL.Queries.Tasks;
 using TwelveWeekYear.GraphQL.Queries.TweleveWeekYearSettings;
 using TwelveWeekYear.Infrastructure;
 using TwelveWeekYear.Infrastructure.Persistence;
@@ -33,13 +34,18 @@ namespace TwelveWeekYear.GraphQL
 				.AddGraphQLServer()
 				.ModifyRequestOptions(opt => opt.IncludeExceptionDetails = true)
 				.RegisterDbContext<AppDbContext>(DbContextKind.Pooled)
+
 				.AddQueryType(q => q.Name(OperationTypeNames.Query))
+
 				.AddTypeExtension<GoalTypeQueries>()
 				.AddTypeExtension<TweleveWeekYearSettingQueries>()
 				.AddTypeExtension<GoalQueries>()
+				.AddTypeExtension<TaskQueries>()
+
 				.AddType<GoalTypeType>()
 				.AddType<TweleveWeekYearSettingType>()
 				.AddType<GoalType>()
+				.AddType<TaskType>()
 
 				.AddMutationType(q => q.Name(OperationTypeNames.Mutation))
 				.AddTypeExtension<GoalMutations>()

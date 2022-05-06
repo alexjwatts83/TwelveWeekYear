@@ -7,12 +7,12 @@ using System.Linq;
 using TwelveWeekYear.Domain.Models;
 using TwelveWeekYear.Infrastructure.Persistence;
 
-namespace TwelveWeekYear.GraphQL.Queries.Goals
+namespace TwelveWeekYear.GraphQL.Queries.Tasks
 {
 	[ExtendObjectType(OperationTypeNames.Query)]
-	public class GoalQueries : BaseQueries
+	public class TaskQueries : BaseQueries
 	{
-		public GoalQueries(ILogger<BaseQueries> logger, IDbContextFactory<AppDbContext> dbContextFactory)
+		public TaskQueries(ILogger<BaseQueries> logger, IDbContextFactory<AppDbContext> dbContextFactory)
 			: base(logger, dbContextFactory)
 		{
 		}
@@ -20,10 +20,10 @@ namespace TwelveWeekYear.GraphQL.Queries.Goals
 		[GraphQLDescription("Gets the queryable goals.")]
 		[UseFiltering]
 		[UseSorting]
-		public IQueryable<Goal> GetGoals()
+		public IQueryable<Task> GetTasks()
 		{
-			logger.LogInformation("Calling Goals");
-			return dbContext.Goals;
+			logger.LogInformation("Calling Tasks");
+			return dbContext.Tasks;
 		}
 	}
 }
