@@ -7,23 +7,24 @@ using System.Linq;
 using TwelveWeekYear.Domain.Models;
 using TwelveWeekYear.Infrastructure.Persistence;
 
-namespace TwelveWeekYear.GraphQL.Queries.GoalTypes
+namespace TwelveWeekYear.GraphQL.Queries.Goals
 {
 	[ExtendObjectType(OperationTypeNames.Query)]
-	public class GoalTypeQueries : BaseQueries
+	public class GoalQueries : BaseQueries
 	{
-		public GoalTypeQueries(ILogger<BaseQueries> logger, IDbContextFactory<AppDbContext> dbContextFactory)
+		public GoalQueries(ILogger<BaseQueries> logger, IDbContextFactory<AppDbContext> dbContextFactory)
 			: base(logger, dbContextFactory)
 		{
 		}
 
-		[GraphQLDescription("Gets the queryable goal types.")]
+
+		[GraphQLDescription("Gets the queryable goals.")]
 		[UseFiltering]
 		[UseSorting]
-		public IQueryable<GoalType> GetGoalTypes()
+		public IQueryable<Goal> GetGoals()
 		{
-			logger.LogInformation("Calling GetGoalTypes");
-			return dbContext.GoalTypes;
+			logger.LogInformation("Calling Goals");
+			return dbContext.Goals;
 		}
 	}
 }

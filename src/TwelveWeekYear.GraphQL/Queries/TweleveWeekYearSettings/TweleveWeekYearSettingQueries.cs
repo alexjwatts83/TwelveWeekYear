@@ -17,7 +17,7 @@ namespace TwelveWeekYear.GraphQL.Queries.TweleveWeekYearSettings
 		{
 		}
 
-		[GraphQLDescription("Gets the queryable platform.")]
+		[GraphQLDescription("Gets the queryable GetTweleveWeekYearSetting.")]
 		[UseFiltering]
 		[UseSorting]
 		public TweleveWeekYearSetting GetTweleveWeekYearSetting()
