@@ -10,6 +10,7 @@ using TwelveWeekYear.GraphQL.Queries.Goals;
 using TwelveWeekYear.GraphQL.Queries.GoalTypes;
 using TwelveWeekYear.GraphQL.Queries.Subtasks;
 using TwelveWeekYear.GraphQL.Queries.Tasks;
+using TwelveWeekYear.GraphQL.Queries.TweleveWeekYears;
 using TwelveWeekYear.GraphQL.Queries.TweleveWeekYearSettings;
 using TwelveWeekYear.Infrastructure;
 using TwelveWeekYear.Infrastructure.Persistence;
@@ -37,23 +38,26 @@ namespace TwelveWeekYear.GraphQL
 				.RegisterDbContext<AppDbContext>(DbContextKind.Pooled)
 
 				.AddQueryType(q => q.Name(OperationTypeNames.Query))
-
+				// Queries
 				.AddTypeExtension<GoalTypeQueries>()
 				.AddTypeExtension<TweleveWeekYearSettingQueries>()
 				.AddTypeExtension<GoalQueries>()
 				.AddTypeExtension<TaskQueries>()
 				.AddTypeExtension<SubtaskQueries>()
-
+				.AddTypeExtension<TweleveWeekYearQueries>()
+				// Types
 				.AddType<GoalTypeType>()
 				.AddType<TweleveWeekYearSettingType>()
 				.AddType<GoalType>()
 				.AddType<TaskType>()
 				.AddType<SubtaskType>()
-
+				.AddType<TweleveWeekYearType>()
+				// Mutations
 				.AddMutationType(q => q.Name(OperationTypeNames.Mutation))
 				.AddTypeExtension<GoalMutations>()
 				.AddTypeExtension<TaskMutations>()
 				.AddTypeExtension<SubtaskMutations>()
+				.AddTypeExtension<TweleveWeekYearMutations>()
 
 				.AddFiltering()
 				.AddSorting();

@@ -34,15 +34,21 @@ namespace TwelveWeekYear.GraphQL.Queries.Goals
 				.UseDbContext<AppDbContext>()
 				.Description("The Goal Type.");
 
-			//descriptor.Field(x => x.Tasks).Ignore();
 			descriptor
 				.Field(x => x.Tasks)
 				.ResolveWith<Resolvers>(x => x.GetGoalTasks(default!, default!))
 				.UseDbContext<AppDbContext>()
 				.Description("Tasks for a Goal.");
 
-			descriptor.Field(x => x.TweleveWeekYearId).Ignore();
-			descriptor.Field(x => x.TweleveWeekYear).Ignore();
+			descriptor
+				.Field(x => x.TweleveWeekYearId)
+				.Description("Id of the Twelve Week Year");
+
+			descriptor
+				.Field(x => x.TweleveWeekYear)
+				.ResolveWith<Resolvers>(x => x.GetGoalTweleveWeekYear(default!, default!))
+				.UseDbContext<AppDbContext>()
+				.Description("The TweleveWeekYear.");
 		}
 
 		private class Resolvers
@@ -55,6 +61,11 @@ namespace TwelveWeekYear.GraphQL.Queries.Goals
 			public IQueryable<Task> GetGoalTasks([Parent] Goal goal, [ScopedService] AppDbContext context)
 			{
 				return context.Tasks.Where(x => x.GoalId == goal.Id);
+			}
+
+			public Domain.Models.TweleveWeekYear GetGoalTweleveWeekYear([Parent] Goal goal, [ScopedService] AppDbContext context)
+			{
+				return context.TweleveWeekYears.FirstOrDefault(p => p.Id == goal.TweleveWeekYearId);
 			}
 		}
 	}

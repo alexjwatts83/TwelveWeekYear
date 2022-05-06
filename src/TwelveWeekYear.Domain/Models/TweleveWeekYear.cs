@@ -9,7 +9,9 @@ namespace TwelveWeekYear.Domain.Models
 		[Key]
 		public int Id { get; set; }
 		[Required]
-		public DateTime Date { get; set; }
+		public DateTime StartDate { get; set; }
+		[Required]
+		public DateTime EndDate { get; set; }
 		[Required]
 		public string Name { get; set; }
 		[Required]
