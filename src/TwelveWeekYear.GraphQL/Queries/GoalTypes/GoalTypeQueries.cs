@@ -9,7 +9,6 @@ using TwelveWeekYear.Infrastructure.Persistence;
 
 namespace TwelveWeekYear.GraphQL.Queries.GoalTypes
 {
-	//[ExtendObjectType(typeof(GoalType))]
 	[ExtendObjectType(OperationTypeNames.Query)]
 	public class GoalTypeQueries : BaseQueries
 	{

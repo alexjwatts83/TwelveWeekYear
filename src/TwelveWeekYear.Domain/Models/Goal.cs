@@ -18,7 +18,7 @@ namespace TwelveWeekYear.Domain.Models
 
 		public ICollection<Task> Tasks { get; set; } = new List<Task>();
 
-		[Required]
+		//[Required]
 		public int TweleveWeekYearId { get; set; }
 
 		public TweleveWeekYear TweleveWeekYear { get; set; }
