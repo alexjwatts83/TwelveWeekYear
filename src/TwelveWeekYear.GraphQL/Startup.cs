@@ -1,5 +1,6 @@
 using GraphQL.Server.Ui.Voyager;
 using HotChocolate.Data;
+using HotChocolate.Types;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
@@ -32,13 +33,16 @@ namespace TwelveWeekYear.GraphQL
 				.AddGraphQLServer()
 				.ModifyRequestOptions(opt => opt.IncludeExceptionDetails = true)
 				.RegisterDbContext<AppDbContext>(DbContextKind.Pooled)
-				.AddQueryType(q => q.Name("Query"))
+				.AddQueryType(q => q.Name(OperationTypeNames.Query))
 				.AddTypeExtension<GoalTypeQueries>()
 				.AddTypeExtension<TweleveWeekYearSettingQueries>()
 				.AddTypeExtension<GoalQueries>()
 				.AddType<GoalTypeType>()
 				.AddType<TweleveWeekYearSettingType>()
 				.AddType<GoalType>()
+
+				.AddMutationType(q => q.Name(OperationTypeNames.Mutation))
+				.AddTypeExtension<GoalMutations>()
 				.AddFiltering()
 				.AddSorting();
 				//.AddInMemorySubscriptions();
