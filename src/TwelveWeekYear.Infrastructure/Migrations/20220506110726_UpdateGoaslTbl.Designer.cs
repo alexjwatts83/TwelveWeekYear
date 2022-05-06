@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using TwelveWeekYear.Infrastructure.Persistence;
 
 namespace TwelveWeekYear.Infrastructure.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20220506110726_UpdateGoaslTbl")]
+    partial class UpdateGoaslTbl
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -37,7 +39,7 @@ namespace TwelveWeekYear.Infrastructure.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int?>("TweleveWeekYearId")
+                    b.Property<int>("TweleveWeekYearId")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
@@ -280,7 +282,9 @@ namespace TwelveWeekYear.Infrastructure.Migrations
 
                     b.HasOne("TwelveWeekYear.Domain.Models.TweleveWeekYear", "TweleveWeekYear")
                         .WithMany("Goals")
-                        .HasForeignKey("TweleveWeekYearId");
+                        .HasForeignKey("TweleveWeekYearId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.Navigation("GoalType");
 
