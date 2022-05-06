@@ -23,7 +23,7 @@ namespace TwelveWeekYear.GraphQL.Queries.Subtasks
 		public IQueryable<Subtask> GetSubtasks()
 		{
 			logger.LogInformation("Calling Subtasks");
-			return dbContext.Subtasks;
+			return dbContext.Subtasks.AsNoTracking();
 		}
 	}
 }

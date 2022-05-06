@@ -24,7 +24,7 @@ namespace TwelveWeekYear.GraphQL.Queries.Goals
 		{
 			logger.LogInformation("Calling Goals");
 			//return (IQueryable<Goal>)Enumerable.Empty<Goal>();
-			var items = dbContext.Goals.Where(x => 1 == 1);
+			var items = dbContext.Goals.AsNoTracking().Where(x => 1 == 1);
 
 			foreach(var item in items)
 			{

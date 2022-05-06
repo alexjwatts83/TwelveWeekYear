@@ -23,7 +23,7 @@ namespace TwelveWeekYear.GraphQL.Queries.Tasks
 		public IQueryable<Task> GetTasks()
 		{
 			logger.LogInformation("Calling Tasks");
-			return dbContext.Tasks;
+			return dbContext.Tasks.AsNoTracking();
 		}
 	}
 }

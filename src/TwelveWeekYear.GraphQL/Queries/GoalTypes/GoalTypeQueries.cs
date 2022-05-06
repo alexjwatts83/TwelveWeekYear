@@ -23,7 +23,7 @@ namespace TwelveWeekYear.GraphQL.Queries.GoalTypes
 		public IQueryable<GoalType> GetGoalTypes()
 		{
 			logger.LogInformation("Calling GetGoalTypes");
-			return dbContext.GoalTypes;
+			return dbContext.GoalTypes.AsNoTracking();
 		}
 	}
 }

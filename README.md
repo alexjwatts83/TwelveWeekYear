@@ -3,6 +3,8 @@
 A work in progress app simple app used to record and monitor progress for the a Tweleve week year.
 
 ## debug
+`cd C:\Projects\dotnet\TwelveWeekYear`
+
 `dotnet watch run -project src\TwelveWeekYear.GraphQL`
 
 ## EF
