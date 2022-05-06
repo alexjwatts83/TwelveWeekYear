@@ -27,20 +27,15 @@ namespace TwelveWeekYear.GraphQL
         {
 			services.AddInfrastructure(_configuration);
 
-			services.AddScoped<GoalTypeQueries>();
-			services.AddScoped<TweleveWeekYearSettingQueries>();
-
 			services
 				.AddGraphQLServer()
 				.ModifyRequestOptions(opt => opt.IncludeExceptionDetails = true)
 				.RegisterDbContext<AppDbContext>(DbContextKind.Pooled)
 				.AddQueryType(q => q.Name("Query"))
 				.AddTypeExtension<GoalTypeQueries>()
-				//.AddQueryType(q => q.Name("Query"))
-				//.AddTypeExtension<GoalTypeQueries>()
 				.AddTypeExtension<TweleveWeekYearSettingQueries>()
-				//.AddType<GoalTypeType>()
-				//.AddType<TweleveWeekYearSettingType>()
+				.AddType<GoalTypeType>()
+				.AddType<TweleveWeekYearSettingType>()
 				.AddFiltering()
 				.AddSorting();
 				//.AddInMemorySubscriptions();
