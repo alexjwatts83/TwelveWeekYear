@@ -5,7 +5,6 @@ using TwelveWeekYear.Infrastructure.Persistence;
 
 namespace TwelveWeekYear.GraphQL.Queries
 {
-	[ExtendObjectType(OperationTypeNames.Query)]
 	public abstract class BaseQueries
 	{
 		public readonly ILogger<BaseQueries> logger;

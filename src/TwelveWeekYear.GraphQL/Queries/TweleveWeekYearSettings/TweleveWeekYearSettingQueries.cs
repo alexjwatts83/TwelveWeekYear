@@ -1,5 +1,6 @@
 ﻿using HotChocolate;
 using HotChocolate.Data;
+using HotChocolate.Types;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 using System.Linq;
@@ -8,6 +9,7 @@ using TwelveWeekYear.Infrastructure.Persistence;
 
 namespace TwelveWeekYear.GraphQL.Queries.TweleveWeekYearSettings
 {
+	[ExtendObjectType(OperationTypeNames.Query)]
 	public class TweleveWeekYearSettingQueries : BaseQueries
 	{
 		public TweleveWeekYearSettingQueries(ILogger<BaseQueries> logger, IDbContextFactory<AppDbContext> dbContextFactory)

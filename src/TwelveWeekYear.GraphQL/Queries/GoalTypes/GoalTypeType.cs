@@ -3,7 +3,7 @@ using TwelveWeekYear.Domain.Models;
 
 namespace TwelveWeekYear.GraphQL.Queries.GoalTypes
 {
-	public class GoalTypeType : ObjectType<GoalType>
+	public class GoalTypeType : ObjectTypeExtension<GoalType>
 	{
 		protected override void Configure(IObjectTypeDescriptor<GoalType> descriptor)
 		{
