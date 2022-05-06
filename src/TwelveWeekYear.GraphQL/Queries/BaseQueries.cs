@@ -13,7 +13,7 @@ namespace TwelveWeekYear.GraphQL.Queries
 
 		public BaseQueries(ILogger<BaseQueries> logger, IDbContextFactory<AppDbContext> dbContextFactory)
 		{
-			logger = this.logger;
+			this.logger = logger;
 			dbContext = dbContextFactory.CreateDbContext();
 		}
 	}
