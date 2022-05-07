@@ -12,6 +12,8 @@ using TwelveWeekYear.GraphQL.Queries.Subtasks;
 using TwelveWeekYear.GraphQL.Queries.Tasks;
 using TwelveWeekYear.GraphQL.Queries.TweleveWeekYears;
 using TwelveWeekYear.GraphQL.Queries.TweleveWeekYearSettings;
+using TwelveWeekYear.GraphQL.Queries.TweleveWeekYearWeeks;
+using TwelveWeekYear.GraphQL.Queries.WeekDays;
 using TwelveWeekYear.Infrastructure;
 using TwelveWeekYear.Infrastructure.Persistence;
 
@@ -31,20 +33,21 @@ namespace TwelveWeekYear.GraphQL
 		public void ConfigureServices(IServiceCollection services)
         {
 			services.AddInfrastructure(_configuration);
-
+			// GraphQL services
 			services
 				.AddGraphQLServer()
 				.ModifyRequestOptions(opt => opt.IncludeExceptionDetails = true)
 				.RegisterDbContext<AppDbContext>(DbContextKind.Pooled)
-
-				.AddQueryType(q => q.Name(OperationTypeNames.Query))
 				// Queries
+				.AddQueryType(q => q.Name(OperationTypeNames.Query))
 				.AddTypeExtension<GoalTypeQueries>()
 				.AddTypeExtension<TweleveWeekYearSettingQueries>()
 				.AddTypeExtension<GoalQueries>()
 				.AddTypeExtension<TaskQueries>()
 				.AddTypeExtension<SubtaskQueries>()
 				.AddTypeExtension<TweleveWeekYearQueries>()
+				.AddTypeExtension<TweleveWeekYearWeekQueries>()
+				.AddTypeExtension<WeekDayQueries>()
 				// Types
 				.AddType<GoalTypeType>()
 				.AddType<TweleveWeekYearSettingType>()
@@ -52,13 +55,17 @@ namespace TwelveWeekYear.GraphQL
 				.AddType<TaskType>()
 				.AddType<SubtaskType>()
 				.AddType<TweleveWeekYearType>()
+				.AddType<TweleveWeekYearWeekType>()
+				.AddType<WeekDayType>()
 				// Mutations
 				.AddMutationType(q => q.Name(OperationTypeNames.Mutation))
 				.AddTypeExtension<GoalMutations>()
 				.AddTypeExtension<TaskMutations>()
 				.AddTypeExtension<SubtaskMutations>()
 				.AddTypeExtension<TweleveWeekYearMutations>()
-
+				.AddTypeExtension<TweleveWeekYearWeekMutations>()
+				.AddTypeExtension<WeekDayMutations>()
+				// additional stuff
 				.AddFiltering()
 				.AddSorting();
 				//.AddInMemorySubscriptions();
