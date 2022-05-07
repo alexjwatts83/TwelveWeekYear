@@ -38,7 +38,10 @@ namespace TwelveWeekYear.GraphQL.Queries.TweleveWeekYears
 				.Description("The Goals for the TweleveWeekYear.");
 
 			descriptor
-				.Field(x => x.Weeks).Ignore();
+				.Field(x => x.Weeks)
+				.ResolveWith<Resolvers>(x => x.GetWeeksFortweleveWeekYear(default!, default!))
+				.UseDbContext<AppDbContext>()
+				.Description("The Weeks for the TweleveWeekYear.");
 		}
 
 		private class Resolvers
@@ -46,6 +49,11 @@ namespace TwelveWeekYear.GraphQL.Queries.TweleveWeekYears
 			public IQueryable<Goal> GetGoalsFortweleveWeekYear([Parent] TweleveWeekYear tweleveWeekYear, [ScopedService] AppDbContext context)
 			{
 				return context.Goals.Where(x => x.TweleveWeekYearId == tweleveWeekYear.Id);
+			}
+
+			public IQueryable<TweleveWeekYearWeek> GetWeeksFortweleveWeekYear([Parent] TweleveWeekYear tweleveWeekYear, [ScopedService] AppDbContext context)
+			{
+				return context.TweleveWeekYearWeeks.Where(x => x.TweleveWeekYearId == tweleveWeekYear.Id);
 			}
 		}
 	}

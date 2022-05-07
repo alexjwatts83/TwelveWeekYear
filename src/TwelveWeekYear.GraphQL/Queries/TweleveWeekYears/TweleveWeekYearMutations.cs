@@ -12,13 +12,12 @@ using TwelveWeekYear.Infrastructure.Persistence;
 
 namespace TwelveWeekYear.GraphQL.Queries.TweleveWeekYears
 {
+	// Add
 	public record AddTweleveWeekYearInput(string Name, string Description, DateTime StartDate, DateTime EndDate, List<int> GoalIds);
 	public record AddTweleveWeekYearPayload(TweleveWeekYear TweleveWeekYear);
-
-	//public record UpdateTweleveWeekYearInput(string Name, string Description, DateTime StartDate, DateTime EndDate, int tweleveWeekYearId);
-	//public record UpdateTweleveWeekYearload(TweleveWeekYear tweleveWeekYear);
-
-
+	// Update
+	public record UpdateTweleveWeekYearInput(string Name, string Description, DateTime StartDate, DateTime EndDate, List<int> GoalIds, int tweleveWeekYearId);
+	public record UpdateTweleveWeekYearPayload(TweleveWeekYear tweleveWeekYear);
 
 	[ExtendObjectType(OperationTypeNames.Mutation)]
 	public class TweleveWeekYearMutations : BaseQueries
@@ -51,6 +50,35 @@ namespace TwelveWeekYear.GraphQL.Queries.TweleveWeekYears
 			await dbContext.SaveChangesAsync(cancellationToke);
 
 			return new AddTweleveWeekYearPayload(item);
+		}
+
+		[GraphQLDescription("Update TweleveWeekYear")]
+		public async Task<UpdateTweleveWeekYearPayload> UpdateTweleveWeekYearAndGoals(UpdateTweleveWeekYearInput input, CancellationToken cancellationToken)
+		{
+			var item = dbContext.TweleveWeekYears.FirstOrDefault(x => x.Id == input.tweleveWeekYearId);
+			if (item == null)
+			{
+				logger.LogWarning("TweleveWeekYear was null with the given id");
+				return new UpdateTweleveWeekYearPayload(item);
+			}
+
+			item.Name = input.Name;
+			item.Description = input.Description;
+			item.StartDate = input.StartDate;
+			item.EndDate = input.EndDate;
+
+			foreach (var goalId in input.GoalIds)
+			{
+				UpdateStuff(goalId, input.tweleveWeekYearId);
+			}
+
+			var res = dbContext.TweleveWeekYears.Update(item);
+
+			item = res.Entity;
+
+			await dbContext.SaveChangesAsync(cancellationToken);
+
+			return new UpdateTweleveWeekYearPayload(item);
 		}
 
 		private void UpdateStuff(int GoalId, int TweleveWeekYearId)
