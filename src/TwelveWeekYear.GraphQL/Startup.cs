@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using TwelveWeekYear.GraphQL.Mutations.WeekDaySubtasksResults;
 using TwelveWeekYear.GraphQL.Queries.Goals;
 using TwelveWeekYear.GraphQL.Queries.GoalTypes;
 using TwelveWeekYear.GraphQL.Queries.Subtasks;
@@ -14,6 +15,7 @@ using TwelveWeekYear.GraphQL.Queries.TweleveWeekYears;
 using TwelveWeekYear.GraphQL.Queries.TweleveWeekYearSettings;
 using TwelveWeekYear.GraphQL.Queries.TweleveWeekYearWeeks;
 using TwelveWeekYear.GraphQL.Queries.WeekDays;
+using TwelveWeekYear.GraphQL.Queries.WeekDaySubtasksResults;
 using TwelveWeekYear.GraphQL.Queries.WeekDayTasksResults;
 using TwelveWeekYear.Infrastructure;
 using TwelveWeekYear.Infrastructure.Persistence;
@@ -50,6 +52,7 @@ namespace TwelveWeekYear.GraphQL
 				.AddTypeExtension<TweleveWeekYearWeekQueries>()
 				.AddTypeExtension<WeekDayQueries>()
 				.AddTypeExtension<WeekDayTasksResultQueries>()
+				.AddTypeExtension<WeekDaySubtasksResultQueries>()
 				// Types
 				.AddType<GoalTypeType>()
 				.AddType<TweleveWeekYearSettingType>()
@@ -60,6 +63,7 @@ namespace TwelveWeekYear.GraphQL
 				.AddType<TweleveWeekYearWeekType>()
 				.AddType<WeekDayType>()
 				.AddType<WeekDayTasksResultType>()
+				.AddType<WeekDaySubtasksResultType>()
 				// Mutations
 				.AddMutationType(q => q.Name(OperationTypeNames.Mutation))
 				.AddTypeExtension<GoalMutations>()
@@ -69,6 +73,7 @@ namespace TwelveWeekYear.GraphQL
 				.AddTypeExtension<TweleveWeekYearWeekMutations>()
 				.AddTypeExtension<WeekDayMutations>()
 				.AddTypeExtension<WeekDayTasksResultMutations>()
+				.AddTypeExtension<WeekDaySubtasksResultMutations>()
 				// additional stuff
 				.AddFiltering()
 				.AddSorting();
