@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 using TwelveWeekYear.Domain.Models;
 using TwelveWeekYear.Infrastructure.Persistence;
 
-namespace TwelveWeekYear.GraphQL.Queries.WeekDays
+namespace TwelveWeekYear.GraphQL.Mutations.WeekDays
 {
 	// Add
 	public record AddWeekDayInput(string Description, DateTime Date, int TweleveWeekYearWeekId);
@@ -20,9 +20,9 @@ namespace TwelveWeekYear.GraphQL.Queries.WeekDays
 	public record UpdateWeekDayPayload(WeekDay WeekDay);
 
 	[ExtendObjectType(OperationTypeNames.Mutation)]
-	public class WeekDayMutations : BaseQueries
+	public class WeekDayMutations : BaseGraphQLOperation
 	{
-		public WeekDayMutations(ILogger<BaseQueries> logger, IDbContextFactory<AppDbContext> dbContextFactory)
+		public WeekDayMutations(ILogger<BaseGraphQLOperation> logger, IDbContextFactory<AppDbContext> dbContextFactory)
 			: base(logger, dbContextFactory)
 		{
 		}

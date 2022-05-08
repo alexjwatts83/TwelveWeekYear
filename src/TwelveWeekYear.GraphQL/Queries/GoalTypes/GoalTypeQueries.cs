@@ -10,9 +10,9 @@ using TwelveWeekYear.Infrastructure.Persistence;
 namespace TwelveWeekYear.GraphQL.Queries.GoalTypes
 {
 	[ExtendObjectType(OperationTypeNames.Query)]
-	public class GoalTypeQueries : BaseQueries
+	public class GoalTypeQueries : BaseGraphQLOperation
 	{
-		public GoalTypeQueries(ILogger<BaseQueries> logger, IDbContextFactory<AppDbContext> dbContextFactory)
+		public GoalTypeQueries(ILogger<BaseGraphQLOperation> logger, IDbContextFactory<AppDbContext> dbContextFactory)
 			: base(logger, dbContextFactory)
 		{
 		}

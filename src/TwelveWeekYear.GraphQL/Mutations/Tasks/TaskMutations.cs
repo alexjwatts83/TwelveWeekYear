@@ -7,7 +7,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using TwelveWeekYear.Infrastructure.Persistence;
 
-namespace TwelveWeekYear.GraphQL.Queries.Tasks
+namespace TwelveWeekYear.GraphQL.Mutations.Tasks
 {
 	public record AddTaskInput(string Description, int GoalId);
 	public record AddTaskPayload(Domain.Models.Task task);
@@ -16,9 +16,9 @@ namespace TwelveWeekYear.GraphQL.Queries.Tasks
 	public record UpdateTaskPayload(Domain.Models.Task task);
 
 	[ExtendObjectType(OperationTypeNames.Mutation)]
-	public class TaskMutations : BaseQueries
+	public class TaskMutations : BaseGraphQLOperation
 	{
-		public TaskMutations(ILogger<BaseQueries> logger, IDbContextFactory<AppDbContext> dbContextFactory)
+		public TaskMutations(ILogger<BaseGraphQLOperation> logger, IDbContextFactory<AppDbContext> dbContextFactory)
 			: base(logger, dbContextFactory)
 		{
 		}

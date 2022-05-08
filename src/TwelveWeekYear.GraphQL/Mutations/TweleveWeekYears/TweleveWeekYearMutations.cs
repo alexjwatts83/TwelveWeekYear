@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 using TwelveWeekYear.Domain.Models;
 using TwelveWeekYear.Infrastructure.Persistence;
 
-namespace TwelveWeekYear.GraphQL.Queries.TweleveWeekYears
+namespace TwelveWeekYear.GraphQL.Mutations.TweleveWeekYears
 {
 	// Add
 	public record AddTweleveWeekYearInput(string Name, string Description, DateTime StartDate, DateTime EndDate, List<int> GoalIds);
@@ -20,9 +20,9 @@ namespace TwelveWeekYear.GraphQL.Queries.TweleveWeekYears
 	public record UpdateTweleveWeekYearPayload(TweleveWeekYear tweleveWeekYear);
 
 	[ExtendObjectType(OperationTypeNames.Mutation)]
-	public class TweleveWeekYearMutations : BaseQueries
+	public class TweleveWeekYearMutations : BaseGraphQLOperation
 	{
-		public TweleveWeekYearMutations(ILogger<BaseQueries> logger, IDbContextFactory<AppDbContext> dbContextFactory)
+		public TweleveWeekYearMutations(ILogger<BaseGraphQLOperation> logger, IDbContextFactory<AppDbContext> dbContextFactory)
 			: base(logger, dbContextFactory)
 		{
 		}

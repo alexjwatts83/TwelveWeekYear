@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 using TwelveWeekYear.Domain.Models;
 using TwelveWeekYear.Infrastructure.Persistence;
 
-namespace TwelveWeekYear.GraphQL.Queries.Goals
+namespace TwelveWeekYear.GraphQL.Mutations.Goals
 {
 	public record AddGoalInput(string Name, string Description, int GoalTypeId);
 	public record AddGoalPayload(Goal goal);
@@ -17,9 +17,9 @@ namespace TwelveWeekYear.GraphQL.Queries.Goals
 	public record UpdateGoalPayload(Goal goal);
 
 	[ExtendObjectType(OperationTypeNames.Mutation)]
-	public class GoalMutations : BaseQueries
+	public class GoalMutations : BaseGraphQLOperation
 	{
-		public GoalMutations(ILogger<BaseQueries> logger, IDbContextFactory<AppDbContext> dbContextFactory)
+		public GoalMutations(ILogger<BaseGraphQLOperation> logger, IDbContextFactory<AppDbContext> dbContextFactory)
 			: base(logger, dbContextFactory)
 		{
 		}

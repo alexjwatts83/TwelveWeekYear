@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 using TwelveWeekYear.Domain.Models;
 using TwelveWeekYear.Infrastructure.Persistence;
 
-namespace TwelveWeekYear.GraphQL.Queries.WeekDayTasksResults
+namespace TwelveWeekYear.GraphQL.Mutations.WeekDayTasksResults
 {
 	// Add
 	public record AddWeekDayTasksResultInput(int WeekNumber, DateTime Date, string Name, bool Completed, int TaskId);
@@ -20,9 +20,9 @@ namespace TwelveWeekYear.GraphQL.Queries.WeekDayTasksResults
 	public record UpdateWeekDayTasksResultPayload(WeekDayTasksResult WeekDayTasksResult);
 
 	[ExtendObjectType(OperationTypeNames.Mutation)]
-	public class WeekDayTasksResultMutations : BaseQueries
+	public class WeekDayTasksResultMutations : BaseGraphQLOperation
 	{
-		public WeekDayTasksResultMutations(ILogger<BaseQueries> logger, IDbContextFactory<AppDbContext> dbContextFactory)
+		public WeekDayTasksResultMutations(ILogger<BaseGraphQLOperation> logger, IDbContextFactory<AppDbContext> dbContextFactory)
 			: base(logger, dbContextFactory)
 		{
 		}

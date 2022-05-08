@@ -10,9 +10,9 @@ using TwelveWeekYear.Infrastructure.Persistence;
 namespace TwelveWeekYear.GraphQL.Queries.WeekDayTasksResults
 {
 	[ExtendObjectType(OperationTypeNames.Query)]
-	public class WeekDayTasksResultQueries : BaseQueries
+	public class WeekDayTasksResultQueries : BaseGraphQLOperation
 	{
-		public WeekDayTasksResultQueries(ILogger<BaseQueries> logger, IDbContextFactory<AppDbContext> dbContextFactory)
+		public WeekDayTasksResultQueries(ILogger<BaseGraphQLOperation> logger, IDbContextFactory<AppDbContext> dbContextFactory)
 			: base(logger, dbContextFactory)
 		{
 		}

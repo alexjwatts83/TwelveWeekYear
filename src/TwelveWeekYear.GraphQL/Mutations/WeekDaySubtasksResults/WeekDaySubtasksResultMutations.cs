@@ -7,7 +7,6 @@ using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using TwelveWeekYear.Domain.Models;
-using TwelveWeekYear.GraphQL.Queries;
 using TwelveWeekYear.Infrastructure.Persistence;
 
 namespace TwelveWeekYear.GraphQL.Mutations.WeekDaySubtasksResults
@@ -21,9 +20,9 @@ namespace TwelveWeekYear.GraphQL.Mutations.WeekDaySubtasksResults
 	public record UpdateWeekDaySubtasksResultPayload(WeekDaySubtasksResult WeekDaySubtasksResult);
 
 	[ExtendObjectType(OperationTypeNames.Mutation)]
-	public class WeekDaySubtasksResultMutations : BaseQueries
+	public class WeekDaySubtasksResultMutations : BaseGraphQLOperation
 	{
-		public WeekDaySubtasksResultMutations(ILogger<BaseQueries> logger, IDbContextFactory<AppDbContext> dbContextFactory)
+		public WeekDaySubtasksResultMutations(ILogger<BaseGraphQLOperation> logger, IDbContextFactory<AppDbContext> dbContextFactory)
 			: base(logger, dbContextFactory)
 		{
 		}
