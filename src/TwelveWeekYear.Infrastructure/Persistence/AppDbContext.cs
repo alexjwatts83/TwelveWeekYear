@@ -33,6 +33,7 @@ namespace TwelveWeekYear.Infrastructure.Persistence
 
 		protected override void OnModelCreating(ModelBuilder modelBuilder)
 		{
+			base.OnModelCreating(modelBuilder);
 			SetGoalsHasManyTasks(modelBuilder);
 			SetTaskHasManySubtasks(modelBuilder);
 			SetTweleveWeekYearHasManyGoals(modelBuilder);
