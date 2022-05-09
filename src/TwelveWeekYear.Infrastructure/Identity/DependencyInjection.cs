@@ -11,17 +11,17 @@ namespace TwelveWeekYear.Infrastructure.Identity
 			this IServiceCollection services,
 			IConfiguration configuration)
 		{
-			services.AddScoped<IAppDbContext>(provider =>
-				provider.GetService<AppDbContext>());
+			//services.AddScoped<IAppDbContext>(provider =>
+			//	provider.GetService<AppDbContext>());
 
-			//services.AddDefaultIdentity<ApplicationUser>()
-			//	.AddEntityFrameworkStores<AppDbContext>();
+			////services.AddDefaultIdentity<ApplicationUser>()
+			////	.AddEntityFrameworkStores<AppDbContext>();
 
-			//services.AddIdentityServer()
-			//	.AddApiAuthorization<ApplicationUser, AppDbContext>();
+			////services.AddIdentityServer()
+			////	.AddApiAuthorization<ApplicationUser, AppDbContext>();
 
-			//services.AddAuthentication()
-			//	.AddIdentityServerJwt();
+			////services.AddAuthentication()
+			////	.AddIdentityServerJwt();
 
 			services.AddScoped<IIdentityService, IdentityService>();
 

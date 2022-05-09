@@ -15,12 +15,12 @@ namespace TwelveWeekYear.Infrastructure
 		{
 			services.Configure<ConnectionStringSettings>(config.GetSection(ConnectionStringSettings.Section));
 
-			services.AddDbContext<AppDbContext>(options =>
-				options.UseSqlServer(
-					config.GetConnectionString("DbConStr")));
+			//services.AddDbContext<AppDbContext>(options =>
+			//	options.UseSqlServer(
+			//		config.GetConnectionString("DbConStr")));
 
-			//services.AddPooledDbContextFactory<AppDbContext>(
-			//	opt => opt.UseSqlServer(config.GetConnectionString("DbConStr")));
+			services.AddPooledDbContextFactory<AppDbContext>(
+				opt => opt.UseSqlServer(config.GetConnectionString("DbConStr")));
 
 			services.AddScoped<IAppDbContext>(provider =>
 				provider.GetService<AppDbContext>());
