@@ -1,14 +1,23 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using IdentityServer4.EntityFramework.Options;
+using Microsoft.AspNetCore.ApiAuthorization.IdentityServer;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Options;
+using System;
 using TwelveWeekYear.Application.Interfaces;
 using TwelveWeekYear.Domain.Models;
+using TwelveWeekYear.Infrastructure.Identity;
+using TwelveWeekYear.Infrastructure.Persistence.Interceptors;
 
 namespace TwelveWeekYear.Infrastructure.Persistence
 {
-	public class AppDbContext : IAppDbContext
+	public class AppDbContext : ApiAuthorizationDbContext<ApplicationUser>, IAppDbContext
 	{
-		public AppDbContext(DbContextOptions options) : base(options)
+		private readonly AuditEntitiesSaveChangesInterceptor _auditEntitiesSaveChangesInterceptor;
+		public AppDbContext(DbContextOptions options,
+			IOptions<OperationalStoreOptions> operationalStoreOptions,
+			ICurrentUserService currentUserService) : base(options, operationalStoreOptions)
 		{
-
+			this._auditEntitiesSaveChangesInterceptor = new AuditEntitiesSaveChangesInterceptor(currentUserService);
 		}
 		public DbSet<Goal> Goals { get; set; }
 		public DbSet<GoalType> GoalTypes { get; set; }
@@ -29,6 +38,17 @@ namespace TwelveWeekYear.Infrastructure.Persistence
 			SetTweleveWeekYearHasManyGoals(modelBuilder);
 			SetTweleveWeekYearHasManyTweleveWeekYearWeeks(modelBuilder);
 			SetTweleveWeekYearWeekHasManyWeekdays(modelBuilder);
+		}
+
+		protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+		{
+			optionsBuilder
+				.EnableDetailedErrors()
+				.LogTo(Console.WriteLine);
+
+			optionsBuilder.AddInterceptors(_auditEntitiesSaveChangesInterceptor);
+
+			base.OnConfiguring(optionsBuilder);
 		}
 
 		private static void SetTweleveWeekYearWeekHasManyWeekdays(ModelBuilder modelBuilder)
