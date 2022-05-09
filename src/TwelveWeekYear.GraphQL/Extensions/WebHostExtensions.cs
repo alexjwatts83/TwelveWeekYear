@@ -1,9 +1,7 @@
 ﻿using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Logging;
 using System;
-using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
-using TwelveWeekYear.Infrastructure.Persistence;
 using TwelveWeekYear.Infrastructure;
 
 namespace TwelveWeekYear.GraphQL.Extensions
@@ -23,12 +21,6 @@ namespace TwelveWeekYear.GraphQL.Extensions
 
 					initialiser.Initialise();
 					initialiser.Seed();
-					//var dbContextFactory = services.GetRequiredService<IDbContextFactory<AppDbContext>>();
-					//var appDbContext = dbContextFactory.CreateDbContext();
-
-					//appDbContext.Database.Migrate();
-
-					//AppDbContextSeeder.Seed(appDbContext, logger);
 
 					return host;
 				}
