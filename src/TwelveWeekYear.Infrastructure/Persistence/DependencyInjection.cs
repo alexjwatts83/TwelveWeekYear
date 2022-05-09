@@ -1,10 +1,11 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.AspNetCore.Authentication;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using TwelveWeekYear.Application.Interfaces;
+using TwelveWeekYear.Infrastructure.Identity;
 using TwelveWeekYear.Infrastructure.Persistence;
 using TwelveWeekYear.Infrastructure.Persistence.Configuration;
-using TwelveWeekYear.Infrastructure.Persistence.Repositories;
 
 namespace TwelveWeekYear.Infrastructure
 {
@@ -14,16 +15,28 @@ namespace TwelveWeekYear.Infrastructure
 		{
 			services.Configure<ConnectionStringSettings>(config.GetSection(ConnectionStringSettings.Section));
 
-			//services.AddDbContext<AppDbContext>(options =>
-			//	options.UseSqlServer(
-			//		config.GetConnectionString("DbConStr")));
+			services.AddDbContext<AppDbContext>(options =>
+				options.UseSqlServer(
+					config.GetConnectionString("DbConStr")));
 
-			services.AddPooledDbContextFactory<AppDbContext>(
-				opt => opt.UseSqlServer(config.GetConnectionString("DbConStr")));
+			//services.AddPooledDbContextFactory<AppDbContext>(
+			//	opt => opt.UseSqlServer(config.GetConnectionString("DbConStr")));
 
-			//services.AddScoped(typeof(IBaseRepository), typeof(BaseRepository));
+			services.AddScoped<IAppDbContext>(provider =>
+				provider.GetService<AppDbContext>());
 
-			// Add SqlMapper.AddTypeHandler here
+			services.AddTransient<AppDbContextInitialiser>();
+
+			services.AddDefaultIdentity<ApplicationUser>()
+				.AddEntityFrameworkStores<AppDbContext>();
+
+			services.AddIdentityServer()
+				.AddApiAuthorization<ApplicationUser, AppDbContext>();
+
+			services.AddAuthentication()
+				.AddIdentityServerJwt();
+
+			services.AddScoped<IIdentityService, IdentityService>();
 
 			return services;
 		}

@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using TwelveWeekYear.Application.Interfaces;
 using TwelveWeekYear.GraphQL.Mutations.Goals;
 using TwelveWeekYear.GraphQL.Mutations.Subtasks;
 using TwelveWeekYear.GraphQL.Mutations.Tasks;
@@ -24,6 +25,7 @@ using TwelveWeekYear.GraphQL.Queries.TweleveWeekYearWeeks;
 using TwelveWeekYear.GraphQL.Queries.WeekDays;
 using TwelveWeekYear.GraphQL.Queries.WeekDaySubtasksResults;
 using TwelveWeekYear.GraphQL.Queries.WeekDayTasksResults;
+using TwelveWeekYear.GraphQL.Services;
 using TwelveWeekYear.Infrastructure;
 using TwelveWeekYear.Infrastructure.Persistence;
 
@@ -43,6 +45,10 @@ namespace TwelveWeekYear.GraphQL
 		public void ConfigureServices(IServiceCollection services)
         {
 			services.AddInfrastructure(_configuration);
+
+			services.AddHttpContextAccessor();
+			services.AddScoped<ICurrentUserService, CurrentUserService>();
+
 			// GraphQL services
 			services
 				.AddGraphQLServer()

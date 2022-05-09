@@ -18,12 +18,17 @@ namespace TwelveWeekYear.GraphQL.Extensions
 				var logger = services.GetRequiredService<ILogger<Program>>();
 				try
 				{
-					var dbContextFactory = services.GetRequiredService<IDbContextFactory<AppDbContext>>();
-					var appDbContext = dbContextFactory.CreateDbContext();
+					var initialiser = services
+						.GetRequiredService<AppDbContextInitialiser>();
 
-					appDbContext.Database.Migrate();
+					initialiser.Initialise();
+					initialiser.Seed();
+					//var dbContextFactory = services.GetRequiredService<IDbContextFactory<AppDbContext>>();
+					//var appDbContext = dbContextFactory.CreateDbContext();
 
-					AppDbContextSeeder.Seed(appDbContext, logger);
+					//appDbContext.Database.Migrate();
+
+					//AppDbContextSeeder.Seed(appDbContext, logger);
 
 					return host;
 				}
