@@ -1,9 +1,10 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using TwelveWeekYear.Application.Interfaces;
 using TwelveWeekYear.Domain.Models;
 
 namespace TwelveWeekYear.Infrastructure.Persistence
 {
-	public class AppDbContext : DbContext
+	public class AppDbContext : IAppDbContext
 	{
 		public AppDbContext(DbContextOptions options) : base(options)
 		{
