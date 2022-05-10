@@ -4,6 +4,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 using System.Threading;
 using System.Threading.Tasks;
+using TwelveWeekYear.Application.Interfaces;
 using TwelveWeekYear.Domain.Models;
 using TwelveWeekYear.Infrastructure.Persistence;
 
@@ -16,8 +17,8 @@ namespace TwelveWeekYear.GraphQL.Mutations.Subtasks
 
 	public class SubtaskMutations : BaseGraphQLOperation
 	{
-		public SubtaskMutations(ILogger<BaseGraphQLOperation> logger, IDbContextFactory<AppDbContext> dbContextFactory)
-			: base(logger, dbContextFactory)
+		public SubtaskMutations(ILogger<BaseGraphQLOperation> logger, IAppDbContext dbContext)
+			: base(logger, dbContext)
 		{
 		}
 

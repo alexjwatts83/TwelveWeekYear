@@ -4,6 +4,7 @@ using HotChocolate.Types;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 using System.Linq;
+using TwelveWeekYear.Application.Interfaces;
 using TwelveWeekYear.Domain.Models;
 using TwelveWeekYear.Infrastructure.Persistence;
 
@@ -12,8 +13,8 @@ namespace TwelveWeekYear.GraphQL.Queries.GoalTypes
 	[ExtendObjectType(OperationTypeNames.Query)]
 	public class GoalTypeQueries : BaseGraphQLOperation
 	{
-		public GoalTypeQueries(ILogger<BaseGraphQLOperation> logger, IDbContextFactory<AppDbContext> dbContextFactory)
-			: base(logger, dbContextFactory)
+		public GoalTypeQueries(ILogger<BaseGraphQLOperation> logger, IAppDbContext dbContext)
+			: base(logger, dbContext)
 		{
 		}
 
