@@ -1,6 +1,8 @@
 ﻿using IdentityServer4.EntityFramework.Options;
 using Microsoft.AspNetCore.ApiAuthorization.IdentityServer;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Options;
 using System;
 using TwelveWeekYear.Application.Interfaces;
@@ -13,6 +15,11 @@ namespace TwelveWeekYear.Infrastructure.Persistence
 	public class AppDbContext : ApiAuthorizationDbContext<ApplicationUser>, IAppDbContext
 	{
 		private readonly AuditEntitiesSaveChangesInterceptor _auditEntitiesSaveChangesInterceptor;
+		//public AppDbContext(DbContextOptions options)
+		//{
+		//	var siteSettings = this.GetInfrastructure().GetRequiredService<IOptionsSnapshot<OperationalStoreOptions>>();
+		//	var currentUserService = this.GetService<ICurrentUserService>();
+		//}
 		public AppDbContext(DbContextOptions options,
 			IOptions<OperationalStoreOptions> operationalStoreOptions,
 			ICurrentUserService currentUserService) : base(options, operationalStoreOptions)
