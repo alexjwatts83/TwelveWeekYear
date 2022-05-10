@@ -5,6 +5,7 @@ using Microsoft.Extensions.Logging;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
+using TwelveWeekYear.Application.Interfaces;
 using TwelveWeekYear.Infrastructure.Persistence;
 
 namespace TwelveWeekYear.GraphQL.Mutations.Tasks
@@ -18,8 +19,8 @@ namespace TwelveWeekYear.GraphQL.Mutations.Tasks
 	[ExtendObjectType(OperationTypeNames.Mutation)]
 	public class TaskMutations : BaseGraphQLOperation
 	{
-		public TaskMutations(ILogger<BaseGraphQLOperation> logger, IDbContextFactory<AppDbContext> dbContextFactory)
-			: base(logger, dbContextFactory)
+		public TaskMutations(ILogger<BaseGraphQLOperation> logger, IAppDbContext dbContext)
+			: base(logger, dbContext)
 		{
 		}
 		[GraphQLDescription("Add Goals to a Task.")]

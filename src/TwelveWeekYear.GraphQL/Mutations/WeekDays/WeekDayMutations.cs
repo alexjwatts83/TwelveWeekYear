@@ -6,6 +6,7 @@ using System;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
+using TwelveWeekYear.Application.Interfaces;
 using TwelveWeekYear.Domain.Models;
 using TwelveWeekYear.Infrastructure.Persistence;
 
@@ -22,8 +23,8 @@ namespace TwelveWeekYear.GraphQL.Mutations.WeekDays
 	[ExtendObjectType(OperationTypeNames.Mutation)]
 	public class WeekDayMutations : BaseGraphQLOperation
 	{
-		public WeekDayMutations(ILogger<BaseGraphQLOperation> logger, IDbContextFactory<AppDbContext> dbContextFactory)
-			: base(logger, dbContextFactory)
+		public WeekDayMutations(ILogger<BaseGraphQLOperation> logger, IAppDbContext dbContext)
+			: base(logger, dbContext)
 		{
 		}
 
