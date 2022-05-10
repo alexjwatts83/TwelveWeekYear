@@ -15,11 +15,10 @@ namespace TwelveWeekYear.Infrastructure
 		{
 			services.Configure<ConnectionStringSettings>(config.GetSection(ConnectionStringSettings.Section));
 
-			
-
 			services.AddDbContext<AppDbContext>(options =>
 				options.UseSqlServer(
 					config.GetConnectionString("DbConStr")));
+
 			//services.AddEntityFrameworkSqlServer();
 			//services.AddPooledDbContextFactory<AppDbContext>(
 			//	(serviceProvider, opt) => {
