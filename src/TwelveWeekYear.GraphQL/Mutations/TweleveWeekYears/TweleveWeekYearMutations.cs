@@ -1,6 +1,5 @@
 ﻿using HotChocolate;
 using HotChocolate.Types;
-using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
@@ -9,12 +8,13 @@ using System.Threading;
 using System.Threading.Tasks;
 using TwelveWeekYear.Application.Interfaces;
 using TwelveWeekYear.Domain.Models;
-using TwelveWeekYear.Infrastructure.Persistence;
 
 namespace TwelveWeekYear.GraphQL.Mutations.TweleveWeekYears
 {
 	// Add
+	[GraphQLDescription("Add Twelve Week Year Parameters.")]
 	public record AddTweleveWeekYearInput(string Name, string Description, DateTime StartDate, DateTime EndDate, List<int> GoalIds);
+	[GraphQLDescription("Add Twelve Week Year Payload.")]
 	public record AddTweleveWeekYearPayload(TweleveWeekYear TweleveWeekYear);
 	// Update
 	public record UpdateTweleveWeekYearInput(string Name, string Description, DateTime StartDate, DateTime EndDate, List<int> GoalIds, int tweleveWeekYearId);
