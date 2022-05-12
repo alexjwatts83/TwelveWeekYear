@@ -11,10 +11,13 @@ using TwelveWeekYear.Infrastructure.Persistence;
 
 namespace TwelveWeekYear.GraphQL.Mutations.Goals
 {
+	[GraphQLDescription("Add Goal Parameters.")]
 	public record AddGoalInput(string Name, string Description, int GoalTypeId);
+	[GraphQLDescription("Add Goal Payload.")]
 	public record AddGoalPayload(Goal goal);
-
+	[GraphQLDescription("Update Goal Parameters.")]
 	public record UpdateGoalInput(string Name, string Description, int? GoalTypeId, int GoalId);
+	[GraphQLDescription("Update Goal Payload.")]
 	public record UpdateGoalPayload(Goal goal);
 
 	[ExtendObjectType(OperationTypeNames.Mutation)]
