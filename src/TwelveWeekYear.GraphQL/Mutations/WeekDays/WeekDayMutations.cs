@@ -11,11 +11,15 @@ using TwelveWeekYear.Domain.Models;
 namespace TwelveWeekYear.GraphQL.Mutations.WeekDays
 {
 	// Add
+	[GraphQLDescription("Add Weekday Parameters.")]
 	public record AddWeekDayInput(string Description, DateTime Date, int TweleveWeekYearWeekId);
+	[GraphQLDescription("Add Weekday Payload.")]
 	public record AddWeekDayPayload(WeekDay WeekDay);
 
 	// Update
+	[GraphQLDescription("Update Weekday Parameters.")]
 	public record UpdateWeekDayInput(string Description, DateTime Date, int TweleveWeekYearWeekId, int WeekDayId);
+	[GraphQLDescription("Update Weekday Payload.")]
 	public record UpdateWeekDayPayload(WeekDay WeekDay);
 
 	[ExtendObjectType(OperationTypeNames.Mutation)]
@@ -26,7 +30,7 @@ namespace TwelveWeekYear.GraphQL.Mutations.WeekDays
 		{
 		}
 
-		[GraphQLDescription("Add Twelve Week Year.")]
+		[GraphQLDescription("Add Twelve Week Year Weekday.")]
 		public async Task<AddWeekDayPayload> AddWeekDay(AddWeekDayInput input, CancellationToken cancellationToke)
 		{
 			var item = new WeekDay

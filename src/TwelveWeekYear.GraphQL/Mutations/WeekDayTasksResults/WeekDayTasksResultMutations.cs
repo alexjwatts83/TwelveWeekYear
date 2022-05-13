@@ -1,6 +1,5 @@
 ﻿using HotChocolate;
 using HotChocolate.Types;
-using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 using System;
 using System.Linq;
@@ -8,16 +7,19 @@ using System.Threading;
 using System.Threading.Tasks;
 using TwelveWeekYear.Application.Interfaces;
 using TwelveWeekYear.Domain.Models;
-using TwelveWeekYear.Infrastructure.Persistence;
 
 namespace TwelveWeekYear.GraphQL.Mutations.WeekDayTasksResults
 {
 	// Add
+	[GraphQLDescription("Add Weekday Task Result Parameters.")]
 	public record AddWeekDayTasksResultInput(int WeekNumber, DateTime Date, string Name, bool Completed, int TaskId);
+	[GraphQLDescription("Add Weekday Task Result Payload.")]
 	public record AddWeekDayTasksResultPayload(WeekDayTasksResult WeekDayTasksResult);
 
 	// Update
+	[GraphQLDescription("Update Weekday Task Result Parameters.")]
 	public record UpdateWeekDayTasksResultInput(int WeekNumber, DateTime Date, string Name, bool Completed, int TaskId, int WeekDayTasksResultId);
+	[GraphQLDescription("Update Weekday Task Result Payload.")]
 	public record UpdateWeekDayTasksResultPayload(WeekDayTasksResult WeekDayTasksResult);
 
 	[ExtendObjectType(OperationTypeNames.Mutation)]
