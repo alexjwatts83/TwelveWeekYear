@@ -17,7 +17,9 @@ namespace TwelveWeekYear.GraphQL.Mutations.TweleveWeekYearWeeks
 	public record AddTweleveWeekYearWeekPayload(TweleveWeekYearWeek TweleveWeekYearWeek);
 
 	// Update
+	[GraphQLDescription("Add Twelve Week Year Week Parameters.")]
 	public record UpdateTweleveWeekYearWeekInput(int WeekNumber, DateTime Date, int TweleveWeekYearId, int TweleveWeekYearWeekId);
+	[GraphQLDescription("Add Twelve Week Year Week Parameters.")]
 	public record UpdateTweleveWeekYearWeekPayload(TweleveWeekYearWeek TweleveWeekYearWeek);
 
 	[ExtendObjectType(OperationTypeNames.Mutation)]
