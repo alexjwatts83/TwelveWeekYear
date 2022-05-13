@@ -16,8 +16,11 @@ namespace TwelveWeekYear.GraphQL.Mutations.TweleveWeekYears
 	public record AddTweleveWeekYearInput(string Name, string Description, DateTime StartDate, DateTime EndDate, List<int> GoalIds);
 	[GraphQLDescription("Add Twelve Week Year Payload.")]
 	public record AddTweleveWeekYearPayload(TweleveWeekYear TweleveWeekYear);
+
 	// Update
+	[GraphQLDescription("Update Twelve Week Year Parameters.")]
 	public record UpdateTweleveWeekYearInput(string Name, string Description, DateTime StartDate, DateTime EndDate, List<int> GoalIds, int tweleveWeekYearId);
+	[GraphQLDescription("Update Twelve Week Year Payload.")]
 	public record UpdateTweleveWeekYearPayload(TweleveWeekYear tweleveWeekYear);
 
 	[ExtendObjectType(OperationTypeNames.Mutation)]
@@ -53,7 +56,7 @@ namespace TwelveWeekYear.GraphQL.Mutations.TweleveWeekYears
 			return new AddTweleveWeekYearPayload(item);
 		}
 
-		[GraphQLDescription("Update TweleveWeekYear")]
+		[GraphQLDescription("Update Tweleve Week Year")]
 		public async Task<UpdateTweleveWeekYearPayload> UpdateTweleveWeekYearAndGoals(UpdateTweleveWeekYearInput input, CancellationToken cancellationToken)
 		{
 			var item = dbContext.TweleveWeekYears.FirstOrDefault(x => x.Id == input.tweleveWeekYearId);
