@@ -30,7 +30,7 @@ namespace TwelveWeekYear.GraphQL.Mutations.TweleveWeekYearWeeks
 		{
 		}
 
-		[GraphQLDescription("Add Twelve Week Year.")]
+		[GraphQLDescription("Add Twelve Week Year Week.")]
 		public async Task<AddTweleveWeekYearWeekPayload> AddTwelveWeekYearWeek(AddTweleveWeekYearWeekInput input, CancellationToken cancellationToke)
 		{
 			var item = new TweleveWeekYearWeek
@@ -47,7 +47,7 @@ namespace TwelveWeekYear.GraphQL.Mutations.TweleveWeekYearWeeks
 			return new AddTweleveWeekYearWeekPayload(item);
 		}
 
-		[GraphQLDescription("Update TweleveWeekYearWeek")]
+		[GraphQLDescription("Update Tweleve Week Year Week")]
 		public async Task<UpdateTweleveWeekYearWeekPayload> UpdateTweleveWeekYearWeek(UpdateTweleveWeekYearWeekInput input, CancellationToken cancellationToken)
 		{
 			var item = dbContext.TweleveWeekYearWeeks.FirstOrDefault(x => x.Id == input.TweleveWeekYearWeekId);
