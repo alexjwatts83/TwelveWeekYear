@@ -1,6 +1,7 @@
 ﻿using HotChocolate;
 using HotChocolate.Types;
 using System.Linq;
+using TwelveWeekYear.Application.Interfaces;
 using TwelveWeekYear.Domain.Models;
 using TwelveWeekYear.Infrastructure.Persistence;
 
@@ -37,6 +38,7 @@ namespace TwelveWeekYear.GraphQL.Queries.Goals
 			descriptor
 				.Field(x => x.Tasks)
 				.ResolveWith<Resolvers>(x => x.GetGoalTasks(default!, default!))
+				.UseScopedService<IAppDbContext, AppDbContext>()
 				.UseDbContext<AppDbContext>()
 				.Description("Tasks for a Goal.");
 
@@ -53,17 +55,17 @@ namespace TwelveWeekYear.GraphQL.Queries.Goals
 
 		private class Resolvers
 		{
-			public Domain.Models.GoalType GetGoalType([Parent] Goal goal, [ScopedService] AppDbContext context)
+			public Domain.Models.GoalType GetGoalType([Parent] Goal goal, [ScopedService] IAppDbContext context)
 			{
 				return context.GoalTypes.FirstOrDefault(p => p.Id == goal.GoalTypeId);
 			}
 
-			public IQueryable<Task> GetGoalTasks([Parent] Goal goal, [ScopedService] AppDbContext context)
+			public IQueryable<Task> GetGoalTasks([Parent] Goal goal, [ScopedService] IAppDbContext context)
 			{
 				return context.Tasks.Where(x => x.GoalId == goal.Id);
 			}
 
-			public Domain.Models.TweleveWeekYear GetGoalTweleveWeekYear([Parent] Goal goal, [ScopedService] AppDbContext context)
+			public Domain.Models.TweleveWeekYear GetGoalTweleveWeekYear([Parent] Goal goal, [ScopedService] IAppDbContext context)
 			{
 				return context.TweleveWeekYears.FirstOrDefault(p => p.Id == goal.TweleveWeekYearId);
 			}
