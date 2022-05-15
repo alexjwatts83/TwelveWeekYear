@@ -1,6 +1,7 @@
 ﻿using HotChocolate;
 using HotChocolate.Types;
 using System.Linq;
+using TwelveWeekYear.Application.Interfaces;
 using TwelveWeekYear.Domain.Models;
 using TwelveWeekYear.Infrastructure.Persistence;
 
@@ -33,7 +34,7 @@ namespace TwelveWeekYear.GraphQL.Queries.WeekDays
 
 		private class Resolvers
 		{
-			public TweleveWeekYear GetTweleveWeekYearForWeekDay([Parent] WeekDay weekDay, [ScopedService] AppDbContext context)
+			public TweleveWeekYear GetTweleveWeekYearForWeekDay([Parent] WeekDay weekDay, [ScopedService] IAppDbContext context)
 			{
 				return context.TweleveWeekYears.FirstOrDefault(x => x.Id == weekDay.TweleveWeekYearWeekId);
 			}

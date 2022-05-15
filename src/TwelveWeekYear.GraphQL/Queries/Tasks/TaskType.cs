@@ -1,6 +1,7 @@
 ﻿using HotChocolate;
 using HotChocolate.Types;
 using System.Linq;
+using TwelveWeekYear.Application.Interfaces;
 using TwelveWeekYear.Domain.Models;
 using TwelveWeekYear.Infrastructure.Persistence;
 
@@ -40,12 +41,12 @@ namespace TwelveWeekYear.GraphQL.Queries.Tasks
 
 		private class Resolvers
 		{
-			public Goal GetGoalType([Parent] Task task, [ScopedService] AppDbContext context)
+			public Goal GetGoalType([Parent] Task task, [ScopedService] IAppDbContext context)
 			{
 				return context.Goals.FirstOrDefault(p => p.Id == task.GoalId);
 			}
 
-			public IQueryable<Subtask> GetSubtasksForTask([Parent] Task task, [ScopedService] AppDbContext context)
+			public IQueryable<Subtask> GetSubtasksForTask([Parent] Task task, [ScopedService] IAppDbContext context)
 			{
 				return context.Subtasks.Where(x => x.TaskId == task.Id);
 			}

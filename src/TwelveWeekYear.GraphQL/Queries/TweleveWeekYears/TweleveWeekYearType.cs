@@ -1,6 +1,7 @@
 ﻿using HotChocolate;
 using HotChocolate.Types;
 using System.Linq;
+using TwelveWeekYear.Application.Interfaces;
 using TwelveWeekYear.Domain.Models;
 using TwelveWeekYear.Infrastructure.Persistence;
 
@@ -46,12 +47,12 @@ namespace TwelveWeekYear.GraphQL.Queries.TweleveWeekYears
 
 		private class Resolvers
 		{
-			public IQueryable<Goal> GetGoalsFortweleveWeekYear([Parent] TweleveWeekYear tweleveWeekYear, [ScopedService] AppDbContext context)
+			public IQueryable<Goal> GetGoalsFortweleveWeekYear([Parent] TweleveWeekYear tweleveWeekYear, [ScopedService] IAppDbContext context)
 			{
 				return context.Goals.Where(x => x.TweleveWeekYearId == tweleveWeekYear.Id);
 			}
 
-			public IQueryable<TweleveWeekYearWeek> GetWeeksFortweleveWeekYear([Parent] TweleveWeekYear tweleveWeekYear, [ScopedService] AppDbContext context)
+			public IQueryable<TweleveWeekYearWeek> GetWeeksFortweleveWeekYear([Parent] TweleveWeekYear tweleveWeekYear, [ScopedService] IAppDbContext context)
 			{
 				return context.TweleveWeekYearWeeks.Where(x => x.TweleveWeekYearId == tweleveWeekYear.Id);
 			}
