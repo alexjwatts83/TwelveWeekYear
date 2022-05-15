@@ -3,6 +3,7 @@ using HotChocolate.Types;
 using System.Linq;
 using TwelveWeekYear.Application.Interfaces;
 using TwelveWeekYear.Domain.Models;
+using TwelveWeekYear.GraphQL.Extensions;
 using TwelveWeekYear.Infrastructure.Persistence;
 
 namespace TwelveWeekYear.GraphQL.Queries.WeekDays
@@ -28,12 +29,14 @@ namespace TwelveWeekYear.GraphQL.Queries.WeekDays
 			descriptor
 				.Field(x => x.TweleveWeekYearWeek)
 				.ResolveWith<Resolvers>(x => x.GetTweleveWeekYearForWeekDay(default!, default!))
-				.UseDbContext<AppDbContext>()
+				//.UseDbContext<AppDbContext>()
+
 				.Description("The TweleveWeekYearWeek for the WeekDay.");
 		}
 
 		private class Resolvers
 		{
+			[UseAppDbContext]
 			public TweleveWeekYear GetTweleveWeekYearForWeekDay([Parent] WeekDay weekDay, [ScopedService] IAppDbContext context)
 			{
 				return context.TweleveWeekYears.FirstOrDefault(x => x.Id == weekDay.TweleveWeekYearWeekId);
