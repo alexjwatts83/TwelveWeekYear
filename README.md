@@ -5,7 +5,7 @@ A work in progress app simple app used to record and monitor progress for the a 
 ## debug
 `cd C:\Projects\dotnet\TwelveWeekYear`
 
-`dotnet watch run -project src\TwelveWeekYear.GraphQL`
+`dotnet watch run --project src\TwelveWeekYear.GraphQL`
 
 ## EF
 `C:\Projects\dotnet\TwelveWeekYear\src (feature/ef-migration -> origin)`
