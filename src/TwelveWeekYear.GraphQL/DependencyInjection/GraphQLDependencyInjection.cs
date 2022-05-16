@@ -32,6 +32,7 @@ namespace TwelveWeekYear.GraphQL.DependencyInjection
 				.AddGraphQLServer()
 				.ModifyRequestOptions(opt => opt.IncludeExceptionDetails = true)
 				.RegisterDbContext<AppDbContext>()
+
 				// Queries
 				.AddQueryType(q => q.Name(OperationTypeNames.Query))
 				.AddTypeExtension<GoalTypeQueries>()
@@ -44,6 +45,7 @@ namespace TwelveWeekYear.GraphQL.DependencyInjection
 				.AddTypeExtension<WeekDayQueries>()
 				.AddTypeExtension<WeekDayTasksResultQueries>()
 				.AddTypeExtension<WeekDaySubtasksResultQueries>()
+
 				// Types
 				.AddType<GoalTypeType>()
 				.AddType<TweleveWeekYearSettingType>()
@@ -55,6 +57,7 @@ namespace TwelveWeekYear.GraphQL.DependencyInjection
 				.AddType<WeekDayType>()
 				.AddType<WeekDayTasksResultType>()
 				.AddType<WeekDaySubtasksResultType>()
+
 				// Mutations
 				.AddMutationType(q => q.Name(OperationTypeNames.Mutation))
 				.AddTypeExtension<GoalMutations>()
