@@ -4,9 +4,7 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using TwelveWeekYear.Application.Interfaces;
 using TwelveWeekYear.GraphQL.DependencyInjection;
-using TwelveWeekYear.GraphQL.Services;
 using TwelveWeekYear.Infrastructure;
 
 namespace TwelveWeekYear.GraphQL
@@ -26,8 +24,7 @@ namespace TwelveWeekYear.GraphQL
         {
 			services.AddInfrastructure(_configuration);
 
-			services.AddHttpContextAccessor();
-			services.AddScoped<ICurrentUserService, CurrentUserService>();
+			services.AddCustomServices();
 
 			services.AddCustomGraphQLServer(_configuration);
 		}
