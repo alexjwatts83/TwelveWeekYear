@@ -4,8 +4,6 @@ using Microsoft.Extensions.DependencyInjection;
 using System.Linq;
 using TwelveWeekYear.Application.Interfaces;
 using TwelveWeekYear.Domain.Models;
-using TwelveWeekYear.GraphQL.Extensions;
-using TwelveWeekYear.Infrastructure.Persistence;
 
 namespace TwelveWeekYear.GraphQL.Queries.Goals
 {
@@ -36,7 +34,8 @@ namespace TwelveWeekYear.GraphQL.Queries.Goals
 				.ResolveWith<Resolvers>(x => x.GetGoalType(default!, default!))
 					//.UseDbContext<AppDbContext>()
 					.UseScopedService<IAppDbContext>(
-					create: s => s.GetRequiredService<IAppDbContext>())
+					create: s => s.GetRequiredService<IAppDbContext>(),
+					disposeAsync: (s, c) => c.DisposeAsync())
 				.Description("The Goal Type.");
 
 			descriptor

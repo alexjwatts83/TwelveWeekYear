@@ -20,5 +20,7 @@ namespace TwelveWeekYear.Application.Interfaces
 		public DbSet<TweleveWeekYearSetting> TweleveWeekYearSettings { get; set; }
 
 		Task<int> SaveChangesAsync(CancellationToken cancellationToken);
+		//void Dispose();
+		System.Threading.Tasks.ValueTask DisposeAsync();
 	}
 }
