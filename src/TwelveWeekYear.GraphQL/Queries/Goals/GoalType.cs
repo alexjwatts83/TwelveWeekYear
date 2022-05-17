@@ -35,7 +35,7 @@ namespace TwelveWeekYear.GraphQL.Queries.Goals
 					//.UseDbContext<AppDbContext>()
 					.UseScopedService<IAppDbContext>(
 					create: s => s.GetRequiredService<IAppDbContext>(),
-					disposeAsync: (s, c) => c.DisposeAsync())
+					dispose: (s, c) => c.Dispose())
 				.Description("The Goal Type.");
 
 			descriptor
@@ -46,7 +46,7 @@ namespace TwelveWeekYear.GraphQL.Queries.Goals
 							//.UseDbContext<AppDbContext>()
 							.UseScopedService<IAppDbContext>(
 					create: s => s.GetRequiredService<IAppDbContext>(),
-					disposeAsync: (s, c) => c.DisposeAsync())
+					dispose: (s, c) => c.Dispose())
 				.Description("Tasks for a Goal.");
 
 			descriptor
@@ -61,7 +61,7 @@ namespace TwelveWeekYear.GraphQL.Queries.Goals
 								//create: s => s.GetRequiredService<IAppDbContext>())
 								.UseScopedService<IAppDbContext>(
 					create: s => s.GetRequiredService<IAppDbContext>(),
-					disposeAsync: (s, c) => c.DisposeAsync())
+					dispose: (s, c) => c.Dispose())
 				.Description("The TweleveWeekYear.");
 		}
 
