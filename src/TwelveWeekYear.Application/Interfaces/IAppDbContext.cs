@@ -21,5 +21,6 @@ namespace TwelveWeekYear.Application.Interfaces
 
 		Task<int> SaveChangesAsync(CancellationToken cancellationToken);
 		ValueTask DisposeAsync();
+		void Dispose();
 	}
 }
