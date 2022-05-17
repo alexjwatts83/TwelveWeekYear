@@ -41,9 +41,12 @@ namespace TwelveWeekYear.GraphQL.Queries.Goals
 			descriptor
 				.Field(x => x.Tasks)
 				.ResolveWith<Resolvers>(x => x.GetGoalTasks(default!, default!))
-				//.UseScopedService<IAppDbContext>(
-				//	create: s => s.GetRequiredService<IAppDbContext>())
-				//.UseDbContext<AppDbContext>()
+							//.UseScopedService<IAppDbContext>(
+							//	create: s => s.GetRequiredService<IAppDbContext>())
+							//.UseDbContext<AppDbContext>()
+							.UseScopedService<IAppDbContext>(
+					create: s => s.GetRequiredService<IAppDbContext>(),
+					disposeAsync: (s, c) => c.DisposeAsync())
 				.Description("Tasks for a Goal.");
 
 			descriptor
@@ -53,9 +56,12 @@ namespace TwelveWeekYear.GraphQL.Queries.Goals
 			descriptor
 				.Field(x => x.TweleveWeekYear)
 				.ResolveWith<Resolvers>(x => x.GetGoalTweleveWeekYear(default!, default!))
-					//.UseDbContext<AppDbContext>()
-					//.UseScopedService<IAppDbContext>(
-					//create: s => s.GetRequiredService<IAppDbContext>())
+								//.UseDbContext<AppDbContext>()
+								//.UseScopedService<IAppDbContext>(
+								//create: s => s.GetRequiredService<IAppDbContext>())
+								.UseScopedService<IAppDbContext>(
+					create: s => s.GetRequiredService<IAppDbContext>(),
+					disposeAsync: (s, c) => c.DisposeAsync())
 				.Description("The TweleveWeekYear.");
 		}
 
