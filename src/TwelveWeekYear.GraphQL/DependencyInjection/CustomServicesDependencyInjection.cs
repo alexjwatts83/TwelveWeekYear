@@ -10,6 +10,7 @@ namespace TwelveWeekYear.GraphQL.DependencyInjection
 		{
 			services.AddHttpContextAccessor();
 			services.AddScoped<ICurrentUserService, CurrentUserService>();
+			services.AddDatabaseDeveloperPageExceptionFilter();
 			return services;
 		}
 	}
