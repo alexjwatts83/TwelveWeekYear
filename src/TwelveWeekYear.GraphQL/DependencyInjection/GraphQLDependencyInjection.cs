@@ -31,7 +31,7 @@ namespace TwelveWeekYear.GraphQL.DependencyInjection
 			services
 				.AddGraphQLServer()
 				.ModifyRequestOptions(opt => opt.IncludeExceptionDetails = true)
-				//.RegisterDbContext<AppDbContext>()
+				.RegisterDbContext<AppDbContext>()
 
 				// Queries
 				.AddQueryType(q => q.Name(OperationTypeNames.Query))
