@@ -4,6 +4,7 @@ using Microsoft.Extensions.DependencyInjection;
 using System.Linq;
 using TwelveWeekYear.Application.Interfaces;
 using TwelveWeekYear.Domain.Models;
+using TwelveWeekYear.Infrastructure.Persistence;
 
 namespace TwelveWeekYear.GraphQL.Queries.Goals
 {
@@ -32,21 +33,22 @@ namespace TwelveWeekYear.GraphQL.Queries.Goals
 			descriptor
 				.Field(x => x.GoalType)
 				.ResolveWith<Resolvers>(x => x.GetGoalType(default!, default!))
-					//.UseDbContext<AppDbContext>()
-					.UseScopedService<IAppDbContext>(
-					create: s => s.GetRequiredService<IAppDbContext>(),
-					dispose: (s, c) => c.Dispose())
+				.UseDbContext<AppDbContext>()
+				//.UseScopedService<IAppDbContext>(
+				//create: s => s.GetRequiredService<IAppDbContext>(),
+				//dispose: (s, c) => c.Dispose())
 				.Description("The Goal Type.");
 
 			descriptor
 				.Field(x => x.Tasks)
 				.ResolveWith<Resolvers>(x => x.GetGoalTasks(default!, default!))
-							//.UseScopedService<IAppDbContext>(
-							//	create: s => s.GetRequiredService<IAppDbContext>())
-							//.UseDbContext<AppDbContext>()
-							.UseScopedService<IAppDbContext>(
-					create: s => s.GetRequiredService<IAppDbContext>(),
-					dispose: (s, c) => c.Dispose())
+				.UseDbContext<AppDbContext>()
+				//		//.UseScopedService<IAppDbContext>(
+				//		//	create: s => s.GetRequiredService<IAppDbContext>())
+				//		//.UseDbContext<AppDbContext>()
+				//		.UseScopedService<IAppDbContext>(
+				//create: s => s.GetRequiredService<IAppDbContext>(),
+				//dispose: (s, c) => c.Dispose())
 				.Description("Tasks for a Goal.");
 
 			descriptor
@@ -56,31 +58,32 @@ namespace TwelveWeekYear.GraphQL.Queries.Goals
 			descriptor
 				.Field(x => x.TweleveWeekYear)
 				.ResolveWith<Resolvers>(x => x.GetGoalTweleveWeekYear(default!, default!))
-								//.UseDbContext<AppDbContext>()
-								//.UseScopedService<IAppDbContext>(
-								//create: s => s.GetRequiredService<IAppDbContext>())
-								.UseScopedService<IAppDbContext>(
-					create: s => s.GetRequiredService<IAppDbContext>(),
-					dispose: (s, c) => c.Dispose())
+				.UseDbContext<AppDbContext>()
+				//			//.UseDbContext<AppDbContext>()
+				//			//.UseScopedService<IAppDbContext>(
+				//			//create: s => s.GetRequiredService<IAppDbContext>())
+				//			.UseScopedService<IAppDbContext>(
+				//create: s => s.GetRequiredService<IAppDbContext>(),
+				//dispose: (s, c) => c.Dispose())
 				.Description("The TweleveWeekYear.");
 		}
 
 		private class Resolvers
 		{
 			//[UseAppDbContext]
-			public Domain.Models.GoalType GetGoalType([Parent] Goal goal, [ScopedService] IAppDbContext context)
+			public Domain.Models.GoalType GetGoalType([Parent] Goal goal, [ScopedService] AppDbContext context)
 			{
 				return context.GoalTypes.FirstOrDefault(p => p.Id == goal.GoalTypeId);
 			}
 
 			//[UseAppDbContext]
-			public IQueryable<Task> GetGoalTasks([Parent] Goal goal, [ScopedService] IAppDbContext context)
+			public IQueryable<Task> GetGoalTasks([Parent] Goal goal, [ScopedService] AppDbContext context)
 			{
 				return context.Tasks.Where(x => x.GoalId == goal.Id);
 			}
 
 			//[UseAppDbContext]
-			public Domain.Models.TweleveWeekYear GetGoalTweleveWeekYear([Parent] Goal goal, [ScopedService] IAppDbContext context)
+			public Domain.Models.TweleveWeekYear GetGoalTweleveWeekYear([Parent] Goal goal, [ScopedService] AppDbContext context)
 			{
 				return context.TweleveWeekYears.FirstOrDefault(p => p.Id == goal.TweleveWeekYearId);
 			}
