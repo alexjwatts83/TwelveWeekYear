@@ -12,28 +12,17 @@
         No tasks, lols
       </ng-container>
       <ng-container formArrayName="tasks" *ngIf="!isLoading">
-        <ng-container
-          *ngFor="let taskForm of taskForms.controls; let i = index"
-        >
+        <ng-container *ngFor="let taskForm of taskForms.controls; let i = index">
           <div class="form-array-row" [formGroupName]="i">
             <div class="form-array-row-input">
-              <button
-                type="button"
-                mat-icon-button
-                color="accent"
-                (click)="deleteTask(i)"
-              >
+              <button type="button" mat-icon-button color="accent" (click)="deleteTask(i)">
                 <mat-icon>delete_forever</mat-icon>
               </button>
 
               <mat-form-field class="example-form-field" appearance="fill">
                 <mat-label>Description</mat-label>
-                <textarea
-                  matInput
-                  placeholder="Enter Task Description"
-                  formControlName="description"
-                  autocomplete="on"
-                ></textarea>
+                <textarea matInput placeholder="Enter Task Description" formControlName="description"
+                  autocomplete="on"></textarea>
               </mat-form-field>
             </div>
 
@@ -45,40 +34,24 @@
                 <div class="heading">
                   Sub Tasks ({{ subtaskForms(i).controls.length }})
                 </div>
-                <ng-container
-                  *ngIf="!isLoading && subtaskForms(i).controls.length === 0"
-                >
+                <ng-container *ngIf="!isLoading && subtaskForms(i).controls.length === 0">
                   No subtasks, lols
                 </ng-container>
                 <ng-container formArrayName="subTasks" *ngIf="!isLoading">
-                  <ng-container
-                    *ngFor="
+                  <ng-container *ngFor="
                       let subTaskForm of subtaskForms(i).controls;
                       let j = index
-                    "
-                  >
+                    ">
                     <div class="form-array-row" [formGroupName]="j">
                       <div class="form-array-row-input">
-                        <button
-                          type="button"
-                          mat-icon-button
-                          color="accent"
-                          (click)="deleteSubTask(i, j)"
-                        >
+                        <button type="button" mat-icon-button color="accent" (click)="deleteSubTask(i, j)">
                           <mat-icon>delete_forever</mat-icon>
                         </button>
 
-                        <mat-form-field
-                          class="example-form-field"
-                          appearance="fill"
-                        >
+                        <mat-form-field class="example-form-field" appearance="fill">
                           <mat-label>Subtask Description</mat-label>
-                          <textarea
-                            matInput
-                            placeholder="Enter subtask Description"
-                            formControlName="description"
-                            autocomplete="on"
-                          ></textarea>
+                          <textarea matInput placeholder="Enter subtask Description" formControlName="description"
+                            autocomplete="on"></textarea>
                         </mat-form-field>
                       </div>
                     </div>
