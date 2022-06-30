@@ -3,17 +3,8 @@ import { Observable, BehaviorSubject } from 'rxjs';
 import { GoalsService } from '../goals/goals.service';
 import { Goal, GoalTypes, SubTask, Task } from '../goals/models';
 import { addDays, getRandomInt, isOdd } from '../shared/utilities';
+import { Days } from './Days';
 import { TwelveWeekYear, Week, WeekDay, WeekDayResult } from './models';
-
-enum Days {
-  sunday = 0,
-  monday = 1,
-  tuesday = 2,
-  wednesday = 3,
-  thursday = 4,
-  friday = 5,
-  saturday = 6,
-}
 
 @Injectable({
   providedIn: 'root',
